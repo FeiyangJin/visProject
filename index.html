@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Visualization</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <h1>Graph Visualization</h1>
+
+    <label> graphML upload here </label><br><br>
+    <input type="file" id="graphml_fileInput" accept=".graphml"><br><br>
+
+    <label> json upload here</label><br><br>
+    <input type="file" id="json_fileInput" accept=".json"><br><br>
+
+    <div id="graphContainer"></div>
+
+    <!-- Include your script.js file with the correct path -->
+    <script src="public/graphology.min.js"></script>
+    <script src="public/script.js"></script>
+</body>
+
+</html>
