@@ -28,17 +28,15 @@ function handleFileUpload(event) {
 
         reader.onload = function (e) {
             const graphmlData = e.target.result;
-            visualizeGraph(graphmlData);
+            let {nodes, edges} = prepareGraph(graphmlData)
+            visualizeGraph(nodes,edges);
         };
 
         reader.readAsText(file);
     }
 }
 
-function visualizeGraph(graphmlData) {
-    // Create an empty graph using the globally available Graph class
-    const graph = new graphology.Graph();
-
+function prepareGraph(graphmlData){
     // Parse the GraphML data and add nodes and edges to the 'graph' object
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(graphmlData, 'application/xml');
@@ -69,8 +67,9 @@ function visualizeGraph(graphmlData) {
         // Iterate through each <data> element and extract its key and text content
         dataElements.forEach((dataElement) => {
             const key = dataElement.getAttribute('key');
+            let keyName = keys.find(x => x.id === key).name
             const value = dataElement.textContent;
-            result[key] = value;
+            result[keyName] = value;
         });
         return result;
 
@@ -86,17 +85,19 @@ function visualizeGraph(graphmlData) {
         const dataElements = Array.from(edge.querySelectorAll('data'));
         dataElements.forEach((dataElement) => {
             const key = dataElement.getAttribute('key');
+            let keyName = keys.find(x => x.id === key).name
             const value = dataElement.textContent;
-            result[key] = value;
+            result[keyName] = value;
         });
         return result;
     });
     console.log(edges)
 
-    // // Add nodes and edges to the graph
-    // nodes.forEach((node) => graph.addNode(node.id));
-    // edges.forEach((edge) => graph.addEdge(edge.source, edge.target));
+    return {nodes,edges};
+}
 
+
+function visualizeGraph(nodes, edges) {
     // Visualization code using D3.js (customize as needed)
     const svg = d3.select(graphContainer)
         .append('svg')
@@ -120,12 +121,12 @@ function visualizeGraph(graphmlData) {
     .data(nodes)
     .enter()
     .append('circle')
-    .attr('r', 6)
+    .attr('r', 8)
     .attr('fill', function(d) {
-        if (d["key2"] === '0'){
-            return 'red';
+        if (d.has_race === '0'){
+            return 'pink';
         }
-        return 'blue';
+        return 'orange';
     });
 
     // Define an arrowhead marker for directed edges
