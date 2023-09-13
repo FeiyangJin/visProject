@@ -1,25 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-const graphml_fileInput = document.getElementById('graphml_fileInput');
-const json_fileInput = document.getElementById('json_fileInput');
-
-graphml_fileInput.addEventListener('change', handleFileUpload);
-json_fileInput.addEventListener('change', handleJsonUpload);
+    const graphml_fileInput = document.getElementById('graphml_fileInput');
+    graphml_fileInput.addEventListener('change', handleFileUpload);
 });
-
-function handleJsonUpload(event){
-    const file = event.target.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            const jsonData = e.target.result;
-            console.log(jsonData)
-        };
-
-        reader.readAsText(file);
-    }
-}
 
 function handleFileUpload(event) {
     const file = event.target.files[0];
@@ -109,6 +91,9 @@ function visualizeGraph(nodes, edges) {
         source: nodes.find(node => node.id === edge.source),
         target: nodes.find(node => node.id === edge.target)
     }));
+    for(const link of links){
+        console.log(link)
+    }
 
     // Create a D3 force simulation
     const simulation = d3.forceSimulation(nodes)
@@ -164,11 +149,3 @@ function visualizeGraph(nodes, edges) {
     // Update positions on each tick of the simulation
     simulation.on('tick', tick);
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const fileInput = document.getElementById('fileInput');
-//     const json_fileInput = document.getElementById('json_fileInput');
-//     const graphContainer = document.getElementById('graphContainer');
-
-//     fileInput.addEventListener('change', handleFileUpload);
-// });

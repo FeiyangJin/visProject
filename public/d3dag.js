@@ -99,10 +99,6 @@ const data = [
 const builder = d3.graphStratify();
 const dag = builder(data);
 
-// import relevant functions in whatever way is necessary
-// const builder = d3.graphConnect(); // optionally customize with fluent interface
-// const dag = builder([["a", "b"], ["b", "c"], ["c", "d"], ["b", "d"]]);
-
 const layout = d3.sugiyama()
     .nodeSize(nodeSize)
     .gap([nodeRadius, nodeRadius])
@@ -168,17 +164,12 @@ const lineGenerator = d3.line()
 
 let links = []
 for(const link of dag.links()){
-  // Initialize the SVG path string
-  let pathString = "M " + link.points[0][0] + " " + link.points[0][1];
-
-  let allpoints = [{x:link.points[0][0], y:link.points[0][1]}]
+  let allpoints = []
 
   // Loop through the points and construct the path
-  for (let i = 1; i < link.points.length; i++) {
-      pathString += " L " +link.points[i][0] + " " + link.points[i][1];
+  for (let i = 0; i < link.points.length; i++) {
       allpoints.push({x: link.points[i][0], y:link.points[i][1]})
   }
-  // console.log(allpoints)
   const pathStringD3 = lineGenerator(allpoints)
 
   const result = {
@@ -188,8 +179,6 @@ for(const link of dag.links()){
     targety: link.target.uy,
     path: pathStringD3
   }
-  // console.log(pathString)
-  // console.log(pathStringD3)
   
   links.push(result)
 }
@@ -206,17 +195,6 @@ svg.append('defs').append('marker')
 .append('path')
 .attr('d', 'M 0,0 V 4 L6,2 Z'); // Path for the arrowhead
 
-// const pathElements = svg.selectAll('line')
-// .data(links)
-// .enter()
-// .append('line')
-// .attr('stroke', 'black')
-// .attr('stroke-width', nodeRadius / 7.5)
-// .attr('x1', d => d.sourcex)
-// .attr('y1', d => d.sourcey)
-// .attr('x2', d => d.targetx)
-// .attr('y2', d => d.targety)
-// .attr('marker-end', 'url(#arrowhead)'); // Attach arrowhead marker
 
 // link paths
 svg
