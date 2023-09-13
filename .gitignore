@@ -3,3 +3,4 @@ node_modules
 app.mjs
 package.json
 package-lock.json
+test.*

@@ -1,13 +1,13 @@
+document.addEventListener('DOMContentLoaded', () => {
 const graphml_fileInput = document.getElementById('graphml_fileInput');
 const json_fileInput = document.getElementById('json_fileInput');
-const graphContainer = document.getElementById('graphContainer');
 
 graphml_fileInput.addEventListener('change', handleFileUpload);
 json_fileInput.addEventListener('change', handleJsonUpload);
+});
 
 function handleJsonUpload(event){
     const file = event.target.files[0];
-    console.log(file)
 
     if (file) {
         const reader = new FileReader();
@@ -99,7 +99,7 @@ function prepareGraph(graphmlData){
 
 function visualizeGraph(nodes, edges) {
     // Visualization code using D3.js (customize as needed)
-    const svg = d3.select(graphContainer)
+    const svg = d3.select("#graphContainer")
         .append('svg')
         .attr('width', 800)
         .attr('height', 800);

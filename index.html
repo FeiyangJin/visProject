@@ -7,6 +7,7 @@
     <title>Graph Visualization</title>
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/d3-dag@1.0.0"></script>
 </head>
 
 <body>
@@ -18,10 +19,20 @@
     <label> json upload here</label><br><br>
     <input type="file" id="json_fileInput" accept=".json"><br><br>
 
+    <svg id="svg">
+        <g transform="translate(2, 2)">
+          <defs id="defs" />
+          <g id="links" />
+          <g id="nodes" />
+          <g id="arrows" />
+        </g>
+    </svg>
+    
     <div id="graphContainer"></div>
 
     <!-- Include your script.js file with the correct path -->
     <script src="public/graphology.min.js"></script>
+    <script src="public/d3dag.js"></script>
     <script src="public/script.js"></script>
 </body>
 
