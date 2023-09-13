@@ -21,7 +21,26 @@ function handleJsonUpload(event){
 function prepareGraph(jsonData){
     let json = JSON.parse(jsonData)
     let nodes = json['nodes']
-    let links = json['links']
-    console.log(nodes)
-    console.log(links)
+    let edges = json['links']
+
+    const linkdata = edges.map(edge => ({
+        source: nodes.find(node => node.id === edge.source),
+        target: nodes.find(node => node.id === edge.target)
+    }));
+
+    // for(const link of linkdata){
+    //     console.log(link.source.id)
+    //     console.log(link.target.id)
+    // }
+
+    const builder = d3.graphConnect()
+        .sourceId(d => d.source.id)
+        .targetId(d => d.target.id)
+
+    const dag = builder(linkdata)
+    console.log(dag)
+
+    for(const node of dag.nodes()){
+        console.log(node.data)
+    }
 }

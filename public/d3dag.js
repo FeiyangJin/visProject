@@ -98,6 +98,7 @@ const data = [
 // create our builder and turn the raw data into a graph
 const builder = d3.graphStratify();
 const dag = builder(data);
+console.log(dag)
 
 const layout = d3.sugiyama()
     .nodeSize(nodeSize)
