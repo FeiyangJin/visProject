@@ -11,7 +11,8 @@ function handleJsonUpload(event){
 
         reader.onload = function (e) {
             let jsonData = e.target.result;
-            prepareGraph(jsonData)
+            let dag = prepareGraph(jsonData)
+            visualizeDAG(dag, "#svgJSON")
         };
 
         reader.readAsText(file);
@@ -28,16 +29,14 @@ function prepareGraph(jsonData){
         nodesMap[node.id] = node
     }
 
-    const linkdata = edges.map(edge => ({
-        source: nodesMap[edge.source],
-        target: nodesMap[edge.target]
-    }));
-
     const builder = d3.graphConnect()
-        .sourceId(d => d.source.id)
-        .targetId(d => d.target.id)
+        .sourceId(d => d.source)
+        .targetId(d => d.target)
+    const dag = builder(edges)
 
-    const dag = builder(linkdata)
-    
-    visualizeDAG(dag)
+    for(const node of dag.nodes()){
+        let id = node.data
+        node.data = nodesMap[id]
+    }
+    return dag
 }

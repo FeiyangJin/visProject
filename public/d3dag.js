@@ -99,131 +99,147 @@ const data = [
 const builder = d3.graphStratify();
 const dag = builder(data);
 
-// visualizeDAG(dag);
+visualizeDAG(dag);
 
-function visualizeDAG(dag){
-const layout = d3.sugiyama()
-    .nodeSize(nodeSize)
-    .gap([nodeRadius, nodeRadius])
-    .tweaks([shape]);
+function visualizeDAG(dag, svgID="#svg"){
 
-const { width, height } = layout(dag);
+  const layout = d3.sugiyama()
+      .nodeSize(nodeSize)
+      .gap([nodeRadius, nodeRadius])
+      .tweaks([shape]);
 
-// colors
-const steps = dag.nnodes() - 1;
-const interp = d3.interpolateRainbow;
-const colorMap = new Map(
-  [...dag.nodes()]
-    .sort((a, b) => a.y - b.y)
-    .map((node, i) => [node.data.id, interp(i / steps)])
-);
+  const { width, height } = layout(dag);
 
-let nodes = [];
-for (const node of dag.nodes()) {
-  const result = {
-    data: node.data,
-    x: node.x,
-    y: node.y
-  }
-  nodes.push(result)
-}
-
-// try to render the graph
-const svg = d3.select("#svg")
-.attr('width', width + 15)
-.attr('height', height + 15);
-const trans = svg.transition().duration(750);
-
-// Create SVG elements for nodes
-svg
-  .select("#nodes")
-  .selectAll("g")
-  .data(nodes)
-  .join((enter) =>
-    enter
-      .append("g")
-      .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
-      .attr("opacity", 0)
-      .call(
-        (enter) => {
-          enter
-            .append("circle")
-            .attr("r", nodeRadius)
-            .attr("fill", (n) => colorMap.get(n.data.id));
-          enter
-            .append("text")
-            .text((d) => d.data.id)
-            .attr("font-weight", "bold")
-            .attr("font-family", "sans-serif")
-            .attr("text-anchor", "middle")
-            .attr("alignment-baseline", "middle")
-            .attr("fill", "white");
-          enter.transition(trans).attr("opacity", 1);
-        },
-        (exit) => {
-          exit.remove()
-        }
-      )
+  // colors
+  const steps = dag.nnodes() - 1;
+  const interp = d3.interpolateRainbow;
+  const colorMap = new Map(
+    [...dag.nodes()]
+      .sort((a, b) => a.y - b.y)
+      .map((node, i) => [node.data.id, interp(i / steps)])
   );
 
-const lineGenerator = d3.line()
-  .x(d => d.x)
-  .y(d => d.y);
-
-let links = []
-for(const link of dag.links()){
-  let allpoints = []
-
-  // Loop through the points and construct the path
-  for (let i = 0; i < link.points.length; i++) {
-      allpoints.push({x: link.points[i][0], y:link.points[i][1]})
+  let nodes = [];
+  for (const node of dag.nodes()) {
+    nodes.push(node)
   }
-  const pathStringD3 = lineGenerator(allpoints)
 
-  const result = {
-    sourcex: link.source.ux,
-    sourcey: link.source.uy,
-    targetx: link.target.ux,
-    targety: link.target.uy,
-    path: pathStringD3
-  }
-  
-  links.push(result)
-}
+  const svg = d3.select(svgID)
+  .attr('width', width + 15)
+  .attr('height', height + 15);
+  const trans = svg.transition().duration(750);
 
-
-// Define an arrowhead marker for directed edges
-svg.append('defs').append('marker')
-.attr('id', 'arrowhead')
-.attr('refX', 6) // X-coordinate position of the arrowhead
-.attr('refY', 2) // Y-coordinate position of the arrowhead
-.attr('markerWidth', 10) // Width of the arrowhead
-.attr('markerHeight', 10) // Height of the arrowhead
-.attr('orient', 'auto-start-reverse') // Automatically adjust the orientation
-.append('path')
-.attr('d', 'M 0,0 V 4 L6,2 Z'); // Path for the arrowhead
-
-
-// link paths
-svg
-  .select("#links")
-  .selectAll("path")
-  .data(links)
-  .join(
-    (enter) =>{
+  // Create SVG elements for nodes
+  svg
+    .select("#nodes")
+    .selectAll("g")
+    .data(nodes)
+    .join((enter) =>
       enter
-      .append("path")
-      .attr("d", (link) => link.path)
-      .attr("fill", "none")
-      .attr("stroke-width", 2)
-      .attr("stroke","black")
-      .attr('marker-end', 'url(#arrowhead)')
-      .attr("opacity", 0)
-      .call((enter) => enter.transition(trans).attr("opacity", 1))
-    },
-    (exit) => {
-      exit.remove()
-    }
+        .append("g")
+        .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
+        .attr("opacity", 0)
+        .call(
+          (enter) => {
+            enter
+              .append("circle")
+              .attr("r", nodeRadius)
+              .attr("fill", function(n){
+                if (n.data.has_race === undefined){
+                  return colorMap.get(n.data.id)
+                }
 
-  );
+                if (n.data.has_race == 0){
+                  return "orange"
+                }
+                return "blue"
+
+              });
+            enter
+              .append("text")
+              .text(d => d.data.id)
+              .attr("font-weight", "bold")
+              .attr("font-family", "sans-serif")
+              .attr("text-anchor", "middle")
+              .attr("alignment-baseline", "middle")
+              .attr("fill", "white")
+              .attr("font-size", "xx-small");
+            enter.transition(trans).attr("opacity", 1);
+          },
+          (exit) => {
+            exit.remove()
+          }
+        )
+    );
+
+  // Define an arrowhead marker for directed edges
+  svg.append('defs').append('marker')
+  .attr('id', 'arrowhead')
+  .attr('refX', 6) 
+  .attr('refY', 2) 
+  .attr('markerWidth', 10) 
+  .attr('markerHeight', 10) 
+  .attr('orient', 'auto-start-reverse') 
+  .append('path')
+  .attr('d', 'M 0,0 V 4 L6,2 Z');
+
+  const lineGenerator = d3.line()
+                          .x(d => d.x)
+                          .y(d => d.y);
+
+  let edges = []
+  for(const link of dag.links()){
+    let allpoints = []
+
+    // Loop through the points and construct the path
+    for (let i = 0; i < link.points.length; i++) {
+        allpoints.push({x: link.points[i][0], y:link.points[i][1]})
+    }
+    const pathStringD3 = lineGenerator(allpoints)
+
+    const result = {
+      info: link,
+      path: pathStringD3
+    }
+    
+    edges.push(result)
+  }
+
+  // link paths
+  svg
+    .select("#links")
+    .selectAll("path")
+    .data(edges)
+    .join(
+      (enter) =>{
+        enter
+        .append("path")
+        .attr("d", (e) => e.path)
+        .attr("fill", "none")
+        .attr("stroke-width", 2)
+        .attr("stroke","black")
+        .attr('marker-end', 'url(#arrowhead)')
+        .attr("opacity", 0)
+        .attr("stroke-dasharray", function(e){
+          if(e.info.data === undefined){
+            return "0"
+          }
+
+          if(e.info.data.edge_type === "FORK_I"
+            || e.info.data.edge_type === "FORK_E"){
+            return "4"
+          }
+
+          if(e.info.data.edge_type === "JOIN"
+            || e.info.data.edge_type === "JOIN_E"){
+          return "1,4"
+        }
+        })
+        .call((enter) => enter.transition(trans).attr("opacity", 1))
+      },
+      (exit) => {
+        exit.remove()
+      }
+
+    );
 }
