@@ -23,24 +23,21 @@ function prepareGraph(jsonData){
     let nodes = json['nodes']
     let edges = json['links']
 
-    const linkdata = edges.map(edge => ({
-        source: nodes.find(node => node.id === edge.source),
-        target: nodes.find(node => node.id === edge.target)
-    }));
+    let nodesMap = new Map()
+    for (const node of nodes){
+        nodesMap[node.id] = node
+    }
 
-    // for(const link of linkdata){
-    //     console.log(link.source.id)
-    //     console.log(link.target.id)
-    // }
+    const linkdata = edges.map(edge => ({
+        source: nodesMap[edge.source],
+        target: nodesMap[edge.target]
+    }));
 
     const builder = d3.graphConnect()
         .sourceId(d => d.source.id)
         .targetId(d => d.target.id)
 
     const dag = builder(linkdata)
-    console.log(dag)
-
-    for(const node of dag.nodes()){
-        console.log(node.data)
-    }
+    
+    visualizeDAG(dag)
 }

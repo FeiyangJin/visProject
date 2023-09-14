@@ -98,8 +98,10 @@ const data = [
 // create our builder and turn the raw data into a graph
 const builder = d3.graphStratify();
 const dag = builder(data);
-console.log(dag)
 
+// visualizeDAG(dag);
+
+function visualizeDAG(dag){
 const layout = d3.sugiyama()
     .nodeSize(nodeSize)
     .gap([nodeRadius, nodeRadius])
@@ -142,21 +144,26 @@ svg
       .append("g")
       .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
       .attr("opacity", 0)
-      .call((enter) => {
-        enter
-          .append("circle")
-          .attr("r", nodeRadius)
-          .attr("fill", (n) => colorMap.get(n.data.id));
-        enter
-          .append("text")
-          .text((d) => d.data.id)
-          .attr("font-weight", "bold")
-          .attr("font-family", "sans-serif")
-          .attr("text-anchor", "middle")
-          .attr("alignment-baseline", "middle")
-          .attr("fill", "white");
-        enter.transition(trans).attr("opacity", 1);
-      })
+      .call(
+        (enter) => {
+          enter
+            .append("circle")
+            .attr("r", nodeRadius)
+            .attr("fill", (n) => colorMap.get(n.data.id));
+          enter
+            .append("text")
+            .text((d) => d.data.id)
+            .attr("font-weight", "bold")
+            .attr("font-family", "sans-serif")
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("fill", "white");
+          enter.transition(trans).attr("opacity", 1);
+        },
+        (exit) => {
+          exit.remove()
+        }
+      )
   );
 
 const lineGenerator = d3.line()
@@ -202,8 +209,9 @@ svg
   .select("#links")
   .selectAll("path")
   .data(links)
-  .join((enter) =>
-    enter
+  .join(
+    (enter) =>{
+      enter
       .append("path")
       .attr("d", (link) => link.path)
       .attr("fill", "none")
@@ -212,4 +220,10 @@ svg
       .attr('marker-end', 'url(#arrowhead)')
       .attr("opacity", 0)
       .call((enter) => enter.transition(trans).attr("opacity", 1))
+    },
+    (exit) => {
+      exit.remove()
+    }
+
   );
+}
