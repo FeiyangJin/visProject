@@ -119,10 +119,6 @@ function visualizeDAG(dag, svgID="#svg"){
       .map((node, i) => [node.data.id, interp(i / steps)])
   );
 
-  let nodes = [];
-  for (const node of dag.nodes()) {
-    nodes.push(node)
-  }
 
   const svg = d3.select(svgID)
   .attr('width', width + 15)
@@ -133,7 +129,7 @@ function visualizeDAG(dag, svgID="#svg"){
   svg
     .select("#nodes")
     .selectAll("g")
-    .data(nodes)
+    .data(Array.from(dag.nodes()))
     .join((enter) =>
       enter
         .append("g")
@@ -143,6 +139,12 @@ function visualizeDAG(dag, svgID="#svg"){
           (enter) => {
             enter
               .append("circle")
+              .on('click', function(n){
+                  console.log(`you are clicking on node ${n.data.id}`)
+                  for(const child of n.children()){
+                    console.log(`child id is ${child.data.id}`)
+                  }
+              })
               .attr("r", nodeRadius)
               .attr("fill", function(n){
                 if (n.data.has_race === undefined){
