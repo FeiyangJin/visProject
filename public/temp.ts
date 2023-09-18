@@ -296,6 +296,7 @@ export function renderDynamic(): void {
     );
 
   // link gradients
+  {
   svg
     .select("#defs")
     .selectAll<d3.BaseType, LinkType>("linearGradient")
@@ -344,6 +345,7 @@ export function renderDynamic(): void {
           })
         )
     );
+  }
 
   // link paths
   svg
