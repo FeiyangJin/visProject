@@ -1,142 +1,26 @@
-// set the layout functions
-const nodeRadius = 15;
-const nodeSize = [nodeRadius * 2, nodeRadius * 2];
-// this truncates the edges so we can render arrows nicely
-const shape = d3.tweakShape(nodeSize, d3.shapeEllipse);
-
-let data = [
-  {
-    id: "0",
-    active: true,
-    parentIds: ["8"]
-  },
-  {
-    id: "1",
-    active: true,
-    parentIds: []
-  },
-  {
-    id: "2",
-    active: true,
-    parentIds: []
-  },
-  {
-    id: "3",
-    active: true,
-    parentIds: ["11"]
-  },
-  {
-    id: "4",
-    active: true,
-    parentIds: ["12"]
-  },
-  {
-    id: "5",
-    active: true,
-    parentIds: ["18"]
-  },
-  {
-    id: "6",
-    active: true,
-    parentIds: ["9", "15", "17"]
-  },
-  {
-    id: "7",
-    active: true,
-    parentIds: ["3", "17", "20", "21"]
-  },
-  {
-    id: "8",
-    active: true,
-    parentIds: []
-  },
-  {
-    id: "9",
-    active: true,
-    parentIds: ["4"]
-  },
-  {
-    id: "10",
-    active: true,
-    parentIds: ["16", "21"]
-  },
-  {
-    id: "11",
-    active: true,
-    parentIds: ["2"]
-  },
-  {
-    id: "12",
-    active: true,
-    parentIds: ["21"]
-  },
-  {
-    id: "13",
-    active: true,
-    parentIds: ["4", "12"]
-  },
-  {
-    id: "14",
-    active: true,
-    parentIds: ["1", "8"]
-  },
-  {
-    id: "15",
-    active: true,
-    parentIds: []
-  },
-  {
-    id: "16",
-    active: true,
-    parentIds: ["0"]
-  },
-  {
-    id: "17",
-    active: true,
-    parentIds: ["19"]
-  },
-  {
-    id: "18",
-    active: true,
-    parentIds: ["9"]
-  },
-  {
-    id: "19",
-    active: true,
-    parentIds: []
-  },
-  {
-    id: "20",
-    active: true,
-    parentIds: ["13"]
-  },
-  {
-    id: "21",
-    active: true,
-    parentIds: []
-  }
-];
-
-
 data = [
   {
     id: "0",
     active: true,
+    hidden: false,
     parentIds: []
   },
   {
     id: "1",
     active: true,
+    hidden: false,
     parentIds: ["0"]
   },
   {
     id: "2",
     active: true,
+    hidden: false,
     parentIds: ["0"]
   },
   {
     id: "3",
     active: true,
+    hidden: false,
     parentIds: ["1"]
   },
 ];
@@ -151,11 +35,28 @@ const parentMap = new Map();
 const childMap = new Map();
 
 for (const record of data){
-  parentMap[record.id] = record.parentIds
+  parentMap.set(record.id, record.parentIds)
 }
-console.log(parentMap)
 
-function click(n,dag) {
+for (const [id,parentIDs] of parentMap.entries()) {
+
+  for(const parentID of parentIDs){
+    const ids = childMap.get(parentID);
+    if (ids === undefined) {  
+      childMap.set(parentID, [id]);
+    }
+    else{
+      ids.push(id);
+    }
+  }
+}
+
+for(const node of dag_initial_graph.nodes()){
+  nodeMap.set(node.data.id, node)
+}
+
+
+function click(n,dag,svgID) {
   if (n.data.active === undefined){
     return
   }
@@ -168,24 +69,24 @@ function click(n,dag) {
   //   console.log(`child id is ${child.data.id}`)
   // }
 
-  if(n.data.active){
-    let par = dag.node({ id: "0"});
-    n.parent(par)
-  }
-  else{
-    // for (const link of [...n.childLinks()]) {
-    //   console.log(get_edge_id(link))
-    //   link.delete()
-    // }
+  let node = nodeMap.get(n.data.id)
 
-    for (const link of [...n.parentLinks()]) {
-      console.log(get_edge_id(link))
-      link.delete()
+  // for(const parentID of parentMap.get(n.data.id)){
+  //   let par = nodeMap.get(parentID)
+  //   node.parent(par)
+  // }
+  for(const child of n.children()){
+    child.data.hidden = n.data.active ? false : true
+  }
+
+  for (const link of [...n.childLinks()]) {
+    if(link.data === undefined){
+      link.data = new Object()
     }
+    link.data.hidden = n.data.active ? false : true
   }
 
-
-  visualizeDAG(dag)
+  visualizeDAG(dag,svgID)
 }
 
 
@@ -227,7 +128,7 @@ function get_node_color(n,dag){
       .map((node, i) => [node.data.id, interp(i / steps)])
   );
 
-  if (n.data.active === false){
+  if (!n.data.active){
     return "black"
   }
 
@@ -241,6 +142,26 @@ function get_node_color(n,dag){
   return "blue"
 }
 
+
+function get_node_opacity(n){
+  if(n.data.hidden){
+    return 0
+  }
+  return 1
+}
+
+
+function get_edge_opacity(e){
+  if(e.data === undefined){
+    return "1"
+  }
+
+  if(e.data.hidden){
+    return "0"
+  }
+
+  return "1"
+}
 
 function visualizeDAG(dag, svgID="#svg"){
 
@@ -271,8 +192,9 @@ function visualizeDAG(dag, svgID="#svg"){
             (enter) => {
               enter
                 .append("circle")
-                .on("click", n => click(n,dag))
+                .on("click", n => click(n,dag,svgID))
                 .attr("r", nodeRadius)
+                .attr("cursor", "pointer")
                 .attr("fill", (n) => get_node_color(n,dag));
               enter
                 .append("text")
@@ -282,6 +204,7 @@ function visualizeDAG(dag, svgID="#svg"){
                 .attr("text-anchor", "middle")
                 .attr("alignment-baseline", "middle")
                 .attr("fill", "white")
+                .attr("class", "unselectable-text")
                 .attr("font-size", "xx-small");
               enter.transition(trans).attr("opacity", 1);
             },
@@ -291,13 +214,14 @@ function visualizeDAG(dag, svgID="#svg"){
         update.transition(trans)
         .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
         .select("circle")
-        .attr("r", nodeRadius)
         .attr("fill", (n) => get_node_color(n,dag))
+        .attr("opacity", (n) => get_node_opacity(n))
       },
       (exit) => {
         exit.remove()
       }
     );
+
 
   // Define an arrowhead marker for directed edges
   svg.append('defs').append('marker')
@@ -310,6 +234,7 @@ function visualizeDAG(dag, svgID="#svg"){
   .append('path')
   .attr('d', 'M 0,0 V 4 L6,2 Z');
 
+  
   // link paths
   svg
     .select("#links")
@@ -319,7 +244,7 @@ function visualizeDAG(dag, svgID="#svg"){
       (enter) =>{
         enter
         .append("path")
-        .attr("d", (e) => d3.line()(e.points))
+        .attr("d", (e) => d3.line().curve(d3.curveMonotoneY)(e.points))
         .attr("fill", "none")
         .attr("stroke-width", 2)
         .attr("stroke","black")
@@ -329,7 +254,9 @@ function visualizeDAG(dag, svgID="#svg"){
         .call((enter) => enter.transition(trans).attr("opacity", 1))
       },
       (update) => {
-        update.transition(trans).attr("d", (e) => d3.line()(e.points))
+        update.transition(trans)
+              .attr("d", (e) => d3.line().curve(d3.curveMonotoneY)(e.points))
+              .attr("opacity", (e) => get_edge_opacity(e))
       },
       (exit) => {
         exit.remove()
