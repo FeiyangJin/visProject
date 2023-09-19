@@ -127,133 +127,155 @@
             "edge_type": "CONT",
             "id": "e0",
             "source": "n1",
-            "target": "n2"
+            "target": "n2",
+            "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e1",
             "source": "n1",
-            "target": "n3"
+            "target": "n3",
+            "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e2",
             "source": "n1",
-            "target": "n4"
+            "target": "n4",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e3",
             "source": "n2",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "FORK_E",
             "id": "e4",
             "source": "n3",
-            "target": "n6"
+            "target": "n6",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e5",
             "source": "n3",
-            "target": "n8"
+            "target": "n8",
+            "hidden": false
         },
         {
             "edge_type": "FORK_E",
             "id": "e6",
             "source": "n4",
-            "target": "n5"
+            "target": "n5",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e7",
             "source": "n4",
-            "target": "n7"
+            "target": "n7",
+            "hidden": false
         },
         {
             "edge_type": "JOIN_E",
             "id": "e8",
             "source": "n5",
-            "target": "n9"
+            "target": "n9",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e9",
             "source": "n5",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "JOIN_E",
             "id": "e10",
             "source": "n6",
-            "target": "n11"
+            "target": "n11",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e11",
             "source": "n6",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "FORK_E",
             "id": "e12",
             "source": "n7",
-            "target": "n9"
+            "target": "n9",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e13",
             "source": "n7",
-            "target": "n10"
+            "target": "n10",
+            "hidden": false
         },
         {
             "edge_type": "FORK_E",
             "id": "e14",
             "source": "n8",
-            "target": "n11"
+            "target": "n11",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e15",
             "source": "n8",
-            "target": "n12"
+            "target": "n12",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e16",
             "source": "n9",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e17",
             "source": "n10",
-            "target": "n13"
+            "target": "n13",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e18",
             "source": "n11",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e19",
             "source": "n12",
-            "target": "n14"
+            "target": "n14",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e20",
             "source": "n13",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         },
         {
             "edge_type": "JOIN",
             "id": "e21",
             "source": "n14",
-            "target": "n15"
+            "target": "n15",
+            "hidden": false
         }
     ]
 }

@@ -78,37 +78,43 @@ const dag_initial_graph = builder(data);
 // }
 
 
-function hide_descendant(n){
+function hide_descendant(n, level=0){
   for (const link of [...n.childLinks()]) {
-    if(link.data === undefined){
-      link.data = new Object()
-    }
     link.data.hidden = true
 
     link.target.data.hidden = true
   }
 
+  if(level != 0){
+    for (const link of [...n.parentLinks()]) {
+      link.data.hidden = true
+    }
+  }
+
   for(const child of n.children()){
     if(child.data.active){
-      hide_descendant(child)
+      hide_descendant(child, level+1)
     }
   }
 }
 
 
-function show_descendant(n){
+function show_descendant(n, level=0){
   for (const link of [...n.childLinks()]) {
-    if(link.data === undefined){
-      link.data = new Object()
-    }
     link.data.hidden = false
 
     link.target.data.hidden = false
   }
 
+  if(level != 0){
+    for (const link of [...n.parentLinks()]) {
+      link.data.hidden = false
+    }
+  }
+
   for(const child of n.children()){
     if(child.data.active){
-      show_descendant(child)
+      show_descendant(child, level + 1)
     }
   }
 }
@@ -197,6 +203,8 @@ function get_node_opacity(n){
 
 function get_edge_opacity(e){
   if(e.data === undefined){
+    e.data = new Object()
+    e.data.hidden = false
     return "1"
   }
 
@@ -218,9 +226,9 @@ function visualizeDAG(dag, svgID="#svg"){
   const { width, height } = layout(dag);
 
   const svg = d3.select(svgID)
-  .attr('width', width + 15)
-  .attr('height', height + 15);
-  const trans = svg.transition().duration(500);
+  .attr('width', width + 50)
+  .attr('height', height + 50);
+  const trans = svg.transition().duration(300);
 
   // Create SVG elements for nodes
   svg
@@ -235,14 +243,13 @@ function visualizeDAG(dag, svgID="#svg"){
           .attr("opacity", 0)
           .call(
             (enter) => {
-              enter
-                .append("circle")
+              enter.append("circle")
                 .on("click", n => click(n,dag,svgID))
                 .attr("r", nodeRadius)
                 .attr("cursor", "pointer")
                 .attr("fill", (n) => get_node_color(n,dag));
-              enter
-                .append("text")
+
+              enter.append("text")
                 .text(d => d.data.id)
                 .attr("font-weight", "bold")
                 .attr("font-family", "sans-serif")
@@ -252,13 +259,31 @@ function visualizeDAG(dag, svgID="#svg"){
                 .attr("class", "unselectable-text")
                 .attr("font-size", "xx-small");
               enter.transition(trans).attr("opacity", 1);
-            },
+
+              enter.filter((n) => (n.data.has_race == 1))
+              .append("circle")
+              .attr("r", nodeRadius + 5)
+              .attr("fill", "none")
+              .attr("stroke", "blue") // Border color
+              .attr("stroke-width", 3) // Border width
+              .attr("stroke-dasharray", "4,4") // Dash pattern
+                .append("animateTransform")
+                .attr("attributeName","transform")
+                .attr("type","rotate")
+                .attr("from", (n) => `300 ${n.x/10000} ${n.y/10000}`)
+                .attr("to", (n) => `0 ${n.x/10000} ${n.y/10000} `)
+                .attr("dur","10s")
+                .attr("repeatCount","indefinite");
+              }
           )
         },
       (update) => {
         update.transition(trans)
         .select("circle")
         .attr("fill", (n) => get_node_color(n,dag))
+
+        update.transition(trans)
+        .selectAll("circle")
         .attr("opacity", (n) => get_node_opacity(n))
       },
       (exit) => {
@@ -268,15 +293,18 @@ function visualizeDAG(dag, svgID="#svg"){
 
 
   // Define an arrowhead marker for directed edges
-  svg.append('defs').append('marker')
-  .attr('id', 'arrowhead')
-  .attr('refX', 6) 
-  .attr('refY', 2) 
-  .attr('markerWidth', 10) 
-  .attr('markerHeight', 10) 
-  .attr('orient', 'auto-start-reverse') 
-  .append('path')
-  .attr('d', 'M 0,0 V 4 L6,2 Z');
+  let arrowhead = svg.select('#arrowhead')
+  if(arrowhead.empty()){
+    svg.append('defs').append('marker')
+    .attr('id', 'arrowhead')
+    .attr('refX', 6) 
+    .attr('refY', 2) 
+    .attr('markerWidth', 10) 
+    .attr('markerHeight', 10) 
+    .attr('orient', 'auto-start-reverse') 
+    .append('path')
+    .attr('d', 'M 0,0 V 4 L6,2 Z');
+  }
 
   
   // link paths
@@ -293,7 +321,7 @@ function visualizeDAG(dag, svgID="#svg"){
         .attr("stroke-width", 2)
         .attr("stroke","black")
         .attr('marker-end', 'url(#arrowhead)')
-        .attr("opacity", 0)
+        .attr("opacity", (e) => get_edge_opacity(e))
         .attr("stroke-dasharray", (e) => get_edge_dash(e))
         .call((enter) => enter.transition(trans).attr("opacity", 1))
       },

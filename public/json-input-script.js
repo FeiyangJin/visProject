@@ -26,7 +26,7 @@ function prepareGraph(jsonData){
 
     let nodesMap = new Map()
     for (const node of nodes){
-        nodesMap[node.id] = node
+        nodesMap.set(node.id, node)
     }
 
     const builder = d3.graphConnect()
@@ -36,7 +36,7 @@ function prepareGraph(jsonData){
 
     for(const node of dag.nodes()){
         let id = node.data
-        node.data = nodesMap[id]
+        node.data = nodesMap.get(id)
     }
     return dag
 }

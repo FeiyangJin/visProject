@@ -14,11 +14,25 @@
 <body>
     <h1>Graph Visualization</h1>
 
-    <label> graphML upload here </label><br><br>
-    <input type="file" id="graphml_fileInput" accept=".graphml"><br><br>
+    <!-- <label> graphML upload here </label><br><br>
+    <input type="file" id="graphml_fileInput" accept=".graphml"><br><br> -->
 
     <label> json upload here</label><br><br>
     <input type="file" id="json_fileInput" accept=".json"><br><br>
+
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1130" height="1130">
+      <g fill="none" 
+         stroke="#1864ab" stroke-width="2" stroke-dasharray="4" opacity=".4"> 
+          <circle cx="565" cy="565" r="565" stroke="none"/>
+          <circle cx="565" cy="565" r="564"/>
+          <animateTransform attributeName="transform"
+                            type="rotate"
+                            from="360 565 565"
+                            to="0 565 565"
+                            dur="4.1s"
+                            repeatCount="indefinite"/>
+      </g>
+    </svg> -->
 
     <svg id="svg">
         <g transform="translate(2, 2)">
@@ -44,7 +58,7 @@
     <script src="public/graphology.min.js"></script>
     <script src="public/data.js"></script>
     <script src="public/d3dag.js"></script>
-    <script src="public/script.js"></script>
+    <!-- <script src="public/script.js"></script> -->
     <script src="public/json-input-script.js"></script>
 </body>
 
