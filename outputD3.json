@@ -10,86 +10,116 @@
             "end_event": "parallel_begin",
             "has_race": 0,
             "vertex_id": 1,
-            "id": "n1"
+            "id": "n1",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "parallel_end",
             "has_race": 0,
             "vertex_id": 2,
-            "id": "n2"
+            "id": "n2",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "task_create",
             "has_race": 0,
             "vertex_id": 3,
-            "id": "n3"
+            "id": "n3",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "task_create",
             "has_race": 0,
             "vertex_id": 4,
-            "id": "n4"
+            "id": "n4",
+            "active": true,
+            "hidden": false
         },
         {
             "has_race": 1,
             "vertex_id": 5,
-            "id": "n5"
+            "id": "n5",
+            "active": true,
+            "hidden": false
         },
         {
             "has_race": 1,
             "vertex_id": 6,
-            "id": "n6"
+            "id": "n6",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "task_create",
             "has_race": 0,
             "vertex_id": 7,
-            "id": "n7"
+            "id": "n7",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "task_create",
             "has_race": 0,
             "vertex_id": 8,
-            "id": "n8"
+            "id": "n8",
+            "active": true,
+            "hidden": false
         },
         {
             "has_race": 1,
             "vertex_id": 9,
-            "id": "n9"
+            "id": "n9",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "sync_region_begin",
             "has_race": 0,
             "vertex_id": 10,
-            "id": "n10"
+            "id": "n10",
+            "active": true,
+            "hidden": false
         },
         {
             "has_race": 1,
             "vertex_id": 11,
-            "id": "n11"
+            "id": "n11",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "sync_region_begin",
             "has_race": 0,
             "vertex_id": 12,
-            "id": "n12"
+            "id": "n12",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "sync_region_end",
             "has_race": 0,
             "vertex_id": 13,
-            "id": "n13"
+            "id": "n13",
+            "active": true,
+            "hidden": false
         },
         {
             "end_event": "sync_region_end",
             "has_race": 0,
             "vertex_id": 14,
-            "id": "n14"
+            "id": "n14",
+            "active": true,
+            "hidden": false
         },
         {
             "has_race": 0,
             "vertex_id": 15,
-            "id": "n15"
+            "id": "n15",
+            "active": true,
+            "hidden": false
         }
     ],
     "links": [

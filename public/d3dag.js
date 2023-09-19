@@ -23,6 +23,24 @@ data = [
     hidden: false,
     parentIds: ["1"]
   },
+  {
+    id: "4",
+    active: true,
+    hidden: false,
+    parentIds: ["1"]
+  },
+  {
+    id: "5",
+    active: true,
+    hidden: false,
+    parentIds: ["2"]
+  },
+  {
+    id: "6",
+    active: true,
+    hidden: false,
+    parentIds: ["2"]
+  }
 ];
 
 
@@ -30,60 +48,86 @@ data = [
 const builder = d3.graphStratify();
 const dag_initial_graph = builder(data);
 
-const nodeMap = new Map();
-const parentMap = new Map();
-const childMap = new Map();
+// set up initial data. These Maps are important if we
+// are going to remove nodes/edges from graph, and add
+// back later. For now, I will comment them out because
+// the current strategy is just to hide nodes/edges
+// const nodeMap = new Map();
+// const parentMap = new Map();
+// const childMap = new Map();
 
-for (const record of data){
-  parentMap.set(record.id, record.parentIds)
-}
+// for (const record of data){
+//   parentMap.set(record.id, record.parentIds)
+// }
 
-for (const [id,parentIDs] of parentMap.entries()) {
+// for (const [id,parentIDs] of parentMap.entries()) {
 
-  for(const parentID of parentIDs){
-    const ids = childMap.get(parentID);
-    if (ids === undefined) {  
-      childMap.set(parentID, [id]);
+//   for(const parentID of parentIDs){
+//     const ids = childMap.get(parentID);
+//     if (ids === undefined) {  
+//       childMap.set(parentID, [id]);
+//     }
+//     else{
+//       ids.push(id);
+//     }
+//   }
+// }
+
+// for(const node of dag_initial_graph.nodes()){
+//   nodeMap.set(node.data.id, node)
+// }
+
+
+function hide_descendant(n){
+  for (const link of [...n.childLinks()]) {
+    if(link.data === undefined){
+      link.data = new Object()
     }
-    else{
-      ids.push(id);
+    link.data.hidden = true
+
+    link.target.data.hidden = true
+  }
+
+  for(const child of n.children()){
+    if(child.data.active){
+      hide_descendant(child)
     }
   }
 }
 
-for(const node of dag_initial_graph.nodes()){
-  nodeMap.set(node.data.id, node)
+
+function show_descendant(n){
+  for (const link of [...n.childLinks()]) {
+    if(link.data === undefined){
+      link.data = new Object()
+    }
+    link.data.hidden = false
+
+    link.target.data.hidden = false
+  }
+
+  for(const child of n.children()){
+    if(child.data.active){
+      show_descendant(child)
+    }
+  }
 }
 
 
 function click(n,dag,svgID) {
+  console.log(`you are clicking on node ${n.data.id}`)
+
   if (n.data.active === undefined){
     return
   }
 
   n.data.active = !n.data.active;
 
-  console.log(`you are clicking on node ${n.data.id}`)
-
-  // for(const child of n.children()){
-  //   console.log(`child id is ${child.data.id}`)
-  // }
-
-  let node = nodeMap.get(n.data.id)
-
-  // for(const parentID of parentMap.get(n.data.id)){
-  //   let par = nodeMap.get(parentID)
-  //   node.parent(par)
-  // }
-  for(const child of n.children()){
-    child.data.hidden = n.data.active ? false : true
+  if(n.data.active){
+    show_descendant(n)
   }
-
-  for (const link of [...n.childLinks()]) {
-    if(link.data === undefined){
-      link.data = new Object()
-    }
-    link.data.hidden = n.data.active ? false : true
+  else{
+    hide_descendant(n)
   }
 
   visualizeDAG(dag,svgID)
@@ -137,9 +181,9 @@ function get_node_color(n,dag){
   }
 
   if (n.data.has_race == 0){
-    return "orange"
+    return "#F6D42A"
   }
-  return "blue"
+  return "red"
 }
 
 
@@ -163,6 +207,7 @@ function get_edge_opacity(e){
   return "1"
 }
 
+
 function visualizeDAG(dag, svgID="#svg"){
 
   const layout = d3.sugiyama()
@@ -175,7 +220,7 @@ function visualizeDAG(dag, svgID="#svg"){
   const svg = d3.select(svgID)
   .attr('width', width + 15)
   .attr('height', height + 15);
-  const trans = svg.transition().duration(750);
+  const trans = svg.transition().duration(500);
 
   // Create SVG elements for nodes
   svg
@@ -212,7 +257,6 @@ function visualizeDAG(dag, svgID="#svg"){
         },
       (update) => {
         update.transition(trans)
-        .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
         .select("circle")
         .attr("fill", (n) => get_node_color(n,dag))
         .attr("opacity", (n) => get_node_opacity(n))
@@ -255,7 +299,6 @@ function visualizeDAG(dag, svgID="#svg"){
       },
       (update) => {
         update.transition(trans)
-              .attr("d", (e) => d3.line().curve(d3.curveMonotoneY)(e.points))
               .attr("opacity", (e) => get_edge_opacity(e))
       },
       (exit) => {
