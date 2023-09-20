@@ -1,3 +1,15 @@
 .unselectable-text {
     user-select: none;
-  }
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #1293f5, #cefe0bd5); /* Gradient background */
+  -webkit-background-clip: text; /* Apply background to text */
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Make text color transparent */
+  /* text-shadow: 2px 2px 4px rgba(12, 175, 245, 0.3); */
+}

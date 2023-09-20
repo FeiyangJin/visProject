@@ -79,16 +79,16 @@ const dag_initial_graph = builder(data);
 
 
 function hide_descendant(n, level=0){
-  for (const link of [...n.childLinks()]) {
-    link.data.hidden = true
-
-    link.target.data.hidden = true
-  }
-
   if(level != 0){
     for (const link of [...n.parentLinks()]) {
       link.data.hidden = true
     }
+  }
+  
+  for (const link of [...n.childLinks()]) {
+    link.data.hidden = true
+
+    link.target.data.hidden = true
   }
 
   for(const child of n.children()){
@@ -100,20 +100,22 @@ function hide_descendant(n, level=0){
 
 
 function show_descendant(n, level=0){
+  if(level != 0){
+    for (const link of [...n.parentLinks()]) {
+      if(link.source.data.hidden === false && link.source.data.active === true){
+        link.data.hidden = false
+      }
+    }
+  }
+
   for (const link of [...n.childLinks()]) {
     link.data.hidden = false
 
     link.target.data.hidden = false
   }
 
-  if(level != 0){
-    for (const link of [...n.parentLinks()]) {
-      link.data.hidden = false
-    }
-  }
-
   for(const child of n.children()){
-    if(child.data.active){
+    if(child.data.active && child.data.hidden === false){
       show_descendant(child, level + 1)
     }
   }
@@ -262,7 +264,7 @@ function visualizeDAG(dag, svgID="#svg"){
 
               enter.filter((n) => (n.data.has_race == 1))
               .append("circle")
-              .attr("r", nodeRadius + 5)
+              .attr("r", nodeRadius + 2)
               .attr("fill", "none")
               .attr("stroke", "blue") // Border color
               .attr("stroke-width", 3) // Border width
@@ -270,7 +272,7 @@ function visualizeDAG(dag, svgID="#svg"){
                 .append("animateTransform")
                 .attr("attributeName","transform")
                 .attr("type","rotate")
-                .attr("from", (n) => `300 ${n.x/10000} ${n.y/10000}`)
+                .attr("from", (n) => `360 ${n.x/10000} ${n.y/10000}`)
                 .attr("to", (n) => `0 ${n.x/10000} ${n.y/10000} `)
                 .attr("dur","10s")
                 .attr("repeatCount","indefinite");
