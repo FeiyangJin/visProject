@@ -62,7 +62,7 @@ function addLegend(){
         .attr("fill", "#F6D42A")
 
         legend_svg.append("text")
-        .text("node without race")
+        .text("node without data race")
         .attr("font-family", "sans-serif")
         .attr("text-anchor", "start")
         .attr("alignment-baseline", "middle")
@@ -99,7 +99,7 @@ function addLegend(){
             .attr("repeatCount","indefinite");
 
         legend_svg.append("text")
-        .text("node with race")
+        .text("node with data race")
         .attr("font-family", "sans-serif")
         .attr("text-anchor", "start")
         .attr("alignment-baseline", "middle")

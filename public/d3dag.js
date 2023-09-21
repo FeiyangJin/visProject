@@ -95,6 +95,11 @@ function hide_descendant(n, level=0){
     if(child.data.active){
       hide_descendant(child, level+1)
     }
+    else{
+      for (const link of [...child.parentLinks()]) {
+        link.data.hidden = true
+      }
+    }
   }
 }
 
@@ -102,7 +107,7 @@ function hide_descendant(n, level=0){
 function show_descendant(n, level=0){
   if(level != 0){
     for (const link of [...n.parentLinks()]) {
-      if(link.source.data.hidden === false && link.source.data.active === true){
+      if(!link.source.data.hidden && link.source.data.active){
         link.data.hidden = false
       }
     }
@@ -115,8 +120,15 @@ function show_descendant(n, level=0){
   }
 
   for(const child of n.children()){
-    if(child.data.active && child.data.hidden === false){
+    if(child.data.active && !child.data.hidden){
       show_descendant(child, level + 1)
+    }
+    else if(!child.data.active && !child.data.hidden){
+      for (const link of [...child.parentLinks()]) {
+        if(!link.source.data.hidden && link.source.data.active){
+          link.data.hidden = false
+        }
+      }
     }
   }
 }
