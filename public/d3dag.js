@@ -154,6 +154,36 @@ function click(n,dag,svgID) {
 }
 
 
+function setupSVG(svgID){
+
+  const svg = d3.select(svgID)
+
+  // Define an arrowhead marker for directed edges
+  let arrowhead = svg.select('#arrowhead')
+  if(arrowhead.empty()){
+    svg.append('defs').append('marker')
+    .attr('id', 'arrowhead')
+    .attr('refX', 6) 
+    .attr('refY', 2) 
+    .attr('markerWidth', 10) 
+    .attr('markerHeight', 10) 
+    .attr('orient', 'auto-start-reverse') 
+    .append('path')
+    .attr('d', 'M 0,0 V 4 L6,2 Z');
+  }
+
+  // add div for tool tip
+  var tooltip = svg.append("div")
+  .attr("id", "tooltip")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .text("a simple tooltip");
+
+}
+
+
+
 function get_edge_id(e){
   let id
   if (e.info === undefined){
@@ -230,7 +260,7 @@ function get_edge_opacity(e){
 }
 
 
-function visualizeDAG(dag, svgID="#svg"){
+function visualizeDAG(dag, svgID){
 
   const layout = d3.sugiyama()
       .nodeSize(nodeSize)
@@ -242,7 +272,10 @@ function visualizeDAG(dag, svgID="#svg"){
   const svg = d3.select(svgID)
   .attr('width', width + 50)
   .attr('height', height + 50);
+
   const trans = svg.transition().duration(300);
+
+  let tooltip = svg.select("#tooltip")
 
   // Create SVG elements for nodes
   svg
@@ -261,7 +294,22 @@ function visualizeDAG(dag, svgID="#svg"){
                 .on("click", n => click(n,dag,svgID))
                 .attr("r", nodeRadius)
                 .attr("cursor", "pointer")
-                .attr("fill", (n) => get_node_color(n,dag));
+                .attr("fill", (n) => get_node_color(n,dag))
+                .append("svg:title")
+                .text((d) => d.data.end_event)
+                // .on("mouseover", (event, d) => {
+                //   tooltip.style("visibility", "visible");
+                // })
+                // .on("mousemove", (event, d) => {
+                //   let x = event.ux
+                //   let y = event.uy
+                //   tooltip.style("visibility", "visible")
+                //          .style("left", `${x}`)
+                //          .style("top", `${y}`);
+                // })
+                // .on("mouseout", (event, d) => {
+                //   tooltip.style("visibility", "hidden");
+                // })
 
               enter.append("text")
                 .text(d => d.data.id)
@@ -305,21 +353,6 @@ function visualizeDAG(dag, svgID="#svg"){
       }
     );
 
-
-  // Define an arrowhead marker for directed edges
-  let arrowhead = svg.select('#arrowhead')
-  if(arrowhead.empty()){
-    svg.append('defs').append('marker')
-    .attr('id', 'arrowhead')
-    .attr('refX', 6) 
-    .attr('refY', 2) 
-    .attr('markerWidth', 10) 
-    .attr('markerHeight', 10) 
-    .attr('orient', 'auto-start-reverse') 
-    .append('path')
-    .attr('d', 'M 0,0 V 4 L6,2 Z');
-  }
-
   
   // link paths
   svg
@@ -350,5 +383,5 @@ function visualizeDAG(dag, svgID="#svg"){
     );
 }
 
-
-visualizeDAG(dag_initial_graph);
+setupSVG("#svg");
+visualizeDAG(dag_initial_graph,"#svg");

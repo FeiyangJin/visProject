@@ -12,6 +12,7 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
             let dag = prepareGraph(jsonData)
+            setupSVG("#svgJSON")
             visualizeDAG(dag, "#svgJSON")
             addLegend()
         };
