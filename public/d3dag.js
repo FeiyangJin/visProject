@@ -171,15 +171,6 @@ function setupSVG(svgID){
     .append('path')
     .attr('d', 'M 0,0 V 4 L6,2 Z');
   }
-
-  // add div for tool tip
-  var tooltip = svg.append("div")
-  .attr("id", "tooltip")
-  .style("position", "absolute")
-  .style("z-index", "10")
-  .style("visibility", "hidden")
-  .text("a simple tooltip");
-
 }
 
 
@@ -275,7 +266,7 @@ function visualizeDAG(dag, svgID){
 
   const trans = svg.transition().duration(300);
 
-  let tooltip = svg.select("#tooltip")
+  let tooltip = d3.select("#tooltip")
 
   // Create SVG elements for nodes
   svg
@@ -295,21 +286,18 @@ function visualizeDAG(dag, svgID){
                 .attr("r", nodeRadius)
                 .attr("cursor", "pointer")
                 .attr("fill", (n) => get_node_color(n,dag))
-                .append("svg:title")
-                .text((d) => d.data.end_event)
-                // .on("mouseover", (event, d) => {
-                //   tooltip.style("visibility", "visible");
-                // })
-                // .on("mousemove", (event, d) => {
-                //   let x = event.ux
-                //   let y = event.uy
-                //   tooltip.style("visibility", "visible")
-                //          .style("left", `${x}`)
-                //          .style("top", `${y}`);
-                // })
-                // .on("mouseout", (event, d) => {
-                //   tooltip.style("visibility", "hidden");
-                // })
+                .on("mouseover", (n) => {
+                  tooltip.style("visibility", "visible");
+                })
+                .on("mousemove", (n) => {
+                  let text = 
+                  `this node ends with: <span class="colored-text">${n.data.end_event}</span> <br>
+                   this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span>`
+                  tooltip.html(text)
+                })
+                .on("mouseout", (event, d) => {
+                  tooltip.style("visibility", "hidden");
+                })
 
               enter.append("text")
                 .text(d => d.data.id)
@@ -319,7 +307,9 @@ function visualizeDAG(dag, svgID){
                 .attr("alignment-baseline", "middle")
                 .attr("fill", "white")
                 .attr("class", "unselectable-text")
-                .attr("font-size", "xx-small");
+                .attr("font-size", "xx-small")
+                .style("pointer-events", "none");
+
               enter.transition(trans).attr("opacity", 1);
 
               enter.filter((n) => (n.data.has_race == 1))
@@ -347,6 +337,12 @@ function visualizeDAG(dag, svgID){
         update.transition(trans)
         .selectAll("circle")
         .attr("opacity", (n) => get_node_opacity(n))
+
+        update.filter((n) => (n.data.hidden))
+        .style("pointer-events", "none");
+
+        update.filter((n) => (n.data.hidden === false))
+        .style("pointer-events", "auto");
       },
       (exit) => {
         exit.remove()

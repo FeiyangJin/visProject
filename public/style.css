@@ -13,3 +13,11 @@ h1 {
   -webkit-text-fill-color: transparent; /* Make text color transparent */
   /* text-shadow: 2px 2px 4px rgba(12, 175, 245, 0.3); */
 }
+
+.colored-text {
+  color: white; /* Text color */
+  background-color: #ff5733; /* Background color (example: orange) */
+  padding: 2px 4px; /* Padding for the background */
+  border-radius: 4px; /* Rounded corners */
+  font-weight: bold; /* Bold font */
+}
