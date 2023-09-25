@@ -291,11 +291,15 @@ function visualizeDAG(dag, svgID){
                 })
                 .on("mousemove", (n) => {
                   let text = 
-                  `this node ends with: <span class="colored-text">${n.data.end_event}</span> <br>
-                   this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span>`
+                  `<strong>this node ends with: <span class="colored-text">${n.data.end_event}</span> </strong> <br>
+                   <strong>this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span> </strong> <br>`
+
+                  if(n.data.has_race == 1){
+                    text = text + `<strong>race stack: <span class="colored-text">${n.data.race_stack}</span> </strong> <br>`
+                  }
                   tooltip.html(text)
                 })
-                .on("mouseout", (event, d) => {
+                .on("mouseout", (n) => {
                   tooltip.style("visibility", "hidden");
                 })
 
