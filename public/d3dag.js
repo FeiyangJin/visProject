@@ -366,7 +366,12 @@ function visualizeDAG(dag, svgID){
         .attr("d", (e) => d3.line().curve(d3.curveMonotoneY)(e.points))
         .attr("fill", "none")
         .attr("stroke-width", 2)
-        .attr("stroke","black")
+        .attr("stroke", e => {
+          if (e.data != undefined && e.data.edge_type === "TARGET"){
+            return "pink"
+          }
+          return "black"
+        })
         .attr('marker-end', 'url(#arrowhead)')
         .attr("opacity", (e) => get_edge_opacity(e))
         .attr("stroke-dasharray", (e) => get_edge_dash(e))
