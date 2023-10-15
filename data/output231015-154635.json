@@ -1,6 +1,6 @@
 {
     "directed": true,
-    "multigraph": true,
+    "multigraph": false,
     "graph": {
         "node_default": {},
         "edge_default": {}
@@ -126,6 +126,7 @@
             "hidden": false
         },
         {
+            "end_event": "initial_task_end",
             "has_race": 0,
             "vertex_id": 16,
             "id": "n16",
@@ -143,142 +144,149 @@
     "links": [
         {
             "edge_type": "CONT",
+            "id": "e0",
             "source": "n1",
             "target": "n2",
-            "key": "e9",
             "hidden": false
         },
         {
             "edge_type": "TARGET",
+            "id": "e1",
             "source": "n2",
             "target": "n3",
-            "key": "e10",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e2",
             "source": "n2",
             "target": "n17",
-            "key": "e11",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e3",
             "source": "n3",
             "target": "n4",
-            "key": "e12",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
+            "id": "e4",
             "source": "n3",
             "target": "n5",
-            "key": "e13",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e5",
             "source": "n4",
             "target": "n16",
-            "key": "e14",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e6",
             "source": "n5",
             "target": "n6",
-            "key": "e15",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
+            "id": "e7",
             "source": "n5",
             "target": "n7",
-            "key": "e16",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
+            "id": "e8",
             "source": "n5",
             "target": "n8",
-            "key": "e17",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
+            "id": "e9",
             "source": "n5",
             "target": "n9",
-            "key": "e18",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
+            "id": "e10",
             "source": "n5",
             "target": "n10",
-            "key": "e19",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e11",
             "source": "n6",
             "target": "n15",
-            "key": "e20",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e12",
             "source": "n7",
             "target": "n13",
-            "key": "e21",
             "hidden": false
         },
         {
             "edge_type": "CONT",
+            "id": "e13",
             "source": "n8",
-            "target": "n14",
-            "key": "e22",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "source": "n9",
-            "target": "n11",
-            "key": "e23",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "source": "n10",
             "target": "n12",
-            "key": "e24",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e14",
+            "source": "n9",
+            "target": "n14",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e15",
+            "source": "n10",
+            "target": "n11",
             "hidden": false
         },
         {
             "edge_type": "JOIN",
+            "id": "e16",
             "source": "n11",
             "target": "n15",
-            "key": "e25",
             "hidden": false
         },
         {
             "edge_type": "JOIN",
+            "id": "e17",
             "source": "n12",
             "target": "n15",
-            "key": "e26",
             "hidden": false
         },
         {
             "edge_type": "JOIN",
+            "id": "e18",
             "source": "n13",
             "target": "n15",
-            "key": "e27",
             "hidden": false
         },
         {
             "edge_type": "JOIN",
+            "id": "e19",
             "source": "n14",
             "target": "n15",
-            "key": "e28",
+            "hidden": false
+        },
+        {
+            "edge_type": "JOIN",
+            "id": "e20",
+            "source": "n16",
+            "target": "n2",
             "hidden": false
         }
     ]

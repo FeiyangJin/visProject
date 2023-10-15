@@ -207,4 +207,27 @@ function addLegend(){
         current_y += step_y
     }
 
+    {
+        legend_svg.append("line")
+        .attr("x1", symbol_x - radius)
+        .attr("y1", current_y)
+        .attr("x2", symbol_x + 2 * radius)
+        .attr("y2", current_y)
+        .attr("stroke", "pink")
+        .attr("stroke-width", 4)
+
+        legend_svg.append("text")
+        .text("target edge")
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", "start")
+        .attr("alignment-baseline", "middle")
+        .attr("fill", "black")
+        .attr("class", "unselectable-text")
+        .attr("font-size", "small")
+        .attr("x", text_x)
+        .attr("y", current_y)
+
+        current_y += step_y
+    }
+
 }

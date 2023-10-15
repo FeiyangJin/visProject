@@ -365,7 +365,12 @@ function visualizeDAG(dag, svgID){
         .append("path")
         .attr("d", (e) => d3.line().curve(d3.curveMonotoneY)(e.points))
         .attr("fill", "none")
-        .attr("stroke-width", 2)
+        .attr("stroke-width", e => {
+          if (e.data != undefined && e.data.edge_type === "TARGET"){
+            return 4
+          }
+          return 2
+        })
         .attr("stroke", e => {
           if (e.data != undefined && e.data.edge_type === "TARGET"){
             return "pink"
