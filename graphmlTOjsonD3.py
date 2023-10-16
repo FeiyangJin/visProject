@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[31]:
-
-
+#!/usr/bin/python3
 import networkx as nx
 from networkx.readwrite import json_graph
 
@@ -11,19 +6,44 @@ import json
 from datetime import datetime
 import os
 import subprocess
+import argparse
+import logging
 
-
-# In[32]:
-
+# Configure the logging
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - (%(filename)s:%(lineno)d) %(message)s ")
+logger = logging.getLogger()
 
 format_data = "%y%m%d-%H%M%S"
 x = datetime.now()
 time = x.strftime(format_data)
 filename = f'output{time}.json'
 
-dataDir = "data"
+dataDir = os.path.join(os.getcwd(),"data")
 outputfile = os.path.join(dataDir, filename)
-inputfile = os.path.join(dataDir, "oct15.graphml")
+inputfile = ""
+
+
+def check_path_exists(args) -> bool:
+    global dataDir
+    global inputfile
+
+    if not os.path.exists(dataDir):
+        logger.error(f"{dataDir} does not exists!")
+        return False
+
+    inputfile = os.path.join(dataDir, args.input)
+    if not os.path.exists(inputfile):
+        logger.error(f"{inputfile} does not exist!")
+        return False
+    
+    if args.exe is not None:
+        executable = os.path.join(os.getcwd(), args.exe)
+        if not os.path.exists(executable):
+            logger.error(f"{executable} does not exist!")
+            return False
+
+    return True
+
 
 def write_to_file(path: str, content:str):
     with open(path, 'w') as f:
@@ -38,8 +58,7 @@ def run_cmd(cmd: str, dir: str):
         cwd=dir,
         shell=True,  # Allows running commands with shell features like pipes (use with caution)
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True  # For working with text output
+        stderr=subprocess.PIPE
     )
 
     # Wait for the command to complete and capture stdout and stderr
@@ -48,53 +67,62 @@ def run_cmd(cmd: str, dir: str):
     # Check the return code to see if the command was successful
     return_code = process.returncode
     
-    return stdout, stderr, return_code
+    return stdout.decode('utf-8'), stderr.decode('utf-8'), return_code
 
 
-# In[33]:
+def main(args):
+    global inputfile
+
+    if not check_path_exists(args):
+        return
+    
+    if args.exe is not None:
+        logger.info(f"we have a program to run first {args.exe}")
+        dir = os.getcwd()
+        cmd = f"./{args.exe}"
+        stdout, stderr, flag = run_cmd(cmd, dir)
+        if flag != 0:
+            logger.error(f"error while running {args.exe}")
+            logger.error(stderr)
+            return
+        else:
+            logger.info(stdout)
+
+    G = nx.read_graphml(inputfile)
+
+    # Find and remove nodes with attribute "vertex_id" equal to 0
+    nodes_to_remove = [node for node, data in G.nodes(data=True) if data.get('vertex_id') == 0]
+    G.remove_nodes_from(nodes_to_remove)
+
+    logger.info(f"G is acyclic: {nx.is_directed_acyclic_graph(G)}")
+
+    data = json_graph.node_link_data(G)
+
+    for node in data['nodes']:
+        node["active"] = True
+        node["hidden"] = False
+
+    for edge in data['links']:
+        edge["hidden"] = False
+
+    jsonData = json.dumps(data, indent=4)
+
+    if not args.test:
+        write_to_file(outputfile, jsonData)
+        logger.info(f'Conversion completed. JSON file saved as {outputfile}')
+    else:
+        logger.info(f'Conversion completed. Only a test, no output file created')
 
 
-cmd = "dir"
-dir = os.getcwd()
-out, err, code = run_cmd(cmd, dir)
+if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(description="arguments parser")
+    parser.add_argument("--input", help="input file name", type=str, required=True)
+    parser.add_argument("--exe", help="the OpenMP program to run", type=str)
 
-# In[34]:
+    parser.add_argument('--test', action='store_true')
+    parser.set_defaults(test=False)
 
+    args = parser.parse_args()
 
-G = nx.read_graphml(inputfile)
-
-# Find and remove nodes with attribute "vertex_id" equal to 0
-nodes_to_remove = [node for node, data in G.nodes(data=True) if data.get('vertex_id') == 0]
-G.remove_nodes_from(nodes_to_remove)
-
-print(nx.is_directed_acyclic_graph(G))
-
-
-# In[35]:
-
-
-data = json_graph.node_link_data(G)
-
-for node in data['nodes']:
-    node["active"] = True
-    node["hidden"] = False
-
-for edge in data['links']:
-    edge["hidden"] = False
-
-
-# In[36]:
-
-
-jsonData = json.dumps(data, indent=4)
-
-write_to_file(outputfile, jsonData)
-print(f'Conversion completed. JSON file saved as {outputfile}')
-
-
-# In[ ]:
-
-
-
-
+    main(args)
