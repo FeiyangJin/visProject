@@ -171,6 +171,10 @@ function setupSVG(svgID){
     .append('path')
     .attr('d', 'M 0,0 V 4 L6,2 Z');
   }
+
+  // clear contents everytime
+  svg.select("#links").html("")
+  svg.select("#nodes").html("")
 }
 
 

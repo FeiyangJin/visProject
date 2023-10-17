@@ -55,6 +55,11 @@ function addLegend(){
     .attr("width", 300)
     .attr("height", 300)
 
+    let existing_ele = legend_svg.select("circle")
+    if(!existing_ele.empty()){
+        return
+    }
+
     {
         legend_svg.append("circle")
         .attr("r", radius)
