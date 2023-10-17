@@ -21,6 +21,7 @@ filename = f'output{time}.json'
 dataDir = os.path.join(os.getcwd(),"data")
 outputfile = os.path.join(dataDir, filename)
 inputfile = ""
+runlogfile = os.path.join(dataDir, "runlog.txt")
 
 
 def check_path_exists(args) -> bool:
@@ -35,7 +36,7 @@ def check_path_exists(args) -> bool:
     if not os.path.exists(inputfile):
         logger.error(f"{inputfile} does not exist!")
         return False
-    
+
     if args.exe is not None:
         executable = os.path.join(os.getcwd(), args.exe)
         if not os.path.exists(executable):
@@ -72,12 +73,13 @@ def run_cmd(cmd: str, dir: str):
 
 def main(args):
     global inputfile
-
-    if not check_path_exists(args):
-        return
+    global runlogfile
     
     if args.exe is not None:
         logger.info(f"we have a program to run first {args.exe}")
+        if not os.path.exists(runlogfile):
+            os.mknod(runlogfile)
+
         dir = os.getcwd()
         cmd = f"./{args.exe}"
         stdout, stderr, flag = run_cmd(cmd, dir)
@@ -85,9 +87,11 @@ def main(args):
             logger.error(f"error while running {args.exe}")
             logger.error(stderr)
             return
-        else:
-            logger.info(stdout)
+        write_to_file(runlogfile, stdout)
 
+    if not check_path_exists(args):
+        return
+    
     G = nx.read_graphml(inputfile)
 
     # Find and remove nodes with attribute "vertex_id" equal to 0
@@ -116,11 +120,11 @@ def main(args):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="arguments parser")
-    parser.add_argument("--input", help="input file name", type=str, required=True)
+    parser = argparse.ArgumentParser(description="OpenMP run&vis program")
+    parser.add_argument("--input", help="input file name", type=str, default="rawgraphml.txt")
     parser.add_argument("--exe", help="the OpenMP program to run", type=str)
 
-    parser.add_argument('--test', action='store_true')
+    parser.add_argument('--test', action='store_true', help="mark this run as a test, no output json file created.")
     parser.set_defaults(test=False)
 
     args = parser.parse_args()
