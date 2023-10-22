@@ -224,6 +224,14 @@ function get_edge_width(e) {
   return 2;
 }
 
+function get_edge_type(e) {
+  if (e.data != undefined)
+  {
+    return e.data.edge_type;
+  }
+  return "NO-TYPE";
+}
+
 function get_node_color(n,dag){
   // colors
   const steps = dag.nnodes() - 1;
@@ -389,51 +397,13 @@ function visualizeDAG(dag, svgID){
         .attr("d", (e) => {
           return d3.line().curve(d3.curveMonotoneY)(e.points);
         })
+        .attr("class", e => get_edge_type(e))
         .attr("fill", "none")
         .attr("stroke-width", e => get_edge_width(e))
         .attr("stroke", e => get_edge_color(e))
         .attr('marker-end', 'url(#arrowhead)')
         .attr("opacity", (e) => get_edge_opacity(e))
-        .attr("stroke-dasharray", e => {
-          if(e.data === undefined) {
-            return "0";
-          }
-        
-          if(e.data.edge_type === "FORK_I" || e.data.edge_type === "FORK_E") {
-            return "4";
-          }
-        
-          if(e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E") {
-            return "1, 4";
-          }
-
-          if (e.data.edge_type === "TARGET")
-          {
-            const x_dist = e.points[0][0] - e.points[1][0];
-            const y_dist = e.points[0][1] - e.points[1][1];
-            pathLength = Math.sqrt(Math.pow(x_dist , 2) + Math.pow(y_dist , 2));
-            
-            const repeat = Math.ceil(pathLength / 13);
-            const array = ("8 5 ").repeat(repeat);
-
-            return array;
-          }
-          return "0";
-        })
-        .attr("stroke-dashoffset", "0")
-        .transition()
-        .on("start", function repeat() {
-          const duration = 4000;
-          d3.active(this)
-          .transition()
-          .duration(duration)
-          .attr("stroke-dashoffset", pathLength * -1)
-          .on("end", () => {
-            ++iteration;
-            console.log("Iteration: " + iteration);
-            repeat();
-          });
-        })
+        .attr("stroke-dasharray", e => get_edge_dash(e))
         .call((enter) => enter.transition(trans).attr("opacity", 1))
       },
       (update) => {
@@ -443,8 +413,19 @@ function visualizeDAG(dag, svgID){
       (exit) => {
         exit.remove()
       }
-
     );
+    animate();
+    function animate() {
+      const targetEdges = d3.selectAll(".TARGET");
+      targetEdges
+      .transition()
+      .duration(1000)
+      .ease(d3.easeLinear)
+      .styleTween("stroke-dashoffset", function() {
+        return d3.interpolate(80, 0);
+      })
+      .on("end", animate);
+    }
 }
 
 setupSVG("#svg");
