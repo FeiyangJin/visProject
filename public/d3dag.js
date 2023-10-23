@@ -225,10 +225,15 @@ function get_node_color(n,dag){
     return colorMap.get(n.data.id)
   }
 
-  if (n.data.has_race == 0){
-    return "#F6D42A"
+  if (n.data.has_race == true){
+    return "red"
   }
-  return "red"
+
+  if(n.data.ontarget != undefined && n.data.ontarget == true){
+    return "#799CEF"
+  }
+
+  return "#F6D42A"
 }
 
 
