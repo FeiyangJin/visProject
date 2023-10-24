@@ -418,6 +418,7 @@ function visualizeDAG(dag, svgID){
     function animate() {
       const targetEdges = d3.selectAll(".TARGET");
       targetEdges
+      .attr("opacity", (e) => get_edge_opacity(e))
       .transition()
       .duration(1000)
       .ease(d3.easeLinear)
