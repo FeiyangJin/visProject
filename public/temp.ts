@@ -381,6 +381,7 @@ export function renderDynamic(): void {
   const arrowSize = 80;
   const arrowLen = Math.sqrt((4 * arrowSize) / Math.sqrt(3));
   const arrow = d3.symbol().type(d3.symbolTriangle).size(arrowSize);
+  /*
   svg
     .select("#arrows")
     .selectAll<d3.BaseType, LinkType>("path")
@@ -410,6 +411,7 @@ export function renderDynamic(): void {
       (exit) =>
         exit.call((exit) => exit.transition(trans).attr("opacity", 0).remove())
     );
+    */
 }
 
 renderDynamic();
