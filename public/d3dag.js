@@ -1,52 +1,10 @@
-data = [
-  {
-    id: "0",
-    active: true,
-    hidden: false,
-    parentIds: []
-  },
-  {
-    id: "1",
-    active: true,
-    hidden: false,
-    parentIds: ["0"]
-  },
-  {
-    id: "2",
-    active: true,
-    hidden: false,
-    parentIds: ["0"]
-  },
-  {
-    id: "3",
-    active: true,
-    hidden: false,
-    parentIds: ["1"]
-  },
-  {
-    id: "4",
-    active: true,
-    hidden: false,
-    parentIds: ["1"]
-  },
-  {
-    id: "5",
-    active: true,
-    hidden: false,
-    parentIds: ["2"]
-  },
-  {
-    id: "6",
-    active: true,
-    hidden: false,
-    parentIds: ["2"]
-  }
-];
-
-
 // create our builder and turn the raw data into a graph
 const builder = d3.graphStratify();
 const dag_initial_graph = builder(data);
+
+let iteration = 0;
+let edgeLength = 0;
+const dashDimensions = [8, 5];
 
 // set up initial data. These Maps are important if we
 // are going to remove nodes/edges from graph, and add
@@ -178,112 +136,6 @@ function setupSVG(svgID){
 }
 
 
-
-function get_edge_id(e) {
-  let id
-  if (e.info === undefined){
-    id = e.source.data.id + "-->" + e.target.data.id
-  }
-  else{
-    id = e.info.source.data.id + "-->" + e.info.target.data.id
-  }
-  
-  return id
-}
-
-
-function get_edge_dash(e) {
-  if(e.data === undefined) {
-    return "0"
-  }
-
-  if(e.data.edge_type === "FORK_I" || e.data.edge_type === "FORK_E") {
-    return "4"
-  }
-
-  if(e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E") {
-    return "1,4"
-  }
-
-  if (e.data.edge_type === "TARGET") {
-    return "20, 10";
-  }
-}
-
-function get_edge_color(e) {
-  if (e.data != undefined && e.data.edge_type === "TARGET"){
-    return "pink";
-  }
-  return "black";
-}
-
-function get_edge_width(e) {
-  if (e.data != undefined && e.data.edge_type === "TARGET"){
-    return 4;
-  }
-  return 2;
-}
-
-function get_edge_type(e) {
-  if (e.data != undefined)
-  {
-    return e.data.edge_type;
-  }
-  return "NO-TYPE";
-}
-
-function get_node_color(n,dag){
-  // colors
-  const steps = dag.nnodes() - 1;
-  const interp = d3.interpolateRainbow;
-  const colorMap = new Map(
-    [...dag.nodes()]
-      .sort((a, b) => a.y - b.y)
-      .map((node, i) => [node.data.id, interp(i / steps)])
-  );
-
-  if (!n.data.active){
-    return "black"
-  }
-
-  if (n.data.has_race === undefined){
-    return colorMap.get(n.data.id)
-  }
-
-  if (n.data.has_race == true){
-    return "red"
-  }
-
-  if(n.data.ontarget != undefined && n.data.ontarget == true){
-    return "#799CEF"
-  }
-
-  return "#F6D42A"
-}
-
-
-function get_node_opacity(n){
-  if(n.data.hidden){
-    return 0
-  }
-  return 1
-}
-
-
-function get_edge_opacity(e){
-  if(e.data === undefined){
-    e.data = new Object()
-    e.data.hidden = false
-    return "1"
-  }
-
-  if(e.data.hidden){
-    return "0"
-  }
-
-  return "1"
-}
-
 function visualizeDAG(dag, svgID){
 
   const layout = d3.sugiyama()
@@ -394,7 +246,7 @@ function visualizeDAG(dag, svgID){
     .data(Array.from(dag.links()), e => get_edge_id(e))
     .join(
       (enter) => { 
-        enter
+        let allpath = enter
         .append("path")
         .attr("d", (e) => {
           return d3.line().curve(d3.curveMonotoneY)(e.points);
