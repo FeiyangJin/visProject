@@ -284,8 +284,18 @@ function get_edge_opacity(e){
   return "1"
 }
 
-let pathLength = 0;
-let iteration = 1;
+function animate() {
+  const targetEdges = d3.selectAll(".TARGET");
+  targetEdges
+  .attr("opacity", (e) => get_edge_opacity(e))
+  .transition()
+  .duration(1000)
+  .ease(d3.easeLinear)
+  .styleTween("stroke-dashoffset", function() {
+    return d3.interpolate(80, 0);
+  })
+  .on("end", animate);
+}
 
 function visualizeDAG(dag, svgID){
 
@@ -420,18 +430,6 @@ function visualizeDAG(dag, svgID){
       }
     );
     animate();
-    function animate() {
-      const targetEdges = d3.selectAll(".TARGET");
-      targetEdges
-      .attr("opacity", (e) => get_edge_opacity(e))
-      .transition()
-      .duration(1000)
-      .ease(d3.easeLinear)
-      .styleTween("stroke-dashoffset", function() {
-        return d3.interpolate(80, 0);
-      })
-      .on("end", animate);
-    }
 }
 
 setupSVG("#svg");
