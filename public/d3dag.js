@@ -429,7 +429,35 @@ function visualizeDAG(dag, svgID){
         exit.remove()
       }
     );
-    animate();
+      
+    let iteration = 0;
+    let edgeLength = 0;
+    const dashDimensions = [8, 5];
+    d3.selectAll(".TARGET")
+    .attr("opacity", e => get_edge_opacity(e))
+    .attr("stroke-dasharray", e => {
+      const dx = e.points[0][0] - e.points[1][0];
+      const dy = e.points[0][1] - e.points[1][1];
+
+      
+      edgeLength = Math.sqrt(dx * dx + dy * dy);
+      const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
+      const array = (dashDimensions.join(" ") + " ").repeat(repeat);
+      const ret = array;
+      console.log(ret);
+      return ret;
+    })
+    .attr("stroke-dashoffset", "0")
+    .transition()
+    .on("start", function repeat() {
+      ++iteration;
+      d3.active(this)
+        .transition()
+        .ease(d3.easeLinear)
+        .duration(2000)
+        .attr("stroke-dashoffset", -(iteration * edgeLength))
+        .on("start", repeat);
+    });
 }
 
 setupSVG("#svg");
