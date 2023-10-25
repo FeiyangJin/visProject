@@ -416,31 +416,29 @@ function visualizeDAG(dag, svgID){
         exit.remove()
       }
     );
-      
-    let iteration = 0;
-    let edgeLength = 0;
-    const dashDimensions = [8, 5];
+    
     d3.selectAll(".TARGET")
     .attr("opacity", e => get_edge_opacity(e))
     .attr("stroke-dasharray", e => {
       const dx = e.points[0][0] - e.points[1][0];
       const dy = e.points[0][1] - e.points[1][1];
-
-      edgeLength = Math.sqrt(dx * dx + dy * dy);
+      
+      const dashDimensions = [8, 5];
+      const edgeLength = Math.sqrt(dx * dx + dy * dy);
       const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
       const array = (dashDimensions.join(" ") + " ").repeat(repeat);
       return array;
     })
-    .attr("stroke-dashoffset", "0")
     .transition()
     .on("start", function repeat() {
-      ++iteration;
       d3.active(this)
         .transition()
+        .duration(16000)
         .ease(d3.easeLinear)
-        .duration(2000)
-        .attr("stroke-dashoffset", -(iteration * edgeLength))
-        .on("start", repeat);
+        .styleTween("stroke-dashoffset", function() {
+          return d3.interpolate(960, 0);
+        })
+        .on("end", repeat);
     });
 }
 
