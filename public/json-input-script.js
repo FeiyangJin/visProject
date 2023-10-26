@@ -11,6 +11,9 @@ function handleJsonUpload(event){
 
         reader.onload = function (e) {
             let jsonData = e.target.result;
+
+            prepareDatamove(jsonData);
+
             let dag = prepareGraph(jsonData)
             setupSVG("#svgJSON")
             visualizeDAG(dag, "#svgJSON")
@@ -20,6 +23,26 @@ function handleJsonUpload(event){
         reader.readAsText(file);
     }
 }
+
+
+function prepareDatamove(jsonData){
+    let json = JSON.parse(jsonData)
+    let target_regions = json["target"]
+    console.log(target_regions)
+    
+    for(const tr of target_regions){
+        let begin_node = tr["begin_node"]
+        let end_node = tr["end_node"]
+        let data_movements = tr["datamove"]
+
+        for(const dm of data_movements){
+            let orig_addr = dm["orig_address"]
+            console.log(`host address: ${orig_addr}, type: `)
+            get_move_type(dm["flag"])
+        }
+    }
+}
+
 
 function prepareGraph(jsonData){
     let json = JSON.parse(jsonData)

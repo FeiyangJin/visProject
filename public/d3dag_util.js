@@ -4,6 +4,46 @@ const nodeSize = [nodeRadius * 2, nodeRadius * 2];
 // this truncates the edges so we can render arrows nicely
 const shape = d3.tweakShape(nodeSize, d3.shapeEllipse);
 
+const ompt_device_mem_flag_t = Object.freeze({ 
+  to:             0x01,
+  from:           0x02,
+  alloc:          0x04,
+  release:        0x08,
+  associate:      0x10,
+  disassociate:   0x20
+}); 
+
+
+function get_move_type(flag){
+  // notice a flag can contain several types
+  let type = ""
+  if (flag & ompt_device_mem_flag_t.to){
+    type = type + "to | "
+  }
+
+  if (flag & ompt_device_mem_flag_t.from){
+    type = type + "from | "
+  }
+
+  if (flag & ompt_device_mem_flag_t.alloc){
+    type = type + "alloc | "
+  }
+
+  if (flag & ompt_device_mem_flag_t.release){
+    type = type + "release | "
+  }
+
+  if (flag & ompt_device_mem_flag_t.associate){
+    type = type + "associate | "
+  }
+
+  if (flag & ompt_device_mem_flag_t.disassociate){
+    type = type + "disassociate | "
+  }
+
+  console.log(type)
+}
+
 
 function get_edge_id(e) {
   let id
