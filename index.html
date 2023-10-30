@@ -12,29 +12,42 @@
 </head>
 
 <body>
-    <h1>Computation Graph Visualization</h1>
-
+    <div class="title-display">
+      <h1> Computation Graph Visualization </h1>
+    </div>  
     <label> json upload here</label><br><br>
     <input type="file" id="json_fileInput" accept=".json"><br><br>
 
     <svg id="svg">
         <g transform="translate(2, 2)">
           <defs id="defs" />
-          <g id="links" />
-          <g id="nodes" />
+          <g id = "links" />
+          <g id = "nodes" />
         </g>
     </svg>
+    <div class="main-display">
+      <div class="graph-display">
+        <svg id="svgJSON">
+            <g transform="translate(2, 2)">
+              <defs id="defs" />
+              <g id="links" />
+              <g id="nodes" />
+            </g>
+        </svg>
+      </div>
 
-    <svg id="svgJSON">
-        <g transform="translate(2, 2)">
-          <defs id="defs" />
-          <g id="links" />
-          <g id="nodes" />
-        </g>
-    </svg>
+      <div class="sidebar-display">
 
-    <svg id="legend">
-    </svg>
+        <svg id="legend">
+        </svg>
+
+        <svg id="memory-vis">
+          
+        </svg>
+
+      </div>
+
+    </div>
     
     <div id="tooltip" style="position: absolute; z-index: 10; visibility: hidden;">a simple tooltip</div>
 

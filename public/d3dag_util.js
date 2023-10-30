@@ -14,61 +14,59 @@ const ompt_device_mem_flag_t = Object.freeze({
 }); 
 
 
-function get_move_type(flag){
+function get_move_type(flag) {
   // notice a flag can contain several types
-  let type = ""
-  if (flag & ompt_device_mem_flag_t.to){
-    type = type + "to | "
+  let type = "";
+  if (flag & ompt_device_mem_flag_t.to) {
+    type = type + "to | ";
   }
 
-  if (flag & ompt_device_mem_flag_t.from){
-    type = type + "from | "
+  if (flag & ompt_device_mem_flag_t.from) {
+    type = type + "from | ";
   }
 
   if (flag & ompt_device_mem_flag_t.alloc){
-    type = type + "alloc | "
+    type = type + "alloc | ";
   }
 
   if (flag & ompt_device_mem_flag_t.release){
-    type = type + "release | "
+    type = type + "release | ";
   }
 
   if (flag & ompt_device_mem_flag_t.associate){
-    type = type + "associate | "
+    type = type + "associate | ";
   }
 
   if (flag & ompt_device_mem_flag_t.disassociate){
-    type = type + "disassociate | "
+    type = type + "disassociate | ";
   }
 
-  console.log(type)
+  console.log(type);
 }
 
 
 function get_edge_id(e) {
-  let id
-  if (e.info === undefined){
-    id = e.source.data.id + "-->" + e.target.data.id
+  let id;
+  if (e.info === undefined) {
+    id = e.source.data.id + "-->" + e.target.data.id;
+  } else {
+    id = e.info.source.data.id + "-->" + e.info.target.data.id;
   }
-  else{
-    id = e.info.source.data.id + "-->" + e.info.target.data.id
-  }
-  
-  return id
+  return id;
 }
 
 
 function get_edge_dash(e) {
-  if(e.data === undefined) {
+  if (e.data === undefined) {
     return "0"
   }
 
-  if(e.data.edge_type === "FORK_I" || e.data.edge_type === "FORK_E") {
+  if (e.data.edge_type === "FORK_I" || e.data.edge_type === "FORK_E") {
     return "4"
   }
 
-  if(e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E") {
-    return "1,4"
+  if (e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E") {
+    return "1, 4"
   }
 
   if (e.data.edge_type === "TARGET") {
@@ -78,7 +76,7 @@ function get_edge_dash(e) {
 
 
 function get_edge_color(e) {
-  if (e.data != undefined && e.data.edge_type === "TARGET"){
+  if (e.data != undefined && e.data.edge_type === "TARGET") {
     return "pink";
   }
   return "black";
@@ -86,7 +84,7 @@ function get_edge_color(e) {
 
 
 function get_edge_width(e) {
-  if (e.data != undefined && e.data.edge_type === "TARGET"){
+  if (e.data != undefined && e.data.edge_type === "TARGET") {
     return 4;
   }
   return 2;
@@ -98,51 +96,65 @@ function get_edge_type(e) {
   {
     return e.data.edge_type;
   }
-  return "NO-TYPE";
+  return undefined;
 }
 
 
-function get_node_color(n,dag){
-  if (n.data.has_race === undefined){
-    return "pink"
+function get_node_color(n, dag) {
+  if (n.data.has_race === undefined) {
+    return "pink";
   }
 
-  if (!n.data.active){
-    return "black"
+  if (!n.data.active) {
+    return "black";
   }
 
-  if (n.data.has_race == true){
-    return "red"
+  if (n.data.has_race == true) {
+    return "red";
   }
 
-  if(n.data.ontarget != undefined && n.data.ontarget == true){
-    return "#799CEF"
+  if(n.data.ontarget != undefined && n.data.ontarget == true) {
+    /* Blue color for nodes on target device */
+    return "#799CEF";
   }
-
-  return "#F6D42A"
+  /* Default node color */
+  return "#F6D42A";
 }
 
 
-function get_node_opacity(n){
-  if(n.data.hidden){
-    return 0
+function get_node_opacity(n) {
+  if (n.data.hidden) {
+    return 0;
   }
-  return 1
+  return 1;
 }
 
-
-function get_edge_opacity(e){
-  if(e.data === undefined){
-    e.data = new Object()
-    e.data.hidden = false
-    return "1"
+function get_node_id(n) {
+  if (n.data != undefined && n.data.id != undefined) {
+    return n.data.id;
   }
+  return undefined;
+}
 
-  if(e.data.hidden){
-    return "0"
+function get_node_id_num(n) {
+  if (n.data != undefined && n.data.id != undefined) {
+    const id_string = n.data.id;
+    const splitIndex = id_string.indexOf('n') + 1;
+    return id_string.substring(splitIndex, id_string.length);
   }
+  return undefined;
+}
 
-  return "1"
+function get_edge_opacity(e) {
+  if (e.data === undefined) {
+    e.data = new Object();
+    e.data.hidden = false;
+    return "1";
+  }
+  if (e.data.hidden) {
+    return "0";
+  }
+  return "1";
 }
 
 

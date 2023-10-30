@@ -2,6 +2,26 @@
     user-select: none;
 }
 
+.title-display {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: center;
+}
+
+.main-display {
+  justify-content: center;
+  display: flex;
+}
+
+.sidebar-display {
+  flex-direction: column;
+  display: flex;
+}
+
+#memory-vis {
+  height: 100%;
+}
+
 h1 {
   font-family: "Arial", sans-serif;
   font-size: 36px;

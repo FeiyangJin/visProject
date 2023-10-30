@@ -2,10 +2,6 @@
 const builder = d3.graphStratify();
 const dag_initial_graph = builder(data);
 
-let iteration = 0;
-let edgeLength = 0;
-const dashDimensions = [8, 5];
-
 // set up initial data. These Maps are important if we
 // are going to remove nodes/edges from graph, and add
 // back later. For now, I will comment them out because
@@ -92,29 +88,27 @@ function show_descendant(n, level=0){
 }
 
 
-function click(n,dag,svgID) {
+function click(n, dag, svgID) {
   console.log(`you are clicking on node ${n.data.id}`)
 
-  if (n.data.active === undefined){
+  if (n.data.active === undefined) {
     return
   }
 
   n.data.active = !n.data.active;
 
-  if(n.data.active){
+  if (n.data.active) {
     show_descendant(n)
-  }
-  else{
+  } else {
     hide_descendant(n)
   }
-
-  visualizeDAG(dag,svgID)
+  visualizeDAG(dag, svgID)
 }
 
 
-function setupSVG(svgID){
+function setupSVG(svgID) {
 
-  const svg = d3.select(svgID)
+  const svg = d3.select(svgID);
 
   // Define an arrowhead marker for directed edges
   let arrowhead = svg.select('#arrowhead')
@@ -131,12 +125,12 @@ function setupSVG(svgID){
   }
 
   // clear contents everytime
-  svg.select("#links").html("")
-  svg.select("#nodes").html("")
+  svg.select("#links").html("");
+  svg.select("#nodes").html("");
 }
 
 
-function visualizeDAG(dag, svgID){
+function visualizeDAG(dag, svgID, dataMovementInfo) {
 
   const layout = d3.sugiyama()
       .nodeSize(nodeSize)
@@ -159,22 +153,28 @@ function visualizeDAG(dag, svgID){
     .selectAll("g")
     .data(Array.from(dag.nodes()), n => n.data.id)
     .join(
-      (enter) =>{
+      enter => {
         enter
           .append("g")
           .attr("transform", ({ x, y }) => `translate(${x}, ${y})`)
           .attr("opacity", 0)
           .call(
-            (enter) => {
+            enter => {
               enter.append("circle")
-                .on("click", n => click(n,dag,svgID))
+                .on("click", n => click(n, dag, svgID))
                 .attr("r", nodeRadius)
                 .attr("cursor", "pointer")
-                .attr("fill", (n) => get_node_color(n,dag))
-                .on("mouseover", (n) => {
+                .attr("fill", n => get_node_color(n,dag))
+                .on("mouseover", n => {
                   tooltip.style("visibility", "visible");
+                  const nodeIdNum = get_node_id_num(n);
+                  const indexOf = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
+                  if (indexOf !== -1) 
+                  {
+                    /* Hovered over a node with beginning or ending data transfer */  
+                  }
                 })
-                .on("mousemove", (n) => {
+                .on("mousemove", n => {
                   let text = 
                   `<strong>this node ends with: <span class="colored-text">${n.data.end_event}</span> </strong> <br>
                    <strong>this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span> </strong> <br>`
@@ -184,7 +184,7 @@ function visualizeDAG(dag, svgID){
                   }
                   tooltip.html(text)
                 })
-                .on("mouseout", (n) => {
+                .on("mouseout", n => {
                   tooltip.style("visibility", "hidden");
                 })
 
@@ -248,7 +248,7 @@ function visualizeDAG(dag, svgID){
       (enter) => { 
         let allpath = enter
         .append("path")
-        .attr("d", (e) => {
+        .attr("d", e => {
           return d3.line().curve(d3.curveMonotoneY)(e.points);
         })
         .attr("class", e => get_edge_type(e))
@@ -256,19 +256,19 @@ function visualizeDAG(dag, svgID){
         .attr("stroke-width", e => get_edge_width(e))
         .attr("stroke", e => get_edge_color(e))
         .attr('marker-end', 'url(#arrowhead)')
-        .attr("opacity", (e) => get_edge_opacity(e))
+        .attr("opacity", e => get_edge_opacity(e))
         .attr("stroke-dasharray", e => get_edge_dash(e))
-        .call((enter) => enter.transition(trans).attr("opacity", 1))
+        .call(enter => enter.transition(trans).attr("opacity", 1));
       },
       (update) => {
         update.transition(trans)
-              .attr("opacity", (e) => get_edge_opacity(e))
+              .attr("opacity", e => get_edge_opacity(e))
       },
       (exit) => {
         exit.remove()
       }
     );
-    
+      
     d3.selectAll(".TARGET")
     .attr("opacity", e => get_edge_opacity(e))
     .attr("stroke-dasharray", e => {
@@ -294,5 +294,5 @@ function visualizeDAG(dag, svgID){
     });
 }
 
-setupSVG("#svg");
-visualizeDAG(dag_initial_graph,"#svg");
+//setupSVG("#svg");
+//visualizeDAG(dag_initial_graph,"#svg");
