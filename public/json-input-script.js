@@ -82,7 +82,6 @@ function prepareDatamove(target_regions) {
 
         for (const dm of data_movements) {
             let orig_addr = dm["orig_address"];
-            console.log(`host address: ${orig_addr}, type: `);
             get_move_type(dm["flag"]);
         }
     }

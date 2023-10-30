@@ -32,8 +32,8 @@ const dag_initial_graph = builder(data);
 // }
 
 
-function hide_descendant(n, level=0){
-  if(level != 0){
+function hide_descendant(n, level=0) {
+  if (level != 0) {
     for (const link of [...n.parentLinks()]) {
       link.data.hidden = true
     }
@@ -45,11 +45,11 @@ function hide_descendant(n, level=0){
     link.target.data.hidden = true
   }
 
-  for(const child of n.children()){
-    if(child.data.active){
+  for (const child of n.children()) {
+    if (child.data.active) {
       hide_descendant(child, level+1)
     }
-    else{
+    else {
       for (const link of [...child.parentLinks()]) {
         link.data.hidden = true
       }
@@ -58,7 +58,7 @@ function hide_descendant(n, level=0){
 }
 
 
-function show_descendant(n, level=0){
+function show_descendant(n, level=0) {
   if(level != 0){
     for (const link of [...n.parentLinks()]) {
       if(!link.source.data.hidden && link.source.data.active){
@@ -73,13 +73,13 @@ function show_descendant(n, level=0){
     link.target.data.hidden = false
   }
 
-  for(const child of n.children()){
-    if(child.data.active && !child.data.hidden){
+  for (const child of n.children()) {
+    if (child.data.active && !child.data.hidden) {
       show_descendant(child, level + 1)
     }
-    else if(!child.data.active && !child.data.hidden){
+    else if (!child.data.active && !child.data.hidden) {
       for (const link of [...child.parentLinks()]) {
-        if(!link.source.data.hidden && link.source.data.active){
+        if (!link.source.data.hidden && link.source.data.active) {
           link.data.hidden = false
         }
       }
@@ -129,12 +129,24 @@ function setupSVG(svgID) {
   svg.select("#nodes").html("");
 }
 
+function visualizeDataMovement(dataMove) {
+  const m = d3.select('#memory-vis');
+  m.style('border-style', 'dashed');
+  m.style('margin', '1px');
+  m.style('border-width', '3px');
+}
+
+function deVisualizeDataMovement() {
+  const m = d3.select('#memory-vis');
+  m.style('border-style', 'none');
+  m.style('margin', '3px');
+}
 
 function visualizeDAG(dag, svgID, dataMovementInfo) {
 
   const layout = d3.sugiyama()
       .nodeSize(nodeSize)
-      .gap([nodeRadius*2, nodeRadius*2])
+      .gap([nodeRadius * 2, nodeRadius * 2])
       .tweaks([shape]);
 
   const { width, height } = layout(dag);
@@ -168,10 +180,11 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .on("mouseover", n => {
                   tooltip.style("visibility", "visible");
                   const nodeIdNum = get_node_id_num(n);
-                  const indexOf = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
-                  if (indexOf !== -1) 
+                  const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
+                  if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
+                    visualizeDataMovement(dataMovementInfo[index].datamove);
                   }
                 })
                 .on("mousemove", n => {
@@ -186,6 +199,13 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 })
                 .on("mouseout", n => {
                   tooltip.style("visibility", "hidden");
+                  const nodeIdNum = get_node_id_num(n);
+                  const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
+                  if (index !== -1) 
+                  {
+                    /* Hovered over a node with beginning or ending data transfer */  
+                    deVisualizeDataMovement();
+                  }
                 })
 
               enter.append("text")
@@ -201,7 +221,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
 
               enter.transition(trans).attr("opacity", 1);
 
-              enter.filter((n) => (n.data.has_race == 1))
+              enter.filter(n => (n.data.has_race == 1))
               .append("circle")
               .attr("r", nodeRadius + 2)
               .attr("fill", "none")
@@ -211,8 +231,8 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .append("animateTransform")
                 .attr("attributeName","transform")
                 .attr("type","rotate")
-                .attr("from", (n) => `360 ${n.x/10000} ${n.y/10000}`)
-                .attr("to", (n) => `0 ${n.x/10000} ${n.y/10000} `)
+                .attr("from", n => `360 ${n.x/10000} ${n.y/10000}`)
+                .attr("to", n => `0 ${n.x/10000} ${n.y/10000} `)
                 .attr("dur","10s")
                 .attr("repeatCount","indefinite");
               }
@@ -268,7 +288,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
         exit.remove()
       }
     );
-      
+    deVisualizeDataMovement();
     d3.selectAll(".TARGET")
     .attr("opacity", e => get_edge_opacity(e))
     .attr("stroke-dasharray", e => {

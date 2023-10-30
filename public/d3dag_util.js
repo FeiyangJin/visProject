@@ -40,8 +40,6 @@ function get_move_type(flag) {
   if (flag & ompt_device_mem_flag_t.disassociate){
     type = type + "disassociate | ";
   }
-
-  console.log(type);
 }
 
 
