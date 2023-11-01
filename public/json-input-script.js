@@ -47,7 +47,6 @@ function populateRefCount(node)
         ++child.data.refCount;
         populateRefCount(child);
     }
-    stack.pop();
 }
 
 function prepareGraph(jsonData) {
@@ -78,6 +77,7 @@ function prepareGraph(jsonData) {
         }
         populateRefCount(node);
     }
+    stack = [];
     return dag;
 }
 
