@@ -68,11 +68,6 @@ function prepareDatamove(target_regions) {
     }
 
     let memory_svg = d3.select("#memory-vis");
-    
-    memory_svg.append('circle')
-    .attr("r", 10 * radius)
-    .attr("cx", symbol_x)
-    .attr("cy", current_y);
 
     for (const tr of target_regions) {
         let begin_node = tr["begin_node"];
