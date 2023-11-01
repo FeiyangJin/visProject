@@ -47,6 +47,7 @@ function populateRefCount(node)
         ++child.data.refCount;
         populateRefCount(child);
     }
+    stack.pop();
 }
 
 function prepareGraph(jsonData) {
@@ -93,8 +94,6 @@ function prepareDatamove(target_regions) {
     if (!target_regions) {
         return;
     }
-
-    let memory_svg = d3.select("#memory-vis");
 
     for (const tr of target_regions) {
         let begin_node = tr["begin_node"];
