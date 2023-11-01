@@ -135,10 +135,8 @@ function get_node_id(n) {
 }
 
 function get_node_id_num(n) {
-  if (n.data != undefined && n.data.id != undefined) {
-    const id_string = n.data.id;
-    const splitIndex = id_string.indexOf('n') + 1;
-    return id_string.substring(splitIndex, id_string.length);
+  if (n.data != undefined && n.data.vertex_id != undefined) {
+    return n.data.vertex_id;
   }
   return undefined;
 }

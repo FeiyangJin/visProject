@@ -1,3 +1,5 @@
+let dag;
+
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('json_fileInput');
     json_fileInput.addEventListener('change', handleJsonUpload);
@@ -12,7 +14,7 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
 
-            let dag = prepareGraph(jsonData);
+            dag = prepareGraph(jsonData);
             setupSVG("#svgJSON");
             
             const targetMovementData = extractTargetMovementData(jsonData);
@@ -32,6 +34,22 @@ function extractTargetMovementData(jsonData) {
     return target_regions ? target_regions : null;
 }
 
+let stack = [];
+
+function populateRefCount(node) 
+{
+    if (stack.includes(node.id)) {
+        return;
+    }
+    stack.push(node.id);
+    for (const child of node.children()) 
+    {
+        ++child.data.refCount;
+        populateRefCount(child);
+    }
+    stack.pop();
+}
+
 function prepareGraph(jsonData) {
     let json = JSON.parse(jsonData);
     let nodes = json['nodes'];
@@ -40,6 +58,7 @@ function prepareGraph(jsonData) {
     let nodesMap = new Map();
     for (const node of nodes) {
         nodesMap.set(node.id, node);
+        node.refCount = 0;
     }
 
     const builder = d3.graphConnect()
@@ -50,6 +69,14 @@ function prepareGraph(jsonData) {
     for (const node of dag.nodes()) {
         let id = node.data;
         node.data = nodesMap.get(id);
+    }
+
+    for (const node of dag.nodes()) {
+        if (node.data.vertex_id === 1)
+        {
+            node.data.refCount = 1;
+        }
+        populateRefCount(node);
     }
     return dag;
 }

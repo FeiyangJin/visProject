@@ -31,78 +31,104 @@ const dag_initial_graph = builder(data);
 //   nodeMap.set(node.data.id, node)
 // }
 
-
-function hide_descendant(n, level=0) {
-  
-  if (level != 0) {
-    for (const link of [...n.parentLinks()]) {
-      link.data.hidden = true
-    }
+function hide_descendant(n) {
+  if (stack.includes(n.data.id))
+  {
+    return;
   }
-  
-  for (const link of [...n.childLinks()]) {
-    link.data.hidden = true
-
-    link.target.data.hidden = true
+  stack.push(n.data.id);
+  for (const edge of [...n.childLinks()])
+  {
+    edge.data.hidden = true;
   }
-
-  for (const child of n.children()) {
-    if (child.data.active) {
-      hide_descendant(child, level + 1)
-    }
-    else {
-      for (const link of [...child.parentLinks()]) {
-        link.data.hidden = true
+  for (const child of n.children())
+  {
+    if (child.data.refCount > 0) {
+      --child.data.refCount;
+      child.data.hidden = (child.data.refCount === 0);
+      if (child.data.hidden)
+      {
+        for (const edge of [...child.childLinks()])
+        {
+          edge.data.hidden = true;
+        }
+        hide_descendant(child);
       }
     }
   }
+  stack.pop();
 }
 
 
-function show_descendant(n, level=0) {
-  if(level != 0){
-    for (const link of [...n.parentLinks()]) {
-      if (!link.source.data.hidden && link.source.data.active) {
-        link.data.hidden = false
-      }
-    }
+function show_descendant(n) {
+  if (stack.includes(n.data.id))
+  {
+    return;
   }
+  stack.push(n.data.id);
 
-  for (const link of [...n.childLinks()]) {
-    link.data.hidden = false
+  for (const child of n.children())
+  {
+    const originalVisibility = child.data.hidden;
+    ++child.data.refCount;
+    child.data.hidden = (child.data.refCount === 0);
 
-    link.target.data.hidden = false
-  }
+    if (originalVisibility != child.data.hidden && child.data.active) 
+    {
+      /* If node just popped up, propogate references to children */
+      show_descendant(child);
 
-  for (const child of n.children()) {
-    if (child.data.active && !child.data.hidden) {
-      show_descendant(child, level + 1)
-    }
-    else if (!child.data.active && !child.data.hidden) {
-      for (const link of [...child.parentLinks()]) {
-        if (!link.source.data.hidden && link.source.data.active) {
-          link.data.hidden = false
+      /* If node just popped up, show all parent edges from nodes not hidden */
+      const dagNodes = [...dag.nodes()];
+      for (const incomingEdge of [...child.parentLinks()])
+      {
+        const sourceNodeId = incomingEdge.data.source;
+        const node = dagNodes.find(node => node.data.id === sourceNodeId);
+        if (!node.data.hidden)
+        {
+          incomingEdge.data.hidden = false;
         }
       }
+      
+      /* If node just popped up, show all child edges to nodes not hidden */
+      for (const outgoingEdge of [...child.childLinks()])
+      {
+        const targetNodeId = outgoingEdge.data.target;
+        const node = dagNodes.find(node => node.data.id === targetNodeId);
+        if (!node.data.hidden)
+        {
+          outgoingEdge.data.hidden = false;
+        }
+      }
+    } 
+    else 
+    {
+      const incomingEdge = [...child.parentLinks()].find(edge => edge.data.source === n.data.id);
+      incomingEdge.data.hidden = false;
     }
   }
+  stack.pop();
 }
 
 
 function click(n, dag, svgID) {
-  console.log(`you are clicking on node ${n.data.id}`)
+  console.log(`you are clicking on node ${n.data.id}`);
 
   if (n.data.active === undefined) {
-    return
+    return;
   }
 
-  n.data.active = !n.data.active;
-
+  if (n.data.hidden) {
+    /* You can't click on hidden nodes */
+    return;
+  }
+  
   if (n.data.active) {
-    show_descendant(n)
+    hide_descendant(n);
   } else {
-    hide_descendant(n)
+    show_descendant(n);
   }
+  n.data.active = !n.data.active;
   visualizeDAG(dag, svgID)
 }
 
