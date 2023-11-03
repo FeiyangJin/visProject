@@ -255,7 +255,12 @@ function visualizeDAG(dag, svgID){
         .attr("fill", "none")
         .attr("stroke-width", e => get_edge_width(e))
         .attr("stroke", e => get_edge_color(e))
-        .attr('marker-end', 'url(#arrowhead)')
+        .attr('marker-end', e => {
+          if (e.data != undefined && e.data.edge_type === "BARRIER"){
+            return ''
+          }
+          return 'url(#arrowhead)'
+        })
         .attr("opacity", (e) => get_edge_opacity(e))
         .attr("stroke-dasharray", e => get_edge_dash(e))
         .call((enter) => enter.transition(trans).attr("opacity", 1))
