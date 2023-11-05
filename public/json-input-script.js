@@ -1,4 +1,5 @@
 let dag;
+let path = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('json_fileInput');
@@ -34,20 +35,18 @@ function extractTargetMovementData(jsonData) {
     return target_regions ? target_regions : null;
 }
 
-let stack = [];
-
 function populateRefCount(node) 
 {
-    if (stack.includes(node.id)) {
+    if (path.includes(node.id)) {
         return;
     }
-    stack.push(node.id);
+    path.push(node.id);
     for (const child of node.children()) 
     {
         ++child.data.refCount;
         populateRefCount(child);
     }
-    stack.pop();
+    path.pop();
 }
 
 function prepareGraph(jsonData) {
@@ -78,7 +77,7 @@ function prepareGraph(jsonData) {
         }
         populateRefCount(node);
     }
-    stack = [];
+    path = [];
     return dag;
 }
 

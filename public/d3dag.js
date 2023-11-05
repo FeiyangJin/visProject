@@ -32,12 +32,12 @@ const dag_initial_graph = builder(data);
 // }
 
 function decrement_refcount(n) {
-  if (stack.includes(n.data.id))
+  if (path.includes(n.data.id))
   {
     console.log("Cycle detected");
     return;
   }
-  stack.push(n.data.id);
+  path.push(n.data.id);
   for (const edge of [...n.childLinks()])
   {
     edge.data.hidden = true;
@@ -57,16 +57,16 @@ function decrement_refcount(n) {
       }
     }
   }
-  stack.pop();
+  path.pop();
 }
 
 
 function increment_refcount(n) {
-  if (stack.includes(n.data.id))
+  if (path.includes(n.data.id))
   {
     return;
   }
-  stack.push(n.data.id);
+  path.push(n.data.id);
 
   for (const child of n.children())
   {
@@ -108,7 +108,7 @@ function increment_refcount(n) {
       incomingEdge.data.hidden = false;
     }
   }
-  stack.pop();
+  path.pop();
 }
 
 
@@ -157,10 +157,91 @@ function setupSVG(svgID) {
 }
 
 function visualizeDataMovement(dataMove) {
-  const canvas = d3.select('#memory-vis');
-  canvas.style('border-style', 'dashed');
-  canvas.style('margin', '1px');
-  canvas.style('border-width', '3px');
+  const svg = d3.select('#memory-vis');
+  svg.style('border-style', 'dashed');
+  svg.style('margin', '1px');
+  svg.style('border-width', '3px');
+
+  svg
+    .select("#data-transfer")
+    .selectAll("g")
+    .data(dataMove.datamove)
+    .join(
+      enter => {
+        enter
+          .append("circle")
+          .attr("cx", 30)
+          .attr("cy", 30)
+          .attr("r", nodeRadius)
+          .attr("fill", "red");
+
+        enter.append("text")
+          .attr("x", 30)
+          .attr("y", 30)
+          .text("n" + dataMove.begin_node)
+          .attr("font-weight", "bold")
+          .attr("font-family", "sans-serif")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "middle")
+          .attr("fill", "white")
+          .attr("class", "unselectable-text")
+          .attr("font-size", "xx-small")
+          .style("pointer-events", "none");
+
+        enter
+          .append("circle")
+          .attr("cx", 100)
+          .attr("cy", 30)
+          .attr("r", nodeRadius)
+          .attr("fill", "blue");
+
+        enter.append("text")
+          .attr("x", 100)
+          .attr("y", 30)
+          .text("n" + dataMove.end_node)
+          .attr("font-weight", "bold")
+          .attr("font-family", "sans-serif")
+          .attr("text-anchor", "middle")
+          .attr("alignment-baseline", "middle")
+          .attr("fill", "white")
+          .attr("class", "unselectable-text")
+          .attr("font-size", "xx-small")
+          .style("pointer-events", "none");
+
+        enter
+          .append("g")
+          .attr("opacity", 1)
+          .call(
+            enter => {
+              const header = 120;
+              const rectHeight = 50;
+              const margin = 15;
+
+              enter.append("rect")
+                .attr("x", 10)
+                .attr("y", (data, index) => header + (index * (margin + rectHeight)))
+                .attr("width", 100)
+                .attr("height", 50)
+                .attr("fill", "red")
+                .attr("opacity", 1);
+
+              enter.append("text")
+                .text(data => data.orig_address)
+                .attr("x", 10)
+                .attr("y", (data, index) => header + (index * (margin + rectHeight)))
+                .attr("width", 100)
+                .attr("height", 50)
+                .attr("fill", "red")
+                .attr("opacity", 1);
+
+            })
+      },
+      update => {
+
+      },
+      exit => {
+        exit.remove();
+      });
 }
 
 function deVisualizeDataMovement() {
@@ -211,7 +292,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    visualizeDataMovement(dataMovementInfo[index].datamove);
+                    visualizeDataMovement(dataMovementInfo[index]);
                   }
                 })
                 .on("mousemove", n => {

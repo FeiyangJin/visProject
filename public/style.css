@@ -13,9 +13,17 @@
   display: flex;
 }
 
+.graph-display {
+  width: 70%;
+  justify-content: center;
+  border-style: solid;
+  border-width: 3px;
+}
+
 .sidebar-display {
   flex-direction: column;
   display: flex;
+  width: 30%;
 }
 
 #memory-vis {
