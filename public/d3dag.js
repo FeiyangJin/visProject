@@ -166,26 +166,20 @@ function visualizeDAG(dag, svgID){
           .attr("opacity", 0)
           .call(
             (enter) => {
+              tooltip.style("visibility", "visible");
+
               enter.append("circle")
                 .on("click", n => click(n,dag,svgID))
                 .attr("r", nodeRadius)
                 .attr("cursor", "pointer")
                 .attr("fill", (n) => get_node_color(n,dag))
-                .on("mouseover", (n) => {
-                  tooltip.style("visibility", "visible");
-                })
                 .on("mousemove", (n) => {
                   let text = 
                   `<strong>this node ends with: <span class="colored-text">${n.data.end_event}</span> </strong> <br>
-                   <strong>this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span> </strong> <br>`
-
-                  if(n.data.has_race == 1){
-                    text = text + `<strong>race stack: <span class="colored-text">${n.data.race_stack}</span> </strong> <br>`
-                  }
+                   <strong>this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span> </strong> <br>
+                   <strong>stack: <span class="colored-text">${n.data.stack}</span> </strong> <br>`
+  
                   tooltip.html(text)
-                })
-                .on("mouseout", (n) => {
-                  tooltip.style("visibility", "hidden");
                 })
 
               enter.append("text")

@@ -7,24 +7,27 @@
     },
     "nodes": [
         {
-            "end_event": "parallel_begin",
-            "has_race": 0,
+            "end_event": "target_begin",
+            "has_race": false,
+            "ontarget": false,
             "vertex_id": 1,
             "id": "n1",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_end",
-            "has_race": 0,
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 2,
             "id": "n2",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_begin",
-            "has_race": 0,
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 3,
             "id": "n3",
             "active": true,
@@ -32,7 +35,8 @@
         },
         {
             "end_event": "parallel_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 4,
             "id": "n4",
             "active": true,
@@ -40,39 +44,44 @@
         },
         {
             "end_event": "parallel_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 5,
             "id": "n5",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_end",
-            "has_race": 0,
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 6,
             "id": "n6",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_begin",
-            "has_race": 0,
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 7,
             "id": "n7",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_end",
-            "has_race": 0,
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 8,
             "id": "n8",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 9,
             "id": "n9",
             "active": true,
@@ -80,7 +89,8 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 10,
             "id": "n10",
             "active": true,
@@ -88,7 +98,8 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 11,
             "id": "n11",
             "active": true,
@@ -96,7 +107,8 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 12,
             "id": "n12",
             "active": true,
@@ -104,31 +116,35 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 13,
             "id": "n13",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 14,
             "id": "n14",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 15,
             "id": "n15",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 16,
             "id": "n16",
             "active": true,
@@ -136,39 +152,43 @@
         },
         {
             "end_event": "sync_region_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 17,
             "id": "n17",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 18,
             "id": "n18",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_end",
-            "has_race": 0,
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 19,
             "id": "n19",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_end",
-            "has_race": 0,
+            "end_event": "sync_region_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 20,
             "id": "n20",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_begin",
-            "has_race": 0,
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 21,
             "id": "n21",
             "active": true,
@@ -176,15 +196,17 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 22,
             "id": "n22",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "parallel_end",
-            "has_race": 0,
+            "end_event": "sync_region_begin",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 23,
             "id": "n23",
             "active": true,
@@ -192,7 +214,8 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 24,
             "id": "n24",
             "active": true,
@@ -200,47 +223,52 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 25,
             "id": "n25",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 26,
             "id": "n26",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 27,
             "id": "n27",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 28,
             "id": "n28",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "end_event": "sync_region_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 29,
             "id": "n29",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 30,
             "id": "n30",
             "active": true,
@@ -248,7 +276,8 @@
         },
         {
             "end_event": "sync_region_begin",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 31,
             "id": "n31",
             "active": true,
@@ -256,7 +285,8 @@
         },
         {
             "end_event": "sync_region_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 32,
             "id": "n32",
             "active": true,
@@ -264,140 +294,65 @@
         },
         {
             "end_event": "sync_region_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 33,
             "id": "n33",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_end",
-            "has_race": 0,
+            "end_event": "target_end",
+            "has_race": false,
+            "ontarget": true,
             "vertex_id": 34,
             "id": "n34",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_end",
-            "has_race": 0,
+            "has_race": false,
+            "ontarget": false,
             "vertex_id": 35,
             "id": "n35",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 36,
-            "id": "n36",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 37,
-            "id": "n37",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 38,
-            "id": "n38",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 39,
-            "id": "n39",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "has_race": 0,
-            "vertex_id": 40,
-            "id": "n40",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "has_race": 0,
-            "vertex_id": 41,
-            "id": "n41",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_begin",
-            "has_race": 0,
-            "vertex_id": 42,
-            "id": "n42",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 43,
-            "id": "n43",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "end_event": "sync_region_end",
-            "has_race": 0,
-            "vertex_id": 44,
-            "id": "n44",
-            "active": true,
-            "hidden": false
-        },
-        {
-            "has_race": 0,
-            "vertex_id": 45,
-            "id": "n45",
             "active": true,
             "hidden": false
         }
     ],
     "links": [
         {
-            "edge_type": "CONT",
+            "edge_type": "TARGET",
             "id": "e0",
             "source": "n1",
             "target": "n2",
             "hidden": false
         },
         {
-            "edge_type": "FORK_I",
+            "edge_type": "CONT",
             "id": "e1",
-            "source": "n1",
+            "source": "n2",
             "target": "n3",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e2",
-            "source": "n1",
+            "source": "n3",
             "target": "n4",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "FORK_I",
             "id": "e3",
-            "source": "n2",
-            "target": "n45",
+            "source": "n3",
+            "target": "n6",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e4",
             "source": "n3",
-            "target": "n6",
+            "target": "n34",
             "hidden": false
         },
         {
@@ -411,91 +366,91 @@
             "edge_type": "FORK_I",
             "id": "e6",
             "source": "n4",
-            "target": "n9",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e7",
-            "source": "n4",
-            "target": "n10",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e8",
-            "source": "n4",
-            "target": "n11",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e9",
-            "source": "n4",
-            "target": "n12",
+            "target": "n8",
             "hidden": false
         },
         {
             "edge_type": "CONT",
-            "id": "e10",
+            "id": "e7",
             "source": "n5",
-            "target": "n22",
+            "target": "n20",
             "hidden": false
         },
         {
-            "edge_type": "TARGET",
-            "id": "e11",
+            "edge_type": "CONT",
+            "id": "e8",
             "source": "n6",
             "target": "n7",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
-            "id": "e12",
+            "edge_type": "FORK_I",
+            "id": "e9",
             "source": "n6",
-            "target": "n42",
+            "target": "n19",
             "hidden": false
         },
         {
             "edge_type": "CONT",
-            "id": "e13",
+            "id": "e10",
             "source": "n7",
-            "target": "n8",
+            "target": "n31",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e11",
+            "source": "n8",
+            "target": "n9",
+            "hidden": false
+        },
+        {
+            "edge_type": "FORK_I",
+            "id": "e12",
+            "source": "n8",
+            "target": "n10",
+            "hidden": false
+        },
+        {
+            "edge_type": "FORK_I",
+            "id": "e13",
+            "source": "n8",
+            "target": "n11",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e14",
-            "source": "n7",
-            "target": "n21",
+            "source": "n8",
+            "target": "n13",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "FORK_I",
             "id": "e15",
             "source": "n8",
-            "target": "n41",
+            "target": "n12",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e16",
             "source": "n9",
-            "target": "n16",
+            "target": "n18",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e17",
             "source": "n10",
-            "target": "n13",
+            "target": "n16",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e18",
             "source": "n11",
-            "target": "n15",
+            "target": "n17",
             "hidden": false
         },
         {
@@ -506,305 +461,230 @@
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "CONT",
             "id": "e20",
             "source": "n13",
-            "target": "n16",
+            "target": "n15",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "BARRIER",
             "id": "e21",
-            "source": "n13",
+            "source": "n14",
             "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e22",
-            "source": "n13",
-            "target": "n22",
+            "source": "n15",
+            "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e23",
-            "source": "n14",
-            "target": "n16",
+            "source": "n16",
+            "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "BARRIER",
             "id": "e24",
-            "source": "n14",
+            "source": "n17",
+            "target": "n18",
+            "hidden": false
+        },
+        {
+            "edge_type": "BARRIER",
+            "id": "e25",
+            "source": "n18",
             "target": "n20",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
-            "id": "e25",
-            "source": "n14",
-            "target": "n22",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
+            "edge_type": "CONT",
             "id": "e26",
-            "source": "n15",
-            "target": "n16",
+            "source": "n19",
+            "target": "n21",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "FORK_I",
             "id": "e27",
-            "source": "n15",
-            "target": "n19",
+            "source": "n19",
+            "target": "n22",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "FORK_I",
             "id": "e28",
-            "source": "n15",
-            "target": "n22",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e29",
-            "source": "n16",
-            "target": "n17",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e30",
-            "source": "n16",
-            "target": "n22",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e31",
-            "source": "n21",
+            "source": "n19",
             "target": "n23",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
-            "id": "e32",
-            "source": "n21",
+            "id": "e29",
+            "source": "n19",
             "target": "n24",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
-            "id": "e33",
-            "source": "n21",
+            "id": "e30",
+            "source": "n19",
             "target": "n25",
             "hidden": false
         },
         {
-            "edge_type": "FORK_I",
-            "id": "e34",
-            "source": "n21",
-            "target": "n26",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e35",
-            "source": "n21",
-            "target": "n27",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e36",
-            "source": "n21",
-            "target": "n28",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e37",
-            "source": "n21",
-            "target": "n29",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e38",
-            "source": "n21",
-            "target": "n30",
-            "hidden": false
-        },
-        {
-            "edge_type": "FORK_I",
-            "id": "e39",
-            "source": "n21",
-            "target": "n31",
-            "hidden": false
-        },
-        {
             "edge_type": "CONT",
-            "id": "e40",
-            "source": "n22",
-            "target": "n44",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e41",
-            "source": "n23",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e42",
-            "source": "n24",
-            "target": "n36",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e43",
-            "source": "n25",
-            "target": "n34",
-            "hidden": false
-        },
-        {
-            "edge_type": "CONT",
-            "id": "e44",
-            "source": "n26",
+            "id": "e31",
+            "source": "n20",
             "target": "n33",
             "hidden": false
         },
         {
             "edge_type": "CONT",
-            "id": "e45",
+            "id": "e32",
+            "source": "n21",
+            "target": "n30",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e33",
+            "source": "n22",
+            "target": "n29",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e34",
+            "source": "n23",
+            "target": "n26",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e35",
+            "source": "n24",
+            "target": "n27",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e36",
+            "source": "n25",
+            "target": "n28",
+            "hidden": false
+        },
+        {
+            "edge_type": "BARRIER",
+            "id": "e37",
+            "source": "n26",
+            "target": "n30",
+            "hidden": false
+        },
+        {
+            "edge_type": "BARRIER",
+            "id": "e38",
             "source": "n27",
-            "target": "n37",
+            "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
-            "id": "e46",
+            "edge_type": "BARRIER",
+            "id": "e39",
             "source": "n28",
-            "target": "n35",
+            "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
-            "id": "e47",
+            "edge_type": "BARRIER",
+            "id": "e40",
             "source": "n29",
-            "target": "n39",
+            "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
-            "id": "e48",
+            "edge_type": "BARRIER",
+            "id": "e41",
             "source": "n30",
-            "target": "n38",
+            "target": "n31",
             "hidden": false
         },
         {
             "edge_type": "CONT",
-            "id": "e49",
+            "id": "e42",
             "source": "n31",
             "target": "n32",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
-            "id": "e50",
+            "edge_type": "BARRIER",
+            "id": "e43",
             "source": "n32",
-            "target": "n40",
+            "target": "n34",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
-            "id": "e51",
+            "edge_type": "BARRIER",
+            "id": "e44",
             "source": "n33",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e52",
-            "source": "n34",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e53",
-            "source": "n35",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e54",
-            "source": "n36",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e55",
-            "source": "n37",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e56",
-            "source": "n38",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e57",
-            "source": "n39",
-            "target": "n40",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e58",
-            "source": "n40",
-            "target": "n41",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e59",
-            "source": "n41",
-            "target": "n42",
+            "target": "n34",
             "hidden": false
         },
         {
             "edge_type": "CONT",
-            "id": "e60",
-            "source": "n42",
-            "target": "n43",
+            "id": "e45",
+            "source": "n34",
+            "target": "n35",
             "hidden": false
-        },
+        }
+    ],
+    "target": [
         {
-            "edge_type": "JOIN",
-            "id": "e61",
-            "source": "n43",
-            "target": "n45",
-            "hidden": false
-        },
-        {
-            "edge_type": "JOIN",
-            "id": "e62",
-            "source": "n44",
-            "target": "n45",
-            "hidden": false
+            "begin_node": "1",
+            "end_node": "34",
+            "datamove": [
+                {
+                    "orig_address": "0x7b0400000070",
+                    "dest_address": "0x7b04000000a0",
+                    "bytes": "16",
+                    "flag": "21"
+                },
+                {
+                    "orig_address": "0x7b1000000240",
+                    "dest_address": "0x7b1000000300",
+                    "bytes": "64",
+                    "flag": "20"
+                },
+                {
+                    "orig_address": "0x7b0400000060",
+                    "dest_address": "0x7b04000000e0",
+                    "bytes": "16",
+                    "flag": "21"
+                },
+                {
+                    "orig_address": "0x7b0400000060",
+                    "dest_address": "0x7b04000000e0",
+                    "bytes": "16",
+                    "flag": "40"
+                },
+                {
+                    "orig_address": "0x7b1000000240",
+                    "dest_address": "0x7b1000000300",
+                    "bytes": "64",
+                    "flag": "40"
+                },
+                {
+                    "orig_address": "0x7b0400000070",
+                    "dest_address": "0x7b04000000a0",
+                    "bytes": "16",
+                    "flag": "42"
+                }
+            ]
         }
     ]
 }
