@@ -2,6 +2,15 @@
 const builder = d3.graphStratify();
 const dag_initial_graph = builder(data);
 
+const dashDimensions = [8, 5];
+const header = 0;
+const rectHeight = 50;
+const rectWidth = 160;
+const verticalMargin = 15;
+const horizontalMargin = 20;
+const offset = 30;
+const horizontalDivision = 200;
+
 // set up initial data. These Maps are important if we
 // are going to remove nodes/edges from graph, and add
 // back later. For now, I will comment them out because
@@ -31,7 +40,7 @@ const dag_initial_graph = builder(data);
 //   nodeMap.set(node.data.id, node)
 // }
 
-function decrement_refcount(n) {
+function decrement_refcount(n, depth = 0) {
   if (path.includes(n.data.id))
   {
     console.log("Cycle detected");
@@ -42,26 +51,28 @@ function decrement_refcount(n) {
   {
     edge.data.hidden = true;
   }
-  for (const child of n.children())
-  {
-    if (child.data.refCount > 0) {
-      --child.data.refCount;
-      child.data.hidden = (child.data.refCount === 0);
-      if (child.data.hidden)
-      {
-        for (const edge of [...child.childLinks()])
+
+  if (depth == 0 || n.data.active)
+    for (const child of n.children())
+    {
+      if (child.data.refCount > 0) {
+        --child.data.refCount;
+        child.data.hidden = (child.data.refCount === 0);
+        if (child.data.hidden)
         {
-          edge.data.hidden = true;
+          for (const edge of [...child.childLinks()])
+          {
+            edge.data.hidden = true;
+          }
+          decrement_refcount(child, depth + 1);
         }
-        decrement_refcount(child);
       }
     }
-  }
   path.pop();
 }
 
 
-function increment_refcount(n) {
+function increment_refcount(n, depth = 0) {
   if (path.includes(n.data.id))
   {
     return;
@@ -77,7 +88,7 @@ function increment_refcount(n) {
     if (originalVisibility != child.data.hidden && child.data.active) 
     {
       /* If node just popped up, propogate references to children */
-      increment_refcount(child);
+      increment_refcount(child, depth + 1);
 
       /* If node just popped up, show all parent edges from nodes not hidden */
       const dagNodes = [...dag.nodes()];
@@ -156,98 +167,234 @@ function setupSVG(svgID) {
   svg.select("#nodes").html("");
 }
 
-function visualizeDataMovement(dataMove) {
-  const svg = d3.select('#memory-vis');
-  svg.style('border-style', 'dashed');
-  svg.style('margin', '1px');
-  svg.style('border-width', '3px');
+function computeConnectingLineCoords(data, index)
+{
+  const gap = 4;
+  let startingPoint = [ rectWidth + gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight))];
+  let endingPoint = [ rectWidth + horizontalDivision - gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight))];
+  if (isFromDataMovement(data.flag))
+  {
+    let swap = startingPoint;
+    startingPoint = endingPoint;
+    endingPoint = swap;
+  }
+  return [startingPoint, endingPoint];
+}
 
+function visualizeDataMovement(dataMove, opening) {
+  if (opening) 
+  {
+    d3.select('#host-display')
+    .style('opacity', 1);
+
+    d3.select('#target-display')
+    .style('opacity', 1);
+  }
+  else
+  {
+    d3.select('#host-display')
+    .style('opacity', 0);
+
+    d3.select('#target-display')
+    .style('opacity', 0);
+  }
+
+  const svg_header = d3.select('#memory-vis-header');
+  const header_trans = svg_header.transition().duration(300);
+
+  let header_data = [dataMove.begin_node, dataMove.end_node];
+  if (opening) {
+    const header_vertical_padding = 10;
+    svg_header.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + 2 * (nodeRadius + header_vertical_padding));
+  }
+  svg_header
+    .select('#header-display')
+    .selectAll('g')
+    .data(header_data.filter(n => n.length > 0))
+    .join(
+      enter => {
+        enter
+          .append('g')
+          .attr('opacity', 0)
+          .call(enter => {
+            enter
+              .append("circle")
+              .attr("cx", (data, index) => {
+                const offset = rectWidth / 2;
+                const separation = rectWidth + horizontalDivision;
+                return offset + separation * index;
+              })
+              .attr("cy", 30)
+              .attr("r", nodeRadius)
+              .attr("fill", (data, index) => {
+                if (index === 0) 
+                  return 'red';
+                else
+                  return 'blue'; 
+              });
+
+            enter.append("text")
+              .attr("x", (data, index) => {
+                const offset = rectWidth / 2;
+                const separation = rectWidth + horizontalDivision;
+                return offset + separation * index
+              })
+              .attr("y", 30)
+              .text(data => 'n' + data)
+              .attr("font-weight", "bold")
+              .attr("font-family", "sans-serif")
+              .attr("text-anchor", "middle")
+              .attr("alignment-baseline", "middle")
+              .attr("fill", "white")
+              .attr("class", "unselectable-text")
+              .attr("font-size", "xx-small")
+              .style("pointer-events", "none");
+
+            enter.transition(header_trans)
+            .attr('opacity', 1);
+          });
+      },
+      update => {},
+      exit => {
+        exit.transition(header_trans)
+        .attr('opacity', 0)
+        .remove();
+      }
+    )
+
+  const svg = d3.select('#memory-vis-display');
+  const trans = svg.transition().duration(300);
+
+  if (opening) {
+    svg.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + (header + (dataMove.datamove.length * (verticalMargin + rectHeight)) + rectHeight));
+  }
+  for (let i = 0; i < dataMove.datamove.length; ++i)
+    dataMove.datamove[i].index = i;
+  
   svg
     .select("#data-transfer")
     .selectAll("g")
     .data(dataMove.datamove)
     .join(
-      enter => {
-        enter
-          .append("circle")
-          .attr("cx", 30)
-          .attr("cy", 30)
-          .attr("r", nodeRadius)
-          .attr("fill", "red");
-
-        enter.append("text")
-          .attr("x", 30)
-          .attr("y", 30)
-          .text("n" + dataMove.begin_node)
-          .attr("font-weight", "bold")
-          .attr("font-family", "sans-serif")
-          .attr("text-anchor", "middle")
-          .attr("alignment-baseline", "middle")
-          .attr("fill", "white")
-          .attr("class", "unselectable-text")
-          .attr("font-size", "xx-small")
-          .style("pointer-events", "none");
-
-        enter
-          .append("circle")
-          .attr("cx", 100)
-          .attr("cy", 30)
-          .attr("r", nodeRadius)
-          .attr("fill", "blue");
-
-        enter.append("text")
-          .attr("x", 100)
-          .attr("y", 30)
-          .text("n" + dataMove.end_node)
-          .attr("font-weight", "bold")
-          .attr("font-family", "sans-serif")
-          .attr("text-anchor", "middle")
-          .attr("alignment-baseline", "middle")
-          .attr("fill", "white")
-          .attr("class", "unselectable-text")
-          .attr("font-size", "xx-small")
-          .style("pointer-events", "none");
-
+      enter => 
+      {
         enter
           .append("g")
-          .attr("opacity", 1)
+          .attr("opacity", 0)
           .call(
-            enter => {
-              const header = 120;
-              const rectHeight = 50;
-              const margin = 15;
-
+            enter => 
+            {
               enter.append("rect")
-                .attr("x", 10)
-                .attr("y", (data, index) => header + (index * (margin + rectHeight)))
-                .attr("width", 100)
-                .attr("height", 50)
-                .attr("fill", "red")
-                .attr("opacity", 1);
+                .attr('class', d => get_move_type(d.flag))
+                .attr("x", 0)
+                .attr("y", (data, index) => header + (index * (verticalMargin + rectHeight)))
+                .attr("width", rectWidth)
+                .attr("height", rectHeight)
+                .attr("rx", 16)
+                .style('fill', 'orange');
 
               enter.append("text")
                 .text(data => data.orig_address)
-                .attr("x", 10)
-                .attr("y", (data, index) => header + (index * (margin + rectHeight)))
-                .attr("width", 100)
-                .attr("height", 50)
-                .attr("fill", "red")
+                .attr("x", horizontalMargin)
+                .attr("y", (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
+                .attr("fill", "black")
                 .attr("opacity", 1);
 
-            })
+              enter.append("rect")
+              .attr("x", rectWidth + horizontalDivision)
+              .attr("y", (data, index) => header + (index * (verticalMargin + rectHeight)))
+              .attr("width", rectWidth)
+              .attr("height", rectHeight)
+              .attr("rx", 16)
+              .style('fill', 'lime');
+
+              enter.append("text")
+                .text(data => data.dest_address)
+                .attr("x", horizontalMargin + rectWidth + horizontalDivision)
+                .attr("y", (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
+                .attr("fill", "black")
+                .attr("opacity", 1);
+
+              enter.filter(d => {
+                return isToDataMovement(d.flag) || isFromDataMovement(d.flag);
+              })
+              .append("path")
+              .attr("d", data => 
+              {
+                const points = computeConnectingLineCoords(data, data.index);
+                return d3.line().curve(d3.curveMonotoneY)(points);
+              })
+              .attr("stroke", "black")
+              .attr("stroke-width", 2)
+              .attr('marker-end', 'url(#arrowhead)')
+              .attr("stroke-dasharray", e => {
+                const dx = horizontalDivision - 8;
+                const dy = 0;
+                
+                const edgeLength = Math.sqrt(dx * dx + dy * dy);
+                const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
+                const array = (dashDimensions.join(" ") + " ").repeat(repeat);
+                return array;
+              })
+              .transition()
+              .on("start", function repeat() {
+                d3.active(this)
+                  .transition()
+                  .duration(16000)
+                  .ease(d3.easeLinear)
+                  .styleTween("stroke-dashoffset", function() {
+                    return d3.interpolate(960, 0);
+                  })
+                  .on("end", repeat);
+              });
+
+              enter.filter(d => {
+                console.log(!isToDataMovement(d.flag));
+                return !(isToDataMovement(d.flag));
+              })
+              .append("path")
+              .attr("d", data => {
+                const points = computeConnectingLineCoords(data, data.index);
+                return d3.line()(points);
+              })
+              .attr('stroke', 'black')
+              .attr('fill', 'none')
+              .attr('stroke-width', 2)
+              .attr('marker-end', 'url(#arrowhead)')
+              .attr('stroke-dasharray', function() {
+                const pathLength = horizontalDivision;
+                return "0 " + pathLength;
+              })
+              .attr('stroke-dashoffset', '0')
+              .transition()
+              .on('start', function repeat() {
+                d3.active(this)
+                .transition(d3.easePoly.exponent(2))
+                .duration(4000)
+                .attrTween('stroke-dasharray', function() {
+                  return function(t) {
+                    const pathLength = (horizontalDivision - 8) * t;
+                    return pathLength + " " + (horizontalDivision - pathLength);
+                  }
+                })
+                .transition()
+                .duration(500)
+                .attr('stroke-dasharray', '0 ' + horizontalDivision)
+                .on('start', repeat);
+              });
+              
+              enter.transition(trans)
+              .attr("opacity", 1);
+            });
       },
       update => {
-
+        
       },
       exit => {
-        exit.remove();
+        exit.transition(trans)
+        .attr("opacity", 0)
+        .remove();
       });
-}
-
-function deVisualizeDataMovement() {
-  const m = d3.select('#memory-vis');
-  m.style('border-style', 'none');
-  m.style('margin', '3px');
 }
 
 function visualizeDAG(dag, svgID, dataMovementInfo) {
@@ -288,11 +435,22 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .on("mouseover", n => {
                   tooltip.style("visibility", "visible");
                   const nodeIdNum = get_node_id_num(n) + "";
-                  const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
+                  let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
                   if (index !== -1) 
                   {
-                    /* Hovered over a node with beginning or ending data transfer */  
-                    visualizeDataMovement(dataMovementInfo[index]);
+                    /* Hovered over a node with beginning data transfer */
+                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
+                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnBeginNode(x.flag));
+                    visualizeDataMovement(clone, true);
+                    return;
+                  }
+                  
+                  index = dataMovementInfo.findIndex(tr => tr.end_node === nodeIdNum);
+                  if (index !== -1)
+                  {
+                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
+                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnEndNode(x.flag));
+                    visualizeDataMovement(clone, true);
                   }
                 })
                 .on("mousemove", n => {
@@ -312,7 +470,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    deVisualizeDataMovement();
+                    //visualizeDataMovement({ begin_node: "", end_node: "", datamove: []}, false);
                   }
                 })
 
@@ -374,7 +532,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
     .data(Array.from(dag.links()), e => get_edge_id(e))
     .join(
       enter => { 
-        let allpath = enter
+        enter
         .append("path")
         .attr("d", e => {
           return d3.line().curve(d3.curveMonotoneY)(e.points);
@@ -396,15 +554,14 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
         exit.remove()
       }
     );
-    deVisualizeDataMovement();
+
     d3.selectAll(".TARGET")
     .attr("opacity", e => get_edge_opacity(e))
     .attr("stroke-dasharray", e => {
       const dx = e.points[0][0] - e.points[1][0];
       const dy = e.points[0][1] - e.points[1][1];
       
-      const dashDimensions = [8, 5];
-      const edgeLength = Math.sqrt(dx * dx + dy * dy);
+      const edgeLength = Math.hypot(dx, dy);
       const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
       const array = (dashDimensions.join(" ") + " ").repeat(repeat);
       return array;

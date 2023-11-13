@@ -40,6 +40,47 @@ function get_move_type(flag) {
   if (flag & ompt_device_mem_flag_t.disassociate){
     type = type + "disassociate | ";
   }
+  return type;
+}
+
+function shouldShowOnBeginNode(flag)
+{
+  return ((flag & ompt_device_mem_flag_t.to) | (flag & ompt_device_mem_flag_t.alloc) | (flag & ompt_device_mem_flag_t.associate)) !== 0;
+}
+
+function shouldShowOnEndNode(flag)
+{
+  return ((flag & ompt_device_mem_flag_t.from) | (flag & ompt_device_mem_flag_t.release) | (flag & ompt_device_mem_flag_t.disassociate)) !== 0;
+}
+
+function isFromDataMovement(flag)
+{
+  return (flag & ompt_device_mem_flag_t.from) !== 0;
+}
+
+function isToDataMovement(flag)
+{
+  return (flag & ompt_device_mem_flag_t.to) !== 0;
+}
+
+function isAllocDataMovement(flag)
+{
+  return (flag & ompt_device_mem_flag_t.alloc) !== 0;
+}
+
+function isReleaseDataMovement(flag)
+{
+  return (flag & ompt_device_mem_flag_t.release) !== 0;
+}
+
+function isAssociateDataMovement(flag)
+{
+  return !((flag & ompt_device_mem_flag_t.associate) === 0);
+}
+
+function isDisassociateDataMovement(flag)
+{
+  return (flag & ompt_device_mem_flag_t.disassociate) !== 0;
 }
 
 

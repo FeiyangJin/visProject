@@ -16,8 +16,6 @@
 .graph-display {
   width: 70%;
   justify-content: center;
-  border-style: solid;
-  border-width: 3px;
 }
 
 .sidebar-display {
@@ -26,8 +24,39 @@
   width: 30%;
 }
 
+#host-display {
+  text-align: center;
+  width: 50%;
+  opacity: 0;
+}
+
+#target-display {
+  text-align: center;
+  width: 50%;
+  opacity: 0;
+}
+
 #memory-vis {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+}
+
+#header-text {
+  display: flex;
+  flex-direction: row;
+}
+
+#memory-vis-header {
+  
+  height: 65px;
+}
+
+#memory-vis-display {
+  height: 100%;
+  padding-left: 10px;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 h1 {
