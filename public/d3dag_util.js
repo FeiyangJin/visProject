@@ -83,6 +83,19 @@ function isDisassociateDataMovement(flag)
   return (flag & ompt_device_mem_flag_t.disassociate) !== 0;
 }
 
+function numberOfFlagTypes(flag)
+{
+  let num = 0;
+  if ((flag & ompt_device_mem_flag_t.to) || (flag & ompt_device_mem_flag_t.from)) {
+    num += 1;
+  }
+
+  if ((flag & ompt_device_mem_flag_t.associate) || (flag & ompt_device_mem_flag_t.disassociate)){
+    num += 1;
+  }
+  return num;
+}
+
 
 function get_edge_id(e) {
   let id;

@@ -167,11 +167,26 @@ function setupSVG(svgID) {
   svg.select("#nodes").html("");
 }
 
-function computeConnectingLineCoords(data, index)
+function computeConnectingLineCoords(data, index, type)
 {
   const gap = 4;
-  let startingPoint = [ rectWidth + gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight))];
-  let endingPoint = [ rectWidth + horizontalDivision - gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight))];
+  const numFlags = numberOfFlagTypes(data.flag);
+  let offset = 0;
+
+  if (numFlags > 1)
+  {
+    if (type === "to/from")
+    {
+      offset = -5;
+    }
+    else if (type === 'assoc/disassoc')
+    {
+      offset = 5;
+    }
+  }
+
+  let startingPoint = [ rectWidth + gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
+  let endingPoint = [ rectWidth + horizontalDivision - gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
   if (isFromDataMovement(data.flag))
   {
     let swap = startingPoint;
@@ -321,7 +336,7 @@ function visualizeDataMovement(dataMove, opening) {
               .append("path")
               .attr("d", data => 
               {
-                const points = computeConnectingLineCoords(data, data.index);
+                const points = computeConnectingLineCoords(data, data.index, "to/from");
                 return d3.line().curve(d3.curveMonotoneY)(points);
               })
               .attr("stroke", "black")
@@ -349,12 +364,11 @@ function visualizeDataMovement(dataMove, opening) {
               });
 
               enter.filter(d => {
-                console.log(!isToDataMovement(d.flag));
-                return !(isToDataMovement(d.flag));
+                return isAssociateDataMovement(d.flag) || isDisassociateDataMovement(d.flag);
               })
               .append("path")
               .attr("d", data => {
-                const points = computeConnectingLineCoords(data, data.index);
+                const points = computeConnectingLineCoords(data, data.index, "assoc/disassoc");
                 return d3.line()(points);
               })
               .attr('stroke', 'black')
@@ -470,7 +484,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    //visualizeDataMovement({ begin_node: "", end_node: "", datamove: []}, false);
+                    visualizeDataMovement({ begin_node: "", end_node: "", datamove: []}, false);
                   }
                 })
 
