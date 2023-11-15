@@ -280,7 +280,7 @@ function visualizeDataMovement(dataMove, opening) {
   const svg = d3.select('#memory-vis-display');
   const trans = svg.transition().duration(300);
 
-  if (opening) {
+  if (true) {
     svg.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + (header + (dataMove.datamove.length * (verticalMargin + rectHeight)) + rectHeight));
   }
   for (let i = 0; i < dataMove.datamove.length; ++i)
@@ -321,6 +321,7 @@ function visualizeDataMovement(dataMove, opening) {
               .attr("width", rectWidth)
               .attr("height", rectHeight)
               .attr("rx", 16)
+              .attr('opacity', 1)
               .style('fill', 'lime');
 
               enter.append("text")
@@ -363,8 +364,11 @@ function visualizeDataMovement(dataMove, opening) {
                   .on("end", repeat);
               });
 
+              /**
+               * Growing solid arrow animation used to denote associate data movement.
+               */
               enter.filter(d => {
-                return isAssociateDataMovement(d.flag) || isDisassociateDataMovement(d.flag);
+                return isAssociateDataMovement(d.flag);
               })
               .append("path")
               .attr("d", data => {
@@ -394,6 +398,37 @@ function visualizeDataMovement(dataMove, opening) {
                 .transition()
                 .duration(500)
                 .attr('stroke-dasharray', '0 ' + horizontalDivision)
+                .on('start', repeat);
+              });
+
+              /**
+               * Fading double arrow line used to denote disassociate data movement.
+               */
+              enter.filter(d => {
+                return isDisassociateDataMovement(d.flag);
+              })
+              .append("path")
+              .attr("d", data => {
+                const points = computeConnectingLineCoords(data, data.index, "assoc/disassoc");
+                return d3.line()(points);
+              })
+              .attr('stroke', 'black')
+              .attr('fill', 'none')
+              .attr('stroke-width', 2)
+              .attr('marker-end', 'url(#arrowhead)')
+              .attr('marker-start', 'url(#arrowhead)')
+              .attr('opacity', 1)
+              .transition()
+              .on('start', function repeat() {
+                d3.active(this)
+                .transition(d3.easePoly.exponent(1))
+                .duration(4000)
+                .attr("opacity", 0)
+                .transition()
+                .duration(500)
+                .attr("opacity", 1)
+                .transition()
+                .duration(2500)
                 .on('start', repeat);
               });
               
@@ -448,6 +483,10 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .attr("fill", n => get_node_color(n,dag))
                 .on("mouseover", n => {
                   tooltip.style("visibility", "visible");
+                  if (!dataMovementInfo) {
+                    return;
+                  }
+
                   const nodeIdNum = get_node_id_num(n) + "";
                   let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
                   if (index !== -1) 
@@ -472,19 +511,22 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   `<strong>this node ends with: <span class="colored-text">${n.data.end_event}</span> </strong> <br>
                    <strong>this node has a race: <span class="colored-text">${(n.data.has_race) ? "YES" : "NO"}</span> </strong> <br>`
 
-                  if(n.data.has_race == 1){
+                  if (n.data.has_race == 1) {
                     text = text + `<strong>race stack: <span class="colored-text">${n.data.race_stack}</span> </strong> <br>`
                   }
                   tooltip.html(text)
                 })
                 .on("mouseout", n => {
                   tooltip.style("visibility", "hidden");
+                  if (!dataMovementInfo) {
+                    return;
+                  }
                   const nodeIdNum = get_node_id_num(n) + "";
                   const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    visualizeDataMovement({ begin_node: "", end_node: "", datamove: []}, false);
+                    //visualizeDataMovement({ begin_node: "", end_node: "", datamove: []}, false);
                   }
                 })
 
