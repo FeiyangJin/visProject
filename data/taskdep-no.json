@@ -36,19 +36,19 @@
             "hidden": false
         },
         {
-            "end_event": "task_create",
+            "end_event": "sync_region_begin",
             "has_race": false,
             "ontarget": false,
-            "stack": "file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-no.cpp, line: 8, col: 1",
             "vertex_id": 4,
             "id": "n4",
             "active": true,
             "hidden": false
         },
         {
-            "end_event": "sync_region_begin",
+            "end_event": "task_create",
             "has_race": false,
             "ontarget": false,
+            "stack": "file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-no.cpp, line: 8, col: 1",
             "vertex_id": 5,
             "id": "n5",
             "active": true,
@@ -103,7 +103,6 @@
             "end_event": "task_schedule",
             "has_race": true,
             "ontarget": false,
-            "stack": "    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-no.cpp:9:7 (taskdep-no+0xd2fb0)",
             "vertex_id": 11,
             "id": "n11",
             "active": true,
@@ -123,7 +122,6 @@
             "end_event": "task_schedule",
             "has_race": true,
             "ontarget": false,
-            "stack": "    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-no.cpp:11:7 (taskdep-no+0xd3060)",
             "vertex_id": 13,
             "id": "n13",
             "active": true,
@@ -303,56 +301,56 @@
             "edge_type": "FORK_I",
             "id": "e1",
             "source": "n1",
-            "target": "n4",
+            "target": "n5",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e2",
             "source": "n1",
-            "target": "n7",
+            "target": "n8",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e3",
             "source": "n1",
-            "target": "n8",
+            "target": "n9",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e4",
             "source": "n1",
-            "target": "n6",
+            "target": "n4",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e5",
             "source": "n1",
-            "target": "n5",
+            "target": "n3",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e6",
             "source": "n1",
-            "target": "n3",
+            "target": "n7",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e7",
             "source": "n1",
-            "target": "n9",
+            "target": "n10",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e8",
             "source": "n1",
-            "target": "n10",
+            "target": "n6",
             "hidden": false
         },
         {
@@ -370,59 +368,59 @@
             "hidden": false
         },
         {
-            "edge_type": "FORK_E",
+            "edge_type": "CONT",
             "id": "e11",
             "source": "n4",
-            "target": "n11",
+            "target": "n15",
             "hidden": false
         },
         {
-            "edge_type": "CONT",
+            "edge_type": "FORK_E",
             "id": "e12",
-            "source": "n4",
-            "target": "n12",
+            "source": "n5",
+            "target": "n11",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e13",
             "source": "n5",
-            "target": "n21",
+            "target": "n12",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e14",
             "source": "n6",
-            "target": "n19",
+            "target": "n21",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e15",
             "source": "n7",
-            "target": "n20",
+            "target": "n18",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e16",
             "source": "n8",
-            "target": "n17",
+            "target": "n16",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e17",
             "source": "n9",
-            "target": "n18",
+            "target": "n19",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e18",
             "source": "n10",
-            "target": "n16",
+            "target": "n20",
             "hidden": false
         },
         {
@@ -464,7 +462,7 @@
             "edge_type": "CONT",
             "id": "e24",
             "source": "n14",
-            "target": "n15",
+            "target": "n17",
             "hidden": false
         },
         {
@@ -478,7 +476,7 @@
             "edge_type": "CONT",
             "id": "e26",
             "source": "n15",
-            "target": "n29",
+            "target": "n26",
             "hidden": false
         },
         {
@@ -492,7 +490,7 @@
             "edge_type": "CONT",
             "id": "e28",
             "source": "n16",
-            "target": "n28",
+            "target": "n27",
             "hidden": false
         },
         {
@@ -506,7 +504,7 @@
             "edge_type": "CONT",
             "id": "e30",
             "source": "n17",
-            "target": "n24",
+            "target": "n28",
             "hidden": false
         },
         {
@@ -520,7 +518,7 @@
             "edge_type": "CONT",
             "id": "e32",
             "source": "n18",
-            "target": "n25",
+            "target": "n24",
             "hidden": false
         },
         {
@@ -534,7 +532,7 @@
             "edge_type": "CONT",
             "id": "e34",
             "source": "n19",
-            "target": "n26",
+            "target": "n29",
             "hidden": false
         },
         {
@@ -548,7 +546,7 @@
             "edge_type": "CONT",
             "id": "e36",
             "source": "n20",
-            "target": "n30",
+            "target": "n25",
             "hidden": false
         },
         {
@@ -562,14 +560,14 @@
             "edge_type": "CONT",
             "id": "e38",
             "source": "n21",
-            "target": "n27",
+            "target": "n23",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e39",
             "source": "n22",
-            "target": "n23",
+            "target": "n30",
             "hidden": false
         },
         {
