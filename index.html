@@ -37,26 +37,22 @@
       </div>
 
       <div class="sidebar-display">
-
-        <svg id="legend">
-        </svg>
+        <div>
+          <svg id="legend">
+          </svg>
+        </div>
         <div id="memory-vis">
-          <div id="header-text">
-            <h1 id="host-display">
-              Host:
-            </h1>
-
-            <h1 id="target-display">
-              Target: 
-            </h1>
-          </div>
+          <!--
           <svg id="memory-vis-header">
             <g id="header-display"/>
           </svg>
-
-          <svg id="memory-vis-display">
-            <g id="data-transfer"/>
-          </svg>
+          -->
+          <h2 id="memory-vis-header">Data Movements</h2>
+          <div id="memory-vis-display-wrapper">
+            <svg id="memory-vis-display">
+              <g id="data-transfer"/>
+            </svg>
+          </div>
         </div>
 
       </div>

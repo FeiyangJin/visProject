@@ -196,32 +196,45 @@ function computeConnectingLineCoords(data, index, type)
   return [startingPoint, endingPoint];
 }
 
+function computeSVGWidth() {
+  return (2 * (rectWidth) + horizontalDivision);
+}
+
+function computeSVGHeight(n) {
+  return (n * rectHeight + (n - 1) * verticalMargin);
+}
+
+function initializeSVG(n) {
+  const svg = d3.select('#memory-vis-display');
+  const svgWidth = computeSVGWidth();
+  const svgHeight = computeSVGHeight(n);
+  svg.attr('viewBox', '0 0 ' + svgWidth + ' ' + svgHeight);
+  svg.attr('width', svgWidth);
+  svg.attr('height', svgHeight);
+  return svg;
+}
+
 function visualizeDataMovement(dataMove, opening) {
   if (opening) 
   {
-    d3.select('#host-display')
-    .style('opacity', 1);
-
-    d3.select('#target-display')
-    .style('opacity', 1);
+    d3.select('#memory-vis')
+    .style('border-width', '2px');
   }
   else
   {
-    d3.select('#host-display')
-    .style('opacity', 0);
-
-    d3.select('#target-display')
-    .style('opacity', 0);
+    d3.select('#memory-vis')
+    .style('border-width', '0px');
   }
 
   const svg_header = d3.select('#memory-vis-header');
-  const header_trans = svg_header.transition().duration(300);
+  const header_trans = svg_header.transition().duration(450);
 
   let header_data = [dataMove.begin_node, dataMove.end_node];
   if (opening) {
     const header_vertical_padding = 10;
     svg_header.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + 2 * (nodeRadius + header_vertical_padding));
   }
+  /*
   svg_header
     .select('#header-display')
     .selectAll('g')
@@ -276,13 +289,9 @@ function visualizeDataMovement(dataMove, opening) {
         .remove();
       }
     )
-
-  const svg = d3.select('#memory-vis-display');
-  const trans = svg.transition().duration(300);
-
-  if (true) {
-    svg.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + (header + (dataMove.datamove.length * (verticalMargin + rectHeight)) + rectHeight));
-  }
+  */
+  const svg = initializeSVG(dataMove.datamove.length);
+  const trans = svg.transition().duration(450);
   
   svg
     .select('#data-transfer')
@@ -339,7 +348,7 @@ function visualizeDataMovement(dataMove, opening) {
               .attr('d', data => 
               {
                 const points = computeConnectingLineCoords(data, data.index, 'to/from');
-                return d3.line().curve(d3.curveMonotoneY)(points);
+                return d3.line()(points);
               })
               .attr('stroke', 'black')
               .attr('stroke-width', 2)
