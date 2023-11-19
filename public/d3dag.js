@@ -7,8 +7,8 @@ const header = 0;
 const rectHeight = 50;
 const rectWidth = 160;
 const verticalMargin = 15;
-const horizontalMargin = 20;
-const offset = 30;
+const horizontalMargin = 35;
+const offset = 28;
 const horizontalDivision = 200;
 
 // set up initial data. These Maps are important if we
@@ -298,7 +298,6 @@ function visualizeDataMovement(dataMove, opening) {
             enter => 
             {
               enter.append('rect')
-                .attr('class', d => get_move_type(d.flag))
                 .attr('x', 0)
                 .attr('y', (data, index) => header + (index * (verticalMargin + rectHeight)))
                 .attr('width', rectWidth)
@@ -311,7 +310,9 @@ function visualizeDataMovement(dataMove, opening) {
                 .attr('x', horizontalMargin)
                 .attr('y', (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
                 .attr('fill', 'black')
-                .attr('opacity', 1);
+                .attr('opacity', 1)
+                .attr('font-family', 'Arial')
+                .attr('font-size', '12px');
 
               enter.append('rect')
               .attr('x', rectWidth + horizontalDivision)
@@ -327,7 +328,9 @@ function visualizeDataMovement(dataMove, opening) {
                 .attr('x', horizontalMargin + rectWidth + horizontalDivision)
                 .attr('y', (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
                 .attr('fill', 'black')
-                .attr('opacity', 1);
+                .attr('opacity', 1)
+                .attr('font-family', 'Arial')
+                .attr('font-size', '12px');
 
               enter.filter(d => {
                 return isToDataMovement(d.flag) || isFromDataMovement(d.flag);
@@ -538,7 +541,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
+                    //visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
                   }
                 })
 
