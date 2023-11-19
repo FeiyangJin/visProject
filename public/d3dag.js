@@ -403,6 +403,8 @@ function visualizeDataMovement(dataMove, opening) {
 
               /**
                * Fading double arrow line used to denote disassociate data movement.
+               * 
+               * https://stackoverflow.com/questions/54852791/angular-d3-understanding-attrtween-function
                */
               enter.filter(d => {
                 return isDisassociateDataMovement(d.flag);
