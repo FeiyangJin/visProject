@@ -214,85 +214,24 @@ function initializeSVG(n) {
   return svg;
 }
 
-function visualizeDataMovement(dataMove, opening) {
-  if (opening) 
-  {
-    d3.select('#memory-vis')
-    .style('border-width', '2px');
-  }
-  else
-  {
-    d3.select('#memory-vis')
-    .style('border-width', '0px');
-  }
-
-  const svg_header = d3.select('#memory-vis-header');
-  const header_trans = svg_header.transition().duration(450);
-
-  let header_data = [dataMove.begin_node, dataMove.end_node];
+function transitionHeader(opening) {
+  const header = d3.select('#memory-vis-header');
   if (opening) {
-    const header_vertical_padding = 10;
-    svg_header.attr('viewBox', '0 0 ' + (2 * (horizontalMargin + rectWidth) + horizontalDivision) + ' ' + 2 * (nodeRadius + header_vertical_padding));
+    header.transition()
+    .duration(450)
+    .ease(d3.easeLinear)
+    .style('opacity', '1');
   }
-  /*
-  svg_header
-    .select('#header-display')
-    .selectAll('g')
-    .data(header_data.filter(n => n.length > 0))
-    .join(
-      enter => {
-        enter
-          .append('g')
-          .attr('opacity', 0)
-          .call(enter => {
-            enter
-              .append('circle')
-              .attr('cx', (data, index) => {
-                const offset = rectWidth / 2;
-                const separation = rectWidth + horizontalDivision;
-                return offset + separation * index;
-              })
-              .attr('cy', 30)
-              .attr('r', nodeRadius)
-              .attr('fill', (data, index) => {
-                if (index === 0) 
-                  return 'red';
-                else
-                  return 'blue'; 
-              });
+  else {
+    header.style('opacity', '0');
+  }
+}
 
-            enter.append('text')
-              .attr('x', (data, index) => {
-                const offset = rectWidth / 2;
-                const separation = rectWidth + horizontalDivision;
-                return offset + separation * index
-              })
-              .attr('y', 30)
-              .text(data => 'n' + data)
-              .attr('font-weight', 'bold')
-              .attr('font-family', 'sans-serif')
-              .attr('text-anchor', 'middle')
-              .attr('alignment-baseline', 'middle')
-              .attr('fill', 'white')
-              .attr('class', 'unselectable-text')
-              .attr('font-size', 'xx-small')
-              .style('pointer-events', 'none');
-
-            enter.transition(header_trans)
-            .attr('opacity', 1);
-          });
-      },
-      update => {},
-      exit => {
-        exit.transition(header_trans)
-        .attr('opacity', 0)
-        .remove();
-      }
-    )
-  */
+function visualizeDataMovement(dataMove, opening) {
   const svg = initializeSVG(dataMove.datamove.length);
-  const trans = svg.transition().duration(450);
-  
+  const trans = svg.transition().duration(450).ease(d3.easeLinear);
+  transitionHeader(opening);
+
   svg
     .select('#data-transfer')
     .selectAll('g')
@@ -394,7 +333,7 @@ function visualizeDataMovement(dataMove, opening) {
               .transition()
               .on('start', function repeat() {
                 d3.active(this)
-                .transition(d3.easePoly.exponent(2))
+                .transition(d3.easePoly.exponent(3))
                 .duration(4000)
                 .attrTween('d', function(data) {
                   return function(t) {
@@ -437,7 +376,7 @@ function visualizeDataMovement(dataMove, opening) {
               .transition()
               .on('start', function repeat() {
                 d3.active(this)
-                .transition(d3.easePoly.exponent(1))
+                .transition(d3.easeLinear)
                 .duration(4000)
                 .attr('opacity', 0)
                 .transition()

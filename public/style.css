@@ -24,6 +24,11 @@
   width: 30%;
 }
 
+#page-layout {
+  display: flex;
+  flex-direction: column;
+}
+
 #host-display {
   text-align: center;
   width: 50%;
@@ -50,6 +55,8 @@
 
 #memory-vis-header {
   text-align: center;
+  font-family: 'Arial';
+  opacity: 0;
 }
 
 #header-text {
@@ -67,10 +74,22 @@
   
   overflow-x: scroll;
   overflow-y: scroll;
+  scrollbar-base-color: black;
 }
 
 #memory-vis-display {
   padding: 10px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+}
+
+#data-upload-region {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {

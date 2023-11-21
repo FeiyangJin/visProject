@@ -2,7 +2,7 @@ let dag;
 let path = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    const json_fileInput = document.getElementById('json_fileInput');
+    const json_fileInput = document.getElementById('selectedFile');
     json_fileInput.addEventListener('change', handleJsonUpload);
 });
 

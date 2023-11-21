@@ -12,55 +12,63 @@
 </head>
 
 <body>
-    <div class="title-display">
-      <h1> Computation Graph Visualization </h1>
-    </div>  
-    <label> json upload here</label><br><br>
-    <input type="file" id="json_fileInput" accept=".json"><br><br>
+    <div id="page-layout">
+      <div class="title-display">
+        <h1> Computation Graph Visualization </h1>
+      </div>  
+      <!---
+      <label> json upload here</label><br><br>
+      <input type="file" id="json_fileInput" accept=".json"><br><br>
+      -->
 
-    <svg id="svg">
-        <g transform="translate(2, 2)">
-          <defs id="defs" />
-          <g id = "links" />
-          <g id = "nodes" />
-        </g>
-    </svg>
-    <div class="main-display">
-      <div class="graph-display">
-        <svg id="svgJSON">
-            <g transform="translate(2, 2)">
-              <defs id="defs" />
-              <g id="links" />
-              <g id="nodes" />
-            </g>
-        </svg>
-      </div>
-
-      <div class="sidebar-display">
-        <div>
-          <svg id="legend">
+      <svg id="svg">
+          <g transform="translate(2, 2)">
+            <defs id="defs" />
+            <g id = "links" />
+            <g id = "nodes" />
+          </g>
+      </svg>
+      <div class="main-display">
+        <div class="graph-display">
+          <svg id="svgJSON">
+              <g transform="translate(2, 2)">
+                <defs id="defs" />
+                <g id="links" />
+                <g id="nodes" />
+              </g>
           </svg>
         </div>
-        <div id="memory-vis">
-          <!--
-          <svg id="memory-vis-header">
-            <g id="header-display"/>
-          </svg>
-          -->
-          <h2 id="memory-vis-header">Data Movements</h2>
-          <div id="memory-vis-display-wrapper">
-            <svg id="memory-vis-display">
-              <g id="data-transfer"/>
+
+        <div class="sidebar-display">
+          <div>
+            <svg id="legend">
             </svg>
+          </div>
+          <div id="memory-vis">
+            <!--
+            <svg id="memory-vis-header">
+              <g id="header-display"/>
+            </svg>
+            -->
+            <h2 id="memory-vis-header">Data Movements</h2>
+            <div id="memory-vis-display-wrapper">
+              <svg id="memory-vis-display">
+                <g id="data-transfer"/>
+              </svg>
+            </div>
           </div>
         </div>
 
       </div>
-
+      <div id="footer">
+        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
+        <div id="data-upload-region">
+          <p> Upload Data: </p>
+          <input type="file" id="selectedFile" style="display: none;" />
+          <input type="button" id="json_fileInput" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+        </div>
+      </div>
     </div>
-    
-    <div id="tooltip" style="position: absolute; z-index: 10; visibility: hidden;">a simple tooltip</div>
-
     <script src="public/d3dag_util.js"></script>
     <script src="public/d3dag.js"></script>
     <script src="public/json-input-script.js"></script>
