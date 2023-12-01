@@ -2,6 +2,96 @@
     user-select: none;
 }
 
+.title-display {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: center;
+}
+
+.main-display {
+  justify-content: center;
+  display: flex;
+}
+
+.graph-display {
+  width: 70%;
+  justify-content: center;
+}
+
+.sidebar-display {
+  flex-direction: column;
+  display: flex;
+  width: 30%;
+}
+
+#page-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+#host-display {
+  text-align: center;
+  width: 50%;
+  opacity: 0;
+}
+
+#target-display {
+  text-align: center;
+  width: 50%;
+  opacity: 0;
+}
+
+#memory-vis {
+  border-width: 2px;
+  border-radius: 15px;
+  border-color: black;
+
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#memory-vis-header {
+  text-align: center;
+  font-family: 'Arial';
+  opacity: 0;
+}
+
+#header-text {
+  display: flex;
+  flex-direction: row;
+}
+
+#memory-vis-header {
+  height: 65px;
+}
+
+#memory-vis-display-wrapper {
+  width: 100%;
+  height: 100%;
+  
+  overflow-x: scroll;
+  overflow-y: scroll;
+  scrollbar-base-color: black;
+}
+
+#memory-vis-display {
+  padding: 10px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+}
+
+#data-upload-region {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1 {
   font-family: "Arial", sans-serif;
   font-size: 36px;

@@ -1,5 +1,8 @@
+let dag;
+let path = [];
+
 document.addEventListener('DOMContentLoaded', () => {
-    const json_fileInput = document.getElementById('json_fileInput');
+    const json_fileInput = document.getElementById('selectedFile');
     json_fileInput.addEventListener('change', handleJsonUpload);
 });
 
@@ -12,75 +15,103 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
 
-            prepareDatamove(jsonData);
-
-            let dag = prepareGraph(jsonData)
-            setupSVG("#svgJSON")
-            visualizeDAG(dag, "#svgJSON")
-            addLegend()
+            dag = prepareGraph(jsonData);
+            setupSVG("#svgJSON");
+            
+            const targetMovementData = extractTargetMovementData(jsonData);
+            visualizeDAG(dag, "#svgJSON", targetMovementData);
+            addLegend();
+            prepareDatamove(targetMovementData);
         };
 
         reader.readAsText(file);
     }
 }
 
-
-function prepareDatamove(jsonData){
-    let json = JSON.parse(jsonData)
-    let target_regions = json["target"]
-    console.log(target_regions)
-    
-    for(const tr of target_regions){
-        let begin_node = tr["begin_node"]
-        let end_node = tr["end_node"]
-        let data_movements = tr["datamove"]
-
-        for(const dm of data_movements){
-            let orig_addr = dm["orig_address"]
-            console.log(`host address: ${orig_addr}, type: `)
-            get_move_type(dm["flag"])
-        }
-    }
+function extractTargetMovementData(jsonData) {
+    let json = JSON.parse(jsonData);
+    let target_regions = json["target"];
+    return target_regions ? target_regions : null;
 }
 
+function populateRefCount(node) 
+{
+    if (path.includes(node.id)) {
+        return;
+    }
+    path.push(node.id);
+    for (const child of node.children()) 
+    {
+        ++child.data.refCount;
+        populateRefCount(child);
+    }
+    path.pop();
+}
 
-function prepareGraph(jsonData){
-    let json = JSON.parse(jsonData)
-    let nodes = json['nodes']
-    let edges = json['links']
+function prepareGraph(jsonData) {
+    let json = JSON.parse(jsonData);
+    let nodes = json['nodes'];
+    let edges = json['links'];
 
-    let nodesMap = new Map()
-    for (const node of nodes){
-        nodesMap.set(node.id, node)
+    let nodesMap = new Map();
+    for (const node of nodes) {
+        nodesMap.set(node.id, node);
+        node.refCount = 0;
     }
 
     const builder = d3.graphConnect()
         .sourceId(d => d.source)
-        .targetId(d => d.target)
-    const dag = builder(edges)
+        .targetId(d => d.target);
+    const dag = builder(edges);
 
-    for(const node of dag.nodes()){
-        let id = node.data
-        node.data = nodesMap.get(id)
+    for (const node of dag.nodes()) {
+        let id = node.data;
+        node.data = nodesMap.get(id);
     }
-    return dag
+
+    for (const node of dag.nodes()) {
+        if (node.data.vertex_id === 1)
+        {
+            node.data.refCount = 1;
+        }
+        populateRefCount(node);
+    }
+    path = [];
+    return dag;
 }
 
 
-const radius = 8
-const symbol_x = 20
-const text_x = symbol_x + 4 * radius
-let current_y = symbol_x
-const step_y = 30
+const radius = 8;
+const symbol_x = 20;
+const text_x = symbol_x + 4 * radius;
+let current_y = symbol_x;
+const step_y = 30;
 
-function addLegend(){
-    let legend_svg = d3.select("#legend")
-    .attr("width", 300)
-    .attr("height", 300)
+function prepareDatamove(target_regions) {
+    /* If graph does not support target regions */
+    if (!target_regions) {
+        return;
+    }
 
-    let existing_ele = legend_svg.select("circle")
-    if(!existing_ele.empty()){
-        return
+    for (const tr of target_regions) {
+        let begin_node = tr["begin_node"];
+        let end_node = tr["end_node"];
+
+        let data_movements = tr["datamove"];
+
+        for (const dm of data_movements) {
+            let orig_addr = dm["orig_address"];
+            get_move_type(dm["flag"]);
+        }
+    }
+}
+
+function addLegend() {
+    let legend_svg = d3.select("#legend");
+
+    let existing_ele = legend_svg.select("circle");
+    if (!existing_ele.empty()) {
+        return;
     }
 
     {
@@ -88,7 +119,7 @@ function addLegend(){
         .attr("r", radius)
         .attr("cx", symbol_x)
         .attr("cy", current_y)
-        .attr("fill", "#F6D42A")
+        .attr("fill", "#F6D42A");
 
         legend_svg.append("text")
         .text("node without data race")
