@@ -117,8 +117,8 @@ function get_edge_dash(e) {
     return "4"
   }
 
-  if (e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E") {
-    return "1, 4"
+  if(e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E" || e.data.edge_type === "BARRIER") {
+    return "1,4"
   }
 
   if (e.data.edge_type === "TARGET") {

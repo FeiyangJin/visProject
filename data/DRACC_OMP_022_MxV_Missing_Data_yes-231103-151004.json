@@ -321,7 +321,7 @@
     ],
     "links": [
         {
-            "edge_type": "CONT",
+            "edge_type": "TARGET",
             "id": "e0",
             "source": "n1",
             "target": "n2",
@@ -335,14 +335,14 @@
             "hidden": false
         },
         {
-            "edge_type": "TARGET",
+            "edge_type": "FORK_I",
             "id": "e2",
             "source": "n3",
             "target": "n4",
             "hidden": false
         },
         {
-            "edge_type": "TARGET",
+            "edge_type": "FORK_I",
             "id": "e3",
             "source": "n3",
             "target": "n6",
@@ -422,14 +422,14 @@
             "edge_type": "FORK_I",
             "id": "e14",
             "source": "n8",
-            "target": "n12",
+            "target": "n13",
             "hidden": false
         },
         {
             "edge_type": "FORK_I",
             "id": "e15",
             "source": "n8",
-            "target": "n13",
+            "target": "n12",
             "hidden": false
         },
         {
@@ -443,21 +443,21 @@
             "edge_type": "CONT",
             "id": "e17",
             "source": "n10",
-            "target": "n14",
+            "target": "n16",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e18",
             "source": "n11",
-            "target": "n16",
+            "target": "n17",
             "hidden": false
         },
         {
             "edge_type": "CONT",
             "id": "e19",
             "source": "n12",
-            "target": "n17",
+            "target": "n14",
             "hidden": false
         },
         {
@@ -468,35 +468,35 @@
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e21",
             "source": "n14",
             "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e22",
             "source": "n15",
             "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e23",
             "source": "n16",
             "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e24",
             "source": "n17",
             "target": "n18",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e25",
             "source": "n18",
             "target": "n20",
@@ -580,35 +580,35 @@
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e37",
             "source": "n26",
             "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e38",
             "source": "n27",
             "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e39",
             "source": "n28",
             "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e40",
             "source": "n29",
             "target": "n30",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e41",
             "source": "n30",
             "target": "n31",
@@ -622,14 +622,14 @@
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e43",
             "source": "n32",
             "target": "n34",
             "hidden": false
         },
         {
-            "edge_type": "JOIN",
+            "edge_type": "BARRIER",
             "id": "e44",
             "source": "n33",
             "target": "n34",
@@ -641,6 +641,50 @@
             "source": "n34",
             "target": "n35",
             "hidden": false
+        }
+    ],
+    "target": [
+        {
+            "begin_node": "1",
+            "end_node": "34",
+            "datamove": [
+                {
+                    "orig_address": "0x7b0400000070",
+                    "dest_address": "0x7b04000000a0",
+                    "bytes": "16",
+                    "flag": "21"
+                },
+                {
+                    "orig_address": "0x7b1000000240",
+                    "dest_address": "0x7b1000000300",
+                    "bytes": "64",
+                    "flag": "20"
+                },
+                {
+                    "orig_address": "0x7b0400000060",
+                    "dest_address": "0x7b04000000e0",
+                    "bytes": "16",
+                    "flag": "21"
+                },
+                {
+                    "orig_address": "0x7b0400000060",
+                    "dest_address": "0x7b04000000e0",
+                    "bytes": "16",
+                    "flag": "40"
+                },
+                {
+                    "orig_address": "0x7b1000000240",
+                    "dest_address": "0x7b1000000300",
+                    "bytes": "64",
+                    "flag": "40"
+                },
+                {
+                    "orig_address": "0x7b0400000070",
+                    "dest_address": "0x7b04000000a0",
+                    "bytes": "16",
+                    "flag": "42"
+                }
+            ]
         }
     ]
 }

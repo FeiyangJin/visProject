@@ -472,11 +472,9 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .on('mousemove', n => {
                   let text = 
                   `<strong>this node ends with: <span class='colored-text'>${n.data.end_event}</span> </strong> <br>
-                   <strong>this node has a race: <span class='colored-text'>${(n.data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>`
-
-                  if (n.data.has_race == 1) {
-                    text = text + `<strong>race stack: <span class='colored-text'>${n.data.race_stack}</span> </strong> <br>`
-                  }
+                   <strong>this node has a race: <span class='colored-text'>${(n.data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
+                   <strong>stack: <span class="colored-text">${n.data.stack}</span> </strong> <br>`
+                  
                   tooltip.html(text)
                 })
                 .on('mouseout', n => {
@@ -560,10 +558,14 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
         .attr('fill', 'none')
         .attr('stroke-width', e => get_edge_width(e))
         .attr('stroke', e => get_edge_color(e))
-        .attr('marker-end', 'url(#arrowhead)')
+        .attr('marker-end', e => {
+          if (e.data != undefined && e.data.edge_type === "BARRIER"){
+            return ''
+          }
+          return 'url(#arrowhead)'
+        })
         .attr('opacity', e => get_edge_opacity(e))
         .attr('stroke-dasharray', e => get_edge_dash(e))
-        .call(enter => enter.transition(trans).attr('opacity', 1));
       },
       update => {
         update.transition(trans)
