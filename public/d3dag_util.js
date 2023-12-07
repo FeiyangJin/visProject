@@ -136,9 +136,11 @@ function get_edge_color(e) {
 
 
 function get_edge_width(e) {
+  /*
   if (e.data != undefined && e.data.edge_type === "TARGET") {
     return 4;
   }
+  */
   return 2;
 }
 

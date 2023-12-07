@@ -201,7 +201,7 @@ function computeSVGWidth() {
 }
 
 function computeSVGHeight(n) {
-  return (n * rectHeight + (n - 1) * verticalMargin);
+  return (n * rectHeight + Math.max(0, (n - 1)) * verticalMargin);
 }
 
 function initializeSVG(n) {
@@ -467,6 +467,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                     clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnEndNode(x.flag));
                     populateIndices(clone.datamove);
                     visualizeDataMovement(clone, true);
+                    return;
                   }
                 })
                 .on('mousemove', n => {
@@ -487,7 +488,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                   if (index !== -1) 
                   {
                     /* Hovered over a node with beginning or ending data transfer */  
-                    //visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
+                    visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
                   }
                 })
 
@@ -579,6 +580,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
     d3.selectAll('.TARGET')
     .attr('opacity', e => get_edge_opacity(e))
     .attr('stroke-dasharray', e => {
+      return '4';
       const dx = e.points[0][0] - e.points[1][0];
       const dy = e.points[0][1] - e.points[1][1];
       
@@ -587,6 +589,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
       const array = (dashDimensions.join(' ') + ' ').repeat(repeat);
       return array;
     })
+    .attr('marker-end', 'url(#arrowhead)')
     .transition()
     .on('start', function repeat() {
       d3.active(this)
