@@ -579,16 +579,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
 
     d3.selectAll('.TARGET')
     .attr('opacity', e => get_edge_opacity(e))
-    .attr('stroke-dasharray', e => {
-      return '4';
-      const dx = e.points[0][0] - e.points[1][0];
-      const dy = e.points[0][1] - e.points[1][1];
-      
-      const edgeLength = Math.hypot(dx, dy);
-      const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
-      const array = (dashDimensions.join(' ') + ' ').repeat(repeat);
-      return array;
-    })
+    .attr('stroke-dasharray', '4')
     .attr('marker-end', 'url(#arrowhead)')
     .transition()
     .on('start', function repeat() {
