@@ -9,7 +9,8 @@ const rectWidth = 160;
 const verticalMargin = 15;
 const horizontalMargin = 35;
 const offset = 28;
-const horizontalDivision = 200;
+const horizontalDivision = 100;
+const gap = 4;
 
 // set up initial data. These Maps are important if we
 // are going to remove nodes/edges from graph, and add
@@ -169,7 +170,6 @@ function setupSVG(svgID) {
 
 function computeConnectingLineCoords(data, index, type)
 {
-  const gap = 4;
   const numFlags = numberOfFlagTypes(data.flag);
   let offset = 0;
 
@@ -185,8 +185,8 @@ function computeConnectingLineCoords(data, index, type)
     }
   }
 
-  let startingPoint = [ rectWidth + gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
-  let endingPoint = [ rectWidth + horizontalDivision - gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
+  let startingPoint = [ computeAlignmentHost() + rectWidth + gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
+  let endingPoint = [ computeAlignmentTarget() - gap, (rectHeight / 2) + header + (index * (verticalMargin + rectHeight)) + offset];
   if (isFromDataMovement(data.flag))
   {
     let swap = startingPoint;
@@ -197,17 +197,36 @@ function computeConnectingLineCoords(data, index, type)
 }
 
 function computeSVGWidth() {
-  return (2 * (rectWidth) + horizontalDivision);
+  return computeAlignmentTarget() + rectWidth;
+  //return (2 * (rectWidth) + horizontalDivision);
 }
 
 function computeSVGHeight(n) {
   return (n * rectHeight + Math.max(0, (n - 1)) * verticalMargin);
 }
 
+function computeAlignmentHost() {
+  const hostHeader = document.getElementById('memory-vis-header-host');
+  return (hostHeader.offsetWidth - rectWidth) / 2;
+}
+
+function computeAlignmentTarget() {
+  const hostHeader = document.getElementById('memory-vis-header-host');
+  const divider = document.getElementById('memory-vis-header-gap');
+  const targetHeader = document.getElementById('memory-vis-header-target');
+  return hostHeader.offsetWidth + divider.offsetWidth + (targetHeader.offsetWidth - rectWidth) / 2;
+}
+
+function isMovementFrameLargeEnough() {
+  const subheadingDiv = document.getElementById('memory-vis-header-subheading');
+  return subheadingDiv.offsetWidth >= 2 * gap + 2 * rectWidth + horizontalDivision;
+}
+
 function initializeSVG(n) {
   const svg = d3.select('#memory-vis-display');
   const svgWidth = computeSVGWidth();
   const svgHeight = computeSVGHeight(n);
+  
   svg.attr('viewBox', '0 0 ' + svgWidth + ' ' + svgHeight);
   svg.attr('width', svgWidth);
   svg.attr('height', svgHeight);
@@ -244,6 +263,10 @@ function transitionHeader(opening) {
 }
 
 function visualizeDataMovement(dataMove, opening) {
+  if (!isMovementFrameLargeEnough()) {
+    return;
+  }
+
   const svg = initializeSVG(dataMove.datamove.length);
   const trans = svg.transition().duration(450).ease(d3.easeLinear);
   transitionHeader(opening);
@@ -261,8 +284,9 @@ function visualizeDataMovement(dataMove, opening) {
           .call(
             enter => 
             {
+              const hostRectX = computeAlignmentHost();
               enter.append('rect')
-                .attr('x', 0)
+                .attr('x', hostRectX)
                 .attr('y', (data, index) => header + (index * (verticalMargin + rectHeight)))
                 .attr('width', rectWidth)
                 .attr('height', rectHeight)
@@ -271,15 +295,16 @@ function visualizeDataMovement(dataMove, opening) {
 
               enter.append('text')
                 .text(data => data.orig_address)
-                .attr('x', horizontalMargin)
+                .attr('x', hostRectX + horizontalMargin)
                 .attr('y', (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
                 .attr('fill', 'black')
                 .attr('opacity', 1)
                 .attr('font-family', 'Arial')
                 .attr('font-size', '12px');
-
+              
+              const targetRectX = computeAlignmentTarget();
               enter.append('rect')
-              .attr('x', rectWidth + horizontalDivision)
+              .attr('x', targetRectX)
               .attr('y', (data, index) => header + (index * (verticalMargin + rectHeight)))
               .attr('width', rectWidth)
               .attr('height', rectHeight)
@@ -289,7 +314,7 @@ function visualizeDataMovement(dataMove, opening) {
 
               enter.append('text')
                 .text(data => data.dest_address)
-                .attr('x', horizontalMargin + rectWidth + horizontalDivision)
+                .attr('x', horizontalMargin + targetRectX)
                 .attr('y', (data, index) => offset + header + (index * (verticalMargin + rectHeight)))
                 .attr('fill', 'black')
                 .attr('opacity', 1)
@@ -460,7 +485,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .attr('fill', n => get_node_color(n,dag))
                 .on('mouseover', n => {
                   tooltip.style('visibility', 'visible');
-                  if (!dataMovementInfo) {
+                  if (!dataMovementInfo || !n.data.active) {
                     return;
                   }
 

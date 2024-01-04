@@ -80,16 +80,22 @@
 
 #memory-vis-header-host {
   text-align: center;
-  width: 50%;
+  justify-content: center;
+  width: 35%;
 
-  opacity: 0;
+  opacity: 1;
 }
 
 #memory-vis-header-target {
   text-align: center;
-  width: 50%;
+  justify-content: center;
+  width: 35%;
 
-  opacity: 0;
+  opacity: 1;
+}
+
+#memory-vis-header-gap {
+  width: 30%;
 }
 
 #memory-vis-display-wrapper {
