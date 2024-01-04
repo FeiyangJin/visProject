@@ -198,7 +198,6 @@ function computeConnectingLineCoords(data, index, type)
 
 function computeSVGWidth() {
   return computeAlignmentTarget() + rectWidth;
-  //return (2 * (rectWidth) + horizontalDivision);
 }
 
 function computeSVGHeight(n) {
