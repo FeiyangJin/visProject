@@ -68,6 +68,30 @@
   height: 65px;
 }
 
+#memory-vis-header-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#memory-vis-header-subheading {
+  display: flex;
+  flex-direction: row;
+}
+
+#memory-vis-header-host {
+  text-align: center;
+  width: 50%;
+
+  opacity: 0;
+}
+
+#memory-vis-header-target {
+  text-align: center;
+  width: 50%;
+
+  opacity: 0;
+}
+
 #memory-vis-display-wrapper {
   width: 100%;
   height: 100%;

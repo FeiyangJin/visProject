@@ -216,14 +216,30 @@ function initializeSVG(n) {
 
 function transitionHeader(opening) {
   const header = d3.select('#memory-vis-header');
+
+  const hostSubheading = d3.select('#memory-vis-header-host');
+  const targetSubheading = d3.select('#memory-vis-header-target');
+
   if (opening) {
     header.transition()
+    .duration(450)
+    .ease(d3.easeLinear)
+    .style('opacity', '1');
+
+    hostSubheading.transition()
+    .duration(450)
+    .ease(d3.easeLinear)
+    .style('opacity', '1');
+
+    targetSubheading.transition()
     .duration(450)
     .ease(d3.easeLinear)
     .style('opacity', '1');
   }
   else {
     header.style('opacity', '0');
+    hostSubheading.style('opacity', '0');
+    targetSubheading.style('opacity', '0');
   }
 }
 
