@@ -136,11 +136,6 @@ function get_edge_color(e) {
 
 
 function get_edge_width(e) {
-  /*
-  if (e.data != undefined && e.data.edge_type === "TARGET") {
-    return 4;
-  }
-  */
   return 2;
 }
 
@@ -154,7 +149,7 @@ function get_edge_type(e) {
 }
 
 
-function get_node_color(n, dag) {
+function get_node_color(n) {
   if (n.data.has_race === undefined) {
     return "pink";
   }

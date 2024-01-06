@@ -441,7 +441,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
                 .on('click', n => click(n, dag, svgID))
                 .attr('r', nodeRadius)
                 .attr('cursor', 'pointer')
-                .attr('fill', n => get_node_color(n,dag))
+                .attr('fill', n => get_node_color(n))
                 .on('mouseover', n => {
                   tooltip.style('visibility', 'visible');
                   if (!dataMovementInfo) {
@@ -525,7 +525,7 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
       update => {
         update.transition(trans)
         .select('circle')
-        .attr('fill', n => get_node_color(n,dag))
+        .attr('fill', n => get_node_color(n))
 
         update.transition(trans)
         .selectAll('circle')
@@ -596,3 +596,191 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
 
 //setupSVG("#svg");
 //visualizeDAG(dag_initial_graph,"#svg");
+
+
+function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
+  dagre.layout(g);
+  const width = g.graph().width
+  const height = g.graph().height
+
+  const svg = d3.select(svgID)
+  .attr('width', width + 50)
+  .attr('height', height + 50);
+
+  const trans = svg.transition().duration(300);
+
+  let tooltip = d3.select('#tooltip')
+
+  // Create SVG elements for nodes
+  svg
+    .select('#nodes')
+    .selectAll('g')
+    .data(Array.from(dag.nodes()), n => n)
+    .join(
+      enter => {
+        enter
+          .append('g')
+          .attr('transform', n => `translate(${g.node(n).x}, ${g.node(n).y})`)
+          .attr('opacity', 0)
+          .call(
+            enter => {
+              enter.append('circle')
+                // .on('click', n => click_dagre(g.node(n), g, svgID))
+                .attr('r', nodeRadius)
+                .attr('cursor', 'pointer')
+                .attr('fill', n => get_node_color(g.node(n)))
+                .on('mouseover', n => {
+                  tooltip.style('visibility', 'visible');
+                  if (!dataMovementInfo) {
+                    return;
+                  }
+
+                  const nodeIdNum = get_node_id_num(g.node(n)) + '';
+                  let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
+                  if (index !== -1) 
+                  {
+                    /* Hovered over a node with beginning data transfer */
+                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
+                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnBeginNode(x.flag));
+                    populateIndices(clone.datamove);
+                    visualizeDataMovement(clone, true);
+                    return;
+                  }
+                  
+                  index = dataMovementInfo.findIndex(tr => tr.end_node === nodeIdNum);
+                  if (index !== -1)
+                  {
+                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
+                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnEndNode(x.flag));
+                    populateIndices(clone.datamove);
+                    visualizeDataMovement(clone, true);
+                    return;
+                  }
+                })
+                .on('mousemove', n => {
+                  let text = 
+                  `<strong>this node ends with: <span class='colored-text'>${g.node(n).data.end_event}</span> </strong> <br>
+                   <strong>this node has a race: <span class='colored-text'>${(g.node(n).data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
+                   <strong>stack: <span class="colored-text">${g.node(n).data.stack}</span> </strong> <br>`
+                  
+                  tooltip.html(text)
+                })
+                .on('mouseout', n => {
+                  tooltip.style('visibility', 'hidden');
+                  if (!dataMovementInfo) {
+                    return;
+                  }
+                  const nodeIdNum = get_node_id_num(g.node(n)) + '';
+                  const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
+                  if (index !== -1) 
+                  {
+                    /* Hovered over a node with beginning or ending data transfer */  
+                    visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
+                  }
+                })
+
+              enter.append('text')
+                .text(n => n)
+                .attr('font-weight', 'bold')
+                .attr('font-family', 'sans-serif')
+                .attr('text-anchor', 'middle')
+                .attr('alignment-baseline', 'middle')
+                .attr('fill', 'white')
+                .attr('class', 'unselectable-text')
+                .attr('font-size', 'xx-small')
+                .style('pointer-events', 'none');
+
+              enter.transition(trans).attr('opacity', 1);
+
+              enter.filter(n => g.node(n).data.has_race == 1)
+              .append('circle')
+              .attr('r', nodeRadius + 2)
+              .attr('fill', 'none')
+              .attr('stroke', 'blue') // Border color
+              .attr('stroke-width', 3) // Border width
+              .attr('stroke-dasharray', '4,4') // Dash pattern
+                .append('animateTransform')
+                .attr('attributeName','transform')
+                .attr('type','rotate')
+                .attr('from', n => `360 ${g.node(n).x/10000} ${g.node(n).y/10000}`)
+                .attr('to', n => `0 ${g.node(n).x/10000} ${g.node(n).y/10000} `)
+                .attr('dur','10s')
+                .attr('repeatCount','indefinite');
+              }
+          )
+        },
+      update => {
+        update.transition(trans)
+        .select('circle')
+        .attr('fill', n => get_node_color(n))
+
+        update.transition(trans)
+        .selectAll('circle')
+        .attr('opacity', n => get_node_opacity(n))
+
+        update.filter(n => n.data.hidden)
+        .style('pointer-events', 'none');
+
+        update.filter(n => n.data.hidden === false)
+        .style('pointer-events', 'auto');
+      },
+      exit => {
+        exit.remove();
+      }
+    );
+
+  
+  // link paths
+  svg
+    .select('#links')
+    .selectAll('path')
+    .data(g.edges(), e => e.v + '-->' + e.w)
+    .join(
+      enter => { 
+        enter
+        .append('path')
+        .attr('d', e => {
+          pts = g.edge(e).points;
+          return d3.line()
+                  .x((p) => p.x)
+                  .y((p) => p.y)
+                  .curve(d3.curveMonotoneY)(pts);
+        })
+        .attr('class', e => get_edge_type(g.edge(e)))
+        .attr('fill', 'none')
+        .attr('stroke-width', 2)
+        .attr('stroke', e => get_edge_color(g.edge(e)))
+        .attr('marker-end', e => {
+          if (g.edge(e).data != undefined && g.edge(e).data.edge_type === "BARRIER"){
+            return ''
+          }
+          return 'url(#arrowhead)'
+        })
+        .attr('opacity', e => get_edge_opacity(g.edge(e)))
+        .attr('stroke-dasharray', e => get_edge_dash(g.edge(e)))
+      },
+      update => {
+        update.transition(trans)
+              .attr('opacity', e => get_edge_opacity(g.edge(e)))
+      },
+      exit => {
+        exit.remove()
+      }
+    );
+
+  d3.selectAll('.TARGET')
+  .attr('opacity', e => get_edge_opacity(g.edge(e)))
+  .attr('stroke-dasharray', '4')
+  .attr('marker-end', 'url(#arrowhead)')
+  .transition()
+  .on('start', function repeat() {
+    d3.active(this)
+      .transition()
+      .duration(16000)
+      .ease(d3.easeLinear)
+      .styleTween('stroke-dashoffset', function() {
+        return d3.interpolate(960, 0);
+      })
+      .on('end', repeat);
+  });
+}
