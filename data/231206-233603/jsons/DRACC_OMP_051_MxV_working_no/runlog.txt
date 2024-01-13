@@ -1,0 +1,23 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[target] scope begin 
+[device_mem] original addr 0x7b0400000080, destination address 0x7b04000000b0, size 16, alloc | associate | 
+[device_mem] original addr 0x7b1000000280, destination address 0x7b1000000340, size 64, to | alloc | associate | 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b04000000f0, size 16, to | alloc | associate | 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_051_MxV_working_no.c, line: 32, col: 5 
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_051_MxV_working_no.c, line: 32, col: 5 
+[parallel_end] current node is 7, requested parallelsim is 8, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_051_MxV_working_no.c, line: 33, col: 9 
+[parallel_end] current node is 5, requested parallelsim is 8, [implicit_task] initial task end, parallel region is 0x7b10000003c0, current step is 25 
+[parallel_end] current node is 3, requested parallelsim is 1, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_051_MxV_working_no.c, line: 32, col: 47 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b04000000f0, size 16, release | disassociate | 
+[device_mem] original addr 0x7b1000000280, destination address 0x7b1000000340, size 64, release | disassociate | 
+[device_mem] original addr 0x7b0400000080, destination address 0x7b04000000b0, size 16, from | release | disassociate | 
+[target] scope end 
+Memory Access Issue visible: false
+[implicit_task] initial task end, parallel region is (nil), current step is 27 
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 

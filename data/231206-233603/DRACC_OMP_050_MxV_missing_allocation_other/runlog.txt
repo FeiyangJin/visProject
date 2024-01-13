@@ -1,0 +1,30 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+a = 0x7b7000000800, b = 0x7f853c929000, c = 0x7b7000001000 
+[device_mem] original addr 0x7b7000000800, destination address 0x7b7000001800, size 2048, to | alloc | associate | 
+[target] scope begin 
+[device_mem] original addr 0x7f853c929000, destination address 0x7f853bfc0000, size 1048576, to | alloc | associate | 
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+ThreadSanitizer:DEADLYSIGNAL
+==28211==ERROR: ThreadSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f853c725e8c bp 0x7ffe75f56af0 sp 0x7ffe75f569c0 T28211)
+==28211==The signal is caused by a READ memory access.
+==28211==Hint: address points to the zero page.
+ThreadSanitizerThreadSanitizerThreadSanitizer:DEADLYSIGNAL
+:DEADLYSIGNAL
+:DEADLYSIGNAL
+ThreadSanitizer:DEADLYSIGNAL
+ThreadSanitizer:DEADLYSIGNAL
+ThreadSanitizer:DEADLYSIGNAL
+ThreadSanitizer:DEADLYSIGNAL
+    #0 .omp_outlined._debug__.1 /home/fjin/playground/DRACC/DRACC_OMP_050_MxV_missing_allocation_other.c:41:21 (tmpfile_lc0wOK+0xe8c)
+    #1 .omp_outlined. /home/fjin/playground/DRACC/DRACC_OMP_050_MxV_missing_allocation_other.c:35:9 (tmpfile_lc0wOK+0xf81)
+    #2 __kmp_invoke_microtask <null> (libomp.so+0xb9292)
+    #3 __kmp_invoke_task_func <null> (libomp.so+0x3e425)
+
+ThreadSanitizer can not provide additional info.
+SUMMARY: ThreadSanitizer: SEGV /home/fjin/playground/DRACC/DRACC_OMP_050_MxV_missing_allocation_other.c:41:21 in .omp_outlined._debug__.1
+==28211==ABORTING

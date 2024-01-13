@@ -1,0 +1,38 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[device_mem] original addr 0x7b7000000800, destination address 0x7b7000001800, size 2048, to | alloc | associate | 
+[device_mem] original addr 0x7fca14f29000, destination address 0x7fca14a85000, size 1048576, to | alloc | associate | 
+[device_mem] original addr 0x7b7000001000, destination address 0x7fca14984000, size 1048576, alloc | associate | 
+[target] scope begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c, line: 35, col: 9 
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c, line: 35, col: 9 
+[parallel_end] current node is 7, requested parallelsim is 8, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c, line: 36, col: 13 
+[parallel_end] current node is 5, requested parallelsim is 8, [implicit_task] initial task end, parallel region is 0x7b1000000380, current step is 25 
+[parallel_end] current node is 3, requested parallelsim is 1, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c, line: 41, col: 5 
+[target] scope end 
+[device_mem] original addr 0x7fca14f29000, destination address 0x7fca14a85000, size 1048576, release | disassociate | 
+[device_mem] original addr 0x7b7000000800, destination address 0x7b7000001800, size 2048, release | disassociate | 
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+ThreadSanitizer:DEADLYSIGNAL
+==28428==ERROR: ThreadSanitizer: SEGV on unknown address 0x7b7000010000 (pc 0x7fcd14fb4361 bp 0x7ffe315b6c08 sp 0x7ffe315b6b88 T28428)
+==28428==The signal is caused by a WRITE memory access.
+    #0 <null> /build/glibc-CVJwZb/glibc-2.27/string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:414 (libc.so.6+0xbb361) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+    #1 __interceptor_memcpy /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/../../sanitizer_common/sanitizer_common_interceptors.inc:899:5 (DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes+0x5838c)
+    #2 __tgt_rtl_data_retrieve <null> (libomptarget.rtl.x86_64.so+0xf44e)
+    #3 DeviceTy::retrieveData(void*, void*, long, AsyncInfoTy&, bool, void*) <null> (libomptarget.so.15+0xfb1a)
+    #4 targetDataEnd(ident_t*, DeviceTy&, int, void**, void**, long*, long*, void**, void**, AsyncInfoTy&, void*, bool, bool) <null> (libomptarget.so.15+0x17598)
+    #5 __tgt_target_data_end_internal <null> (libomptarget.so.15+0x122de)
+    #6 __tgt_target_data_end_mapper <null> (libomptarget.so.15+0x1244d)
+    #7 Mult /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c:42:5 (DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes+0xd15c1)
+    #8 main /home/fjin/playground/DRACC/DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes.c:62:5 (DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes+0xd1ea0)
+    #9 __libc_start_main /build/glibc-CVJwZb/glibc-2.27/csu/../csu/libc-start.c:310 (libc.so.6+0x21c86) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+    #10 _start <null> (DRACC_OMP_031_MxV_out_of_bounds_Copyout_Exit_Data_yes+0x209e9)
+
+ThreadSanitizer can not provide additional info.
+SUMMARY: ThreadSanitizer: SEGV /build/glibc-CVJwZb/glibc-2.27/string/../sysdeps/x86_64/multiarch/memmove-vec-unaligned-erms.S:414 
+==28428==ABORTING

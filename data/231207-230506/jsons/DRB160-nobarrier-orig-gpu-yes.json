@@ -1,0 +1,131 @@
+{
+    "directed": true,
+    "multigraph": false,
+    "graph": {
+        "node_default": {},
+        "edge_default": {}
+    },
+    "nodes": [
+        {
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": false,
+            "stack": "file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB160-nobarrier-orig-gpu-yes.c, line: 38, col: 5",
+            "vertex_id": 1,
+            "id": "n1",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": false,
+            "stack": "file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB160-nobarrier-orig-gpu-yes.c, line: 50, col: 3",
+            "vertex_id": 2,
+            "id": "n2",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "end_event": "parallel_begin",
+            "has_race": false,
+            "ontarget": false,
+            "vertex_id": 3,
+            "id": "n3",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "end_event": "parallel_end",
+            "has_race": false,
+            "ontarget": false,
+            "vertex_id": 4,
+            "id": "n4",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "has_race": false,
+            "ontarget": false,
+            "vertex_id": 5,
+            "id": "n5",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "has_race": false,
+            "ontarget": false,
+            "vertex_id": 6,
+            "id": "n6",
+            "active": true,
+            "hidden": false
+        },
+        {
+            "has_race": false,
+            "ontarget": false,
+            "vertex_id": 7,
+            "id": "n7",
+            "active": true,
+            "hidden": false
+        }
+    ],
+    "links": [
+        {
+            "edge_type": "CONT",
+            "id": "e0",
+            "source": "n1",
+            "target": "n2",
+            "hidden": false
+        },
+        {
+            "edge_type": "FORK_I",
+            "id": "e1",
+            "source": "n2",
+            "target": "n3",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e2",
+            "source": "n2",
+            "target": "n7",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e3",
+            "source": "n3",
+            "target": "n4",
+            "hidden": false
+        },
+        {
+            "edge_type": "FORK_I",
+            "id": "e4",
+            "source": "n3",
+            "target": "n5",
+            "hidden": false
+        },
+        {
+            "edge_type": "CONT",
+            "id": "e5",
+            "source": "n4",
+            "target": "n6",
+            "hidden": false
+        },
+        {
+            "edge_type": "JOIN",
+            "id": "e6",
+            "source": "n5",
+            "target": "n6",
+            "hidden": false
+        },
+        {
+            "edge_type": "JOIN",
+            "id": "e7",
+            "source": "n6",
+            "target": "n7",
+            "hidden": false
+        }
+    ],
+    "target": []
+}

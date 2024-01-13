@@ -1,0 +1,2 @@
+orig_addr,dest_addr,bytes,flag
+begin_node,1,end_node,26
