@@ -15,11 +15,13 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
 
-            dag = prepareGraph(jsonData);
+            // dag = prepareGraph(jsonData);
+            dag = prepareGraph_dagre(jsonData);
             setupSVG("#svgJSON");
             
             const targetMovementData = extractTargetMovementData(jsonData);
-            visualizeDAG(dag, "#svgJSON", targetMovementData);
+            // visualizeDAG(dag, "#svgJSON", targetMovementData);
+            visualizeDAG_dagre(dag, "#svgJSON", targetMovementData);
             addLegend();
             prepareDatamove(targetMovementData);
         };
@@ -78,6 +80,52 @@ function prepareGraph(jsonData) {
     }
     path = [];
     return dag;
+}
+
+function prepareGraph_dagre(jsonData){
+    let json = JSON.parse(jsonData);
+    let nodes = json['nodes'];
+    let edges = json['links'];
+
+    // Create a new directed graph 
+    var g = new dagre.graphlib.Graph();
+
+    // Set an object for the graph label
+    g.setGraph({ranker: "topo-sort", align: "UR", nodesep: nodeRadius, edgesep: nodeRadius / 2, ranksep: nodeRadius * 2});
+
+    // Default to assigning a new object as a label for each new edge.
+    g.setDefaultEdgeLabel(function() { return {}; });
+
+    for (const node of nodes){
+        g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
+    }
+
+    for (const edge of edges){
+        g.setEdge(edge.source, edge.target, {data:edge})
+    }
+
+
+    // var copyg = dagre.graphlib.json.read(dagre.graphlib.json.write(g))
+    // const ranks = new Map();
+
+    // var currentRank = 0;
+    // var limit = copyg.nodeCount()
+
+    // while (ranks.size < limit){
+    //     sources = copyg.sources()
+    //     sources.forEach(node => {
+    //         ranks.set(node, currentRank)
+    //         copyg.removeNode(node)
+    //     });
+    //     currentRank += 1
+    // }
+
+    // for (let [key, value] of ranks) {
+    //     // console.log(`Key: ${key}, Value: ${value}`);
+    //     g.node(key).rank = value
+    // }
+
+    return g;
 }
 
 

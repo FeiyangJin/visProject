@@ -9,6 +9,7 @@
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/d3-dag@1.0.0"></script>
+    <script src="public/dagre.js"></script>
 </head>
 
 <body>
@@ -50,7 +51,14 @@
               <g id="header-display"/>
             </svg>
             -->
-            <h2 id="memory-vis-header">Data Movements</h2>
+            <div id="memory-vis-header-wrapper">
+              <h2 id="memory-vis-header">Data Movements</h2>
+              <div id="memory-vis-header-subheading">
+                <h3 id="memory-vis-header-host"> Host </h3>
+                <span id="memory-vis-header-gap"></span>
+                <h3 id="memory-vis-header-target"> Target </h3>
+              </div>
+            </div>
             <div id="memory-vis-display-wrapper">
               <svg id="memory-vis-display">
                 <g id="data-transfer"/>
