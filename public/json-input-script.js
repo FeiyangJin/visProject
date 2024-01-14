@@ -17,12 +17,13 @@ function handleJsonUpload(event){
 
             // dag = prepareGraph(jsonData);
             dag = prepareGraph_dagre(jsonData);
-            setupSVG("#svgJSON");
+            const svgID = "#svgJSON";
+            setupSVG(svgID);
             
             const targetMovementData = extractTargetMovementData(jsonData);
             // visualizeDAG(dag, "#svgJSON", targetMovementData);
-            visualizeDAG_dagre(dag, "#svgJSON", targetMovementData);
-            constrictSVGArea("#svgJSON");
+            visualizeDAG_dagre(dag, svgID, targetMovementData);
+            constrictSVGArea(svgID);
             addLegend();
             prepareDatamove(targetMovementData);
         };
