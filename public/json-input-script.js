@@ -22,6 +22,7 @@ function handleJsonUpload(event){
             const targetMovementData = extractTargetMovementData(jsonData);
             // visualizeDAG(dag, "#svgJSON", targetMovementData);
             visualizeDAG_dagre(dag, "#svgJSON", targetMovementData);
+            constrictSVGArea("#svgJSON");
             addLegend();
             prepareDatamove(targetMovementData);
         };

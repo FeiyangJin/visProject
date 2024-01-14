@@ -824,3 +824,15 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
       .on('end', repeat);
   });
 }
+
+function constrictSVGArea(svgID) {
+  const svg = d3.select(svgID);
+
+  const containerDiv = document.getElementsByClassName('graph-display')[0];
+  const svgWidth = containerDiv.clientWidth;
+  const svgHeight = containerDiv.clientHeight;
+  console.log(svgWidth + ' ' + svgHeight);
+  svg.attr('viewbox', `0 0 ${svgWidth} ${svgHeight}`);
+  svg.attr('width', svgWidth + '');
+  svg.attr('height', svgHeight + '');
+}
