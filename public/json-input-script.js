@@ -25,6 +25,7 @@ function handleJsonUpload(event){
             visualizeDAG_dagre(dag, svgID, targetMovementData);
             constrictSVGArea(svgID);
             addLegend();
+            showBorder();
             prepareDatamove(targetMovementData);
         };
 
@@ -339,4 +340,10 @@ function addLegend() {
         current_y += step_y
     }
 
+}
+
+function showBorder() {
+    const svgParentDiv = document.getElementsByClassName('graph-display')[0];
+    svgParentDiv.style.borderColor = 'black';
+    console.log(svgParentDiv.style.borderColor);
 }

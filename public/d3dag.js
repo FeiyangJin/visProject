@@ -640,16 +640,16 @@ function visualizeDAG(dag, svgID, dataMovementInfo) {
 
 function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
   dagre.layout(g);
-  const width = g.graph().width
-  const height = g.graph().height
+  const width = g.graph().width;
+  const height = g.graph().height;
 
   const svg = d3.select(svgID)
-  .attr('width', width + 50)
-  .attr('height', height + 50);
-
+  .attr('width', width)
+  .attr('height', height);
+  
   const trans = svg.transition().duration(300);
 
-  let tooltip = d3.select('#tooltip')
+  let tooltip = d3.select('#tooltip');
 
   // Create SVG elements for nodes
   svg
