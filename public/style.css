@@ -2,20 +2,43 @@
     user-select: none;
 }
 
+#page-layout {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 100vh;
+}
+
 .title-display {
   display: flex;
   flex-direction: horizontal;
   justify-content: center;
+
+  max-height: 15vh;
 }
 
 .main-display {
   justify-content: center;
   display: flex;
+
+  max-height: 70vh;
+}
+
+.footer {
+  max-height: 15vh;
 }
 
 .graph-display {
   width: 70%;
-  justify-content: center;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+  padding: 5px;
+
+  border-style: solid;
+  border-color: transparent;
+  border-width: 3px;
+  border-radius: 15px;
 }
 
 .sidebar-display {
