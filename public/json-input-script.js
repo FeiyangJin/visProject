@@ -15,13 +15,11 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
 
-            // dag = prepareGraph(jsonData);
             dag = prepareGraph_dagre(jsonData);
             const svgID = "#svgJSON";
             setupSVG(svgID);
             
             const targetMovementData = extractTargetMovementData(jsonData);
-            // visualizeDAG(dag, "#svgJSON", targetMovementData);
             visualizeDAG_dagre(dag, svgID, targetMovementData);
             addLegend();
             showBorder();
@@ -38,19 +36,6 @@ function extractTargetMovementData(jsonData) {
     return target_regions ? target_regions : null;
 }
 
-function populateRefCount(node) 
-{
-    if (path.includes(node.id)) {
-        return;
-    }
-    path.push(node.id);
-    for (const child of node.children()) 
-    {
-        ++child.data.refCount;
-        populateRefCount(child);
-    }
-    path.pop();
-}
 
 function populateRefCount_dagre(n,g) 
 {
@@ -67,37 +52,6 @@ function populateRefCount_dagre(n,g)
     path.pop();
 }
 
-function prepareGraph(jsonData) {
-    let json = JSON.parse(jsonData);
-    let nodes = json['nodes'];
-    let edges = json['links'];
-
-    let nodesMap = new Map();
-    for (const node of nodes) {
-        nodesMap.set(node.id, node);
-        node.refCount = 0;
-    }
-
-    const builder = d3.graphConnect()
-        .sourceId(d => d.source)
-        .targetId(d => d.target);
-    const dag = builder(edges);
-
-    for (const node of dag.nodes()) {
-        let id = node.data;
-        node.data = nodesMap.get(id);
-    }
-
-    for (const node of dag.nodes()) {
-        if (node.data.vertex_id === 1)
-        {
-            node.data.refCount = 1;
-        }
-        populateRefCount(node);
-    }
-    path = [];
-    return dag;
-}
 
 function prepareGraph_dagre(jsonData){
     let json = JSON.parse(jsonData);
@@ -129,10 +83,6 @@ function prepareGraph_dagre(jsonData){
             node.data.refCount = 1;
         }
         populateRefCount_dagre(n,g);
-    }
-
-    for (const n of g.nodes()) {
-        console.log(g.node(n).data.refCount)
     }
 
     // var copyg = dagre.graphlib.json.read(dagre.graphlib.json.write(g))

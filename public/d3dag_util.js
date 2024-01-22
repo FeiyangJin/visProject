@@ -1,8 +1,6 @@
 // set the layout functions
 const nodeRadius = 15;
 const nodeSize = [nodeRadius * 2, nodeRadius * 2];
-// this truncates the edges so we can render arrows nicely
-const shape = d3.tweakShape(nodeSize, d3.shapeEllipse);
 
 const ompt_device_mem_flag_t = Object.freeze({ 
   to:             0x01,

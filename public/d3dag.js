@@ -1,7 +1,3 @@
-// create our builder and turn the raw data into a graph
-const builder = d3.graphStratify();
-const dag_initial_graph = builder(data);
-
 const dashDimensions = [8, 5];
 const header = 0;
 const rectHeight = 50;
@@ -12,107 +8,51 @@ const offset = 28;
 const horizontalDivision = 100;
 const gap = 4;
 
-// set up initial data. These Maps are important if we
-// are going to remove nodes/edges from graph, and add
-// back later. For now, I will comment them out because
-// the current strategy is just to hide nodes/edges
-// const nodeMap = new Map();
-// const parentMap = new Map();
-// const childMap = new Map();
+function decrement_refcount_dagre(n, g, depth = 0) {
 
-// for (const record of data){
-//   parentMap.set(record.id, record.parentIds)
-// }
-
-// for (const [id,parentIDs] of parentMap.entries()) {
-
-//   for(const parentID of parentIDs){
-//     const ids = childMap.get(parentID);
-//     if (ids === undefined) {  
-//       childMap.set(parentID, [id]);
-//     }
-//     else{
-//       ids.push(id);
-//     }
-//   }
-// }
-
-// for(const node of dag_initial_graph.nodes()){
-//   nodeMap.set(node.data.id, node)
-// }
-
-function decrement_refcount(n, depth = 0) {
   if (path.includes(n.data.id))
   {
     console.log('Cycle detected');
     return;
   }
   path.push(n.data.id);
-  for (const edge of [...n.childLinks()])
+
+  for (const e of g.outEdges(n.data.id))
   {
-    edge.data.hidden = true;
+    g.edge(e).data.hidden = true;
   }
 
   if (depth == 0 || n.data.active)
-    for (const child of n.children())
+    for (const c of g.successors(n.data.id))
     {
+      let child = g.node(c)
       if (child.data.refCount > 0) {
         --child.data.refCount;
         child.data.hidden = (child.data.refCount === 0);
         if (child.data.hidden)
         {
-          for (const edge of [...child.childLinks()])
+          for(const e of g.outEdges(c))
           {
-            edge.data.hidden = true;
+            g.edge(e).data.hidden = true;
           }
-          decrement_refcount(child, depth + 1);
+          decrement_refcount_dagre(child, g, depth + 1);
         }
       }
     }
   path.pop();
 }
 
-function decrement_refcount_dagre(n, depth = 0) {
-  if (path.includes(n.data.id))
-  {
-    console.log('Cycle detected');
-    return;
-  }
-  path.push(n.data.id);
-  // for (const edge of [...n.childLinks()])
-  // {
-  //   edge.data.hidden = true;
-  // }
 
-  // if (depth == 0 || n.data.active)
-  //   for (const child of n.children())
-  //   {
-  //     if (child.data.refCount > 0) {
-  //       --child.data.refCount;
-  //       child.data.hidden = (child.data.refCount === 0);
-  //       if (child.data.hidden)
-  //       {
-  //         for (const edge of [...child.childLinks()])
-  //         {
-  //           edge.data.hidden = true;
-  //         }
-  //         decrement_refcount(child, depth + 1);
-  //       }
-  //     }
-  //   }
-  // path.pop();
-}
-
-
-function increment_refcount(n, depth = 0) {
+function increment_refcount_dagre(n, g, depth = 0) {
   if (path.includes(n.data.id))
   {
     return;
   }
   path.push(n.data.id);
 
-  for (const child of n.children())
+  for(const c of g.successors(n.data.id))
   {
+    let child = g.node(c)
     const originalVisibility = child.data.hidden;
     ++child.data.refCount;
     child.data.hidden = (child.data.refCount === 0);
@@ -120,109 +60,38 @@ function increment_refcount(n, depth = 0) {
     if (originalVisibility != child.data.hidden && child.data.active) 
     {
       /* If node just popped up, propogate references to children */
-      increment_refcount(child, depth + 1);
+      increment_refcount_dagre(child, g, depth + 1);
 
       /* If node just popped up, show all parent edges from nodes not hidden */
-      const dagNodes = [...dag.nodes()];
-      for (const incomingEdge of [...child.parentLinks()])
+      const dagNodes = dag.nodes();
+      for (const incomingEdge of g.inEdges(c))
       {
-        const sourceNodeId = incomingEdge.data.source;
-        const node = dagNodes.find(node => node.data.id === sourceNodeId);
+        const sourceNodeId = g.edge(incomingEdge).data.source;
+        const node = g.node(dagNodes.find(node => g.node(node).data.id === sourceNodeId));
         if (!node.data.hidden && node.data.active)
         {
-          incomingEdge.data.hidden = false;
+          g.edge(incomingEdge).data.hidden = false;
         }
       }
       
       /* If node just popped up, show all child edges to nodes not hidden */
-      for (const outgoingEdge of [...child.childLinks()])
+      for (const outgoingEdge of g.outEdges(c))
       {
-        const targetNodeId = outgoingEdge.data.target;
-        const node = dagNodes.find(node => node.data.id === targetNodeId);
+        const targetNodeId = g.edge(outgoingEdge).data.target;
+        const node = g.node(dagNodes.find(node => g.node(node).data.id === targetNodeId));
         if (!node.data.hidden && node.data.active)
         {
-          outgoingEdge.data.hidden = false;
+          g.edge(outgoingEdge).data.hidden = false;
         }
       }
     } 
-    else 
+  else 
     {
-      const incomingEdge = [...child.parentLinks()].find(edge => edge.data.source === n.data.id);
-      incomingEdge.data.hidden = false;
+      const incomingEdge = g.inEdges(c).find(edge => g.edge(edge).data.source === n.data.id);
+      g.edge(incomingEdge).data.hidden = false;
     }
   }
   path.pop();
-}
-
-function increment_refcount_dagre(n, depth = 0) {
-  if (path.includes(n.data.id))
-  {
-    return;
-  }
-  path.push(n.data.id);
-
-  for (const child of n.children())
-  {
-    const originalVisibility = child.data.hidden;
-    ++child.data.refCount;
-    child.data.hidden = (child.data.refCount === 0);
-
-    if (originalVisibility != child.data.hidden && child.data.active) 
-    {
-      /* If node just popped up, propogate references to children */
-      increment_refcount(child, depth + 1);
-
-      /* If node just popped up, show all parent edges from nodes not hidden */
-      const dagNodes = [...dag.nodes()];
-      for (const incomingEdge of [...child.parentLinks()])
-      {
-        const sourceNodeId = incomingEdge.data.source;
-        const node = dagNodes.find(node => node.data.id === sourceNodeId);
-        if (!node.data.hidden && node.data.active)
-        {
-          incomingEdge.data.hidden = false;
-        }
-      }
-      
-      /* If node just popped up, show all child edges to nodes not hidden */
-      for (const outgoingEdge of [...child.childLinks()])
-      {
-        const targetNodeId = outgoingEdge.data.target;
-        const node = dagNodes.find(node => node.data.id === targetNodeId);
-        if (!node.data.hidden && node.data.active)
-        {
-          outgoingEdge.data.hidden = false;
-        }
-      }
-    } 
-    else 
-    {
-      const incomingEdge = [...child.parentLinks()].find(edge => edge.data.source === n.data.id);
-      incomingEdge.data.hidden = false;
-    }
-  }
-  path.pop();
-}
-
-
-function click(n, dag, svgID) {
-  console.log(`you are clicking on node ${n.data.id}`);
-
-  if (n.data.active === undefined) {
-    return;
-  }
-
-  if (n.data.hidden) {
-    /* You can't click on hidden nodes */
-    return;
-  }
-  n.data.active = !n.data.active;
-  if (n.data.active) {
-    increment_refcount(n);
-  } else {
-    decrement_refcount(n);
-  }
-  visualizeDAG(dag, svgID)
 }
 
 function click_dagre(n, dag, svgID) {
@@ -238,9 +107,9 @@ function click_dagre(n, dag, svgID) {
   }
   n.data.active = !n.data.active;
   if (n.data.active) {
-    increment_refcount_dagre(n);
+    increment_refcount_dagre(n, dag);
   } else {
-    decrement_refcount_dagre(n);
+    decrement_refcount_dagre(n, dag);
   }
   visualizeDAG_dagre(dag, svgID)
 }
@@ -548,193 +417,6 @@ function populateIndices(datamove) {
   }
 }
 
-function visualizeDAG(dag, svgID, dataMovementInfo) {
-
-  const layout = d3.sugiyama()
-      .nodeSize(nodeSize)
-      .gap([nodeRadius * 2, nodeRadius * 2])
-      .tweaks([shape]);
-
-  const { width, height } = layout(dag);
-
-  const svg = d3.select(svgID)
-  .attr('width', width + 50)
-  .attr('height', height + 50);
-
-  const trans = svg.transition().duration(300);
-
-  let tooltip = d3.select('#tooltip')
-
-  // Create SVG elements for nodes
-  svg
-    .select('#nodes')
-    .selectAll('g')
-    .data(Array.from(dag.nodes()), n => n.data.id)
-    .join(
-      enter => {
-        enter
-          .append('g')
-          .attr('transform', ({ x, y }) => `translate(${x}, ${y})`)
-          .attr('opacity', 0)
-          .call(
-            enter => {
-              enter.append('circle')
-                .on('click', n => click(n, dag, svgID))
-                .attr('r', nodeRadius)
-                .attr('cursor', 'pointer')
-                .attr('fill', n => get_node_color(n))
-                .on('mouseover', n => {
-                  tooltip.style('visibility', 'visible');
-                  if (!dataMovementInfo || !n.data.active) {
-                    return;
-                  }
-
-                  const nodeIdNum = get_node_id_num(n) + '';
-                  let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
-                  if (index !== -1) 
-                  {
-                    /* Hovered over a node with beginning data transfer */
-                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
-                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnBeginNode(x.flag));
-                    populateIndices(clone.datamove);
-                    visualizeDataMovement(clone, true);
-                    return;
-                  }
-                  
-                  index = dataMovementInfo.findIndex(tr => tr.end_node === nodeIdNum);
-                  if (index !== -1)
-                  {
-                    const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
-                    clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnEndNode(x.flag));
-                    populateIndices(clone.datamove);
-                    visualizeDataMovement(clone, true);
-                    return;
-                  }
-                })
-                .on('mousemove', n => {
-                  let text = 
-                  `<strong>this node ends with: <span class='colored-text'>${n.data.end_event}</span> </strong> <br>
-                   <strong>this node has a race: <span class='colored-text'>${(n.data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
-                   <strong>stack: <span class="colored-text">${n.data.stack}</span> </strong> <br>`
-                  
-                  tooltip.html(text)
-                })
-                .on('mouseout', n => {
-                  tooltip.style('visibility', 'hidden');
-                  if (!dataMovementInfo) {
-                    return;
-                  }
-                  const nodeIdNum = get_node_id_num(n) + '';
-                  const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
-                  if (index !== -1) 
-                  {
-                    /* Hovered over a node with beginning or ending data transfer */  
-                    visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
-                  }
-                })
-
-              enter.append('text')
-                .text(d => d.data.id)
-                .attr('font-weight', 'bold')
-                .attr('font-family', 'sans-serif')
-                .attr('text-anchor', 'middle')
-                .attr('alignment-baseline', 'middle')
-                .attr('fill', 'white')
-                .attr('class', 'unselectable-text')
-                .attr('font-size', 'xx-small')
-                .style('pointer-events', 'none');
-
-              enter.transition(trans).attr('opacity', 1);
-
-              enter.filter(n => n.data.has_race == 1)
-              .append('circle')
-              .attr('r', nodeRadius + 2)
-              .attr('fill', 'none')
-              .attr('stroke', 'blue') // Border color
-              .attr('stroke-width', 3) // Border width
-              .attr('stroke-dasharray', '4,4') // Dash pattern
-                .append('animateTransform')
-                .attr('attributeName','transform')
-                .attr('type','rotate')
-                .attr('from', n => `360 ${n.x/10000} ${n.y/10000}`)
-                .attr('to', n => `0 ${n.x/10000} ${n.y/10000} `)
-                .attr('dur','10s')
-                .attr('repeatCount','indefinite');
-              }
-          )
-        },
-      update => {
-        update.transition(trans)
-        .select('circle')
-        .attr('fill', n => get_node_color(n))
-
-        update.transition(trans)
-        .selectAll('circle')
-        .attr('opacity', n => get_node_opacity(n))
-
-        update.filter(n => n.data.hidden)
-        .style('pointer-events', 'none');
-
-        update.filter(n => n.data.hidden === false)
-        .style('pointer-events', 'auto');
-      },
-      exit => {
-        exit.remove();
-      }
-    );
-
-  
-  // link paths
-  svg
-    .select('#links')
-    .selectAll('path')
-    .data(Array.from(dag.links()), e => get_edge_id(e))
-    .join(
-      enter => { 
-        enter
-        .append('path')
-        .attr('d', e => {
-          return d3.line().curve(d3.curveMonotoneY)(e.points);
-        })
-        .attr('class', e => get_edge_type(e))
-        .attr('fill', 'none')
-        .attr('stroke-width', e => get_edge_width(e))
-        .attr('stroke', e => get_edge_color(e))
-        .attr('marker-end', e => {
-          if (e.data != undefined && e.data.edge_type === "BARRIER"){
-            return ''
-          }
-          return 'url(#arrowhead)'
-        })
-        .attr('opacity', e => get_edge_opacity(e))
-        .attr('stroke-dasharray', e => get_edge_dash(e))
-      },
-      update => {
-        update.transition(trans)
-              .attr('opacity', e => get_edge_opacity(e))
-      },
-      exit => {
-        exit.remove()
-      }
-    );
-
-    d3.selectAll('.TARGET')
-    .attr('opacity', e => get_edge_opacity(e))
-    .attr('stroke-dasharray', '4')
-    .attr('marker-end', 'url(#arrowhead)')
-    .transition()
-    .on('start', function repeat() {
-      d3.active(this)
-        .transition()
-        .duration(16000)
-        .ease(d3.easeLinear)
-        .styleTween('stroke-dashoffset', function() {
-          return d3.interpolate(960, 0);
-        })
-        .on('end', repeat);
-    });
-}
-
 //setupSVG("#svg");
 //visualizeDAG(dag_initial_graph,"#svg");
 
@@ -853,16 +535,16 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
       update => {
         update.transition(trans)
         .select('circle')
-        .attr('fill', n => get_node_color(n))
+        .attr('fill', n => get_node_color(g.node(n)))
 
         update.transition(trans)
         .selectAll('circle')
-        .attr('opacity', n => get_node_opacity(n))
+        .attr('opacity', n => get_node_opacity(g.node(n)))
 
-        update.filter(n => n.data.hidden)
+        update.filter(n => g.node(n).data.hidden)
         .style('pointer-events', 'none');
 
-        update.filter(n => n.data.hidden === false)
+        update.filter(n => g.node(n).data.hidden === false)
         .style('pointer-events', 'auto');
       },
       exit => {
