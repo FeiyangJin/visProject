@@ -52,6 +52,21 @@ function populateRefCount(node)
     path.pop();
 }
 
+function populateRefCount_dagre(n,g) 
+{
+    if (path.includes(n)) {
+        return;
+    }
+    path.push(n);
+
+    for (const child of g.successors(n)) 
+    {
+        g.node(child).data.refCount++;
+        populateRefCount_dagre(child,g);
+    }
+    path.pop();
+}
+
 function prepareGraph(jsonData) {
     let json = JSON.parse(jsonData);
     let nodes = json['nodes'];
@@ -100,12 +115,25 @@ function prepareGraph_dagre(jsonData){
 
     for (const node of nodes){
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
+        g.node(node.id).data.refCount = 0;
     }
 
     for (const edge of edges){
         g.setEdge(edge.source, edge.target, {data:edge})
     }
 
+    for (const n of g.nodes()) {
+        let node = g.node(n);
+        if (node.data.vertex_id === 1)
+        {
+            node.data.refCount = 1;
+        }
+        populateRefCount_dagre(n,g);
+    }
+
+    for (const n of g.nodes()) {
+        console.log(g.node(n).data.refCount)
+    }
 
     // var copyg = dagre.graphlib.json.read(dagre.graphlib.json.write(g))
     // const ranks = new Map();

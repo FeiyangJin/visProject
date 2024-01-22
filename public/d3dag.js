@@ -72,8 +72,89 @@ function decrement_refcount(n, depth = 0) {
   path.pop();
 }
 
+function decrement_refcount_dagre(n, depth = 0) {
+  if (path.includes(n.data.id))
+  {
+    console.log('Cycle detected');
+    return;
+  }
+  path.push(n.data.id);
+  // for (const edge of [...n.childLinks()])
+  // {
+  //   edge.data.hidden = true;
+  // }
+
+  // if (depth == 0 || n.data.active)
+  //   for (const child of n.children())
+  //   {
+  //     if (child.data.refCount > 0) {
+  //       --child.data.refCount;
+  //       child.data.hidden = (child.data.refCount === 0);
+  //       if (child.data.hidden)
+  //       {
+  //         for (const edge of [...child.childLinks()])
+  //         {
+  //           edge.data.hidden = true;
+  //         }
+  //         decrement_refcount(child, depth + 1);
+  //       }
+  //     }
+  //   }
+  // path.pop();
+}
+
 
 function increment_refcount(n, depth = 0) {
+  if (path.includes(n.data.id))
+  {
+    return;
+  }
+  path.push(n.data.id);
+
+  for (const child of n.children())
+  {
+    const originalVisibility = child.data.hidden;
+    ++child.data.refCount;
+    child.data.hidden = (child.data.refCount === 0);
+
+    if (originalVisibility != child.data.hidden && child.data.active) 
+    {
+      /* If node just popped up, propogate references to children */
+      increment_refcount(child, depth + 1);
+
+      /* If node just popped up, show all parent edges from nodes not hidden */
+      const dagNodes = [...dag.nodes()];
+      for (const incomingEdge of [...child.parentLinks()])
+      {
+        const sourceNodeId = incomingEdge.data.source;
+        const node = dagNodes.find(node => node.data.id === sourceNodeId);
+        if (!node.data.hidden && node.data.active)
+        {
+          incomingEdge.data.hidden = false;
+        }
+      }
+      
+      /* If node just popped up, show all child edges to nodes not hidden */
+      for (const outgoingEdge of [...child.childLinks()])
+      {
+        const targetNodeId = outgoingEdge.data.target;
+        const node = dagNodes.find(node => node.data.id === targetNodeId);
+        if (!node.data.hidden && node.data.active)
+        {
+          outgoingEdge.data.hidden = false;
+        }
+      }
+    } 
+    else 
+    {
+      const incomingEdge = [...child.parentLinks()].find(edge => edge.data.source === n.data.id);
+      incomingEdge.data.hidden = false;
+    }
+  }
+  path.pop();
+}
+
+function increment_refcount_dagre(n, depth = 0) {
   if (path.includes(n.data.id))
   {
     return;
@@ -142,6 +223,26 @@ function click(n, dag, svgID) {
     decrement_refcount(n);
   }
   visualizeDAG(dag, svgID)
+}
+
+function click_dagre(n, dag, svgID) {
+  console.log(`you are clicking on node ${n.data.id}`);
+
+  if (n.data.active === undefined) {
+    return;
+  }
+
+  if (n.data.hidden) {
+    /* You can't click on hidden nodes */
+    return;
+  }
+  n.data.active = !n.data.active;
+  if (n.data.active) {
+    increment_refcount_dagre(n);
+  } else {
+    decrement_refcount_dagre(n);
+  }
+  visualizeDAG_dagre(dag, svgID)
 }
 
 
@@ -665,7 +766,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
           .call(
             enter => {
               enter.append('circle')
-                // .on('click', n => click_dagre(g.node(n), g, svgID))
+                .on('click', n => click_dagre(g.node(n), g, svgID))
                 .attr('r', nodeRadius)
                 .attr('cursor', 'pointer')
                 .attr('fill', n => get_node_color(g.node(n)))
