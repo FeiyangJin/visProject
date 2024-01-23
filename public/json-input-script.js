@@ -49,7 +49,7 @@ function populateRefCount_dagre(n,g)
         g.node(child).data.refCount++;
         populateRefCount_dagre(child,g);
     }
-    path.pop();
+    //path.pop();
 }
 
 
@@ -84,6 +84,7 @@ function prepareGraph_dagre(jsonData){
         }
         populateRefCount_dagre(n,g);
     }
+    path = [];
 
     // var copyg = dagre.graphlib.json.read(dagre.graphlib.json.write(g))
     // const ranks = new Map();
