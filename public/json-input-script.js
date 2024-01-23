@@ -6,6 +6,68 @@ document.addEventListener('DOMContentLoaded', () => {
     json_fileInput.addEventListener('change', handleJsonUpload);
 });
 
+let zoomPanData = 
+{
+    isPanning: false,
+    prevX: 0,
+    prevY: 0,
+
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+};
+
+function addSVGPanningAndZooming() {
+    const svg = document.getElementById('svgJSON');
+    const parentDiv = document.getElementsByClassName('graph-display')[0];
+
+    svg.addEventListener('mousemove', event => {
+        if (zoomPanData.isPanning)
+        {
+            const dx = event.clientX - zoomPanData.prevX;
+            const dy = event.clientY - zoomPanData.prevY;
+            zoomPanData.prevX = event.clientX;
+            zoomPanData.prevY = event.clientY;
+            zoomPanData.x -= Math.round(0.25 * (dx / parentDiv.clientWidth) * zoomPanData.width);
+            zoomPanData.y -= Math.round(0.25 * (dy / parentDiv.clientHeight) * zoomPanData.height);
+
+            svg.setAttribute('viewBox', `${zoomPanData.x} ${zoomPanData.y} ${zoomPanData.width} ${zoomPanData.height}`);
+        }
+    });
+    
+    svg.addEventListener('mousedown', event => {
+        zoomPanData.isPanning = true;
+        zoomPanData.prevX = event.clientX;
+        zoomPanData.prevY = event.clientY;
+    });
+
+    svg.addEventListener('mouseup', event => {
+        zoomPanData.isPanning = false;
+    });
+
+    svg.addEventListener('wheel', event => {
+        const wheelDelta = Math.sign(event.wheelDelta);
+
+        if (wheelDelta > 0) {
+            if (zoomPanData.width > 500 && zoomPanData.height > 500) {
+                zoomPanData.width = zoomPanData.width / 1.1;
+                zoomPanData.height = zoomPanData.height / 1.1;
+            }
+        } else {
+            if (zoomPanData.width < 1.5 * svg.clientWidth && zoomPanData.height < 1.5 * svg.clientHeight) {
+                zoomPanData.width = zoomPanData.width * 1.1;
+                zoomPanData.height = zoomPanData.height * 1.1;
+            }
+        }
+        svg.setAttribute('viewBox', `${zoomPanData.x} ${zoomPanData.y} ${zoomPanData.width} ${zoomPanData.height}`);
+    });
+
+    zoomPanData.width = parentDiv.clientWidth;
+    zoomPanData.height = parentDiv.clientHeight;
+    svg.setAttribute('viewBox', `${zoomPanData.x} ${zoomPanData.y} ${zoomPanData.width} ${zoomPanData.height}`);
+}
+
 function handleJsonUpload(event){
     const file = event.target.files[0];
     
@@ -23,6 +85,7 @@ function handleJsonUpload(event){
             const targetMovementData = extractTargetMovementData(jsonData);
             // visualizeDAG(dag, "#svgJSON", targetMovementData);
             visualizeDAG_dagre(dag, svgID, targetMovementData);
+            addSVGPanningAndZooming();
             addLegend();
             showBorder();
             prepareDatamove(targetMovementData);
@@ -344,5 +407,4 @@ function addLegend() {
 function showBorder() {
     const svgParentDiv = document.getElementsByClassName('graph-display')[0];
     svgParentDiv.style.borderColor = 'black';
-    console.log(svgParentDiv.style.borderColor);
 }

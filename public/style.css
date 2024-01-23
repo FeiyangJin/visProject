@@ -30,8 +30,8 @@
 
 .graph-display {
   width: 70%;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   padding: 5px;
 
