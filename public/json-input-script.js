@@ -6,6 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     json_fileInput.addEventListener('change', handleJsonUpload);
 });
 
+let zoomData = 
+{
+    width: 0,
+    height: 0
+};
+
+function addZooming() {
+    const svg = document.getElementById('svgJSON');
+    const parentDiv = document.getElementsByClassName('graph-display')[0];
+
+    svg.addEventListener('wheel', event => {
+        const wheelDelta = Math.sign(event.wheelDelta);
+
+        if (wheelDelta > 0) {
+            // Zoom In
+            if (zoomData.width < 30 * parentDiv.clientWidth || zoomData.height < 30 * parentDiv.clientHeight) {
+                zoomData.width = zoomData.width * 1.1;
+                zoomData.height = zoomData.height * 1.1;
+            }
+        } else {
+            // Zoom Out
+            if (zoomData.width > parentDiv.clientWidth || zoomData.height > parentDiv.clientHeight) {
+                zoomData.width = zoomData.width / 1.1;
+                zoomData.height = zoomData.height / 1.1;
+            }
+        }
+        svg.setAttribute('width', `${zoomData.width}`);
+        svg.setAttribute('height', `${zoomData.height}`);
+    });
+
+    zoomData.width = svg.clientWidth;
+    zoomData.height = svg.clientHeight;
+    svg.setAttribute('viewBox', `0 0 ${svg.clientWidth} ${svg.clientHeight}`);
+    svg.setAttribute('width', `${zoomData.width}`);
+    svg.setAttribute('height', `${zoomData.height}`);
+}
+
 function handleJsonUpload(event){
     const file = event.target.files[0];
     
@@ -21,6 +58,7 @@ function handleJsonUpload(event){
             
             const targetMovementData = extractTargetMovementData(jsonData);
             visualizeDAG_dagre(dag, svgID, targetMovementData);
+            addZooming();
             addLegend();
             showBorder();
             prepareDatamove(targetMovementData);
@@ -323,5 +361,4 @@ function addLegend() {
 function showBorder() {
     const svgParentDiv = document.getElementsByClassName('graph-display')[0];
     svgParentDiv.style.borderColor = 'black';
-    console.log(svgParentDiv.style.borderColor);
 }
