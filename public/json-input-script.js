@@ -40,7 +40,10 @@ function addZooming() {
     zoomData.height = svg.clientHeight;
     svg.setAttribute('viewBox', `0 0 ${svg.clientWidth} ${svg.clientHeight}`);
     svg.setAttribute('width', `${zoomData.width}`);
+    parentDiv.scrollLeft = Math.max((svg.clientWidth - parentDiv.clientWidth) / 2, 0);
+
     svg.setAttribute('height', `${zoomData.height}`);
+    parentDiv.scrollTop = Math.max((svg.clientHeight - parentDiv.clientWidth) / 2, 0);
 }
 
 function handleJsonUpload(event){
