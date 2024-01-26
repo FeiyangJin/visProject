@@ -11,6 +11,30 @@ const ompt_device_mem_flag_t = Object.freeze({
   disassociate:   0x20
 }); 
 
+const event_type = Object.freeze({
+  parallel_begin:       0,
+  parallel_end:         1,
+  implicit_task:        2,
+  sync_region_begin:    3,
+  sync_region_end:      4,
+  task_create:          5,
+  target_begin:         6,
+  target_end:           7,
+  taskwait_end:         8,
+  taskgroup_begin:      9,
+  taskgroup_end:        10,
+  task_schedule:         11
+})
+
+const edge_type = Object.freeze({
+  CONT:     0,
+  FORK_I:   1,
+  FORK_E:   2,
+  JOIN:     3,
+  JOIN_E:   4,
+  BARRIER:  5,
+  TARGET:   6
+})
 
 function get_move_type(flag) {
   // notice a flag can contain several types
@@ -95,38 +119,79 @@ function numberOfFlagTypes(flag)
 }
 
 
-function get_edge_id(e) {
-  let id;
-  if (e.info === undefined) {
-    id = e.source.data.id + "-->" + e.target.data.id;
-  } else {
-    id = e.info.source.data.id + "-->" + e.info.target.data.id;
+function get_event_string(type){
+  switch(type){
+    case event_type.parallel_begin:
+      return "parallel_begin"
+    case event_type.parallel_end:
+      return "parallel_end"
+    case event_type.implicit_task:
+      return "implicit_task"
+    case event_type.sync_region_begin:
+      return "sync_region_begin"
+    case event_type.sync_region_end:
+      return "sync_region_end"
+    case event_type.task_create:
+      return "task_create"
+    case event_type.target_begin:
+      return "target_begin"
+    case event_type.target_end:
+      return "target_end"
+    case event_type.taskwait_end:
+      return "taskwait_end"
+    case event_type.taskgroup_begin:
+      return "taskgroup_begin"
+    case event_type.taskgroup_end:
+      return "taskgroup_end"
+    case event_type.task_schedule:
+      return "task_schedule"
+    default:
+      return "unknown"
   }
-  return id;
 }
 
+function get_edge_type_string(e){
+  switch(get_edge_type(e)){
+    case edge_type.CONT:
+      return "CONT"
+    case edge_type.FORK_I:
+      return "FORK_I"
+    case edge_type.FORK_E:
+      return "FORK_E"
+    case edge_type.JOIN:
+      return "JOIN"
+    case edge_type.JOIN_E:
+      return "JOIN_E"
+    case edge_type.BARRIER:
+      return "BARRIER"
+    case edge_type.TARGET:
+      return "TARGET"
+    default:
+      return "unknown"
+  }
+}
 
 function get_edge_dash(e) {
   if (e.data === undefined) {
     return "0"
   }
 
-  if (e.data.edge_type === "FORK_I" || e.data.edge_type === "FORK_E") {
+  if (e.data.edge_type === edge_type.FORK_I || e.data.edge_type === edge_type.FORK_E) {
     return "4"
   }
 
-  if(e.data.edge_type === "JOIN" || e.data.edge_type === "JOIN_E" || e.data.edge_type === "BARRIER") {
+  if(e.data.edge_type === edge_type.JOIN || e.data.edge_type === edge_type.JOIN_E || e.data.edge_type === edge_type.BARRIER) {
     return "1,4"
   }
 
-  if (e.data.edge_type === "TARGET") {
+  if (e.data.edge_type === edge_type.TARGET) {
     return "20, 10";
   }
 }
 
 
 function get_edge_color(e) {
-  if (e.data != undefined && e.data.edge_type === "TARGET") {
+  if (e.data != undefined && e.data.edge_type === edge_type.TARGET) {
     return "pink";
   }
   return "black";
@@ -179,13 +244,6 @@ function get_node_opacity(n) {
 function get_node_id(n) {
   if (n.data != undefined && n.data.id != undefined) {
     return n.data.id;
-  }
-  return undefined;
-}
-
-function get_node_id_num(n) {
-  if (n.data != undefined && n.data.vertex_id != undefined) {
-    return n.data.vertex_id;
   }
   return undefined;
 }

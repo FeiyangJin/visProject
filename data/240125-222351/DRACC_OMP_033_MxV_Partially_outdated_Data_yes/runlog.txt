@@ -1,0 +1,32 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[target] scope begin 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b0400000090, size 8, to | alloc | associate | 
+[device_mem] original addr 0x7b1000000200, destination address 0x7b1000000280, size 64, to | alloc | associate | 
+[device_mem] original addr 0x7b0400000060, destination address 0x7b04000000d0, size 16, to | alloc | associate | 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_033_MxV_Partially_outdated_Data_yes.c, line: 34, col: 9 
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_033_MxV_Partially_outdated_Data_yes.c, line: 34, col: 9 
+writing to c[0], addr is 0x7b0400000090 
+writing to c[1], addr is 0x7b0400000094 
+writing to c[3], addr is 0x7b040000009c 
+writing to c[2], addr is 0x7b0400000098 
+[parallel_end] current node is 7, requested parallelsim is 8, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_033_MxV_Partially_outdated_Data_yes.c, line: 35, col: 13 
+[parallel_end] current node is 5, requested parallelsim is 8, [implicit_task] initial task end, parallel region is 0x7b0c0000c6f0, current step is 25 
+[parallel_end] current node is 3, requested parallelsim is 1, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_033_MxV_Partially_outdated_Data_yes.c, line: 41, col: 5 
+[device_mem] original addr 0x7b0400000060, destination address 0x7b04000000d0, size 16, release | disassociate | 
+[device_mem] original addr 0x7b1000000200, destination address 0x7b1000000280, size 64, release | disassociate | 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b0400000090, size 8, from | release | disassociate | 
+[target] scope end 
+c[0] on host has address 0x7b0400000070 
+c[1] on host has address 0x7b0400000074 
+c[2] on host has address 0x7b0400000078 
+c[3] on host has address 0x7b040000007c 
+Memory Access Issue visible: true
+[implicit_task] initial task end, parallel region is (nil), current step is 27 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 

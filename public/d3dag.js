@@ -458,7 +458,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                     return;
                   }
 
-                  const nodeIdNum = get_node_id_num(g.node(n)) + '';
+                  const nodeIdNum = get_node_id(g.node(n));
                   let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
                   if (index !== -1) 
                   {
@@ -482,7 +482,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 })
                 .on('mousemove', n => {
                   let text = 
-                  `<strong>this node ends with: <span class='colored-text'>${g.node(n).data.end_event}</span> </strong> <br>
+                  `<strong>this node ends with: <span class='colored-text'>${get_event_string(g.node(n).data.end_event)}</span> </strong> <br>
                    <strong>this node has a race: <span class='colored-text'>${(g.node(n).data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
                    <strong>stack: <span class="colored-text">${g.node(n).data.stack}</span> </strong> <br>`
                   
@@ -493,7 +493,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                   if (!dataMovementInfo) {
                     return;
                   }
-                  const nodeIdNum = get_node_id_num(g.node(n)) + '';
+                  const nodeIdNum = get_node_id(g.node(n));
                   const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
                   if (index !== -1) 
                   {
@@ -569,7 +569,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                   .y((p) => p.y)
                   .curve(d3.curveMonotoneY)(pts);
         })
-        .attr('class', e => get_edge_type(g.edge(e)))
+        .attr('class', e => get_edge_type_string(g.edge(e)))
         .attr('fill', 'none')
         .attr('stroke-width', 2)
         .attr('stroke', e => get_edge_color(g.edge(e)))

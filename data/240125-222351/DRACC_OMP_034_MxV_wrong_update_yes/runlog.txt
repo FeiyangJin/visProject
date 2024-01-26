@@ -1,0 +1,29 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 30, col: 5 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 43, col: 9 
+[parallel_end] current node is 5, requested parallelsim is 4, [target] scope begin 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b04000000a0, size 16, alloc | associate | 
+[device_mem] original addr 0x7b1000000200, destination address 0x7b1000000280, size 64, to | alloc | associate | 
+[device_mem] original addr 0x7b0400000060, destination address 0x7b04000000e0, size 16, to | alloc | associate | 
+[parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 42, col: 28 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 34, col: 17 
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 34, col: 17 
+[parallel_end] current node is 24, requested parallelsim is 8, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 35, col: 21 
+[parallel_end] current node is 22, requested parallelsim is 8, [implicit_task] initial task end, parallel region is 0x7b0c0000c720, current step is 42 
+[parallel_end] current node is 20, requested parallelsim is 1, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 41, col: 13 
+[device_mem] original addr 0x7b0400000060, destination address 0x7b04000000e0, size 16, release | disassociate | 
+[device_mem] original addr 0x7b1000000200, destination address 0x7b1000000280, size 64, release | disassociate | 
+[device_mem] original addr 0x7b0400000070, destination address 0x7b04000000a0, size 16, from | release | disassociate | 
+[target] scope end 
+[parallel_end] current node is 2, requested parallelsim is 2, [parallel_end] file: /home/fjin/playground/DRACC/DRACC_OMP_034_MxV_wrong_update_yes.c, line: 51, col: 5 
+Memory Access Issue visible: true
+[implicit_task] initial task end, parallel region is (nil), current step is 47 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.

@@ -1,0 +1,34 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 7, col: 3 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 10, col: 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 12, col: 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 14, col: 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 16, col: 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 18, col: 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 20, col: 5 
+[task_schedule] next task starting node 11 
+[task_schedule] next task starting node 13 
+[task_schedule] next task starting node 15 
+[task_schedule] previous task end node 11 @@@ [task_schedule] next task starting node 24 
+[task_schedule] previous task end node 15 @@@ [task_schedule] next task starting node 23 
+[task_schedule] previous task end node 13 @@@ [task_schedule] next task starting node 25 
+[task_schedule] next task starting node 19 
+[task_schedule] previous task end node 19 @@@ [task_schedule] next task starting node 26 
+[task_schedule] next task starting node 17 
+[task_schedule] previous task end node 17 @@@ [task_schedule] next task starting node 25 
+[task_schedule] next task starting node 21 
+[task_schedule] previous task end node 21 @@@ [task_schedule] next task starting node 26 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp, line: 7, col: 3 
+6
+[implicit_task] initial task end, parallel region is (nil), current step is 39 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp:19
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp:17
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp:17
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/example/taskdep-mutex-no.cpp:21

@@ -64,7 +64,6 @@ function handleJsonUpload(event){
             addZooming();
             addLegend();
             showBorder();
-            prepareDatamove(targetMovementData);
         };
 
         reader.readAsText(file);
@@ -97,7 +96,7 @@ function populateRefCount_dagre(n,g)
 function prepareGraph_dagre(jsonData){
     let json = JSON.parse(jsonData);
     let nodes = json['nodes'];
-    let edges = json['links'];
+    let edges = json['edges'];
 
     // Create a new directed graph 
     var g = new dagre.graphlib.Graph();
@@ -119,33 +118,13 @@ function prepareGraph_dagre(jsonData){
 
     for (const n of g.nodes()) {
         let node = g.node(n);
-        if (node.data.vertex_id === 1)
+        if (node.data.id === 1)
         {
             node.data.refCount = 1;
         }
         populateRefCount_dagre(n,g);
     }
     path = [];
-
-    // var copyg = dagre.graphlib.json.read(dagre.graphlib.json.write(g))
-    // const ranks = new Map();
-
-    // var currentRank = 0;
-    // var limit = copyg.nodeCount()
-
-    // while (ranks.size < limit){
-    //     sources = copyg.sources()
-    //     sources.forEach(node => {
-    //         ranks.set(node, currentRank)
-    //         copyg.removeNode(node)
-    //     });
-    //     currentRank += 1
-    // }
-
-    // for (let [key, value] of ranks) {
-    //     // console.log(`Key: ${key}, Value: ${value}`);
-    //     g.node(key).rank = value
-    // }
 
     return g;
 }
@@ -157,24 +136,6 @@ const text_x = symbol_x + 4 * radius;
 let current_y = symbol_x;
 const step_y = 30;
 
-function prepareDatamove(target_regions) {
-    /* If graph does not support target regions */
-    if (!target_regions) {
-        return;
-    }
-
-    for (const tr of target_regions) {
-        let begin_node = tr["begin_node"];
-        let end_node = tr["end_node"];
-
-        let data_movements = tr["datamove"];
-
-        for (const dm of data_movements) {
-            let orig_addr = dm["orig_address"];
-            get_move_type(dm["flag"]);
-        }
-    }
-}
 
 function addLegend() {
     let legend_svg = d3.select("#legend");
