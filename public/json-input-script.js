@@ -6,8 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     json_fileInput.addEventListener('change', handleJsonUpload);
 });
 
-let zoomData = 
+let zoomPanData = 
 {
+    isPanning: false,
+    prevX: 0,
+    prevY: 0,
+
+    x: 0,
+    y: 0,
     width: 0,
     height: 0
 };
@@ -16,34 +22,63 @@ function addZooming() {
     const svg = document.getElementById('svgJSON');
     const parentDiv = document.getElementsByClassName('graph-display')[0];
 
+    svg.addEventListener('mousemove', event => {
+        if (zoomPanData.isPanning)
+        {
+            const dx = event.clientX - zoomPanData.prevX;
+            const dy = event.clientY - zoomPanData.prevY;
+            zoomPanData.prevX = event.clientX;
+            zoomPanData.prevY = event.clientY;
+            zoomPanData.x -= Math.round(0.25 * (dx / parentDiv.clientWidth) * zoomPanData.width);
+            zoomPanData.y -= Math.round(0.25 * (dy / parentDiv.clientHeight) * zoomPanData.height);
+
+            //svg.setAttribute('viewBox', `${zoomPanData.x} ${zoomPanData.y} ${zoomPanData.width} ${zoomPanData.height}`);
+            parentDiv.scrollLeft = zoomPanData.x;
+            parentDiv.scrollTop = zoomPanData.y;
+        }
+    });
+
+    svg.addEventListener('mousedown', event => {
+        zoomPanData.isPanning = true;
+        zoomPanData.prevX = event.clientX;
+        zoomPanData.prevY = event.clientY;
+    });
+
+    svg.addEventListener('mouseup', event => {
+        zoomPanData.isPanning = false;
+    });
+
     svg.addEventListener('wheel', event => {
         const wheelDelta = Math.sign(event.wheelDelta);
 
         if (wheelDelta > 0) {
             // Zoom In
-            if (zoomData.width < 30 * parentDiv.clientWidth || zoomData.height < 30 * parentDiv.clientHeight) {
-                zoomData.width = zoomData.width * 1.1;
-                zoomData.height = zoomData.height * 1.1;
+            if (zoomPanData.width < 30 * parentDiv.clientWidth || zoomPanData.height < 30 * parentDiv.clientHeight) {
+                zoomPanData.width = zoomPanData.width * 1.1;
+                zoomPanData.height = zoomPanData.height * 1.1;
             }
         } else {
             // Zoom Out
-            if (zoomData.width > parentDiv.clientWidth || zoomData.height > parentDiv.clientHeight) {
-                zoomData.width = zoomData.width / 1.1;
-                zoomData.height = zoomData.height / 1.1;
+            if (zoomPanData.width > parentDiv.clientWidth || zoomPanData.height > parentDiv.clientHeight) {
+                zoomPanData.width = zoomPanData.width / 1.1;
+                zoomPanData.height = zoomPanData.height / 1.1;
             }
         }
-        svg.setAttribute('width', `${zoomData.width}`);
-        svg.setAttribute('height', `${zoomData.height}`);
+        svg.setAttribute('width', `${zoomPanData.width}`);
+        svg.setAttribute('height', `${zoomPanData.height}`);
     });
 
-    zoomData.width = svg.clientWidth;
-    zoomData.height = svg.clientHeight;
+    zoomPanData.width = svg.clientWidth;
+    zoomPanData.height = svg.clientHeight;
     svg.setAttribute('viewBox', `0 0 ${svg.clientWidth} ${svg.clientHeight}`);
-    svg.setAttribute('width', `${zoomData.width}`);
-    parentDiv.scrollLeft = Math.max((svg.clientWidth - parentDiv.clientWidth) / 2, 0);
+    svg.setAttribute('width', `${zoomPanData.width}`);
+    svg.setAttribute('height', `${zoomPanData.height}`);
 
-    svg.setAttribute('height', `${zoomData.height}`);
-    parentDiv.scrollTop = Math.max((svg.clientHeight - parentDiv.clientWidth) / 2, 0);
+    zoomPanData.x = Math.max((svg.clientWidth - parentDiv.clientWidth) / 2, 0);
+    zoomPanData.y = Math.max((svg.clientHeight - parentDiv.clientHeight) / 2, 0);
+
+    parentDiv.scrollLeft = zoomPanData.x;
+    parentDiv.scrollTop = zoomPanData.y;
 }
 
 function handleJsonUpload(event){
