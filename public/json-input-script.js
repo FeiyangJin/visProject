@@ -97,6 +97,19 @@ function prepareGraph_dagre(jsonData){
     let json = JSON.parse(jsonData);
     let nodes = json['nodes'];
     let edges = json['edges'];
+    let races = json['races'];
+    let files = json['files'];
+
+    if(files && Object.keys(files).length > 0){
+        var firstKey = Object.keys(files)[0];
+        const firstValue = files[firstKey];
+
+        const formattedValue = '<pre>' + firstValue + '</pre>'; // wrap the string in <pre> tags
+        d3.select("#source-code-text").html(formattedValue); // use .html() instead of .text()
+    }
+    else{
+        d3.select("#source-code-text").html("source code will be here");
+    }
 
     // Create a new directed graph 
     var g = new dagre.graphlib.Graph();

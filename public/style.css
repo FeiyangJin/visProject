@@ -29,7 +29,20 @@
 }
 
 .graph-display {
-  width: 70%;
+  width: 50%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+  padding: 5px;
+
+  border-style: solid;
+  border-color: transparent;
+  border-width: 3px;
+  border-radius: 15px;
+}
+
+.text-display{
+  width: 30%;
   overflow-x: scroll;
   overflow-y: scroll;
 
@@ -44,7 +57,7 @@
 .sidebar-display {
   flex-direction: column;
   display: flex;
-  width: 30%;
+  width: 20%;
 }
 
 #page-layout {

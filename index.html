@@ -15,21 +15,7 @@
     <div id="page-layout">
       <div class="title-display">
         <h1> Computation Graph Visualization </h1>
-      </div>  
-      <!---
-      <label> json upload here</label><br><br>
-      <input type="file" id="json_fileInput" accept=".json"><br><br>
-      -->
-
-      <!--
-      <svg id="svg">
-          <g transform="translate(2, 2)">
-            <defs id="defs" />
-            <g id = "links" />
-            <g id = "nodes" />
-          </g>
-      </svg>
-      -->
+      </div>
 
       <div class="main-display">
         <div class="graph-display">
@@ -42,17 +28,20 @@
           </svg>
         </div>
 
+        <div class="text-display">
+            <g id="source-code-display">
+              <div id="source-code-text" style="font-size: 15px; font-family: monospace; color: black;">
+                source code will be displayed here
+              </div>
+            </g>
+        </div>
+
         <div class="sidebar-display">
           <div>
             <svg id="legend">
             </svg>
           </div>
           <div id="memory-vis">
-            <!--
-            <svg id="memory-vis-header">
-              <g id="header-display"/>
-            </svg>
-            -->
             <div id="memory-vis-header-wrapper">
               <h2 id="memory-vis-header">Data Movements</h2>
               <div id="memory-vis-header-subheading">
@@ -69,6 +58,7 @@
           </div>
         </div>
       </div>
+
       <div id="footer">
         <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
         <div id="data-upload-region">
@@ -77,6 +67,7 @@
           <input type="button" id="json_fileInput" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
         </div>
       </div>
+
     </div>
     <script src="public/d3dag_util.js"></script>
     <script src="public/d3dag.js"></script>
