@@ -77,19 +77,54 @@ function extractTargetMovementData(jsonData) {
 }
 
 
-function populateRefCount_dagre(n,g) 
+function populateRefCount_dagre(nodeId, g) 
 {
-    if (path.includes(n)) {
+    if (path.includes(nodeId)) {
         return;
     }
-    path.push(n);
+    path.push(nodeId);
 
-    for (const child of g.successors(n)) 
+    for (const childId of g.successors(nodeId)) 
     {
-        g.node(child).data.refCount++;
-        populateRefCount_dagre(child,g);
+        const childNode = g.node(childId);
+        if (!childNode.data.hidden) {
+            childNode.data.refCount++;
+            populateRefCount_dagre(childId, g);
+        }
     }
-    //path.pop();
+}
+
+function showNode(nodeId, g)
+{
+    const node = g.node(nodeId);
+    if (!node.data.hidden) {
+        return;
+    }
+    node.data.hidden = false;
+    for (const inEdgeId of g.inEdges(nodeId)) {
+        const inEdge = g.edge(inEdgeId);
+        inEdge.data.hidden = false;
+    }
+
+    for (const childId of g.predecessors(nodeId)) {
+        showNode(childId, g);
+    }
+}
+
+function showChildren(nodeId, g)
+{
+    for (const childId of g.successors(nodeId))
+    {
+        const childNode = g.node(childId);
+        childNode.data.hidden = false;
+        childNode.data.active = false;
+    }
+
+    for (const outEdgeId of g.outEdges(nodeId))
+    {
+        const outEdge = g.edge(outEdgeId);
+        outEdge.data.hidden = false;
+    }
 }
 
 
@@ -120,13 +155,24 @@ function prepareGraph_dagre(jsonData){
     // Default to assigning a new object as a label for each new edge.
     g.setDefaultEdgeLabel(function() { return {}; });
 
-    for (const node of nodes){
+    for (const node of nodes) {
+        node['hidden'] = true;
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
         g.node(node.id).data.refCount = 0;
     }
 
-    for (const edge of edges){
-        g.setEdge(edge.source, edge.target, {data:edge})
+    for (const edge of edges) {
+        edge['hidden'] = true;
+        g.setEdge(edge.source, edge.target, {data:edge});
+    }
+
+    if (races)
+    {
+        for (const race of races)
+        {
+            showNode(race.current, g);
+            showChildren(race.current, g);
+        }
     }
 
     for (const n of g.nodes()) {
@@ -137,8 +183,14 @@ function prepareGraph_dagre(jsonData){
         }
         populateRefCount_dagre(n,g);
     }
-    path = [];
 
+    for (const nodeId of g.nodes())
+    {
+        const node = g.node(nodeId);
+        console.log(nodeId + ": " + node.data.refCount);
+    }
+
+    path = [];
     return g;
 }
 

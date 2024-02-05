@@ -44,6 +44,7 @@ function decrement_refcount_dagre(n, g, depth = 0) {
 
 
 function increment_refcount_dagre(n, g, depth = 0) {
+  console.log("Called on " + n);
   if (path.includes(n.data.id))
   {
     return;
@@ -513,7 +514,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 .attr('font-size', 'xx-small')
                 .style('pointer-events', 'none');
 
-              enter.transition(trans).attr('opacity', 1);
+              enter.transition(trans).attr('opacity', n => get_node_opacity(g.node(n)));
 
               enter.filter(n => g.node(n).data.has_race == 1)
               .append('circle')
