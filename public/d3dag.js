@@ -482,8 +482,8 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 })
                 .on('mousemove', n => {
                   let text = 
-                  `<strong>this node ends with: <span class='colored-text'>${get_event_string(g.node(n).data.end_event)}</span> </strong> <br>
-                   <strong>this node has a race: <span class='colored-text'>${(g.node(n).data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
+                  `<strong>This Node Ends with: <span class='colored-text'>${get_event_string(g.node(n).data.end_event)}</span> </strong> <br>
+                   <strong>This Node Has a race: <span class='colored-text'>${(g.node(n).data.has_race) ? 'YES' : 'NO'}</span> </strong> <br>
                    <strong>stack: <span class="colored-text">${g.node(n).data.stack}</span> </strong> <br>`
                   
                   tooltip.html(text)
@@ -606,4 +606,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
       })
       .on('end', repeat);
   });
+
+  const sourceCodeDisplay = document.getElementById('source-code-display');
+  console.log(sourceCodeDisplay.value);
 }

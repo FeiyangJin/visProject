@@ -92,6 +92,29 @@ function populateRefCount_dagre(n,g)
     //path.pop();
 }
 
+function styleCodeEditor(initialValue)
+{
+    const sourceCodeDisplay = document.getElementById('source-code-display');
+    const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
+        lineNumbers: true,
+        gutter: true,
+        lineWrapping: true,
+        readOnly: true,
+        mode: "text/x-csrc"
+    });
+    editor.getDoc().setValue(initialValue);
+    sourceCodeDisplay.style.disabled = true;
+}
+
+function parseFileInfoForSourceLine(fileInfo)
+{
+    const startColonIndex = fileInfo.indexOf(':');
+    const endColonIndex = fileInfo.indexOf(':', startColonIndex + 1);
+    const sourceLine = fileInfo.substring(startColonIndex + 1, endColonIndex) - 0;
+    console.log(sourceLine);
+    return sourceLine;
+}
+
 
 function prepareGraph_dagre(jsonData){
     let json = JSON.parse(jsonData);
@@ -105,10 +128,12 @@ function prepareGraph_dagre(jsonData){
         const firstValue = files[firstKey];
 
         const formattedValue = '<pre>' + firstValue + '</pre>'; // wrap the string in <pre> tags
-        d3.select("#source-code-text").html(formattedValue); // use .html() instead of .text()
+        //d3.select("#source-code-text").html(formattedValue); // use .html() instead of .text()
+        styleCodeEditor(firstValue);
     }
     else{
-        d3.select("#source-code-text").html("source code will be here");
+        //d3.select("#source-code-text").html("source code will be here");
+        styleCodeEditor(firstvalue);
     }
 
     // Create a new directed graph 
@@ -123,6 +148,10 @@ function prepareGraph_dagre(jsonData){
     for (const node of nodes){
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
         g.node(node.id).data.refCount = 0;
+        if (node['has_race']) {
+            node['source_line'] = parseFileInfoForSourceLine(node['stack']);
+            
+        }
     }
 
     for (const edge of edges){
@@ -338,4 +367,7 @@ function addLegend() {
 function showBorder() {
     const svgParentDiv = document.getElementsByClassName('graph-display')[0];
     svgParentDiv.style.borderColor = 'black';
+
+    const codeDisplayDiv = document.getElementById('source-code-wrapper');
+    codeDisplayDiv.style.borderColor = 'black';
 }

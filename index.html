@@ -9,6 +9,10 @@
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="public/dagre.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script>
+    
 </head>
 
 <body>
@@ -28,12 +32,8 @@
           </svg>
         </div>
 
-        <div class="text-display">
-            <g id="source-code-display">
-              <div id="source-code-text" style="font-size: 15px; font-family: monospace; color: black;">
-                source code will be displayed here
-              </div>
-            </g>
+        <div id="source-code-wrapper" style="font-size: 15px; font-family: monospace; color: black;">
+          <textarea id="source-code-display"></textarea>
         </div>
 
         <div class="sidebar-display">
