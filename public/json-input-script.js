@@ -1,6 +1,8 @@
 let dag;
 let path = [];
 
+let codeEditor = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
     json_fileInput.addEventListener('change', handleJsonUpload);
@@ -60,7 +62,7 @@ function handleJsonUpload(event){
             setupSVG(svgID);
             
             const targetMovementData = extractTargetMovementData(jsonData);
-            visualizeDAG_dagre(dag, svgID, targetMovementData);
+            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor);
             addZooming();
             addLegend();
             showBorder();
@@ -89,21 +91,24 @@ function populateRefCount_dagre(n,g)
         g.node(child).data.refCount++;
         populateRefCount_dagre(child,g);
     }
-    //path.pop();
 }
 
 function styleCodeEditor(initialValue)
 {
     const sourceCodeDisplay = document.getElementById('source-code-display');
-    const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
-        lineNumbers: true,
-        gutter: true,
-        lineWrapping: true,
-        readOnly: true,
-        mode: "text/x-csrc"
-    });
-    editor.getDoc().setValue(initialValue);
-    sourceCodeDisplay.style.disabled = true;
+    if (codeEditor == null) {
+        const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
+            lineNumbers: true,
+            gutter: true,
+            lineWrapping: false,
+            readOnly: true,
+            matchBrackets: true,
+            styleSelectedTest: true,
+            mode: 'text/x-csrc'
+        });
+        codeEditor = editor;
+    }
+    codeEditor.getDoc().setValue(initialValue);
 }
 
 function parseFileInfoForSourceLine(fileInfo)
@@ -111,10 +116,56 @@ function parseFileInfoForSourceLine(fileInfo)
     const startColonIndex = fileInfo.indexOf(':');
     const endColonIndex = fileInfo.indexOf(':', startColonIndex + 1);
     const sourceLine = fileInfo.substring(startColonIndex + 1, endColonIndex) - 0;
-    console.log(sourceLine);
     return sourceLine;
 }
 
+function dataRaceButton(race)
+{
+    let button = document.createElement('button');
+    button.textContent = "Node " + race;
+    button.style = 'margin: 5px; padding: 5px;'
+    button.onclick = (e) => { 
+        const node = dag.node(race);
+
+        if (prevErrorLine != -1) {
+            codeEditor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
+            prevErrorLine = -1;
+        }
+        
+        let selectionNotice = d3.select('#selection-notice');
+        if (node.data.source_line) {
+            const errorLine = node.data.source_line - 1;
+            codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+            let t = codeEditor.charCoords({line: errorLine, ch: 0}, 'local').top;
+            let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
+            codeEditor.scrollTo(null, t - middleHeight - 5);
+            prevErrorLine = errorLine;
+            selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
+        } else {
+            selectionNotice.html(`The selected node ${race} has no associated stack information`);
+        }
+    }
+    return button;
+}
+
+function constructDataRaceButtons(races)
+{
+    const dataRaceButtonDiv = document.getElementById('data-race-buttons');
+    dataRaceButtonDiv.innerHTML = '';
+    let seen = [];
+    for (const race of races)
+    {
+        if (seen.indexOf(race['current']) == -1) {
+            dataRaceButtonDiv.appendChild(dataRaceButton(race['current']));
+            seen.push(race['current']);
+        }
+
+        if (seen.indexOf(race['prev']) == -1) {
+            dataRaceButtonDiv.appendChild(dataRaceButton(race['prev']));
+            seen.push(race['prev']);
+        }
+    }
+}
 
 function prepareGraph_dagre(jsonData){
     let json = JSON.parse(jsonData);
@@ -123,16 +174,12 @@ function prepareGraph_dagre(jsonData){
     let races = json['races'];
     let files = json['files'];
 
+    let firstValue = null;
     if(files && Object.keys(files).length > 0){
         var firstKey = Object.keys(files)[0];
-        const firstValue = files[firstKey];
-
-        const formattedValue = '<pre>' + firstValue + '</pre>'; // wrap the string in <pre> tags
-        //d3.select("#source-code-text").html(formattedValue); // use .html() instead of .text()
+        firstValue = files[firstKey];
         styleCodeEditor(firstValue);
-    }
-    else{
-        //d3.select("#source-code-text").html("source code will be here");
+    } else {
         styleCodeEditor(firstvalue);
     }
 
@@ -146,11 +193,14 @@ function prepareGraph_dagre(jsonData){
     g.setDefaultEdgeLabel(function() { return {}; });
 
     for (const node of nodes){
-        g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
+        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}})
         g.node(node.id).data.refCount = 0;
         if (node['has_race']) {
-            node['source_line'] = parseFileInfoForSourceLine(node['stack']);
-            
+            if (node['stack'].length) {
+                node['source_line'] = parseFileInfoForSourceLine(node['stack']);
+            } else {
+                node['source_line'] = null;
+            }
         }
     }
 
@@ -168,6 +218,7 @@ function prepareGraph_dagre(jsonData){
     }
     path = [];
 
+    constructDataRaceButtons(races);
     return g;
 }
 

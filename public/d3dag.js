@@ -417,11 +417,46 @@ function populateIndices(datamove) {
   }
 }
 
-//setupSVG("#svg");
-//visualizeDAG(dag_initial_graph,"#svg");
+let prevErrorLine = -1;
+
+function enteredRaceNode(g, nodeId, editor)
+{
+  const node = g.node(nodeId);
+  if (!node.data.has_race) {
+    return;
+  }
+  
+  let selectionNotice = d3.select('#selection-notice');
+  if (node.data.source_line) {
+    const errorLine = node.data.source_line - 1;
+    editor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+    let t = editor.charCoords({line: errorLine, ch: 0}, 'local').top;
+    let middleHeight = editor.getScrollerElement().offsetHeight / 2;
+    editor.scrollTo(null, t - middleHeight - 5);
+    prevErrorLine = errorLine;
+    selectionNotice.html(`Offending lines corresponding to node ${nodeId} highlighted in red.`)
+  } else {
+    selectionNotice.html(`The selected node ${nodeId} has no associated stack information`);
+  }
+}
+
+function exitedRaceNode(g, nodeId, editor)
+{
+  const node = g.node(nodeId);
+  if (!node.data.has_race) {
+    return;
+  }
+  
+  if (prevErrorLine != -1) {
+    editor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
+    prevErrorLine = -1;
+  }
+  let selectionNotice = d3.select('#selection-notice');
+  selectionNotice.html('No node selected');
+}
 
 
-function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
+function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
   dagre.layout(g);
   const width = g.graph().width;
   const height = g.graph().height;
@@ -454,6 +489,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 .attr('fill', n => get_node_color(g.node(n)))
                 .on('mouseover', n => {
                   tooltip.style('visibility', 'visible');
+                  enteredRaceNode(g, n, codeEditor);
                   if (!dataMovementInfo) {
                     return;
                   }
@@ -490,6 +526,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 })
                 .on('mouseout', n => {
                   tooltip.style('visibility', 'hidden');
+                  exitedRaceNode(g, n, codeEditor);
                   if (!dataMovementInfo) {
                     return;
                   }
@@ -608,5 +645,4 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
   });
 
   const sourceCodeDisplay = document.getElementById('source-code-display');
-  console.log(sourceCodeDisplay.value);
 }
