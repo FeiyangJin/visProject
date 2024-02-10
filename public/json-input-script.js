@@ -97,6 +97,7 @@ function styleCodeEditor(initialValue)
 {
     const sourceCodeDisplay = document.getElementById('source-code-display');
     if (codeEditor == null) {
+        const sourceCodeWrapper = document.getElementById('source-code-wrapper');
         const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
             lineNumbers: true,
             gutter: true,
@@ -106,6 +107,7 @@ function styleCodeEditor(initialValue)
             styleSelectedTest: true,
             mode: 'text/x-csrc'
         });
+        editor.setSize(sourceCodeWrapper.clientWidth, sourceCodeWrapper.clientHeight);
         codeEditor = editor;
     }
     codeEditor.getDoc().setValue(initialValue);
