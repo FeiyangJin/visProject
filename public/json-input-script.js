@@ -186,6 +186,10 @@ function prepareGraph_dagre(jsonData){
             showChildren(race.prev, g);
         }
     }
+    else{
+        showNode(1, g);
+        g.node(1).data.active = false;
+    }
 
     for (const n of g.nodes()) {
         let node = g.node(n);
@@ -196,11 +200,11 @@ function prepareGraph_dagre(jsonData){
         populateRefCount_dagre(n,g);
     }
 
-    for (const nodeId of g.nodes())
-    {
-        const node = g.node(nodeId);
-        console.log(nodeId + ": " + node.data.refCount);
-    }
+    // for (const nodeId of g.nodes())
+    // {
+    //     const node = g.node(nodeId);
+    //     console.log(nodeId + ": " + node.data.refCount);
+    // }
 
     path = [];
     return g;
