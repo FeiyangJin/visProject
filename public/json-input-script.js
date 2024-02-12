@@ -1,5 +1,6 @@
 let dag;
 let path = [];
+const rootId = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
@@ -77,19 +78,58 @@ function extractTargetMovementData(jsonData) {
 }
 
 
-function populateRefCount_dagre(n,g) 
+function populateRefCount_dagre(nodeId, g) 
 {
-    if (path.includes(n)) {
+    const node = g.node(nodeId);
+    if (node.data.hidden) {
         return;
     }
-    path.push(n);
 
-    for (const child of g.successors(n)) 
-    {
-        g.node(child).data.refCount++;
-        populateRefCount_dagre(child,g);
+    if (path.includes(nodeId)) {
+        return;
     }
-    //path.pop();
+    path.push(nodeId);
+
+    for (const childId of g.successors(nodeId)) 
+    {
+        const childNode = g.node(childId);
+        if (!childNode.data.hidden) {
+            childNode.data.refCount += 1;
+            populateRefCount_dagre(childId, g);
+        }
+    }
+}
+
+function showNode(nodeId, g)
+{
+    const node = g.node(nodeId);
+    node.data.hidden = false;
+    for (const inEdgeId of g.inEdges(nodeId)) {
+        const inEdge = g.edge(inEdgeId);
+        inEdge.data.hidden = false;
+    }
+
+    for (const childId of g.predecessors(nodeId)) {
+        showNode(childId, g);
+    }
+}
+
+function showChildren(nodeId, g)
+{
+    for (const childId of g.successors(nodeId))
+    {
+        const childNode = g.node(childId);
+        const originalVisibility = childNode.data.hidden;
+        childNode.data.hidden = false;
+        if (!childNode.data.has_race && originalVisibility && g.successors(childId).length)
+            childNode.data.active = false;
+    }
+
+    for (const outEdgeId of g.outEdges(nodeId))
+    {
+        const outEdge = g.edge(outEdgeId);
+        outEdge.data.hidden = false;
+    }
 }
 
 
@@ -120,13 +160,38 @@ function prepareGraph_dagre(jsonData){
     // Default to assigning a new object as a label for each new edge.
     g.setDefaultEdgeLabel(function() { return {}; });
 
-    for (const node of nodes){
+    for (const node of nodes) {
+        node['hidden'] = true;
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
         g.node(node.id).data.refCount = 0;
     }
 
-    for (const edge of edges){
-        g.setEdge(edge.source, edge.target, {data:edge})
+    for (const edge of edges) {
+        edge['hidden'] = true;
+        g.setEdge(edge.source, edge.target, {data:edge});
+    }
+
+    if (races)
+    {
+        let visited = [];
+        for (const race of races)
+        {
+            if (visited.includes(race.current)) {
+                continue;
+            }
+            visited.push(race.current);
+
+            showNode(race.current, g);
+            showChildren(race.current, g);
+
+            showNode(race.prev, g);
+            showChildren(race.prev, g);
+        }
+        showChildren(rootId, g);
+    }
+    else {
+        showNode(rootId, g);
+        g.node(rootId).data.active = false;
     }
 
     for (const n of g.nodes()) {
@@ -137,8 +202,8 @@ function prepareGraph_dagre(jsonData){
         }
         populateRefCount_dagre(n,g);
     }
-    path = [];
 
+    path = [];
     return g;
 }
 

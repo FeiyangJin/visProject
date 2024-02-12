@@ -12,7 +12,6 @@ function decrement_refcount_dagre(n, g, depth = 0) {
 
   if (path.includes(n.data.id))
   {
-    console.log('Cycle detected');
     return;
   }
   path.push(n.data.id);
@@ -419,16 +418,23 @@ function populateIndices(datamove) {
 
 //setupSVG("#svg");
 //visualizeDAG(dag_initial_graph,"#svg");
-
+let first = true;
 
 function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
   dagre.layout(g);
   const width = g.graph().width;
   const height = g.graph().height;
 
-  const svg = d3.select(svgID)
-  .attr('width', width)
-  .attr('height', height);
+  console.log(width)
+  console.log(height);
+
+  const svg = d3.select(svgID);
+
+  if (first) {
+    svg.attr('width', width)
+    svg.attr('height', height);
+    first = false;
+  }
   
   const trans = svg.transition().duration(300);
 
@@ -513,7 +519,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
                 .attr('font-size', 'xx-small')
                 .style('pointer-events', 'none');
 
-              enter.transition(trans).attr('opacity', 1);
+              enter.transition(trans).attr('opacity', n => get_node_opacity(g.node(n)));
 
               enter.filter(n => g.node(n).data.has_race == 1)
               .append('circle')
@@ -538,7 +544,6 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
         .attr('fill', n => get_node_color(g.node(n)))
 
         update.transition(trans)
-        .selectAll('circle')
         .attr('opacity', n => get_node_opacity(g.node(n)))
 
         update.filter(n => g.node(n).data.hidden)
