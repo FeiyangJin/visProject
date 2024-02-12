@@ -1,0 +1,62 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c, line: 23, col: 3 
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c, line: 23, col: 3 
+[parallel_end] current node is 6, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c, line: 24, col: 8 
+[parallel_end] current node is 4, requested parallelsim is 8, [implicit_task] initial task end, parallel region is 0x7b0c0000bc70, current step is 32 
+[parallel_end] current node is 2, requested parallelsim is 1, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c, line: 23, col: 61 
+100
+[implicit_task] initial task end, parallel region is (nil), current step is 33 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=7671)
+  Read of size 4 at 0x7f4ce75b25cc by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:57 (DRB145-atomiccritical-orig-gpu-no+0xd1c9a)
+
+  Previous write of size 4 at 0x7f4ce75b25cc by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:55 (DRB145-atomiccritical-orig-gpu-no+0xd1caf)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=7677, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB145-atomiccritical-orig-gpu-no+0x4dd9d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 __omp_offloading_811_30011a3_main_l22 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1e75)
+    #3 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1603)
+
+  Thread T6 (tid=7679, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB145-atomiccritical-orig-gpu-no+0x4dd9d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 __omp_offloading_811_30011a3_main_l22 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1e75)
+    #3 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1603)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:57 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23
+==================
+WARNING: ThreadSanitizer: data race (pid=7671)
+  Read of size 4 at 0x7f4ce95ba4cc by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:57 (DRB145-atomiccritical-orig-gpu-no+0xd1c9a)
+
+  Previous write of size 4 at 0x7f4ce95ba4cc by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:55 (DRB145-atomiccritical-orig-gpu-no+0xd1caf)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=7675, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB145-atomiccritical-orig-gpu-no+0x4dd9d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 __omp_offloading_811_30011a3_main_l22 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1e75)
+    #3 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:22:3 (DRB145-atomiccritical-orig-gpu-no+0xd1603)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23:57 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB145-atomiccritical-orig-gpu-no.c:23
+ThreadSanitizer: reported 2 warnings

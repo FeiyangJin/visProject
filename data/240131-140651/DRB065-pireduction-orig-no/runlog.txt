@@ -1,0 +1,52 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c, line: 61, col: 1 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c, line: 67, col: 11 
+PI=3.141593
+[implicit_task] initial task end, parallel region is (nil), current step is 27 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=7904)
+  Read of size 8 at 0x7f8b6a4b25c0 by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:38 (DRB065-pireduction-orig-no+0xd1ade)
+
+  Previous write of size 8 at 0x7f8b6a4b25c0 by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:36 (DRB065-pireduction-orig-no+0xd1af9)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=7912, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB065-pireduction-orig-no+0x4dd8d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+  Thread T6 (tid=7914, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB065-pireduction-orig-no+0x4dd8d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:38 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=7904)
+  Read of size 8 at 0x7f8b6c4ba4c0 by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:38 (DRB065-pireduction-orig-no+0xd1ade)
+
+  Previous write of size 8 at 0x7f8b6c4ba4c0 by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:36 (DRB065-pireduction-orig-no+0xd1af9)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=7910, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB065-pireduction-orig-no+0x4dd8d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61:38 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB065-pireduction-orig-no.c:61
+ThreadSanitizer: reported 2 warnings

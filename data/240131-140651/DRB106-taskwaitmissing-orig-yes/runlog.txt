@@ -1,0 +1,2037 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 79, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 10 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 14 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 18 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 22 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 26 
+[task_schedule] previous task end node 26 @@@ [task_schedule] next task starting node 27 
+[task_schedule] next task starting node 24 
+[task_schedule] previous task end node 24 @@@ [task_schedule] next task starting node 27 
+[task_schedule] previous task end node 31 @@@ [task_schedule] next task starting node 23 
+[task_schedule] next task starting node 20 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 34 
+[task_schedule] previous task end node 34 @@@ [task_schedule] next task starting node 35 
+[task_schedule] next task starting node 32 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 38 
+[task_schedule] previous task end node 38 @@@ [task_schedule] next task starting node 39 
+[task_schedule] next task starting node 36 
+[task_schedule] previous task end node 36 @@@ [task_schedule] next task starting node 39 
+[task_schedule] previous task end node 40 @@@ [task_schedule] next task starting node 35 
+[task_schedule] previous task end node 41 @@@ [task_schedule] next task starting node 23 
+[task_schedule] previous task end node 42 @@@ [task_schedule] next task starting node 19 
+[task_schedule] next task starting node 16 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 45 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 49 
+[task_schedule] previous task end node 49 @@@ [task_schedule] next task starting node 50 
+[task_schedule] next task starting node 47 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 53 
+[task_schedule] previous task end node 53 @@@ [task_schedule] next task starting node 54 
+[task_schedule] next task starting node 51 
+[task_schedule] previous task end node 51 @@@ [task_schedule] next task starting node 54 
+[task_schedule] previous task end node 55 @@@ [task_schedule] next task starting node 50 
+[task_schedule] previous task end node 56 @@@ [task_schedule] next task starting node 46 
+[task_schedule] next task starting node 43 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 59 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 63 
+[task_schedule] previous task end node 63 @@@ [task_schedule] next task starting node 64 
+[task_schedule] next task starting node 61 
+[task_schedule] previous task end node 61 @@@ [task_schedule] next task starting node 64 
+[task_schedule] previous task end node 65 @@@ [task_schedule] next task starting node 60 
+[task_schedule] next task starting node 57 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 68 
+[task_schedule] previous task end node 68 @@@ [task_schedule] next task starting node 69 
+[task_schedule] next task starting node 66 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 72 
+[task_schedule] previous task end node 72 @@@ [task_schedule] next task starting node 73 
+[task_schedule] next task starting node 70 
+[task_schedule] previous task end node 70 @@@ [task_schedule] next task starting node 73 
+[task_schedule] previous task end node 74 @@@ [task_schedule] next task starting node 69 
+[task_schedule] previous task end node 75 @@@ [task_schedule] next task starting node 60 
+[task_schedule] previous task end node 76 @@@ [task_schedule] next task starting node 46 
+[task_schedule] previous task end node 77 @@@ [task_schedule] next task starting node 19 
+[task_schedule] previous task end node 78 @@@ [task_schedule] next task starting node 15 
+[task_schedule] next task starting node 12 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 81 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 85 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 89 
+[task_schedule] previous task end node 89 @@@ [task_schedule] next task starting node 90 
+[task_schedule] next task starting node 87 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 93 
+[task_schedule] previous task end node 93 @@@ [task_schedule] next task starting node 94 
+[task_schedule] next task starting node 91 
+[task_schedule] previous task end node 91 @@@ [task_schedule] next task starting node 94 
+[task_schedule] previous task end node 95 @@@ [task_schedule] next task starting node 90 
+[task_schedule] previous task end node 96 @@@ [task_schedule] next task starting node 86 
+[task_schedule] next task starting node 83 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 99 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 103 
+[task_schedule] previous task end node 103 @@@ [task_schedule] next task starting node 104 
+[task_schedule] next task starting node 101 
+[task_schedule] previous task end node 101 @@@ [task_schedule] next task starting node 104 
+[task_schedule] previous task end node 105 @@@ [task_schedule] next task starting node 100 
+[task_schedule] next task starting node 97 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 108 
+[task_schedule] previous task end node 108 @@@ [task_schedule] next task starting node 109 
+[task_schedule] next task starting node 106 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 112 
+[task_schedule] previous task end node 112 @@@ [task_schedule] next task starting node 113 
+[task_schedule] next task starting node 110 
+[task_schedule] previous task end node 110 @@@ [task_schedule] next task starting node 113 
+[task_schedule] previous task end node 114 @@@ [task_schedule] next task starting node 109 
+[task_schedule] previous task end node 115 @@@ [task_schedule] next task starting node 100 
+[task_schedule] previous task end node 116 @@@ [task_schedule] next task starting node 86 
+[task_schedule] previous task end node 117 @@@ [task_schedule] next task starting node 82 
+[task_schedule] next task starting node 79 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 120 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 124 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 128 
+[task_schedule] previous task end node 128 @@@ [task_schedule] next task starting node 129 
+[task_schedule] next task starting node 126 
+[task_schedule] previous task end node 126 @@@ [task_schedule] next task starting node 129 
+[task_schedule] previous task end node 130 @@@ [task_schedule] next task starting node 125 
+[task_schedule] next task starting node 122 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 133 
+[task_schedule] previous task end node 133 @@@ [task_schedule] next task starting node 134 
+[task_schedule] next task starting node 131 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 137 
+[task_schedule] previous task end node 137 @@@ [task_schedule] next task starting node 138 
+[task_schedule] next task starting node 135 
+[task_schedule] previous task end node 135 @@@ [task_schedule] next task starting node 138 
+[task_schedule] previous task end node 139 @@@ [task_schedule] next task starting node 134 
+[task_schedule] previous task end node 140 @@@ [task_schedule] next task starting node 125 
+[task_schedule] previous task end node 141 @@@ [task_schedule] next task starting node 121 
+[task_schedule] next task starting node 118 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 144 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 148 
+[task_schedule] previous task end node 148 @@@ [task_schedule] next task starting node 149 
+[task_schedule] next task starting node 146 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 152 
+[task_schedule] previous task end node 152 @@@ [task_schedule] next task starting node 153 
+[task_schedule] next task starting node 150 
+[task_schedule] previous task end node 150 @@@ [task_schedule] next task starting node 153 
+[task_schedule] previous task end node 154 @@@ [task_schedule] next task starting node 149 
+[task_schedule] previous task end node 155 @@@ [task_schedule] next task starting node 145 
+[task_schedule] next task starting node 142 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 158 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 162 
+[task_schedule] previous task end node 162 @@@ [task_schedule] next task starting node 163 
+[task_schedule] next task starting node 160 
+[task_schedule] previous task end node 160 @@@ [task_schedule] next task starting node 163 
+[task_schedule] previous task end node 164 @@@ [task_schedule] next task starting node 159 
+[task_schedule] next task starting node 156 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 167 
+[task_schedule] previous task end node 167 @@@ [task_schedule] next task starting node 168 
+[task_schedule] next task starting node 165 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 171 
+[task_schedule] previous task end node 171 @@@ [task_schedule] next task starting node 172 
+[task_schedule] next task starting node 169 
+[task_schedule] previous task end node 169 @@@ [task_schedule] next task starting node 172 
+[task_schedule] previous task end node 173 @@@ [task_schedule] next task starting node 168 
+[task_schedule] previous task end node 174 @@@ [task_schedule] next task starting node 159 
+[task_schedule] previous task end node 175 @@@ [task_schedule] next task starting node 145 
+[task_schedule] previous task end node 176 @@@ [task_schedule] next task starting node 121 
+[task_schedule] previous task end node 177 @@@ [task_schedule] next task starting node 82 
+[task_schedule] previous task end node 178 @@@ [task_schedule] next task starting node 15 
+[task_schedule] previous task end node 179 @@@ [task_schedule] next task starting node 11 
+[task_schedule] next task starting node 7 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 182 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 186 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 190 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 194 
+[task_schedule] previous task end node 194 @@@ [task_schedule] next task starting node 195 
+[task_schedule] next task starting node 192 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 198 
+[task_schedule] previous task end node 198 @@@ [task_schedule] next task starting node 199 
+[task_schedule] next task starting node 196 
+[task_schedule] previous task end node 196 @@@ [task_schedule] next task starting node 199 
+[task_schedule] previous task end node 200 @@@ [task_schedule] next task starting node 195 
+[task_schedule] previous task end node 201 @@@ [task_schedule] next task starting node 191 
+[task_schedule] next task starting node 188 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 204 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 208 
+[task_schedule] previous task end node 208 @@@ [task_schedule] next task starting node 209 
+[task_schedule] next task starting node 206 
+[task_schedule] previous task end node 206 @@@ [task_schedule] next task starting node 209 
+[task_schedule] previous task end node 210 @@@ [task_schedule] next task starting node 205 
+[task_schedule] next task starting node 202 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 213 
+[task_schedule] previous task end node 213 @@@ [task_schedule] next task starting node 214 
+[task_schedule] next task starting node 211 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 217 
+[task_schedule] previous task end node 217 @@@ [task_schedule] next task starting node 218 
+[task_schedule] next task starting node 215 
+[task_schedule] previous task end node 215 @@@ [task_schedule] next task starting node 218 
+[task_schedule] previous task end node 219 @@@ [task_schedule] next task starting node 214 
+[task_schedule] previous task end node 220 @@@ [task_schedule] next task starting node 205 
+[task_schedule] previous task end node 221 @@@ [task_schedule] next task starting node 191 
+[task_schedule] previous task end node 222 @@@ [task_schedule] next task starting node 187 
+[task_schedule] next task starting node 184 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 225 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 229 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 233 
+[task_schedule] previous task end node 233 @@@ [task_schedule] next task starting node 234 
+[task_schedule] next task starting node 231 
+[task_schedule] previous task end node 231 @@@ [task_schedule] next task starting node 234 
+[task_schedule] previous task end node 235 @@@ [task_schedule] next task starting node 230 
+[task_schedule] next task starting node 227 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 238 
+[task_schedule] previous task end node 238 @@@ [task_schedule] next task starting node 239 
+[task_schedule] next task starting node 236 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 242 
+[task_schedule] previous task end node 242 @@@ [task_schedule] next task starting node 243 
+[task_schedule] next task starting node 240 
+[task_schedule] previous task end node 240 @@@ [task_schedule] next task starting node 243 
+[task_schedule] previous task end node 244 @@@ [task_schedule] next task starting node 239 
+[task_schedule] previous task end node 245 @@@ [task_schedule] next task starting node 230 
+[task_schedule] previous task end node 246 @@@ [task_schedule] next task starting node 226 
+[task_schedule] next task starting node 223 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 249 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 253 
+[task_schedule] previous task end node 253 @@@ [task_schedule] next task starting node 254 
+[task_schedule] next task starting node 251 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 257 
+[task_schedule] previous task end node 257 @@@ [task_schedule] next task starting node 258 
+[task_schedule] next task starting node 255 
+[task_schedule] previous task end node 255 @@@ [task_schedule] next task starting node 258 
+[task_schedule] previous task end node 259 @@@ [task_schedule] next task starting node 254 
+[task_schedule] previous task end node 260 @@@ [task_schedule] next task starting node 250 
+[task_schedule] next task starting node 247 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 263 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 267 
+[task_schedule] previous task end node 267 @@@ [task_schedule] next task starting node 268 
+[task_schedule] next task starting node 265 
+[task_schedule] previous task end node 265 @@@ [task_schedule] next task starting node 268 
+[task_schedule] previous task end node 269 @@@ [task_schedule] next task starting node 264 
+[task_schedule] next task starting node 261 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 272 
+[task_schedule] previous task end node 272 @@@ [task_schedule] next task starting node 273 
+[task_schedule] next task starting node 270 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 276 
+[task_schedule] previous task end node 276 @@@ [task_schedule] next task starting node 277 
+[task_schedule] next task starting node 274 
+[task_schedule] previous task end node 274 @@@ [task_schedule] next task starting node 277 
+[task_schedule] previous task end node 278 @@@ [task_schedule] next task starting node 273 
+[task_schedule] previous task end node 279 @@@ [task_schedule] next task starting node 264 
+[task_schedule] previous task end node 280 @@@ [task_schedule] next task starting node 250 
+[task_schedule] previous task end node 281 @@@ [task_schedule] next task starting node 226 
+[task_schedule] previous task end node 282 @@@ [task_schedule] next task starting node 187 
+[task_schedule] previous task end node 283 @@@ [task_schedule] next task starting node 183 
+[task_schedule] next task starting node 180 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 286 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 290 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 294 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 298 
+[task_schedule] previous task end node 298 @@@ [task_schedule] next task starting node 299 
+[task_schedule] next task starting node 296 
+[task_schedule] previous task end node 296 @@@ [task_schedule] next task starting node 299 
+[task_schedule] previous task end node 300 @@@ [task_schedule] next task starting node 295 
+[task_schedule] next task starting node 292 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 303 
+[task_schedule] previous task end node 303 @@@ [task_schedule] next task starting node 304 
+[task_schedule] next task starting node 301 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 307 
+[task_schedule] previous task end node 307 @@@ [task_schedule] next task starting node 308 
+[task_schedule] next task starting node 305 
+[task_schedule] previous task end node 305 @@@ [task_schedule] next task starting node 308 
+[task_schedule] previous task end node 309 @@@ [task_schedule] next task starting node 304 
+[task_schedule] previous task end node 310 @@@ [task_schedule] next task starting node 295 
+[task_schedule] previous task end node 311 @@@ [task_schedule] next task starting node 291 
+[task_schedule] next task starting node 288 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 314 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 318 
+[task_schedule] previous task end node 318 @@@ [task_schedule] next task starting node 319 
+[task_schedule] next task starting node 316 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 322 
+[task_schedule] previous task end node 322 @@@ [task_schedule] next task starting node 323 
+[task_schedule] next task starting node 320 
+[task_schedule] previous task end node 320 @@@ [task_schedule] next task starting node 323 
+[task_schedule] previous task end node 324 @@@ [task_schedule] next task starting node 319 
+[task_schedule] previous task end node 325 @@@ [task_schedule] next task starting node 315 
+[task_schedule] next task starting node 312 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 328 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 332 
+[task_schedule] previous task end node 332 @@@ [task_schedule] next task starting node 333 
+[task_schedule] next task starting node 330 
+[task_schedule] previous task end node 330 @@@ [task_schedule] next task starting node 333 
+[task_schedule] previous task end node 334 @@@ [task_schedule] next task starting node 329 
+[task_schedule] next task starting node 326 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 337 
+[task_schedule] previous task end node 337 @@@ [task_schedule] next task starting node 338 
+[task_schedule] next task starting node 335 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 341 
+[task_schedule] previous task end node 341 @@@ [task_schedule] next task starting node 342 
+[task_schedule] next task starting node 339 
+[task_schedule] previous task end node 339 @@@ [task_schedule] next task starting node 342 
+[task_schedule] previous task end node 343 @@@ [task_schedule] next task starting node 338 
+[task_schedule] previous task end node 344 @@@ [task_schedule] next task starting node 329 
+[task_schedule] previous task end node 345 @@@ [task_schedule] next task starting node 315 
+[task_schedule] previous task end node 346 @@@ [task_schedule] next task starting node 291 
+[task_schedule] previous task end node 347 @@@ [task_schedule] next task starting node 287 
+[task_schedule] next task starting node 284 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 350 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 354 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 358 
+[task_schedule] previous task end node 358 @@@ [task_schedule] next task starting node 359 
+[task_schedule] next task starting node 356 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 362 
+[task_schedule] previous task end node 362 @@@ [task_schedule] next task starting node 363 
+[task_schedule] next task starting node 360 
+[task_schedule] previous task end node 360 @@@ [task_schedule] next task starting node 363 
+[task_schedule] previous task end node 364 @@@ [task_schedule] next task starting node 359 
+[task_schedule] previous task end node 365 @@@ [task_schedule] next task starting node 355 
+[task_schedule] next task starting node 352 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 368 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 372 
+[task_schedule] previous task end node 372 @@@ [task_schedule] next task starting node 373 
+[task_schedule] next task starting node 370 
+[task_schedule] previous task end node 370 @@@ [task_schedule] next task starting node 373 
+[task_schedule] previous task end node 374 @@@ [task_schedule] next task starting node 369 
+[task_schedule] next task starting node 366 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 377 
+[task_schedule] previous task end node 377 @@@ [task_schedule] next task starting node 378 
+[task_schedule] next task starting node 375 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 381 
+[task_schedule] previous task end node 381 @@@ [task_schedule] next task starting node 382 
+[task_schedule] next task starting node 379 
+[task_schedule] previous task end node 379 @@@ [task_schedule] next task starting node 382 
+[task_schedule] previous task end node 383 @@@ [task_schedule] next task starting node 378 
+[task_schedule] previous task end node 384 @@@ [task_schedule] next task starting node 369 
+[task_schedule] previous task end node 385 @@@ [task_schedule] next task starting node 355 
+[task_schedule] previous task end node 386 @@@ [task_schedule] next task starting node 351 
+[task_schedule] next task starting node 348 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 389 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 393 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 397 
+[task_schedule] previous task end node 397 @@@ [task_schedule] next task starting node 398 
+[task_schedule] next task starting node 395 
+[task_schedule] previous task end node 395 @@@ [task_schedule] next task starting node 398 
+[task_schedule] previous task end node 399 @@@ [task_schedule] next task starting node 394 
+[task_schedule] next task starting node 391 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 402 
+[task_schedule] previous task end node 402 @@@ [task_schedule] next task starting node 403 
+[task_schedule] next task starting node 400 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 406 
+[task_schedule] previous task end node 406 @@@ [task_schedule] next task starting node 407 
+[task_schedule] next task starting node 404 
+[task_schedule] previous task end node 404 @@@ [task_schedule] next task starting node 407 
+[task_schedule] previous task end node 408 @@@ [task_schedule] next task starting node 403 
+[task_schedule] previous task end node 409 @@@ [task_schedule] next task starting node 394 
+[task_schedule] previous task end node 410 @@@ [task_schedule] next task starting node 390 
+[task_schedule] next task starting node 387 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 413 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 417 
+[task_schedule] previous task end node 417 @@@ [task_schedule] next task starting node 418 
+[task_schedule] next task starting node 415 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 421 
+[task_schedule] previous task end node 421 @@@ [task_schedule] next task starting node 422 
+[task_schedule] next task starting node 419 
+[task_schedule] previous task end node 419 @@@ [task_schedule] next task starting node 422 
+[task_schedule] previous task end node 423 @@@ [task_schedule] next task starting node 418 
+[task_schedule] previous task end node 424 @@@ [task_schedule] next task starting node 414 
+[task_schedule] next task starting node 411 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 427 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 431 
+[task_schedule] previous task end node 431 @@@ [task_schedule] next task starting node 432 
+[task_schedule] next task starting node 429 
+[task_schedule] previous task end node 429 @@@ [task_schedule] next task starting node 432 
+[task_schedule] previous task end node 433 @@@ [task_schedule] next task starting node 428 
+[task_schedule] next task starting node 425 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 436 
+[task_schedule] previous task end node 436 @@@ [task_schedule] next task starting node 437 
+[task_schedule] next task starting node 434 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 65, col: 14 
+[task_schedule] next task starting node 440 
+[task_schedule] previous task end node 440 @@@ [task_schedule] next task starting node 441 
+[task_schedule] next task starting node 438 
+[task_schedule] previous task end node 438 @@@ [task_schedule] next task starting node 441 
+[task_schedule] previous task end node 442 @@@ [task_schedule] next task starting node 437 
+[task_schedule] previous task end node 443 @@@ [task_schedule] next task starting node 428 
+[task_schedule] previous task end node 444 @@@ [task_schedule] next task starting node 414 
+[task_schedule] previous task end node 445 @@@ [task_schedule] next task starting node 390 
+[task_schedule] previous task end node 446 @@@ [task_schedule] next task starting node 351 
+[task_schedule] previous task end node 447 @@@ [task_schedule] next task starting node 287 
+[task_schedule] previous task end node 448 @@@ [task_schedule] next task starting node 183 
+[task_schedule] previous task end node 449 @@@ [task_schedule] next task starting node 11 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c, line: 86, col: 57 
+Fib(10)=33192 (correct answer should be 55)
+[implicit_task] initial task end, parallel region is (nil), current step is 467 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbc134 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbc134 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdba844 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdba844 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbabd4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbaf64 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb2f4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbb684 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbba14 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbbda4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbc134 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbc134 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+==================
+WARNING: ThreadSanitizer: data race (pid=9534)
+  Write of size 4 at 0x7f97dcdbc4c4 by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 (DRB106-taskwaitmissing-orig-yes+0xd1abb)
+
+  Previous read of size 4 at 0x7f97dcdbc4c4 by thread T1:
+    #0 fib /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:65:14 (DRB106-taskwaitmissing-orig-yes+0xd193c)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=9537, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB106-taskwaitmissing-orig-yes+0x4dfbd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61:6 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB106-taskwaitmissing-orig-yes.c:61
+ThreadSanitizer: reported 88 warnings
