@@ -79,6 +79,11 @@ function extractTargetMovementData(jsonData) {
 
 function populateRefCount_dagre(nodeId, g) 
 {
+    const node = g.node(nodeId);
+    if (node.data.hidden) {
+        return;
+    }
+
     if (path.includes(nodeId)) {
         return;
     }
@@ -88,7 +93,7 @@ function populateRefCount_dagre(nodeId, g)
     {
         const childNode = g.node(childId);
         if (!childNode.data.hidden) {
-            childNode.data.refCount++;
+            childNode.data.refCount += 1;
             populateRefCount_dagre(childId, g);
         }
     }
@@ -97,9 +102,6 @@ function populateRefCount_dagre(nodeId, g)
 function showNode(nodeId, g)
 {
     const node = g.node(nodeId);
-    if (!node.data.hidden) {
-        return;
-    }
     node.data.hidden = false;
     for (const inEdgeId of g.inEdges(nodeId)) {
         const inEdge = g.edge(inEdgeId);
@@ -117,7 +119,8 @@ function showChildren(nodeId, g)
     {
         const childNode = g.node(childId);
         childNode.data.hidden = false;
-        childNode.data.active = false;
+        if (!childNode.data.has_race)
+            childNode.data.active = false;
     }
 
     for (const outEdgeId of g.outEdges(nodeId))
@@ -168,10 +171,19 @@ function prepareGraph_dagre(jsonData){
 
     if (races)
     {
+        let visited = [];
         for (const race of races)
         {
+            if (visited.includes(race.current)) {
+                continue;
+            }
+            visited.push(race.current);
+
             showNode(race.current, g);
             showChildren(race.current, g);
+
+            showNode(race.prev, g);
+            showChildren(race.prev, g);
         }
     }
 
