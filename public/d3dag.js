@@ -425,9 +425,6 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
   const width = g.graph().width;
   const height = g.graph().height;
 
-  console.log(width)
-  console.log(height);
-
   const svg = d3.select(svgID);
 
   if (first) {
