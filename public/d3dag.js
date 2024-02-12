@@ -12,7 +12,6 @@ function decrement_refcount_dagre(n, g, depth = 0) {
 
   if (path.includes(n.data.id))
   {
-    console.log('Cycle detected');
     return;
   }
   path.push(n.data.id);
@@ -44,7 +43,6 @@ function decrement_refcount_dagre(n, g, depth = 0) {
 
 
 function increment_refcount_dagre(n, g, depth = 0) {
-  // console.log("Called on node " + n.data.id);
   if (path.includes(n.data.id))
   {
     return;

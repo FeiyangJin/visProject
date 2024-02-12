@@ -1,5 +1,6 @@
 let dag;
 let path = [];
+const rootId = 1;
 
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
@@ -118,8 +119,9 @@ function showChildren(nodeId, g)
     for (const childId of g.successors(nodeId))
     {
         const childNode = g.node(childId);
+        const originalVisibility = childNode.data.hidden;
         childNode.data.hidden = false;
-        if (!childNode.data.has_race)
+        if (!childNode.data.has_race && originalVisibility && g.successors(childId).length)
             childNode.data.active = false;
     }
 
@@ -185,10 +187,11 @@ function prepareGraph_dagre(jsonData){
             showNode(race.prev, g);
             showChildren(race.prev, g);
         }
+        showChildren(rootId, g);
     }
-    else{
-        showNode(1, g);
-        g.node(1).data.active = false;
+    else {
+        showNode(rootId, g);
+        g.node(rootId).data.active = false;
     }
 
     for (const n of g.nodes()) {
@@ -199,12 +202,6 @@ function prepareGraph_dagre(jsonData){
         }
         populateRefCount_dagre(n,g);
     }
-
-    // for (const nodeId of g.nodes())
-    // {
-    //     const node = g.node(nodeId);
-    //     console.log(nodeId + ": " + node.data.refCount);
-    // }
 
     path = [];
     return g;
