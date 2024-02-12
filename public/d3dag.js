@@ -418,16 +418,23 @@ function populateIndices(datamove) {
 
 //setupSVG("#svg");
 //visualizeDAG(dag_initial_graph,"#svg");
-
+let first = true;
 
 function visualizeDAG_dagre(g, svgID, dataMovementInfo) {
   dagre.layout(g);
   const width = g.graph().width;
   const height = g.graph().height;
 
-  const svg = d3.select(svgID)
-  .attr('width', width)
-  .attr('height', height);
+  console.log(width)
+  console.log(height);
+
+  const svg = d3.select(svgID);
+
+  if (first) {
+    svg.attr('width', width)
+    svg.attr('height', height);
+    first = false;
+  }
   
   const trans = svg.transition().duration(300);
 
