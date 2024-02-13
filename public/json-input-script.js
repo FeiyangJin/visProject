@@ -152,6 +152,9 @@ function dataRaceButton(race)
 
 function constructDataRaceButtons(races)
 {
+    if (races == null){
+        return;
+    }
     const dataRaceButtonDiv = document.getElementById('data-race-buttons');
     dataRaceButtonDiv.innerHTML = '';
     let seen = [];
@@ -182,7 +185,7 @@ function prepareGraph_dagre(jsonData){
         firstValue = files[firstKey];
         styleCodeEditor(firstValue);
     } else {
-        styleCodeEditor(firstvalue);
+        // styleCodeEditor(firstvalue);
     }
 
     // Create a new directed graph 
