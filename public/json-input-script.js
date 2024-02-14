@@ -1,7 +1,9 @@
 let dag;
 let path = [];
+let global_races;
 
 let codeEditor = null;
+let codeEditor2 = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
@@ -95,9 +97,9 @@ function populateRefCount_dagre(n,g)
 
 function styleCodeEditor(initialValue)
 {
+    // set up the first code editor
     const sourceCodeDisplay = document.getElementById('source-code-display');
     if (codeEditor == null) {
-        const sourceCodeWrapper = document.getElementById('source-code-wrapper');
         const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
             lineNumbers: true,
             gutter: true,
@@ -107,10 +109,27 @@ function styleCodeEditor(initialValue)
             styleSelectedTest: true,
             mode: 'text/x-csrc'
         });
-        editor.setSize(sourceCodeWrapper.clientWidth, sourceCodeWrapper.clientHeight);
+        editor.setSize("100%", "100%");
         codeEditor = editor;
     }
     codeEditor.getDoc().setValue(initialValue);
+
+    // set up the second code editor
+    const sourceCodeDisplay2 = document.getElementById('source-code-display2');
+    if (codeEditor2 == null) {
+        const editor2 = CodeMirror.fromTextArea(sourceCodeDisplay2, {
+            lineNumbers: true,
+            gutter: true,
+            lineWrapping: false,
+            readOnly: true,
+            matchBrackets: true,
+            styleSelectedTest: true,
+            mode: 'text/x-csrc'
+        });
+        editor2.setSize("100%", "100%");
+        codeEditor2 = editor2;
+    }
+    codeEditor2.getDoc().setValue(initialValue);
 }
 
 function parseFileInfoForSourceLine(fileInfo)
@@ -121,22 +140,31 @@ function parseFileInfoForSourceLine(fileInfo)
     return sourceLine;
 }
 
+let prevErrorLine2 = -1;
 function dataRaceButton(race)
 {
     let button = document.createElement('button');
-    button.textContent = "Node " + race;
+    button.textContent = "Race " + race;
     button.style = 'margin: 5px; padding: 5px;'
     button.onclick = (e) => { 
-        const node = dag.node(race);
+        const current_node_index = global_races[race]['current'];
+        const prev_node_index = global_races[race]['prev'];
+        const currentNode = dag.node(current_node_index);
+        const prevNode = dag.node(prev_node_index);
 
         if (prevErrorLine != -1) {
             codeEditor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
             prevErrorLine = -1;
         }
+
+        if (prevErrorLine2 != -1) {
+            codeEditor2.markText({line: prevErrorLine2, ch: 0}, {line: prevErrorLine2 + 1, ch: 0}, { css: 'background-color: transparent;' });
+            prevErrorLine2 = -1;
+        }
         
         let selectionNotice = d3.select('#selection-notice');
-        if (node.data.source_line) {
-            const errorLine = node.data.source_line - 1;
+        if (currentNode.data.source_line) {
+            const errorLine = currentNode.data.source_line - 1;
             codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
             let t = codeEditor.charCoords({line: errorLine, ch: 0}, 'local').top;
             let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
@@ -145,6 +173,16 @@ function dataRaceButton(race)
             selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
         } else {
             selectionNotice.html(`The selected node ${race} has no associated stack information`);
+        }
+
+        
+        if(prevNode.data.source_line){
+            const errorLine = prevNode.data.source_line - 1;
+            codeEditor2.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+            let t = codeEditor2.charCoords({line: errorLine, ch: 0}, 'local').top;
+            let middleHeight = codeEditor2.getScrollerElement().offsetHeight / 2;
+            codeEditor2.scrollTo(null, t - middleHeight - 5);
+            prevErrorLine2 = errorLine;
         }
     }
     return button;
@@ -157,18 +195,21 @@ function constructDataRaceButtons(races)
     }
     const dataRaceButtonDiv = document.getElementById('data-race-buttons');
     dataRaceButtonDiv.innerHTML = '';
-    let seen = [];
-    for (const race of races)
-    {
-        if (seen.indexOf(race['current']) == -1) {
-            dataRaceButtonDiv.appendChild(dataRaceButton(race['current']));
-            seen.push(race['current']);
-        }
+    // let seen = [];
+    
+    for (let i = 0; i < races.length; i++) {
+        const race = races[i];
+        dataRaceButtonDiv.appendChild(dataRaceButton(i));
 
-        if (seen.indexOf(race['prev']) == -1) {
-            dataRaceButtonDiv.appendChild(dataRaceButton(race['prev']));
-            seen.push(race['prev']);
-        }
+        // if (seen.indexOf(race['current']) == -1) {
+        //     dataRaceButtonDiv.appendChild(dataRaceButton(race['current']));
+        //     seen.push(race['current']);
+        // }
+
+        // if (seen.indexOf(race['prev']) == -1) {
+        //     dataRaceButtonDiv.appendChild(dataRaceButton(race['prev']));
+        //     seen.push(race['prev']);
+        // }
     }
 }
 
@@ -223,6 +264,7 @@ function prepareGraph_dagre(jsonData){
     }
     path = [];
 
+    global_races = races;
     constructDataRaceButtons(races);
     return g;
 }

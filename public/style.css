@@ -29,7 +29,7 @@
 }
 
 .graph-display {
-  width: 50%;
+  width: 40%;
   overflow-x: scroll;
   overflow-y: scroll;
 
@@ -42,7 +42,7 @@
   border-radius: 15px;
 }
 
-#source-code-wrapper {
+.source-code-wrapper-class {
   width: 30%;
   overflow-x: scroll;
   overflow-y: scroll;
@@ -56,7 +56,7 @@
   border-radius: 15px;
 }
 
-#source-code-display {
+.source-code-display-class {
   width: 100%;
   height: 100%;
   border: none;
@@ -160,7 +160,7 @@
 
 #footer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 #selection-notice {
@@ -171,7 +171,7 @@
 
 #data-race-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 
   max-height: 5%;

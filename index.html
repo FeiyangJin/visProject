@@ -39,15 +39,15 @@
           </svg>
         </div>
 
-        <div id="source-code-wrapper" style="font-size: 15px; font-family: monospace; color: black;">
-          <textarea id="source-code-display"></textarea>
+        <div class="source-code-wrapper-class" id="source-code-wrapper" style="font-size: 15px; font-family: monospace; color: black;">
+          <textarea class="source-code-display-class" id="source-code-display"></textarea>
         </div>
 
-        <div class="sidebar-display">
-          <div>
-            <svg id="legend">
-            </svg>
-          </div>
+        <div class="source-code-wrapper-class" id="source-code-wrapper2" style="font-size: 15px; font-family: monospace; color: black;">
+          <textarea class="source-code-display-class" id="source-code-display2"></textarea>
+        </div>
+
+        <!-- <div class="sidebar-display">
           <div id="memory-vis">
             <div id="memory-vis-header-wrapper">
               <h2 id="memory-vis-header">Data Movements</h2>
@@ -63,18 +63,22 @@
               </svg>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div id="footer">
-        <div id="selection-notice"></div>
-        <div id="data-race-buttons"></div>
-        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
+        <div>
+          <svg id="legend">
+          </svg>
+        </div>
         <div id="data-upload-region">
           <p> Upload Data: </p>
           <input type="file" id="selectedFile" style="display: none;" />
           <input type="button" id="json_fileInput" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
         </div>
+        <!-- <div id="selection-notice"></div> -->
+        <div id="data-race-buttons"></div>
+        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
       </div>
 
     </div>
