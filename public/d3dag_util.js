@@ -218,7 +218,7 @@ function get_node_color(n) {
   }
 
   if (!n.data.active) {
-    return "black";
+    return "#858585";
   }
 
   if (n.data.has_race == true) {
