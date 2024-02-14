@@ -467,8 +467,8 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
   const svg = d3.select(svgID);
 
   if (first) {
-    svg.attr('width', width)
-    svg.attr('height', height);
+    svg.attr('width', width + 10)
+    svg.attr('height', height + 10);
     first = false;
   }
   

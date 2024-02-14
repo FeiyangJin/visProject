@@ -1,5 +1,5 @@
 // set the layout functions
-const nodeRadius = 15;
+const nodeRadius = 12;
 const nodeSize = [nodeRadius * 2, nodeRadius * 2];
 
 const ompt_device_mem_flag_t = Object.freeze({ 
