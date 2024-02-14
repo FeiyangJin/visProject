@@ -4,6 +4,7 @@ let path = [];
 const rootId = 1;
 let codeEditor = null;
 let codeEditor2 = null;
+let prevErrorLine2 = -1;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -173,15 +174,25 @@ function styleCodeEditor(initialValue)
     codeEditor2.getDoc().setValue(initialValue);
 }
 
-function parseFileInfoForSourceLine(fileInfo)
+function parseFileInfoForSourceLine(fileInfo, node)
 {
-    const startColonIndex = fileInfo.indexOf(':');
-    const endColonIndex = fileInfo.indexOf(':', startColonIndex + 1);
-    const sourceLine = fileInfo.substring(startColonIndex + 1, endColonIndex) - 0;
+    let sourceLine = -1;
+    if(node['has_race']){
+        const startColonIndex = fileInfo.indexOf(':');
+        const endColonIndex = fileInfo.indexOf(':', startColonIndex + 1);
+        sourceLine = fileInfo.substring(startColonIndex + 1, endColonIndex) - 0;
+    }
+    else{
+        const startIndex = fileInfo.indexOf('line: ');
+        const endIndex = fileInfo.indexOf(',', startIndex + 1);
+        sourceLine = fileInfo.substring(startIndex + "line: ".length, endIndex);
+        // console.log(`node ${node['id']}, startIndex ${startIndex}, endIndex ${endIndex}, source line: ${sourceLine}`);
+    }
+
     return sourceLine;
 }
 
-let prevErrorLine2 = -1;
+
 function dataRaceButton(race)
 {
     let button = document.createElement('button');
@@ -203,7 +214,7 @@ function dataRaceButton(race)
             prevErrorLine2 = -1;
         }
         
-        let selectionNotice = d3.select('#selection-notice');
+        // let selectionNotice = d3.select('#selection-notice');
         if (currentNode.data.source_line) {
             const errorLine = currentNode.data.source_line - 1;
             codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
@@ -211,10 +222,11 @@ function dataRaceButton(race)
             let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
             codeEditor.scrollTo(null, t - middleHeight - 5);
             prevErrorLine = errorLine;
-            selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
-        } else {
-            selectionNotice.html(`The selected node ${race} has no associated stack information`);
-        }
+            // selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
+        } 
+        // else {
+        //     selectionNotice.html(`The selected node ${race} has no associated stack information`);
+        // }
 
         
         if(prevNode.data.source_line){
@@ -239,7 +251,6 @@ function constructDataRaceButtons(races)
     // let seen = [];
     
     for (let i = 0; i < races.length; i++) {
-        const race = races[i];
         dataRaceButtonDiv.appendChild(dataRaceButton(i));
 
         // if (seen.indexOf(race['current']) == -1) {
@@ -283,12 +294,10 @@ function prepareGraph_dagre(jsonData){
         node['hidden'] = true;
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
         g.node(node.id).data.refCount = 0;
-        if (node['has_race']) {
-            if (node['stack'].length) {
-                node['source_line'] = parseFileInfoForSourceLine(node['stack']);
-            } else {
-                node['source_line'] = null;
-            }
+
+        node['source_line'] = null;
+        if (node['stack'].length) {
+            node['source_line'] = parseFileInfoForSourceLine(node['stack'], node);
         }
     }
 

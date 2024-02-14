@@ -425,28 +425,28 @@ let prevErrorLine = -1;
 function enteredRaceNode(g, nodeId, editor)
 {
   const node = g.node(nodeId);
-  if (!node.data.has_race) {
+  if (!node.data.has_race && node.data.stack == null) {
+    return;
+  }
+
+  if(node.data.source_line == null) {
     return;
   }
   
-  let selectionNotice = d3.select('#selection-notice');
-  if (node.data.source_line) {
-    const errorLine = node.data.source_line - 1;
-    editor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
-    let t = editor.charCoords({line: errorLine, ch: 0}, 'local').top;
-    let middleHeight = editor.getScrollerElement().offsetHeight / 2;
-    editor.scrollTo(null, t - middleHeight - 5);
-    prevErrorLine = errorLine;
-    selectionNotice.html(`Offending lines corresponding to node ${nodeId} highlighted in red.`)
-  } else {
-    selectionNotice.html(`The selected node ${nodeId} has no associated stack information`);
-  }
+  const errorLine = node.data.source_line - 1;
+  let color = get_node_color(node);
+
+  editor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: `background-color: ${color};` });
+  let t = editor.charCoords({line: errorLine, ch: 0}, 'local').top;
+  let middleHeight = editor.getScrollerElement().offsetHeight / 2;
+  editor.scrollTo(null, t - middleHeight - 5);
+  prevErrorLine = errorLine;
 }
 
 function exitedRaceNode(g, nodeId, editor)
 {
   const node = g.node(nodeId);
-  if (!node.data.has_race) {
+  if (!node.data.has_race && node.data.stack == null) {
     return;
   }
   
@@ -454,8 +454,6 @@ function exitedRaceNode(g, nodeId, editor)
     editor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
     prevErrorLine = -1;
   }
-  let selectionNotice = d3.select('#selection-notice');
-  selectionNotice.html('No node selected');
 }
 
 
