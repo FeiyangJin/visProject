@@ -1,0 +1,53 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c, line: 65, col: 3 
+[parallel_end] current node is 2, requested parallelsim is 10, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c, line: 70, col: 3 
+sum=10
+[implicit_task] initial task end, parallel region is (nil), current step is 33 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=8169)
+  Read of size 4 at 0x7f315b6b2610 by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:36 (DRB076-flush-orig-no+0xd18fa)
+
+  Previous write of size 4 at 0x7f315b6b2610 by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:34 (DRB076-flush-orig-no+0xd190f)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=8175, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB076-flush-orig-no+0x4ddcd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+  Thread T6 (tid=8177, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB076-flush-orig-no+0x4ddcd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:36 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65
+==================
+WARNING: ThreadSanitizer: data race (pid=8169)
+  Read of size 4 at 0x7f315d6ba510 by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:36 (DRB076-flush-orig-no+0xd18fa)
+
+  Previous write of size 4 at 0x7f315d6ba510 by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:34 (DRB076-flush-orig-no+0xd190f)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=8173, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB076-flush-orig-no+0x4ddcd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65:36 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB076-flush-orig-no.c:65
+ThreadSanitizer: reported 2 warnings

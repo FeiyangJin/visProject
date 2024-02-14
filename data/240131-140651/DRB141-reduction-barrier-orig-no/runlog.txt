@@ -1,0 +1,52 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c, line: 23, col: 3 
+Sum is 45
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c, line: 39, col: 3 
+[implicit_task] initial task end, parallel region is (nil), current step is 51 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=9175)
+  Read of size 4 at 0x7f98784ba4f8 by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:33 (DRB141-reduction-barrier-orig-no+0xd1c2a)
+
+  Previous write of size 4 at 0x7f98784ba4f8 by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:31 (DRB141-reduction-barrier-orig-no+0xd1c3f)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=9179, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB141-reduction-barrier-orig-no+0x4dfed)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:33 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30
+==================
+WARNING: ThreadSanitizer: data race (pid=9175)
+  Read of size 4 at 0x7f98764b25f8 by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:33 (DRB141-reduction-barrier-orig-no+0xd1c2a)
+
+  Previous write of size 4 at 0x7f98764b25f8 by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:31 (DRB141-reduction-barrier-orig-no+0xd1c3f)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=9181, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB141-reduction-barrier-orig-no+0x4dfed)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+  Thread T6 (tid=9183, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB141-reduction-barrier-orig-no+0x4dfed)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30:33 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB141-reduction-barrier-orig-no.c:30
+ThreadSanitizer: reported 2 warnings

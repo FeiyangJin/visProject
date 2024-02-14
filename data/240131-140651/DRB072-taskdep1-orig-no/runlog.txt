@@ -1,0 +1,38 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c, line: 55, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c, line: 58, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c, line: 60, col: 1 
+[task_schedule] next task starting node 9 
+[task_schedule] previous task end node 9 @@@ [task_schedule] next task starting node 15 
+[task_schedule] next task starting node 11 
+[task_schedule] previous task end node 11 @@@ [task_schedule] next task starting node 18 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c, line: 64, col: 3 
+[implicit_task] initial task end, parallel region is (nil), current step is 31 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+LLVMSymbolizer: error reading file: No such file or directory
+==================
+WARNING: ThreadSanitizer: data race (pid=9842)
+  Write of size 4 at 0x7ffc4dbb9a48 by thread T7:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c:61:7 (DRB072-taskdep1-orig-no+0xd1b00)
+
+  Previous write of size 4 at 0x7ffc4dbb9a48 by main thread:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c:59:7 (DRB072-taskdep1-orig-no+0xd1a50)
+
+  Location is stack of main thread.
+
+  Location is global '??' at 0x7ffc4db9b000 ([stack]+0x1ea48)
+
+  Thread T7 (tid=9851, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB072-taskdep1-orig-no+0x4defd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c:61:7 in .omp_outlined..1
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB072-taskdep1-orig-no.c:61
+ThreadSanitizer: reported 1 warnings

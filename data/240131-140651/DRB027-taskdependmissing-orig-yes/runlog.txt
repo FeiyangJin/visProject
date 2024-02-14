@@ -1,0 +1,39 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c, line: 57, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c, line: 60, col: 1 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c, line: 62, col: 1 
+[task_schedule] next task starting node 13 
+[task_schedule] previous task end node 13 @@@ [task_schedule] next task starting node 15 
+[task_schedule] next task starting node 11 
+[task_schedule] previous task end node 11 @@@ [task_schedule] next task starting node 16 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c, line: 66, col: 20 
+i=1
+[implicit_task] initial task end, parallel region is (nil), current step is 31 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+LLVMSymbolizer: error reading file: No such file or directory
+==================
+WARNING: ThreadSanitizer: data race (pid=8416)
+  Write of size 4 at 0x7ffd532e9748 by thread T5:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c:61:7 (DRB027-taskdependmissing-orig-yes+0xd1990)
+
+  Previous write of size 4 at 0x7ffd532e9748 by main thread:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c:63:7 (DRB027-taskdependmissing-orig-yes+0xd1a40)
+
+  Location is stack of main thread.
+
+  Location is global '??' at 0x7ffd532cb000 ([stack]+0x1e748)
+
+  Thread T5 (tid=8424, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB027-taskdependmissing-orig-yes+0x4deed)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c:61:7 in .omp_outlined.
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB027-taskdependmissing-orig-yes.c:61
+ThreadSanitizer: reported 1 warnings

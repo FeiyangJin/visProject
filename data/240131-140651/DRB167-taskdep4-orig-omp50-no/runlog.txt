@@ -1,0 +1,55 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c, line: 40, col: 3 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c, line: 24, col: 3 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c, line: 27, col: 3 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c, line: 32, col: 19 
+[task_schedule] next task starting node 11 
+[task_schedule] previous task end node 11 @@@ [task_schedule] next task starting node 16 
+x=1
+[task_schedule] next task starting node 13 
+[task_schedule] previous task end node 13 @@@ [task_schedule] next task starting node 16 
+y=1
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c, line: 44, col: 3 
+[implicit_task] initial task end, parallel region is (nil), current step is 34 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=8869)
+  Read of size 4 at 0x7f7bfb4bc4fc by thread T1:
+    #0 foo /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:32:19 (DRB167-taskdep4-orig-omp50-no+0xd1a6b)
+
+  Previous write of size 4 at 0x7f7bfb4bc4fc by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:25:4 (DRB167-taskdep4-orig-omp50-no+0xd1b58)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=8872, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB167-taskdep4-orig-omp50-no+0x4e02d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:32:19 in foo
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:32
+==================
+WARNING: ThreadSanitizer: data race (pid=8869)
+  Read of size 4 at 0x7f7bfb4bc4fc by thread T1:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:28:9 (DRB167-taskdep4-orig-omp50-no+0xd1c49)
+
+  Previous write of size 4 at 0x7f7bfb4bc4fc by thread T1:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:25:4 (DRB167-taskdep4-orig-omp50-no+0xd1b58)
+
+  Location is stack of thread T1.
+
+  Thread T1 (tid=8872, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB167-taskdep4-orig-omp50-no+0x4e02d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:28:9 in .omp_outlined..1
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB167-taskdep4-orig-omp50-no.c:28
+ThreadSanitizer: reported 2 warnings

@@ -1,0 +1,71 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c, line: 68, col: 3 
+[parallel_end] current node is 2, requested parallelsim is 10, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c, line: 73, col: 3 
+sum=10
+[implicit_task] initial task end, parallel region is (nil), current step is 33 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:60
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:71
+==================
+WARNING: ThreadSanitizer: data race (pid=7999)
+  Read of size 4 at 0x7fba449b25fc by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:36 (DRB074-flush-orig-yes+0xd1a9a)
+
+  Previous write of size 4 at 0x7fba449b25fc by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:34 (DRB074-flush-orig-yes+0xd1aaf)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=8020, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB074-flush-orig-yes+0x4defd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+  Thread T6 (tid=8022, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB074-flush-orig-yes+0x4defd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:36 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68
+==================
+WARNING: ThreadSanitizer: data race (pid=7999)
+  Read of size 4 at 0x7fba469ba4fc by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:36 (DRB074-flush-orig-yes+0xd1a9a)
+
+  Previous write of size 4 at 0x7fba469ba4fc by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:34 (DRB074-flush-orig-yes+0xd1aaf)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=8018, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB074-flush-orig-yes+0x4defd)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68:36 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB074-flush-orig-yes.c:68
+ThreadSanitizer: reported 2 warnings

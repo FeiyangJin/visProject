@@ -1,0 +1,209 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 2, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 36, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 70, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 104, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 138, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 172, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 206, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 240, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 274, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 308, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 342, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 376, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 410, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 444, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 478, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 512, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 546, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 580, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 614, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 648, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 682, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 716, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 750, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 784, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 818, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[parallel_end] current node is 852, requested parallelsim is 8, [parallel_end] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 129, col: 10 
+[parallel_begin] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c, line: 107, col: 1 
+[pa
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=8348)
+  Read of size 8 at 0x7fd5cd8ba450 by main thread:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:48 (DRB058-jacobikernel-orig-no+0xd286e)
+
+  Previous write of size 8 at 0x7fd5cd8ba450 by thread T2:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:46 (DRB058-jacobikernel-orig-no+0xd2889)
+
+  Location is stack of thread T2.
+
+  Thread T2 (tid=8352, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB058-jacobikernel-orig-no+0x4de1d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:140:3 (DRB058-jacobikernel-orig-no+0xd2961)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:48 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+==================
+WARNING: ThreadSanitizer: data race (pid=8348)
+  Read of size 8 at 0x7fd5cb8b2550 by thread T4:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:48 (DRB058-jacobikernel-orig-no+0xd286e)
+
+  Previous write of size 8 at 0x7fd5cb8b2550 by thread T6:
+    #0 .omp.reduction.reduction_func /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:46 (DRB058-jacobikernel-orig-no+0xd2889)
+
+  Location is stack of thread T6.
+
+  Thread T4 (tid=8354, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB058-jacobikernel-orig-no+0x4de1d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:140:3 (DRB058-jacobikernel-orig-no+0xd2961)
+
+  Thread T6 (tid=8356, running) created by main thread at:
+    #0 pthread_create /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1022:3 (DRB058-jacobikernel-orig-no+0x4de1d)
+    #1 __kmp_create_worker <null> (libomp.so+0x98536)
+    #2 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:140:3 (DRB058-jacobikernel-orig-no+0xd2961)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113:48 in .omp.reduction.reduction_func
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB058-jacobikernel-orig-no.c:113
+ThreadSanitizerThreadSanitizerThreadSanitizerThreadSanitizerThreadSanitizerThreadSanitizer:DEADLYSIGNAL
+ThreadSanitizer:DEADLYSIGNAL
+:DEADLYSIGNAL
+:DEADLYSIGNAL
+:DEADLYSIGNAL
+:DEADLYSIGNAL
+:DEADLYSIGNAL
+==8348==ERROR: ThreadSanitizer: SEGV on unknown address 0x7bc000010100 (pc 0x7fd5cf7d7a5f bp 0x7b2000000080 sp 0x7fd5cd0b8610 T8353)
+==8348==The signal is caused by a WRITE memory access.
+    #0 ompt_ta_implicit_task(ompt_scope_endpoint_t, ompt_data_t*, ompt_data_t*, unsigned int, unsigned int, int) ompt-tsan.cpp (libtaskracer.so+0x14a5f)
+    #1 __kmp_invoke_task_func <null> (libomp.so+0x3e3e5)
+    #2 __kmp_launch_thread <null> (libomp.so+0x3d3aa)
+    #3 __kmp_launch_worker(void*) z_Linux_util.cpp (libomp.so+0x98e8c)
+    #4 __tsan_thread_start_func /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1012:15 (DRB058-jacobikernel-orig-no+0x4dd86)
+    #5 start_thread /build/glibc-CVJwZb/glibc-2.27/nptl/pthread_create.c:463 (libpthread.so.0+0x76da) (BuildId: 1f06001733b9be9478b105faf0dac6bdf36c85de)
+    #6 __clone /build/glibc-CVJwZb/glibc-2.27/misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:95 (libc.so.6+0x12161e) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+
+ThreadSanitizer can not provide additional info.
+SUMMARY: ThreadSanitizer: SEGV ompt-tsan.cpp in ompt_ta_implicit_task(ompt_scope_endpoint_t, ompt_data_t*, ompt_data_t*, unsigned int, unsigned int, int)
+==8348==ABORTING

@@ -1,0 +1,27 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+ThreadSanitizerThreadSanitizerThreadSanitizer:DEADLYSIGNAL
+:DEADLYSIGNAL
+==9470==ERROR: ThreadSanitizer: SEGV on unknown address 0x7bc000010040 (pc 0x7fb174fd824e bp 0x7fb1751f6688 sp 0x7fb1718b4310 T9477)
+==9470==The signal is caused by a WRITE memory access.
+:DEADLYSIGNAL
+    #0 ompt_ta_sync_region(ompt_sync_region_t, ompt_scope_endpoint_t, ompt_data_t*, ompt_data_t*, void const*) ompt-tsan.cpp (libtaskracer.so+0x1524e)
+    #1 __kmp_barrier <null> (libomp.so+0x6675a)
+    #2 __kmpc_barrier <null> (libomp.so+0x2a075)
+    #3 .omp_outlined._debug__ /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB159-nobarrier-orig-gpu-no.c:39:22 (DRB159-nobarrier-orig-gpu-no+0xd1b54)
+    #4 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB159-nobarrier-orig-gpu-no.c:36:3 (DRB159-nobarrier-orig-gpu-no+0xd1df5)
+    #5 __kmp_invoke_microtask <null> (libomp.so+0xb9292)
+    #6 __kmp_invoke_task_func <null> (libomp.so+0x3e425)
+    #7 __kmp_launch_thread <null> (libomp.so+0x3d3aa)
+    #8 __kmp_launch_worker(void*) z_Linux_util.cpp (libomp.so+0x98e8c)
+    #9 __tsan_thread_start_func /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/tsan_interceptors_posix.cpp:1012:15 (DRB159-nobarrier-orig-gpu-no+0x4dd36)
+    #10 start_thread /build/glibc-CVJwZb/glibc-2.27/nptl/pthread_create.c:463 (libpthread.so.0+0x76da) (BuildId: 1f06001733b9be9478b105faf0dac6bdf36c85de)
+    #11 __clone /build/glibc-CVJwZb/glibc-2.27/misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:95 (libc.so.6+0x12161e) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+
+ThreadSanitizer can not provide additional info.
+SUMMARY: ThreadSanitizer: SEGV ompt-tsan.cpp in ompt_ta_sync_region(ompt_sync_region_t, ompt_scope_endpoint_t, ompt_data_t*, ompt_data_t*, void const*)
+==9470==ABORTING

@@ -1,0 +1,29 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+ThreadSanitizer:DEADLYSIGNAL
+==8533==ERROR: ThreadSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f661f896306 bp 0x0000000002c0 sp 0x7fffe9fbb3f8 T8533)
+==8533==The signal is caused by a READ memory access.
+==8533==Hint: address points to the zero page.
+    #0 <null> /build/glibc-CVJwZb/glibc-2.27/string/../sysdeps/x86_64/multiarch/../strlen.S:120 (libc.so.6+0xb1306) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+    #1 strlen /home/fjin/newllvm/llvm-project/compiler-rt/lib/tsan/rtl/../../sanitizer_common/sanitizer_common_interceptors.inc:459:19 (DRB096-doall2-taskloop-collapse-orig-no+0x55bd2)
+    #2 ompt_ta_task_create(ompt_data_t*, ompt_frame_t const*, ompt_data_t*, int, int, void const*) ompt-tsan.cpp (libtaskracer.so+0x13b21)
+    #3 __kmp_taskloop_linear(ident*, int, kmp_task*, unsigned long long*, unsigned long long*, long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long, long long, unsigned long long, void*, void*) <null> (libomp.so+0x6285b)
+    #4 __kmp_taskloop(ident*, int, kmp_task*, int, unsigned long long*, unsigned long long*, long long, int, int, unsigned long long, int, void*) kmp_tasking.cpp (libomp.so+0x63605)
+    #5 __kmpc_taskloop <null> (libomp.so+0x630b6)
+    #6 .omp_outlined._debug__ /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB096-doall2-taskloop-collapse-orig-no.c:65:1 (DRB096-doall2-taskloop-collapse-orig-no+0xd1975)
+    #7 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB096-doall2-taskloop-collapse-orig-no.c:61:1 (DRB096-doall2-taskloop-collapse-orig-no+0xd1c05)
+    #8 __kmp_invoke_microtask <null> (libomp.so+0xb9292)
+    #9 __kmp_invoke_task_func <null> (libomp.so+0x3e425)
+    #10 __kmp_fork_call <null> (libomp.so+0x3844d)
+    #11 __kmpc_fork_call <null> (libomp.so+0x29664)
+    #12 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB096-doall2-taskloop-collapse-orig-no.c:61:1 (DRB096-doall2-taskloop-collapse-orig-no+0xd17ee)
+    #13 __libc_start_main /build/glibc-CVJwZb/glibc-2.27/csu/../csu/libc-start.c:310 (libc.so.6+0x21c86) (BuildId: f7307432a8b162377e77a182b6cc2e53d771ec4b)
+    #14 _start <null> (DRB096-doall2-taskloop-collapse-orig-no+0x20789)
+
+ThreadSanitizer can not provide additional info.
+SUMMARY: ThreadSanitizer: SEGV /build/glibc-CVJwZb/glibc-2.27/string/../sysdeps/x86_64/multiarch/../strlen.S:120 
+==8533==ABORTING

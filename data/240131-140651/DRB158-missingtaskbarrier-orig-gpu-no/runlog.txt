@@ -1,0 +1,526 @@
+Taskracer detects TSAN runtime, carrying out race detection using DPST
+Computation Graph recording enabled
+[implicit_task] initial task begin 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 2 
+[task_schedule] previous task end node 2 @@@ [task_schedule] next task starting node 3 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 4 
+[task_schedule] previous task end node 4 @@@ [task_schedule] next task starting node 5 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 6 
+[task_schedule] previous task end node 6 @@@ [task_schedule] next task starting node 7 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 8 
+[task_schedule] previous task end node 8 @@@ [task_schedule] next task starting node 9 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 10 
+[task_schedule] previous task end node 10 @@@ [task_schedule] next task starting node 11 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 12 
+[task_schedule] previous task end node 12 @@@ [task_schedule] next task starting node 13 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 14 
+[task_schedule] previous task end node 14 @@@ [task_schedule] next task starting node 15 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 16 
+[task_schedule] previous task end node 16 @@@ [task_schedule] next task starting node 17 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 18 
+[task_schedule] previous task end node 18 @@@ [task_schedule] next task starting node 19 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 20 
+[task_schedule] previous task end node 20 @@@ [task_schedule] next task starting node 21 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 22 
+[task_schedule] previous task end node 22 @@@ [task_schedule] next task starting node 23 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 24 
+[task_schedule] previous task end node 24 @@@ [task_schedule] next task starting node 25 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 26 
+[task_schedule] previous task end node 26 @@@ [task_schedule] next task starting node 27 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 28 
+[task_schedule] previous task end node 28 @@@ [task_schedule] next task starting node 29 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 30 
+[task_schedule] previous task end node 30 @@@ [task_schedule] next task starting node 31 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 32 
+[task_schedule] previous task end node 32 @@@ [task_schedule] next task starting node 33 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 34 
+[task_schedule] previous task end node 34 @@@ [task_schedule] next task starting node 35 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 36 
+[task_schedule] previous task end node 36 @@@ [task_schedule] next task starting node 37 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 38 
+[task_schedule] previous task end node 38 @@@ [task_schedule] next task starting node 39 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 40 
+[task_schedule] previous task end node 40 @@@ [task_schedule] next task starting node 41 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 42 
+[task_schedule] previous task end node 42 @@@ [task_schedule] next task starting node 43 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 44 
+[task_schedule] previous task end node 44 @@@ [task_schedule] next task starting node 45 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 46 
+[task_schedule] previous task end node 46 @@@ [task_schedule] next task starting node 47 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 48 
+[task_schedule] previous task end node 48 @@@ [task_schedule] next task starting node 49 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 50 
+[task_schedule] previous task end node 50 @@@ [task_schedule] next task starting node 51 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 52 
+[task_schedule] previous task end node 52 @@@ [task_schedule] next task starting node 53 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 54 
+[task_schedule] previous task end node 54 @@@ [task_schedule] next task starting node 55 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 56 
+[task_schedule] previous task end node 56 @@@ [task_schedule] next task starting node 57 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 58 
+[task_schedule] previous task end node 58 @@@ [task_schedule] next task starting node 59 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 60 
+[task_schedule] previous task end node 60 @@@ [task_schedule] next task starting node 61 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 62 
+[task_schedule] previous task end node 62 @@@ [task_schedule] next task starting node 63 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 64 
+[task_schedule] previous task end node 64 @@@ [task_schedule] next task starting node 65 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 66 
+[task_schedule] previous task end node 66 @@@ [task_schedule] next task starting node 67 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 68 
+[task_schedule] previous task end node 68 @@@ [task_schedule] next task starting node 69 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 70 
+[task_schedule] previous task end node 70 @@@ [task_schedule] next task starting node 71 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 72 
+[task_schedule] previous task end node 72 @@@ [task_schedule] next task starting node 73 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 74 
+[task_schedule] previous task end node 74 @@@ [task_schedule] next task starting node 75 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 76 
+[task_schedule] previous task end node 76 @@@ [task_schedule] next task starting node 77 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 78 
+[task_schedule] previous task end node 78 @@@ [task_schedule] next task starting node 79 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 80 
+[task_schedule] previous task end node 80 @@@ [task_schedule] next task starting node 81 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 82 
+[task_schedule] previous task end node 82 @@@ [task_schedule] next task starting node 83 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 84 
+[task_schedule] previous task end node 84 @@@ [task_schedule] next task starting node 85 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 86 
+[task_schedule] previous task end node 86 @@@ [task_schedule] next task starting node 87 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 88 
+[task_schedule] previous task end node 88 @@@ [task_schedule] next task starting node 89 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 90 
+[task_schedule] previous task end node 90 @@@ [task_schedule] next task starting node 91 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 92 
+[task_schedule] previous task end node 92 @@@ [task_schedule] next task starting node 93 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 94 
+[task_schedule] previous task end node 94 @@@ [task_schedule] next task starting node 95 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 96 
+[task_schedule] previous task end node 96 @@@ [task_schedule] next task starting node 97 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 98 
+[task_schedule] previous task end node 98 @@@ [task_schedule] next task starting node 99 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 100 
+[task_schedule] previous task end node 100 @@@ [task_schedule] next task starting node 101 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 102 
+[task_schedule] previous task end node 102 @@@ [task_schedule] next task starting node 103 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 104 
+[task_schedule] previous task end node 104 @@@ [task_schedule] next task starting node 105 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 106 
+[task_schedule] previous task end node 106 @@@ [task_schedule] next task starting node 107 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 108 
+[task_schedule] previous task end node 108 @@@ [task_schedule] next task starting node 109 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 110 
+[task_schedule] previous task end node 110 @@@ [task_schedule] next task starting node 111 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 112 
+[task_schedule] previous task end node 112 @@@ [task_schedule] next task starting node 113 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 114 
+[task_schedule] previous task end node 114 @@@ [task_schedule] next task starting node 115 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 116 
+[task_schedule] previous task end node 116 @@@ [task_schedule] next task starting node 117 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 118 
+[task_schedule] previous task end node 118 @@@ [task_schedule] next task starting node 119 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 120 
+[task_schedule] previous task end node 120 @@@ [task_schedule] next task starting node 121 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 122 
+[task_schedule] previous task end node 122 @@@ [task_schedule] next task starting node 123 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 124 
+[task_schedule] previous task end node 124 @@@ [task_schedule] next task starting node 125 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 126 
+[task_schedule] previous task end node 126 @@@ [task_schedule] next task starting node 127 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 128 
+[task_schedule] previous task end node 128 @@@ [task_schedule] next task starting node 129 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 130 
+[task_schedule] previous task end node 130 @@@ [task_schedule] next task starting node 131 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 132 
+[task_schedule] previous task end node 132 @@@ [task_schedule] next task starting node 133 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 134 
+[task_schedule] previous task end node 134 @@@ [task_schedule] next task starting node 135 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 136 
+[task_schedule] previous task end node 136 @@@ [task_schedule] next task starting node 137 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 138 
+[task_schedule] previous task end node 138 @@@ [task_schedule] next task starting node 139 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 140 
+[task_schedule] previous task end node 140 @@@ [task_schedule] next task starting node 141 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 142 
+[task_schedule] previous task end node 142 @@@ [task_schedule] next task starting node 143 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 144 
+[task_schedule] previous task end node 144 @@@ [task_schedule] next task starting node 145 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 146 
+[task_schedule] previous task end node 146 @@@ [task_schedule] next task starting node 147 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 148 
+[task_schedule] previous task end node 148 @@@ [task_schedule] next task starting node 149 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 150 
+[task_schedule] previous task end node 150 @@@ [task_schedule] next task starting node 151 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 152 
+[task_schedule] previous task end node 152 @@@ [task_schedule] next task starting node 153 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 154 
+[task_schedule] previous task end node 154 @@@ [task_schedule] next task starting node 155 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 156 
+[task_schedule] previous task end node 156 @@@ [task_schedule] next task starting node 157 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 158 
+[task_schedule] previous task end node 158 @@@ [task_schedule] next task starting node 159 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 160 
+[task_schedule] previous task end node 160 @@@ [task_schedule] next task starting node 161 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 162 
+[task_schedule] previous task end node 162 @@@ [task_schedule] next task starting node 163 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 164 
+[task_schedule] previous task end node 164 @@@ [task_schedule] next task starting node 165 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 166 
+[task_schedule] previous task end node 166 @@@ [task_schedule] next task starting node 167 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 168 
+[task_schedule] previous task end node 168 @@@ [task_schedule] next task starting node 169 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 170 
+[task_schedule] previous task end node 170 @@@ [task_schedule] next task starting node 171 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 172 
+[task_schedule] previous task end node 172 @@@ [task_schedule] next task starting node 173 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 174 
+[task_schedule] previous task end node 174 @@@ [task_schedule] next task starting node 175 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 176 
+[task_schedule] previous task end node 176 @@@ [task_schedule] next task starting node 177 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 178 
+[task_schedule] previous task end node 178 @@@ [task_schedule] next task starting node 179 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 180 
+[task_schedule] previous task end node 180 @@@ [task_schedule] next task starting node 181 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 182 
+[task_schedule] previous task end node 182 @@@ [task_schedule] next task starting node 183 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 184 
+[task_schedule] previous task end node 184 @@@ [task_schedule] next task starting node 185 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 186 
+[task_schedule] previous task end node 186 @@@ [task_schedule] next task starting node 187 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 188 
+[task_schedule] previous task end node 188 @@@ [task_schedule] next task starting node 189 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 190 
+[task_schedule] previous task end node 190 @@@ [task_schedule] next task starting node 191 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 192 
+[task_schedule] previous task end node 192 @@@ [task_schedule] next task starting node 193 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 194 
+[task_schedule] previous task end node 194 @@@ [task_schedule] next task starting node 195 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 196 
+[task_schedule] previous task end node 196 @@@ [task_schedule] next task starting node 197 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 198 
+[task_schedule] previous task end node 198 @@@ [task_schedule] next task starting node 199 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 200 
+[task_schedule] previous task end node 200 @@@ [task_schedule] next task starting node 201 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 202 
+[task_schedule] previous task end node 202 @@@ [task_schedule] next task starting node 203 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 204 
+[task_schedule] previous task end node 204 @@@ [task_schedule] next task starting node 205 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 206 
+[task_schedule] previous task end node 206 @@@ [task_schedule] next task starting node 207 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 208 
+[task_schedule] previous task end node 208 @@@ [task_schedule] next task starting node 209 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 210 
+[task_schedule] previous task end node 210 @@@ [task_schedule] next task starting node 211 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 212 
+[task_schedule] previous task end node 212 @@@ [task_schedule] next task starting node 213 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 214 
+[task_schedule] previous task end node 214 @@@ [task_schedule] next task starting node 215 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 216 
+[task_schedule] previous task end node 216 @@@ [task_schedule] next task starting node 217 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 218 
+[task_schedule] previous task end node 218 @@@ [task_schedule] next task starting node 219 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 220 
+[task_schedule] previous task end node 220 @@@ [task_schedule] next task starting node 221 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 222 
+[task_schedule] previous task end node 222 @@@ [task_schedule] next task starting node 223 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 224 
+[task_schedule] previous task end node 224 @@@ [task_schedule] next task starting node 225 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 226 
+[task_schedule] previous task end node 226 @@@ [task_schedule] next task starting node 227 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 228 
+[task_schedule] previous task end node 228 @@@ [task_schedule] next task starting node 229 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 230 
+[task_schedule] previous task end node 230 @@@ [task_schedule] next task starting node 231 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 232 
+[task_schedule] previous task end node 232 @@@ [task_schedule] next task starting node 233 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 234 
+[task_schedule] previous task end node 234 @@@ [task_schedule] next task starting node 235 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 236 
+[task_schedule] previous task end node 236 @@@ [task_schedule] next task starting node 237 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 238 
+[task_schedule] previous task end node 238 @@@ [task_schedule] next task starting node 239 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 240 
+[task_schedule] previous task end node 240 @@@ [task_schedule] next task starting node 241 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 242 
+[task_schedule] previous task end node 242 @@@ [task_schedule] next task starting node 243 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 244 
+[task_schedule] previous task end node 244 @@@ [task_schedule] next task starting node 245 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 246 
+[task_schedule] previous task end node 246 @@@ [task_schedule] next task starting node 247 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 248 
+[task_schedule] previous task end node 248 @@@ [task_schedule] next task starting node 249 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 250 
+[task_schedule] previous task end node 250 @@@ [task_schedule] next task starting node 251 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 252 
+[task_schedule] previous task end node 252 @@@ [task_schedule] next task starting node 253 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 33, col: 7 
+[task_schedule] next task starting node 254 
+[task_schedule] previous task end node 254 @@@ [task_schedule] next task starting node 255 
+[task_create] file: /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c, line: 32, col: 24 
+[task_schedule] next task starting node 256 
+[task_schedule] previous task end node 256 @@@ [task_schedule] next task starting node 257 
+[implicit_task] initial task end, parallel region is (nil), current step is 258 
+JSON data written to 'data/rawgraphml.json'
+
+ 
+ConcurrencyVector constructor, capacity is 200000000 
+Example of tsan interface (__tsan_print) 
+==================
+WARNING: ThreadSanitizer: data race (pid=7208)
+  Read of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:16 (DRB158-missingtaskbarrier-orig-gpu-no+0xd1cd3)
+
+  Previous write of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 .omp_outlined. /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:35:14 (DRB158-missingtaskbarrier-orig-gpu-no+0xd1b6b)
+
+  Location is global 'x' of size 256 at 0x5650a0ff03a0 (DRB158-missingtaskbarrier-orig-gpu-no+0x16793a0)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:16 in .omp_outlined..1
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+==================
+WARNING: ThreadSanitizer: data race (pid=7208)
+  Write of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:14 (DRB158-missingtaskbarrier-orig-gpu-no+0xd1d50)
+
+  Previous write of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:14 (DRB158-missingtaskbarrier-orig-gpu-no+0xd1d50)
+
+  Location is global 'x' of size 256 at 0x5650a0ff03a0 (DRB158-missingtaskbarrier-orig-gpu-no+0x16793a0)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:14 in .omp_outlined..1
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39
+==================
+WARNING: ThreadSanitizer: data race (pid=7208)
+  Read of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 main /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45:8 (DRB158-missingtaskbarrier-orig-gpu-no+0xd17ba)
+
+  Previous write of size 4 at 0x5650a0ff03a0 by main thread:
+    #0 .omp_outlined..1 /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:39:14 (DRB158-missingtaskbarrier-orig-gpu-no+0xd1d50)
+
+  Location is global 'x' of size 256 at 0x5650a0ff03a0 (DRB158-missingtaskbarrier-orig-gpu-no+0x16793a0)
+
+SUMMARY: ThreadSanitizer: data race /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45:8 in main
+==================
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+Racy access at /home/fjin/gitRepo/dataracebench/micro-benchmarks/DRB158-missingtaskbarrier-orig-gpu-no.c:45
+ThreadSanitizer: reported 3 warnings

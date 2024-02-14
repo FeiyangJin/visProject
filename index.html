@@ -9,6 +9,17 @@
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="public/dagre.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="lib/codemirror.css"></link>
+
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script language="javascript" type="text/javascript" src="https://codemirror.net/5/mode/clike/clike.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/abbott.min.css"></link>
+        
 </head>
 
 <body>
@@ -28,19 +39,15 @@
           </svg>
         </div>
 
-        <div class="text-display">
-            <g id="source-code-display">
-              <div id="source-code-text" style="font-size: 15px; font-family: monospace; color: black;">
-                source code will be displayed here
-              </div>
-            </g>
+        <div class="source-code-wrapper-class" id="source-code-wrapper" style="font-size: 15px; font-family: monospace; color: black;">
+          <textarea class="source-code-display-class" id="source-code-display"></textarea>
         </div>
 
-        <div class="sidebar-display">
-          <div>
-            <svg id="legend">
-            </svg>
-          </div>
+        <div class="source-code-wrapper-class" id="source-code-wrapper2" style="font-size: 15px; font-family: monospace; color: black;">
+          <textarea class="source-code-display-class" id="source-code-display2"></textarea>
+        </div>
+
+        <!-- <div class="sidebar-display">
           <div id="memory-vis">
             <div id="memory-vis-header-wrapper">
               <h2 id="memory-vis-header">Data Movements</h2>
@@ -56,16 +63,22 @@
               </svg>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div id="footer">
-        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
+        <div>
+          <svg id="legend">
+          </svg>
+        </div>
         <div id="data-upload-region">
           <p> Upload Data: </p>
           <input type="file" id="selectedFile" style="display: none;" />
           <input type="button" id="json_fileInput" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
         </div>
+        <!-- <div id="selection-notice"></div> -->
+        <div id="data-race-buttons"></div>
+        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
       </div>
 
     </div>
