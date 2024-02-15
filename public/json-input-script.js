@@ -4,7 +4,6 @@ let path = [];
 const rootId = 1;
 let codeEditor = null;
 let codeEditor2 = null;
-let prevErrorLine2 = -1;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -61,9 +60,9 @@ function handleJsonUpload(event){
         reader.onload = function (e) {
             let jsonData = e.target.result;
 
-            dag = prepareGraph_dagre(jsonData);
             const svgID = "#svgJSON";
             setupSVG(svgID);
+            dag = prepareGraph_dagre(jsonData);
             
             const targetMovementData = extractTargetMovementData(jsonData);
             visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor);
@@ -193,28 +192,24 @@ function parseFileInfoForSourceLine(fileInfo, node)
 }
 
 
-function dataRaceButton(race)
+function dataRaceButton(race, g)
 {
     let button = document.createElement('button');
     button.textContent = "Race " + race;
     button.style = 'margin: 5px; padding: 5px;'
-    button.onclick = (e) => { 
+    button.onclick = (e) => {
         const current_node_index = global_races[race]['current'];
         const prev_node_index = global_races[race]['prev'];
         const currentNode = dag.node(current_node_index);
         const prevNode = dag.node(prev_node_index);
 
-        if (prevErrorLine != -1) {
-            codeEditor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
-            prevErrorLine = -1;
-        }
+        resetErrorLine(codeEditor)
 
         if (prevErrorLine2 != -1) {
             codeEditor2.markText({line: prevErrorLine2, ch: 0}, {line: prevErrorLine2 + 1, ch: 0}, { css: 'background-color: transparent;' });
             prevErrorLine2 = -1;
         }
         
-        // let selectionNotice = d3.select('#selection-notice');
         if (currentNode.data.source_line) {
             const errorLine = currentNode.data.source_line - 1;
             codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
@@ -222,12 +217,7 @@ function dataRaceButton(race)
             let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
             codeEditor.scrollTo(null, t - middleHeight - 5);
             prevErrorLine = errorLine;
-            // selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
         } 
-        // else {
-        //     selectionNotice.html(`The selected node ${race} has no associated stack information`);
-        // }
-
         
         if(prevNode.data.source_line){
             const errorLine = prevNode.data.source_line - 1;
@@ -237,31 +227,34 @@ function dataRaceButton(race)
             codeEditor2.scrollTo(null, t - middleHeight - 5);
             prevErrorLine2 = errorLine;
         }
+
+        // highlight the nodes in graph
+        for(const node of g.nodes()){
+            g.node(node).data.hidden = true;
+        }
+
+        for(const edge of g.edges()){
+            g.edge(edge).data.hidden = true;
+        }
+
+        showNode(current_node_index, g);
+        showNode(prev_node_index, g);
+        showChildren(rootId,g)
+        
+        visualizeDAG_dagre(g, "#svgJSON", null, codeEditor)
     }
     return button;
 }
 
-function constructDataRaceButtons(races)
+function constructDataRaceButtons(races, g)
 {
     if (races == null){
         return;
     }
     const dataRaceButtonDiv = document.getElementById('data-race-buttons');
-    dataRaceButtonDiv.innerHTML = '';
-    // let seen = [];
     
     for (let i = 0; i < races.length; i++) {
-        dataRaceButtonDiv.appendChild(dataRaceButton(i));
-
-        // if (seen.indexOf(race['current']) == -1) {
-        //     dataRaceButtonDiv.appendChild(dataRaceButton(race['current']));
-        //     seen.push(race['current']);
-        // }
-
-        // if (seen.indexOf(race['prev']) == -1) {
-        //     dataRaceButtonDiv.appendChild(dataRaceButton(race['prev']));
-        //     seen.push(race['prev']);
-        // }
+        dataRaceButtonDiv.appendChild(dataRaceButton(i, g));
     }
 }
 
@@ -272,20 +265,17 @@ function prepareGraph_dagre(jsonData){
     let races = json['races'];
     let files = json['files'];
 
-    let firstValue = null;
     if(files && Object.keys(files).length > 0){
         var firstKey = Object.keys(files)[0];
-        firstValue = files[firstKey];
+        let firstValue = files[firstKey];
         styleCodeEditor(firstValue);
-    } else {
-        // styleCodeEditor(firstvalue);
     }
 
     // Create a new directed graph 
     var g = new dagre.graphlib.Graph();
 
     // Set an object for the graph label
-    g.setGraph({ranker: "topo-sort", align: "UR", nodesep: nodeRadius, edgesep: nodeRadius / 2, ranksep: nodeRadius * 2});
+    g.setGraph({ranker: "topo-sort", align: "UL", nodesep: nodeRadius, edgesep: nodeRadius / 1.5, ranksep: nodeRadius * 2});
 
     // Default to assigning a new object as a label for each new edge.
     g.setDefaultEdgeLabel(function() { return {}; });
@@ -317,10 +307,10 @@ function prepareGraph_dagre(jsonData){
             visited.push(race.current);
 
             showNode(race.current, g);
-            showChildren(race.current, g);
+            // showChildren(race.current, g);
 
             showNode(race.prev, g);
-            showChildren(race.prev, g);
+            // showChildren(race.prev, g);
         }
         showChildren(rootId, g);
     }
@@ -340,7 +330,7 @@ function prepareGraph_dagre(jsonData){
 
     path = [];
     global_races = races;
-    constructDataRaceButtons(races);
+    constructDataRaceButtons(races, g);
 
     return g;
 }

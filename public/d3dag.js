@@ -135,6 +135,7 @@ function setupSVG(svgID) {
   // clear contents everytime
   svg.select('#links').html('');
   svg.select('#nodes').html('');
+  d3.select('#data-race-buttons').html('');
 }
 
 function computeConnectingLineCoords(data, index, type)
@@ -238,6 +239,11 @@ function visualizeDataMovement(dataMove, opening) {
   const svg = initializeSVG(dataMove.datamove.length);
   const trans = svg.transition().duration(450).ease(d3.easeLinear);
   transitionHeader(opening);
+
+  // TODO: check if this is necessary
+  // the reason is that without this line, after the target enter visualization,
+  // the target end visualization will be the same as the enter visualization
+  document.getElementById('data-transfer').innerHTML = '';
 
   svg
     .select('#data-transfer')
@@ -399,15 +405,16 @@ function visualizeDataMovement(dataMove, opening) {
               enter.transition(trans)
               .attr('opacity', 1);
             });
-      },
-      update => {
+      }
+      // ,update => {
         
-      },
-      exit => {
-        exit.transition(trans)
-        .attr('opacity', 0)
-        .remove();
-      });
+      // },
+      // exit => {
+      //   exit.transition(trans)
+      //   .attr('opacity', 0)
+      //   .remove();
+      // }
+      );
 }
 
 function populateIndices(datamove) {
@@ -417,10 +424,15 @@ function populateIndices(datamove) {
 }
 
 
-//setupSVG("#svg");
-//visualizeDAG(dag_initial_graph,"#svg");
-let first = true;
 let prevErrorLine = -1;
+let prevErrorLine2 = -1;
+
+function resetErrorLine(editor){
+  if(prevErrorLine != -1){
+    editor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
+    prevErrorLine = -1;
+  }
+}
 
 function enteredRaceNode(g, nodeId, editor)
 {
@@ -429,9 +441,11 @@ function enteredRaceNode(g, nodeId, editor)
     return;
   }
 
-  if(node.data.source_line == null) {
+  if(node.data.source_line == null || editor == null) {
     return;
   }
+
+  resetErrorLine(editor);
   
   const errorLine = node.data.source_line - 1;
   let color = get_node_color(node);
@@ -446,14 +460,11 @@ function enteredRaceNode(g, nodeId, editor)
 function exitedRaceNode(g, nodeId, editor)
 {
   const node = g.node(nodeId);
-  if (!node.data.has_race && node.data.stack == null) {
+  if (!node.data.has_race && node.data.stack == null || editor == null) {
     return;
   }
   
-  if (prevErrorLine != -1) {
-    editor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
-    prevErrorLine = -1;
-  }
+  resetErrorLine(editor);
 }
 
 
@@ -464,11 +475,8 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
 
   const svg = d3.select(svgID);
 
-  if (first) {
-    svg.attr('width', width + 10)
-    svg.attr('height', height + 10);
-    first = false;
-  }
+  svg.attr('width', width + 10)
+  svg.attr('height', height + 10);
   
   const trans = svg.transition().duration(300);
 
@@ -656,5 +664,4 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
       .on('end', repeat);
   });
 
-  const sourceCodeDisplay = document.getElementById('source-code-display');
 }
