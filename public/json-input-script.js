@@ -78,7 +78,7 @@ function handleJsonUpload(event){
 
 function extractTargetMovementData(jsonData) {
     let json = JSON.parse(jsonData);
-    let target_regions = json["target"];
+    let target_regions = json["targets"];
     return target_regions ? target_regions : null;
 }
 

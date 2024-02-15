@@ -503,6 +503,9 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
                   let index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum);
                   if (index !== -1) 
                   {
+                    document.getElementById('source-code-wrapper2').style.display = 'none';
+                    document.getElementById('sidebar-display').style.display = 'inline';
+
                     /* Hovered over a node with beginning data transfer */
                     const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
                     clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnBeginNode(x.flag));
@@ -514,6 +517,9 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
                   index = dataMovementInfo.findIndex(tr => tr.end_node === nodeIdNum);
                   if (index !== -1)
                   {
+                    document.getElementById('source-code-wrapper2').style.display = 'none';
+                    document.getElementById('sidebar-display').style.display = 'inline';
+
                     const clone = JSON.parse(JSON.stringify(dataMovementInfo[index]));
                     clone.datamove = dataMovementInfo[index].datamove.filter(x => shouldShowOnEndNode(x.flag));
                     populateIndices(clone.datamove);
@@ -539,7 +545,9 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
                   const index = dataMovementInfo.findIndex(tr => tr.begin_node === nodeIdNum || tr.end_node === nodeIdNum);
                   if (index !== -1) 
                   {
-                    /* Hovered over a node with beginning or ending data transfer */  
+                    document.getElementById('source-code-wrapper2').style.display = 'inline';
+                    document.getElementById('sidebar-display').style.display = 'none';
+                    /* Hovered over a node with beginning or ending data transfer */
                     visualizeDataMovement({ begin_node: '', end_node: '', datamove: []}, false);
                   }
                 })

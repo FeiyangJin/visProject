@@ -68,7 +68,7 @@
 .sidebar-display {
   flex-direction: column;
   display: flex;
-  width: 20%;
+  width: 30%;
 }
 
 #page-layout {
