@@ -496,6 +496,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
           .call(
             enter => {
               enter.append('circle')
+                .attr('id', n => 'circle' + n)
                 .on('click', n => click_dagre(g.node(n), g, svgID))
                 .attr('r', nodeRadius)
                 .attr('cursor', 'pointer')

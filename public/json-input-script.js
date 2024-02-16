@@ -4,6 +4,8 @@ let path = [];
 const rootId = 1;
 let codeEditor = null;
 let codeEditor2 = null;
+let sourceLine_to_nodeID = {};
+let highlightNodeID = -1;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -171,6 +173,28 @@ function styleCodeEditor(initialValue)
         codeEditor2 = editor2;
     }
     codeEditor2.getDoc().setValue(initialValue);
+
+    codeEditor.on("cursorActivity", function() {
+        const cursor = codeEditor.getCursor();
+        const lineNumber = cursor.line + 1;
+        if(!(lineNumber in sourceLine_to_nodeID)){
+            return
+        }
+
+        if(highlightNodeID != -1){
+            const circle_id = "circle" + highlightNodeID;
+            document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
+            document.getElementById(circle_id).setAttribute("r", nodeRadius);
+        }
+
+        console.log(`line number: ${lineNumber}, node id: ${sourceLine_to_nodeID[lineNumber]}`);
+        const circle_id = "circle" + sourceLine_to_nodeID[lineNumber];
+        document.getElementById(circle_id).style.fill = "pink";
+        document.getElementById(circle_id).setAttribute("r", nodeRadius * 2);
+        highlightNodeID = sourceLine_to_nodeID[lineNumber];
+    });
+
+    return
 }
 
 function parseFileInfoForSourceLine(fileInfo, node)
@@ -186,6 +210,10 @@ function parseFileInfoForSourceLine(fileInfo, node)
         const endIndex = fileInfo.indexOf(',', startIndex + 1);
         sourceLine = fileInfo.substring(startIndex + "line: ".length, endIndex);
         // console.log(`node ${node['id']}, startIndex ${startIndex}, endIndex ${endIndex}, source line: ${sourceLine}`);
+    }
+
+    if(sourceLine != -1){
+        sourceLine_to_nodeID[sourceLine] = node['id'];
     }
 
     return sourceLine;
