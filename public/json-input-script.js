@@ -313,10 +313,13 @@ function prepareGraph_dagre(jsonData){
             // showChildren(race.prev, g);
         }
         showChildren(rootId, g);
+        
+        document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`
     }
     else {
         showNode(rootId, g);
         g.node(rootId).data.active = false;
+        document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`
     }
 
     for (const n of g.nodes()) {

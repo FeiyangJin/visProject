@@ -67,17 +67,23 @@
       </div>
 
       <div id="footer">
+        <div id="data-upload-region">
+          <!-- <p> Upload Data  </p> -->
+          <input type="file" id="selectedFile" style="display: none;" />
+          <input type="button" id="json_fileInput" value="Upload File" onclick="document.getElementById('selectedFile').click();" />
+          <br>
+          <input type="button" id="show-graph-button" value="show all graph" style="display: none;"/>
+        </div>
         <div>
           <svg id="legend">
           </svg>
         </div>
-        <div id="data-upload-region">
-          <p> Upload Data: </p>
-          <input type="file" id="selectedFile" style="display: none;" />
-          <input type="button" id="json_fileInput" value="Browse..." onclick="document.getElementById('selectedFile').click();" />
+
+        <div id="button-regions">
+          <p id="race-notice"></p>
+          <div id="data-race-buttons"></div>
         </div>
-        <!-- <div id="selection-notice"></div> -->
-        <div id="data-race-buttons"></div>
+        
         <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
       </div>
 
