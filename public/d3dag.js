@@ -417,46 +417,68 @@ function populateIndices(datamove) {
   }
 }
 
-let prevErrorLine = -1;
+// Previous error line for code editor on left side
+let prevLeftErrorLine = -1;
 
-function enteredRaceNode(g, nodeId, editor)
+// Previous error line for code editor on the right side
+let prevRightErrorLine = -1;
+
+function highlightEditorLine(editor, lineNumber) 
+{
+  editor.markText({line: lineNumber, ch: 0}, {line: lineNumber + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+  let t = editor.charCoords({line: lineNumber, ch: 0}, 'local').top;
+  let middleHeight = editor.getScrollerElement().offsetHeight / 2;
+  editor.scrollTo(null, t - middleHeight - 5);
+}
+
+function enteredRaceNode(g, nodeId, editors)
 {
   const node = g.node(nodeId);
   if (!node.data.has_race) {
     return;
   }
-  
+  exitedRaceNode(g, nodeId, editors);
   let selectionNotice = d3.select('#selection-notice');
   if (node.data.source_line) {
-    const errorLine = node.data.source_line - 1;
-    editor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
-    let t = editor.charCoords({line: errorLine, ch: 0}, 'local').top;
-    let middleHeight = editor.getScrollerElement().offsetHeight / 2;
-    editor.scrollTo(null, t - middleHeight - 5);
-    prevErrorLine = errorLine;
+    const leftErrorLine = node.data.source_line - 1;
+    highlightEditorLine(editors[0], leftErrorLine);
+    prevLeftErrorLine = leftErrorLine;
+
+    if (node.data.prev_source_line) {
+      const rightErrorLine = node.data.prev_source_line - 1;
+      highlightEditorLine(editors[1], rightErrorLine);
+      prevRightErrorLine = rightErrorLine;
+    }
     selectionNotice.html(`Offending lines corresponding to node ${nodeId} highlighted in red.`)
-  } else {
+  } 
+  else {
     selectionNotice.html(`The selected node ${nodeId} has no associated stack information`);
   }
 }
 
-function exitedRaceNode(g, nodeId, editor)
+function exitedRaceNode(g, nodeId, editors)
 {
   const node = g.node(nodeId);
   if (!node.data.has_race) {
     return;
   }
   
-  if (prevErrorLine != -1) {
-    editor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
-    prevErrorLine = -1;
+  if (prevLeftErrorLine != -1) {
+    editors[0].markText({ line: prevLeftErrorLine, ch: 0 }, { line: prevLeftErrorLine + 1, ch: 0 }, { css: 'background-color: transparent;' });
+    prevLeftErrorLine = -1;
   }
+
+  if (prevRightErrorLine != -1) {
+    editors[1].markText({ line: prevRightErrorLine, ch: 0 }, { line: prevRightErrorLine + 1, ch: 0 }, { css: 'background-color: transparent;' });
+    prevRightErrorLine = -1;
+  }
+
   let selectionNotice = d3.select('#selection-notice');
   selectionNotice.html('No node selected');
 }
 
 
-function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
+function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditors) {
   dagre.layout(g);
   const width = g.graph().width;
   const height = g.graph().height;
@@ -489,7 +511,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
                 .attr('fill', n => get_node_color(g.node(n)))
                 .on('mouseover', n => {
                   tooltip.style('visibility', 'visible');
-                  enteredRaceNode(g, n, codeEditor);
+                  enteredRaceNode(g, n, codeEditors);
                   if (!dataMovementInfo) {
                     return;
                   }
@@ -526,7 +548,7 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor) {
                 })
                 .on('mouseout', n => {
                   tooltip.style('visibility', 'hidden');
-                  exitedRaceNode(g, n, codeEditor);
+                  exitedRaceNode(g, n, codeEditors);
                   if (!dataMovementInfo) {
                     return;
                   }

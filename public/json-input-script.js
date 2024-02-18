@@ -1,7 +1,7 @@
 let dag;
 let path = [];
 
-let codeEditor = null;
+let codeEditors = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
@@ -62,7 +62,7 @@ function handleJsonUpload(event){
             setupSVG(svgID);
             
             const targetMovementData = extractTargetMovementData(jsonData);
-            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor);
+            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditors);
             addZooming();
             addLegend();
             showBorder();
@@ -93,24 +93,41 @@ function populateRefCount_dagre(n,g)
     }
 }
 
-function styleCodeEditor(initialValue)
+function styleCodeEditors(initialValue)
 {
-    const sourceCodeDisplay = document.getElementById('source-code-display');
-    if (codeEditor == null) {
-        const sourceCodeWrapper = document.getElementById('source-code-wrapper');
-        const editor = CodeMirror.fromTextArea(sourceCodeDisplay, {
+    const currentSourceCodeDisplayWrapper = document.getElementById('current-source-code-wrapper');
+    const prevSourceCodeDisplayWrapper = document.getElementById('prev-source-code-wrapper');
+
+    const currentSourceCodeDisplay = document.getElementById('current-source-code-display');
+    const prevSourceCodeDisplay = document.getElementById('prev-source-code-display');
+
+    const currentEditor = CodeMirror.fromTextArea(currentSourceCodeDisplay, {
             lineNumbers: true,
             gutter: true,
             lineWrapping: false,
             readOnly: true,
             matchBrackets: true,
-            styleSelectedTest: true,
+            styleSelectedTest: false,
             mode: 'text/x-csrc'
-        });
-        editor.setSize(sourceCodeWrapper.clientWidth, sourceCodeWrapper.clientHeight);
-        codeEditor = editor;
-    }
-    codeEditor.getDoc().setValue(initialValue);
+    });
+    currentEditor.setSize(currentSourceCodeDisplayWrapper.clientWidth, currentSourceCodeDisplayWrapper.clientHeight);
+
+    const prevEditor = CodeMirror.fromTextArea(prevSourceCodeDisplay, {
+            lineNumbers: true,
+            gutter: true,
+            lineWrapping: false,
+            readOnly: true,
+            matchBrackets: true,
+            styleSelectedTest: false,
+            mode: 'text/x-csrc'
+    });
+    prevEditor.setSize(prevSourceCodeDisplayWrapper.clientWidth, prevSourceCodeDisplayWrapper.clientHeight);
+
+    currentEditor.getDoc().setValue(initialValue);
+    prevEditor.getDoc().setValue(initialValue);
+
+    codeEditors.push(currentEditor);
+    codeEditors.push(prevEditor);
 }
 
 function parseFileInfoForSourceLine(fileInfo)
@@ -128,20 +145,38 @@ function dataRaceButton(race)
     button.style = 'margin: 5px; padding: 5px;'
     button.onclick = (e) => { 
         const node = dag.node(race);
+        const leftSourceCodeDisplay = codeEditors[0];
+        const rightSourceCodeDisplay = codeEditors[1];
 
-        if (prevErrorLine != -1) {
-            codeEditor.markText({line: prevErrorLine, ch: 0}, {line: prevErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
-            prevErrorLine = -1;
+        if (prevLeftErrorLine != -1) {
+            leftSourceCodeDisplay.markText({line: prevLeftErrorLine, ch: 0}, {line: prevLeftErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
+            prevLeftErrorLine = -1;
+        }
+
+        if (prevRightErrorLine != -1) {
+            rightSourceCodeDisplay.markText({line: prevRightErrorLine, ch: 0}, {line: prevRightErrorLine + 1, ch: 0}, { css: 'background-color: transparent;' });
+            prevRightErrorLine = -1;
         }
         
         let selectionNotice = d3.select('#selection-notice');
         if (node.data.source_line) {
-            const errorLine = node.data.source_line - 1;
-            codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
-            let t = codeEditor.charCoords({line: errorLine, ch: 0}, 'local').top;
-            let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
-            codeEditor.scrollTo(null, t - middleHeight - 5);
-            prevErrorLine = errorLine;
+            const leftErrorLine = node.data.source_line - 1;
+            leftSourceCodeDisplay.markText({line: leftErrorLine, ch: 0}, {line: leftErrorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+            let t = leftSourceCodeDisplay.charCoords({line: leftErrorLine, ch: 0}, 'local').top;
+            let middleHeight = leftSourceCodeDisplay.getScrollerElement().offsetHeight / 2;
+            leftSourceCodeDisplay.scrollTo(null, t - middleHeight - 5);
+            prevLeftErrorLine = leftErrorLine;
+
+            
+            if (node.data.prev_source_line) {
+                const rightErrorLine = node.data.prev_source_line - 1;
+                rightSourceCodeDisplay.markText({line: rightErrorLine, ch: 0}, {line: rightErrorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+                let t = rightSourceCodeDisplay.charCoords({line: rightErrorLine, ch: 0}, 'local').top;
+                let middleHeight = rightSourceCodeDisplay.getScrollerElement().offsetHeight / 2;
+                rightSourceCodeDisplay.scrollTo(null, t - middleHeight - 5);
+                prevRightErrorLine = leftErrorLine;
+            }
+
             selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
         } else {
             selectionNotice.html(`The selected node ${race} has no associated stack information`);
@@ -169,7 +204,7 @@ function constructDataRaceButtons(races)
     }
 }
 
-function prepareGraph_dagre(jsonData){
+function prepareGraph_dagre(jsonData) {
     let json = JSON.parse(jsonData);
     let nodes = json['nodes'];
     let edges = json['edges'];
@@ -177,12 +212,12 @@ function prepareGraph_dagre(jsonData){
     let files = json['files'];
 
     let firstValue = null;
-    if(files && Object.keys(files).length > 0){
+    if (files && Object.keys(files).length > 0) {
         var firstKey = Object.keys(files)[0];
         firstValue = files[firstKey];
-        styleCodeEditor(firstValue);
+        styleCodeEditors(firstValue);
     } else {
-        styleCodeEditor(firstvalue);
+        styleCodeEditors(firstvalue);
     }
 
     // Create a new directed graph 
@@ -194,7 +229,7 @@ function prepareGraph_dagre(jsonData){
     // Default to assigning a new object as a label for each new edge.
     g.setDefaultEdgeLabel(function() { return {}; });
 
-    for (const node of nodes){
+    for (const node of nodes) {
         g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}})
         g.node(node.id).data.refCount = 0;
         if (node['has_race']) {
@@ -203,10 +238,21 @@ function prepareGraph_dagre(jsonData){
             } else {
                 node['source_line'] = null;
             }
+            node['prev_source_line'] = null;
         }
     }
 
-    for (const edge of edges){
+    for (const race of races) {
+        const current = race['current'];
+        const previous = race['prev'];
+
+        const currentNode = g.node(current);
+        const previousNode = g.node(previous);
+
+        currentNode.data['prev_source_line'] = previousNode.data.source_line;
+    }
+
+    for (const edge of edges) {
         g.setEdge(edge.source, edge.target, {data:edge})
     }
 
@@ -421,6 +467,8 @@ function showBorder() {
     const svgParentDiv = document.getElementsByClassName('graph-display')[0];
     svgParentDiv.style.borderColor = 'black';
 
-    const codeDisplayDiv = document.getElementById('source-code-wrapper');
-    codeDisplayDiv.style.borderColor = 'black';
+    const codeDisplayDivs = document.getElementsByClassName('source-code-wrapper');
+    for (const codeDisplayDiv of codeDisplayDivs) {
+        codeDisplayDiv.style.borderColor = 'black';
+    }
 }

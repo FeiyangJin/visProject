@@ -2,6 +2,10 @@
     user-select: none;
 }
 
+.vertical-separator {
+  width: 3px;
+}
+
 #page-layout {
   display: flex;
   flex-direction: column;
@@ -29,38 +33,49 @@
 }
 
 .graph-display {
+  width: 40%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+  padding: 5px;
+  margin: 5px;
+
+  border-style: solid;
+  border-color: transparent;
+  border-width: 3px;
+  border-radius: 15px;
+}
+
+#source-code-area {
+  display: flex;
+  flex-direction: row;
+
+  width: 40%;
+  padding: 5px;
+  margin: 5px;
+}
+
+.source-code-wrapper {
   width: 50%;
   overflow-x: scroll;
   overflow-y: scroll;
 
-  padding: 5px;
-  margin: 5px;
-
   border-style: solid;
   border-color: transparent;
   border-width: 3px;
   border-radius: 15px;
 }
 
-#source-code-wrapper {
-  width: 30%;
-  overflow-x: scroll;
-  overflow-y: scroll;
-
-  padding: 5px;
-  margin: 5px;
-
-  border-style: solid;
-  border-color: transparent;
-  border-width: 3px;
-  border-radius: 15px;
+.code-editor-header {
+  text-align: center;
 }
 
-#source-code-display {
+.source-code-display {
   width: 100%;
   height: 100%;
   border: none;
-  scrollbar-color: transparent;
+  
+  scrollbar-width: none;
   background-color: transparent;
   resize: none;
 }
