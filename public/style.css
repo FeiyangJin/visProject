@@ -199,7 +199,7 @@ h1 {
 
 .colored-text {
   color: yellow; /* Text color */
-  background-color: #ff5733; /* Background color (example: orange) */
+  background-color: black; /* Background color (example: orange) */
   padding: 2px 4px; /* Padding for the background */
   border-radius: 4px; /* Rounded corners */
   font-weight: bold; /* Bold font */

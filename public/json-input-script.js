@@ -6,6 +6,8 @@ let codeEditor = null;
 let codeEditor2 = null;
 let sourceLine_to_nodeID = {};
 let highlightNodeID = -1;
+let global_races = null;
+const dataRaceButtonDiv = document.getElementById('data-race-buttons');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -71,6 +73,11 @@ function handleJsonUpload(event){
             addZooming();
             addLegend();
             showBorder();
+
+            if(global_races){
+                const firstButton = dataRaceButtonDiv.firstChild;
+                firstButton.click();
+            }
         };
 
         reader.readAsText(file);
@@ -200,37 +207,45 @@ function styleCodeEditor(initialValue)
 function parseFileInfoForSourceLine(fileInfo, node)
 {
     let sourceLine = -1;
-    if(node['has_race']){
-        const startColonIndex = fileInfo.indexOf(':');
-        const endColonIndex = fileInfo.indexOf(':', startColonIndex + 1);
-        sourceLine = fileInfo.substring(startColonIndex + 1, endColonIndex) - 0;
-    }
-    else{
-        const startIndex = fileInfo.indexOf('line: ');
-        const endIndex = fileInfo.indexOf(',', startIndex + 1);
-        sourceLine = fileInfo.substring(startIndex + "line: ".length, endIndex);
-        // console.log(`node ${node['id']}, startIndex ${startIndex}, endIndex ${endIndex}, source line: ${sourceLine}`);
-    }
+    const startIndex = fileInfo.indexOf('line: ');
+    const endIndex = fileInfo.indexOf(',', startIndex + 1);
+    sourceLine = fileInfo.substring(startIndex + "line: ".length, endIndex);
 
-    if(sourceLine != -1){
+    if(sourceLine != -1 && !(sourceLine in sourceLine_to_nodeID)){
         sourceLine_to_nodeID[sourceLine] = node['id'];
     }
 
     return sourceLine;
 }
 
+function parseRaceStackForSourceLine(raceStack){
+    let sourceLine = -1;
+    const startColonIndex = raceStack.indexOf(':');
+    const endColonIndex = raceStack.indexOf(':', startColonIndex + 1);
+    sourceLine = raceStack.substring(startColonIndex + 1, endColonIndex) - 0;
 
-function dataRaceButton(race, g)
+    return sourceLine;
+}
+
+
+function dataRaceButton(raceIndex, g)
 {
     let button = document.createElement('button');
-    button.textContent = "Race " + race;
+    button.textContent = "Race " + raceIndex;
     button.style = 'margin: 5px; padding: 5px;'
-    button.onclick = (e) => {
-        const current_node_index = global_races[race]['current'];
-        const prev_node_index = global_races[race]['prev'];
-        const currentNode = dag.node(current_node_index);
-        const prevNode = dag.node(prev_node_index);
 
+    const current_stack = global_races[raceIndex]['current_stack'];
+    const prev_stack = global_races[raceIndex]['prev_stack'];
+    const current_source_line = parseRaceStackForSourceLine(current_stack);
+    const prev_source_line = parseRaceStackForSourceLine(prev_stack);
+
+    global_races[raceIndex]['current_source_line'] = current_source_line;
+    global_races[raceIndex]['prev_source_line'] = prev_source_line;
+
+    const current_node_index = global_races[raceIndex]['current'];
+    const prev_node_index = global_races[raceIndex]['prev'];
+
+    button.onclick = (e) => {
         resetErrorLine(codeEditor)
 
         if (prevErrorLine2 != -1) {
@@ -238,8 +253,8 @@ function dataRaceButton(race, g)
             prevErrorLine2 = -1;
         }
         
-        if (currentNode.data.source_line) {
-            const errorLine = currentNode.data.source_line - 1;
+        if (current_source_line != -1) {
+            const errorLine = current_source_line - 1;
             codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
             let t = codeEditor.charCoords({line: errorLine, ch: 0}, 'local').top;
             let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
@@ -247,8 +262,8 @@ function dataRaceButton(race, g)
             prevErrorLine = errorLine;
         } 
         
-        if(prevNode.data.source_line){
-            const errorLine = prevNode.data.source_line - 1;
+        if(prev_source_line != -1){
+            const errorLine = prev_source_line - 1;
             codeEditor2.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
             let t = codeEditor2.charCoords({line: errorLine, ch: 0}, 'local').top;
             let middleHeight = codeEditor2.getScrollerElement().offsetHeight / 2;
@@ -279,7 +294,6 @@ function constructDataRaceButtons(races, g)
     if (races == null){
         return;
     }
-    const dataRaceButtonDiv = document.getElementById('data-race-buttons');
     
     for (let i = 0; i < races.length; i++) {
         dataRaceButtonDiv.appendChild(dataRaceButton(i, g));
@@ -326,20 +340,10 @@ function prepareGraph_dagre(jsonData){
 
     if (races)
     {
-        let visited = [];
-        for (const race of races)
-        {
-            if (visited.includes(race.current)) {
-                continue;
-            }
-            visited.push(race.current);
+        let race = races[0];
+        showNode(race.current, g);
+        showNode(race.prev, g);
 
-            showNode(race.current, g);
-            // showChildren(race.current, g);
-
-            showNode(race.prev, g);
-            // showChildren(race.prev, g);
-        }
         showChildren(rootId, g);
         
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`
