@@ -55,7 +55,7 @@ function addZooming() {
     parentDiv.scrollTop = Math.max((svg.clientHeight - parentDiv.clientWidth) / 2, 0);
 }
 
-function handleJsonUpload(event){
+function handleJsonUpload(event) {
     const file = event.target.files[0];
     
     if (file) {
@@ -69,12 +69,12 @@ function handleJsonUpload(event){
             dag = prepareGraph_dagre(jsonData);
             
             const targetMovementData = extractTargetMovementData(jsonData);
-            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor);
+            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor, codeEditor2);
             addZooming();
             addLegend();
             showBorder();
 
-            if(global_races){
+            if (global_races) {
                 const firstButton = dataRaceButtonDiv.firstChild;
                 firstButton.click();
             }
@@ -184,11 +184,11 @@ function styleCodeEditor(initialValue)
     codeEditor.on("cursorActivity", function() {
         const cursor = codeEditor.getCursor();
         const lineNumber = cursor.line + 1;
-        if(!(lineNumber in sourceLine_to_nodeID)){
+        if (!(lineNumber in sourceLine_to_nodeID)) {
             return
         }
 
-        if(highlightNodeID != -1){
+        if (highlightNodeID != -1) {
             const circle_id = "circle" + highlightNodeID;
             document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
             document.getElementById(circle_id).setAttribute("r", nodeRadius);
@@ -216,15 +216,13 @@ function parseFileInfoForSourceLine(fileInfo, node)
     return sourceLine;
 }
 
-function parseRaceStackForSourceLine(raceStack){
+function parseRaceStackForSourceLine(raceStack) {
     let sourceLine = -1;
     const startColonIndex = raceStack.indexOf(':');
     const endColonIndex = raceStack.indexOf(':', startColonIndex + 1);
     sourceLine = raceStack.substring(startColonIndex + 1, endColonIndex) - 0;
-
     return sourceLine;
 }
-
 
 function dataRaceButton(raceIndex, g)
 {
@@ -244,37 +242,38 @@ function dataRaceButton(raceIndex, g)
     const prev_node_index = global_races[raceIndex]['prev'];
 
     button.onclick = (e) => {
-        resetErrorLine(codeEditor)
+        resetErrorLineLeft(codeEditor);
+        resetErrorLineRight(codeEditor2);
 
-        if (prevErrorLine2 != -1) {
-            codeEditor2.markText({line: prevErrorLine2, ch: 0}, {line: prevErrorLine2 + 1, ch: 0}, { css: 'background-color: transparent;' });
-            prevErrorLine2 = -1;
+        if (prevHighlightLineRight != -1) {
+            codeEditor2.markText({line: prevHighlightLineRight, ch: 0}, {line: prevHighlightLineRight + 1, ch: 0}, { css: 'background-color: transparent;' });
+            prevHighlightLineRight = -1;
         }
         
         if (current_source_line != -1) {
             const errorLine = current_source_line - 1;
-            codeEditor.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
+            codeEditor.markText({ line: errorLine, ch: 0 }, { line: errorLine + 1, ch: 0 }, { css: 'background-color: #FF6464;' });
             let t = codeEditor.charCoords({line: errorLine, ch: 0}, 'local').top;
             let middleHeight = codeEditor.getScrollerElement().offsetHeight / 2;
             codeEditor.scrollTo(null, t - middleHeight - 5);
-            prevErrorLine = errorLine;
+            prevHighlightLineLeft = errorLine;
         } 
         
-        if(prev_source_line != -1){
+        if (prev_source_line != -1) {
             const errorLine = prev_source_line - 1;
             codeEditor2.markText({line: errorLine, ch: 0}, {line: errorLine + 1, ch: 0}, { css: 'background-color: #FF6464;' });
             let t = codeEditor2.charCoords({line: errorLine, ch: 0}, 'local').top;
             let middleHeight = codeEditor2.getScrollerElement().offsetHeight / 2;
             codeEditor2.scrollTo(null, t - middleHeight - 5);
-            prevErrorLine2 = errorLine;
+            prevHighlightLineRight = errorLine;
         }
 
         // highlight the nodes in graph
-        for(const node of g.nodes()){
+        for (const node of g.nodes()) {
             g.node(node).data.hidden = true;
         }
 
-        for(const edge of g.edges()){
+        for (const edge of g.edges()) {
             g.edge(edge).data.hidden = true;
         }
 
@@ -282,14 +281,14 @@ function dataRaceButton(raceIndex, g)
         showNode(prev_node_index, g);
         showChildren(rootId,g)
         
-        visualizeDAG_dagre(g, "#svgJSON", null, codeEditor)
+        visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2)
     }
     return button;
 }
 
 function constructDataRaceButtons(races, g)
 {
-    if (races == null){
+    if (races == null) {
         return;
     }
     
@@ -343,13 +342,20 @@ function prepareGraph_dagre(jsonData){
         showNode(race.prev, g);
 
         showChildren(rootId, g);
-        
-        document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`
+        document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
+
+        for (race of races)
+        {
+            const currentNode = g.node(race['current']);
+
+            currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
+            currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
+        }
     }
     else {
         showNode(rootId, g);
         g.node(rootId).data.active = false;
-        document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`
+        document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`;
     }
 
     for (const n of g.nodes()) {
@@ -364,7 +370,6 @@ function prepareGraph_dagre(jsonData){
     path = [];
     global_races = races;
     constructDataRaceButtons(races, g);
-
     return g;
 }
 
@@ -567,4 +572,7 @@ function showBorder() {
 
     const codeDisplayDiv = document.getElementById('source-code-wrapper');
     codeDisplayDiv.style.borderColor = 'black';
+
+    const codeDisplayDiv2 = document.getElementById('source-code-wrapper2');
+    codeDisplayDiv2.style.borderColor = 'black';
 }
