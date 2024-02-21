@@ -200,8 +200,6 @@ function styleCodeEditor(initialValue)
         document.getElementById(circle_id).setAttribute("r", nodeRadius * 2);
         highlightNodeID = sourceLine_to_nodeID[lineNumber];
     });
-
-    return
 }
 
 function parseFileInfoForSourceLine(fileInfo, node)
