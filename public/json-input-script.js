@@ -174,7 +174,7 @@ function dataRaceButton(race)
                 let t = rightSourceCodeDisplay.charCoords({line: rightErrorLine, ch: 0}, 'local').top;
                 let middleHeight = rightSourceCodeDisplay.getScrollerElement().offsetHeight / 2;
                 rightSourceCodeDisplay.scrollTo(null, t - middleHeight - 5);
-                prevRightErrorLine = leftErrorLine;
+                prevRightErrorLine = rightErrorLine;
             }
 
             selectionNotice.html(`Offending lines corresponding to node ${race} highlighted in red.`)
