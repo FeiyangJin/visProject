@@ -222,7 +222,10 @@ function get_node_color(n) {
   }
 
   if (n.data.has_race == true) {
-    return "red";
+    if(n.data.special == true){
+      return "red"
+    }
+    return "#870404";
   }
 
   if(n.data.ontarget != undefined && n.data.ontarget == true) {

@@ -7,6 +7,9 @@ let codeEditor2 = null;
 let sourceLine_to_nodeID = {};
 let highlightNodeID = -1;
 let global_races = null;
+let current_button = 0;
+let targetMovementData = null;
+
 const dataRaceButtonDiv = document.getElementById('data-race-buttons');
 
 
@@ -68,7 +71,7 @@ function handleJsonUpload(event) {
             setupSVG(svgID);
             dag = prepareGraph_dagre(jsonData);
             
-            const targetMovementData = extractTargetMovementData(jsonData);
+            targetMovementData = extractTargetMovementData(jsonData);
             visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor, codeEditor2);
             addZooming();
             addLegend();
@@ -227,8 +230,10 @@ function parseRaceStackForSourceLine(raceStack) {
 function dataRaceButton(raceIndex, g)
 {
     let button = document.createElement('button');
+    button.id = "button" + raceIndex;
+
     button.textContent = "Race " + raceIndex;
-    button.style = 'margin: 5px; padding: 5px;'
+    button.style = 'margin: 5px; padding: 5px; background-color: lightblue'
 
     const current_stack = global_races[raceIndex]['current_stack'];
     const prev_stack = global_races[raceIndex]['prev_stack'];
@@ -270,6 +275,7 @@ function dataRaceButton(raceIndex, g)
 
         // highlight the nodes in graph
         for (const node of g.nodes()) {
+            g.node(node).data.special = false;
             g.node(node).data.hidden = true;
         }
 
@@ -281,13 +287,24 @@ function dataRaceButton(raceIndex, g)
         showNode(prev_node_index, g);
         showChildren(rootId,g)
         
+        g.node(current_node_index).data.special = true;
+        g.node(prev_node_index).data.special = true;
+
         visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2)
+
+        // highlight the button
+        if(current_button != raceIndex){
+            document.getElementById("button" + current_button).style.backgroundColor = "lightblue";
+        }
+        current_button = raceIndex;
+        button.style.backgroundColor = "red";
     }
     return button;
 }
 
 function constructDataRaceButtons(races, g)
 {
+    current_button = 0;
     if (races == null) {
         return;
     }
@@ -321,6 +338,7 @@ function prepareGraph_dagre(jsonData){
 
     for (const node of nodes) {
         node['hidden'] = true;
+        node['special'] = false;
         g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
         g.node(node.id).data.refCount = 0;
 
@@ -453,7 +471,7 @@ function addLegend() {
         .attr("r", radius)
         .attr("cx", symbol_x)
         .attr("cy", current_y)
-        .attr("fill", "black")
+        .attr("fill", "#858585")
 
         legend_svg.append("text")
         .text("collapsed node")
@@ -548,7 +566,19 @@ function addLegend() {
         .attr("x2", symbol_x + 2 * radius)
         .attr("y2", current_y)
         .attr("stroke", "pink")
-        .attr("stroke-width", 4)
+        .attr('stroke-dasharray', '4')
+        .attr('marker-end', 'url(#arrowhead)')
+        .transition()
+        .on('start', function repeat() {
+          d3.active(this)
+            .transition()
+            .duration(16000)
+            .ease(d3.easeLinear)
+            .styleTween('stroke-dashoffset', function() {
+              return d3.interpolate(960, 0);
+            })
+            .on('end', repeat);
+        });
 
         legend_svg.append("text")
         .text("target edge")
@@ -564,6 +594,7 @@ function addLegend() {
         current_y += step_y
     }
 
+    legend_svg.attr('height', current_y + 10);
 }
 
 function showBorder() {
