@@ -161,6 +161,11 @@
   max-height: 15vh;
 }
 
+.lengend-regions{
+  display: flex;
+  flex-direction: row;
+}
+
 #button-region{
   display: flex;
   flex-direction: column;

@@ -213,6 +213,14 @@ function parseFileInfoForSourceLine(fileInfo, node)
     sourceLine = fileInfo.substring(startIndex + "line: ".length, endIndex);
 
     if(sourceLine != -1 && !(sourceLine in sourceLine_to_nodeID)){
+        if(node['end_event'] == event_type.target_begin){
+            // target source line is usually off by 1 or 2
+            let targetLine = codeEditor.getDoc().getLine(sourceLine - 1);
+            while(!(targetLine.includes("target"))){
+                sourceLine -= 1;
+                targetLine = codeEditor.getDoc().getLine(sourceLine - 1);
+            }
+        }
         sourceLine_to_nodeID[sourceLine] = node['id'];
     }
 
@@ -394,13 +402,13 @@ function prepareGraph_dagre(jsonData){
 
 const radius = 8;
 const symbol_x = 20;
-const text_x = symbol_x + 4 * radius;
+const text_x = symbol_x + 3 * radius;
 let current_y = symbol_x;
 const step_y = 30;
 
 
 function addLegend() {
-    let legend_svg = d3.select("#legend");
+    let legend_svg = d3.select("#node-legend");
 
     let existing_ele = legend_svg.select("circle");
     if (!existing_ele.empty()) {
