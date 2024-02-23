@@ -310,9 +310,33 @@ function dataRaceButton(raceIndex, g)
     return button;
 }
 
+function showAllButton(g){
+    let button = document.createElement('button');
+
+    button.textContent = "Show all";
+    button.style = 'margin: 5px; padding: 5px; background-color: lightyellow'
+
+    button.onclick = (e) => {
+        for(const node of g.nodes()){
+            g.node(node).data.special = false;
+            g.node(node).data.hidden = false;
+            g.node(node).data.active = true;
+        }
+
+        for(const edge of g.edges()){
+            g.edge(edge).data.hidden = false;
+        }
+
+        visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2);
+    }
+    return button
+}
+
 function constructDataRaceButtons(races, g)
 {
     current_button = 0;
+    document.getElementById('data-upload-region').appendChild(showAllButton(g));
+
     if (races == null) {
         return;
     }
