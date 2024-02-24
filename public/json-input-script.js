@@ -16,7 +16,35 @@ const dataRaceButtonDiv = document.getElementById('data-race-buttons');
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
     json_fileInput.addEventListener('change', handleJsonUpload);
+    
+    console.log(`bench is ${benchmark}`);
+    if(benchmark == null){
+        return;
+    }
+
+    var bench_json = benchmarks[benchmark];
+    if(bench_json !=undefined){
+        handleJSON(bench_json);
+    }
+
 });
+
+function handleJSON(jsonData){
+    const svgID = "#svgJSON";
+    setupSVG(svgID);
+    dag = prepareGraph_dagre(jsonData);
+    
+    targetMovementData = extractTargetMovementData(jsonData);
+    visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor, codeEditor2);
+    addZooming();
+    addLegend();
+    showBorder();
+
+    if (global_races) {
+        const firstButton = dataRaceButtonDiv.firstChild;
+        firstButton.click();
+    }
+}
 
 let zoomData = 
 {
@@ -66,21 +94,7 @@ function handleJsonUpload(event) {
 
         reader.onload = function (e) {
             let jsonData = e.target.result;
-
-            const svgID = "#svgJSON";
-            setupSVG(svgID);
-            dag = prepareGraph_dagre(jsonData);
-            
-            targetMovementData = extractTargetMovementData(jsonData);
-            visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor, codeEditor2);
-            addZooming();
-            addLegend();
-            showBorder();
-
-            if (global_races) {
-                const firstButton = dataRaceButtonDiv.firstChild;
-                firstButton.click();
-            }
+            handleJSON(jsonData);
         };
 
         reader.readAsText(file);
