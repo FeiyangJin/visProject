@@ -91,6 +91,15 @@
     <script src="public/d3dag_util.js"></script>
     <script src="public/d3dag.js"></script>
     <script src="public/json-input-script.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      // Reading query parameters
+      const param1Value = urlParams.get('param1');
+      const param2Value = urlParams.get('param2');
+
+      console.log('param1:', param1Value);
+      console.log('param2:', param2Value);
+    </script>
 </body>
 
 </html>

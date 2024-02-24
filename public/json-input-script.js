@@ -313,6 +313,7 @@ function dataRaceButton(raceIndex, g)
 function showAllButton(g){
     let button = document.createElement('button');
 
+    button.id = "showAllButton";
     button.textContent = "Show all";
     button.style = 'margin: 5px; padding: 5px; background-color: lightyellow'
 
@@ -335,7 +336,14 @@ function showAllButton(g){
 function constructDataRaceButtons(races, g)
 {
     current_button = 0;
+
+    let showAllButtonElement = document.getElementById('showAllButton');
+    if(showAllButtonElement != null){
+        showAllButtonElement.remove();
+    }
+
     document.getElementById('data-upload-region').appendChild(showAllButton(g));
+    
 
     if (races == null) {
         return;
