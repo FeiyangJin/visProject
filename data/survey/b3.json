@@ -28,19 +28,7 @@
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 6
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
             "target": 7
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 9
         },
         {
             "edge_type": 1,
@@ -52,7 +40,19 @@
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
+            "target": 6
+        },
+        {
+            "edge_type": 1,
+            "hidden": 0,
+            "source": 1,
             "target": 10
+        },
+        {
+            "edge_type": 1,
+            "hidden": 0,
+            "source": 1,
+            "target": 9
         },
         {
             "edge_type": 0,
@@ -64,49 +64,49 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 13
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 4,
-            "target": 12
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
             "target": 15
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 6,
+            "source": 4,
+            "target": 18
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 5,
             "target": 11
         },
         {
             "edge_type": 0,
             "hidden": 0,
+            "source": 6,
+            "target": 13
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
             "source": 7,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 8,
-            "target": 16
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 9,
             "target": 14
         },
         {
             "edge_type": 0,
             "hidden": 0,
+            "source": 8,
+            "target": 12
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 9,
+            "target": 17
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
             "source": 10,
-            "target": 18
+            "target": 16
         },
         {
             "edge_type": 3,
@@ -200,7 +200,7 @@
         {
             "active": 1,
             "end_event": 3,
-            "has_race": false,
+            "has_race": true,
             "hidden": 0,
             "id": 5,
             "ontarget": false,
@@ -209,7 +209,7 @@
         {
             "active": 1,
             "end_event": 3,
-            "has_race": true,
+            "has_race": false,
             "hidden": 0,
             "id": 6,
             "ontarget": false,
@@ -335,7 +335,7 @@
     ],
     "races": [
         {
-            "current": 6,
+            "current": 5,
             "current_stack": "/home/fjin/playground/survey/b3.c:15:",
             "lca": 0,
             "prev": 3,

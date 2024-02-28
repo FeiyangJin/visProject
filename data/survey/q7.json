@@ -28,31 +28,31 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 6
+            "target": 5
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 5
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 5,
             "target": 6
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 5,
-            "target": 7
+            "target": 8
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 6,
+            "target": 5
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 6,
-            "target": 8
+            "target": 7
         },
         {
             "edge_type": 5,
@@ -192,17 +192,17 @@
     "races": [
         {
             "current": 6,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:90:7 (q7+0xd125e)",
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:83:7 (q7+0xd11a4)",
             "lca": 0,
             "prev": 5,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:86:11 (q7+0xd11f3)"
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:93:11 (q7+0xd12ad)"
         },
         {
             "current": 5,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:83:7 (q7+0xd11a4)",
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:90:7 (q7+0xd125e)",
             "lca": 0,
             "prev": 6,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:93:11 (q7+0xd12ad)"
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:86:11 (q7+0xd11f3)"
         }
     ],
     "targets": null

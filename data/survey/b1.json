@@ -34,7 +34,7 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 17
+            "target": 18
         },
         {
             "edge_type": 2,
@@ -130,31 +130,31 @@
             "edge_type": 5,
             "hidden": 0,
             "source": 15,
-            "target": 18
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 18
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 17,
-            "target": 18
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 19
+            "target": 20
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 18,
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 20
+            "target": 19
         },
         {
             "edge_type": 3,
@@ -170,7 +170,7 @@
         }
     ],
     "files": {
-        "/home/fjin/playground/survey/b1.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n    #pragma omp single\n    {\n      #pragma omp taskgroup\n      {\n        #pragma omp task\n        {result = 1;}\n\n        #pragma omp task\n        {result = 3;}\n\n        #pragma omp task\n        {\n          result = 4;\n          #pragma omp task\n          {result = 5;}\n        }\n      }\n      #pragma omp task\n      {result = 2;}\n    }\n  }\n  printf (\"result=%d\\n\", result);\n  assert (result==2);\n  return 0;\n}\n"
+        "/home/fjin/playground/survey/b1.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n    #pragma omp single\n    {\n      #pragma omp taskgroup\n      {\n        #pragma omp task\n        {result = 1;}\n\n        #pragma omp task\n        {result = 3;}\n\n        #pragma omp task\n        {\n          // result = 4;\n          #pragma omp task\n          {result = 5;}\n        }\n      }\n      #pragma omp task\n      {result = 2;}\n    }\n  }\n  printf (\"result=%d\\n\", result);\n  assert (result==2);\n  return 0;\n}\n"
     },
     "nodes": [
         {
@@ -366,17 +366,17 @@
     "races": [
         {
             "current": 6,
-            "current_stack": "    #0 .omp_outlined..3 /home/fjin/playground/survey/b1.cpp:21:18 (b1+0xd3fcc)",
+            "current_stack": "/home/fjin/playground/survey/b1.cpp:14:",
             "lca": 0,
             "prev": 12,
-            "prev_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/b1.cpp:14:17 (b1+0xd3db0)"
+            "prev_stack": ""
         },
         {
             "current": 8,
-            "current_stack": "    #0 .omp_outlined..3 /home/fjin/playground/survey/b1.cpp:21:18 (b1+0xd3fcc)",
+            "current_stack": "/home/fjin/playground/survey/b1.cpp:17:",
             "lca": 0,
             "prev": 12,
-            "prev_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/b1.cpp:17:17 (b1+0xd3e60)"
+            "prev_stack": ""
         }
     ],
     "targets": null

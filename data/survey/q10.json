@@ -160,49 +160,49 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 19
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 18,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 18,
             "target": 21
         },
         {
             "edge_type": 2,
             "hidden": 0,
-            "source": 19,
-            "target": 24
+            "source": 18,
+            "target": 19
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 19,
-            "target": 25
+            "source": 18,
+            "target": 20
         },
         {
             "edge_type": 2,
             "hidden": 0,
-            "source": 20,
+            "source": 19,
             "target": 22
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 20,
+            "source": 19,
             "target": 23
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 21,
+            "source": 20,
             "target": 26
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 21,
+            "target": 24
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 21,
+            "target": 25
         },
         {
             "edge_type": 3,
@@ -444,15 +444,6 @@
             "hidden": 0,
             "id": 19,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
-        },
-        {
-            "active": 1,
-            "end_event": 5,
-            "has_race": false,
-            "hidden": 0,
-            "id": 20,
-            "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 41, col: 11"
         },
         {
@@ -460,9 +451,18 @@
             "end_event": 10,
             "has_race": false,
             "hidden": 0,
-            "id": 21,
+            "id": 20,
             "ontarget": false,
             "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 5,
+            "has_race": false,
+            "hidden": 0,
+            "id": 21,
+            "ontarget": false,
+            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
         },
         {
             "active": 1,
