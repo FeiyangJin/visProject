@@ -253,6 +253,7 @@ function dataRaceButton(raceIndex, g)
 {
     let button = document.createElement('button');
     button.id = "button" + raceIndex;
+    button.selected = false;
 
     button.textContent = "Race " + raceIndex;
     button.style = 'margin: 5px; padding: 5px; background-color: lightblue'
@@ -272,10 +273,13 @@ function dataRaceButton(raceIndex, g)
         resetErrorLineLeft(codeEditor);
         resetErrorLineRight(codeEditor2);
 
-        if (prevHighlightLineRight != -1) {
-            codeEditor2.markText({line: prevHighlightLineRight, ch: 0}, {line: prevHighlightLineRight + 1, ch: 0}, { css: 'background-color: transparent;' });
-            prevHighlightLineRight = -1;
+        if(button.selected){
+            current_button = -1;
+            button.style.backgroundColor = "lightblue";
+            button.selected = false;
+            return;
         }
+        button.selected = true;
         
         if (current_source_line != -1) {
             const errorLine = current_source_line - 1;
@@ -315,8 +319,9 @@ function dataRaceButton(raceIndex, g)
         visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2)
 
         // highlight the button
-        if(current_button != raceIndex){
+        if(current_button != raceIndex && current_button != -1){
             document.getElementById("button" + current_button).style.backgroundColor = "lightblue";
+            document.getElementById("button" + current_button).selected = false;
         }
         current_button = raceIndex;
         button.style.backgroundColor = "red";
@@ -613,40 +618,40 @@ function addLegend() {
         current_y += step_y
     }
 
-    {
-        legend_svg.append("line")
-        .attr("x1", symbol_x - radius)
-        .attr("y1", current_y)
-        .attr("x2", symbol_x + 2 * radius)
-        .attr("y2", current_y)
-        .attr("stroke", "pink")
-        .attr('stroke-dasharray', '4')
-        .attr('marker-end', 'url(#arrowhead)')
-        .transition()
-        .on('start', function repeat() {
-          d3.active(this)
-            .transition()
-            .duration(16000)
-            .ease(d3.easeLinear)
-            .styleTween('stroke-dashoffset', function() {
-              return d3.interpolate(960, 0);
-            })
-            .on('end', repeat);
-        });
+    // {
+    //     legend_svg.append("line")
+    //     .attr("x1", symbol_x - radius)
+    //     .attr("y1", current_y)
+    //     .attr("x2", symbol_x + 2 * radius)
+    //     .attr("y2", current_y)
+    //     .attr("stroke", "pink")
+    //     .attr('stroke-dasharray', '4')
+    //     .attr('marker-end', 'url(#arrowhead)')
+    //     .transition()
+    //     .on('start', function repeat() {
+    //       d3.active(this)
+    //         .transition()
+    //         .duration(16000)
+    //         .ease(d3.easeLinear)
+    //         .styleTween('stroke-dashoffset', function() {
+    //           return d3.interpolate(960, 0);
+    //         })
+    //         .on('end', repeat);
+    //     });
 
-        legend_svg.append("text")
-        .text("target edge")
-        .attr("font-family", "sans-serif")
-        .attr("text-anchor", "start")
-        .attr("alignment-baseline", "middle")
-        .attr("fill", "black")
-        .attr("class", "unselectable-text")
-        .attr("font-size", "small")
-        .attr("x", text_x)
-        .attr("y", current_y)
+    //     legend_svg.append("text")
+    //     .text("target edge")
+    //     .attr("font-family", "sans-serif")
+    //     .attr("text-anchor", "start")
+    //     .attr("alignment-baseline", "middle")
+    //     .attr("fill", "black")
+    //     .attr("class", "unselectable-text")
+    //     .attr("font-size", "small")
+    //     .attr("x", text_x)
+    //     .attr("y", current_y)
 
-        current_y += step_y
-    }
+    //     current_y += step_y
+    // }
 
     legend_svg.attr('height', current_y + 10);
 }

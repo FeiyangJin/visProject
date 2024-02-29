@@ -437,8 +437,8 @@ function enteredNode(g, nodeId, editorLeft, editorRight)
 {
   const node = g.node(nodeId);
 
-  resetErrorLineLeft(editorLeft);
-  resetErrorLineRight(editorRight);
+  // resetErrorLineLeft(editorLeft);
+  // resetErrorLineRight(editorRight);
   
   if (node.data.source_line) {
     const highlight_line = node.data.source_line - 1;
@@ -448,38 +448,44 @@ function enteredNode(g, nodeId, editorLeft, editorRight)
     let t = editorLeft.charCoords({line: highlight_line, ch: 0}, 'local').top;
     let middleHeight = editorLeft.getScrollerElement().offsetHeight / 2;
     editorLeft.scrollTo(null, t - middleHeight - 5);
-    prevHighlightLineLeft = highlight_line;
+    // prevHighlightLineLeft = highlight_line;
   }
 
-  if (node.data.current_source_line && node.data.prev_source_line)
-  {
-    const left_highlight_line = node.data.current_source_line - 1;
-    const right_highlight_line = node.data.prev_source_line - 1;
+  // if (node.data.current_source_line && node.data.prev_source_line)
+  // {
+  //   const left_highlight_line = node.data.current_source_line - 1;
+  //   const right_highlight_line = node.data.prev_source_line - 1;
 
-    let color = '#FF6464';
-    editorLeft.markText({line: left_highlight_line, ch: 0}, {line: left_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
-    let t = editorLeft.charCoords({ line: left_highlight_line, ch: 0 }, 'local').top;
-    let middleHeight = editorLeft.getScrollerElement().offsetHeight / 2;
-    editorLeft.scrollTo(null, t - middleHeight - 5);
-    prevHighlightLineLeft = left_highlight_line;
+  //   let color = '#FF6464';
+  //   editorLeft.markText({line: left_highlight_line, ch: 0}, {line: left_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
+  //   let t = editorLeft.charCoords({ line: left_highlight_line, ch: 0 }, 'local').top;
+  //   let middleHeight = editorLeft.getScrollerElement().offsetHeight / 2;
+  //   editorLeft.scrollTo(null, t - middleHeight - 5);
+  //   prevHighlightLineLeft = left_highlight_line;
 
-    editorRight.markText({line: right_highlight_line, ch: 0}, {line: right_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
-    t = editorRight.charCoords({ line: right_highlight_line, ch: 0 }, 'local').top;
-    middleHeight = editorRight.getScrollerElement().offsetHeight / 2;
-    editorRight.scrollTo(null, t - middleHeight - 5);
-    prevHighlightLineRight = right_highlight_line;
-  }
+  //   editorRight.markText({line: right_highlight_line, ch: 0}, {line: right_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
+  //   t = editorRight.charCoords({ line: right_highlight_line, ch: 0 }, 'local').top;
+  //   middleHeight = editorRight.getScrollerElement().offsetHeight / 2;
+  //   editorRight.scrollTo(null, t - middleHeight - 5);
+  //   prevHighlightLineRight = right_highlight_line;
+  // }
 }
 
 function exitedNode(g, nodeId, editor, editor2)
 {
   const node = g.node(nodeId);
-  if (!node.data.has_race && node.data.stack == null || editor == null) {
-    return;
+  // if (!node.data.has_race && node.data.stack == null || editor == null) {
+  //   return;
+  // }
+
+  if (node.data.source_line) {
+    const highlight_line = node.data.source_line - 1;
+    editor.markText({ line: highlight_line, ch: 0 }, { line: highlight_line + 1, ch: 0 }, { css: 'background-color: transparent;' });
+    // prevHighlightLineLeft = highlight_line;
   }
   
-  resetErrorLineLeft(editor);
-  resetErrorLineRight(editor2);
+  // resetErrorLineLeft(editor);
+  // resetErrorLineRight(editor2);
 }
 
 
@@ -576,16 +582,16 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor, codeEditor2)
                   }
                 })
 
-              enter.append('text')
-                .text(n => n)
-                .attr('font-weight', 'bold')
-                .attr('font-family', 'sans-serif')
-                .attr('text-anchor', 'middle')
-                .attr('alignment-baseline', 'middle')
-                .attr('fill', 'white')
-                .attr('class', 'unselectable-text')
-                .attr('font-size', 'xx-small')
-                .style('pointer-events', 'none');
+              // enter.append('text')
+              //   .text(n => n)
+              //   .attr('font-weight', 'bold')
+              //   .attr('font-family', 'sans-serif')
+              //   .attr('text-anchor', 'middle')
+              //   .attr('alignment-baseline', 'middle')
+              //   .attr('fill', 'white')
+              //   .attr('class', 'unselectable-text')
+              //   .attr('font-size', 'xx-small')
+              //   .style('pointer-events', 'none');
 
               enter.transition(trans).attr('opacity', n => get_node_opacity(g.node(n)));
 
