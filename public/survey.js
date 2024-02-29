@@ -1466,43 +1466,43 @@ const ex1 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 21
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
-            "target": 23
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 6,
-            "target": 24
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 7,
             "target": 25
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 8,
+            "source": 5,
+            "target": 21
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
             "target": 22
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 9,
+            "source": 7,
+            "target": 23
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 8,
             "target": 19
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 10,
+            "source": 9,
             "target": 20
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 10,
+            "target": 24
         },
         {
             "edge_type": 3,
@@ -1586,59 +1586,59 @@ const ex1 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 19,
-            "target": 30
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 20,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 20,
-            "target": 31
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 21,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 21,
             "target": 33
         },
         {
             "edge_type": 5,
             "hidden": 0,
-            "source": 22,
+            "source": 20,
             "target": 18
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 22,
-            "target": 29
+            "source": 20,
+            "target": 27
         },
         {
             "edge_type": 5,
             "hidden": 0,
-            "source": 23,
+            "source": 21,
             "target": 18
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 23,
+            "source": 21,
             "target": 32
         },
         {
             "edge_type": 5,
             "hidden": 0,
+            "source": 22,
+            "target": 18
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 22,
+            "target": 28
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 23,
+            "target": 18
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 23,
+            "target": 31
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
             "source": 24,
             "target": 18
         },
@@ -1646,7 +1646,7 @@ const ex1 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 24,
-            "target": 28
+            "target": 29
         },
         {
             "edge_type": 5,
@@ -1658,7 +1658,7 @@ const ex1 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 25,
-            "target": 27
+            "target": 30
         },
         {
             "edge_type": 3,
@@ -2652,12 +2652,6 @@ const ex4 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 5
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
             "target": 6
         },
         {
@@ -2676,7 +2670,7 @@ const ex4 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 9
+            "target": 5
         },
         {
             "edge_type": 1,
@@ -2685,46 +2679,52 @@ const ex4 = {
             "target": 10
         },
         {
+            "edge_type": 1,
+            "hidden": 0,
+            "source": 1,
+            "target": 9
+        },
+        {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
             "target": 36
         },
         {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 3,
-            "target": 11
-        },
-        {
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 12
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 4,
             "target": 27
         },
         {
             "edge_type": 0,
             "hidden": 0,
+            "source": 4,
+            "target": 21
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
             "source": 5,
-            "target": 26
+            "target": 23
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 6,
+            "target": 11
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 6,
-            "target": 22
+            "target": 12
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 7,
-            "target": 23
+            "target": 22
         },
         {
             "edge_type": 0,
@@ -2742,7 +2742,7 @@ const ex4 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 10,
-            "target": 21
+            "target": 26
         },
         {
             "edge_type": 4,
@@ -2760,7 +2760,7 @@ const ex4 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 11,
-            "target": 20
+            "target": 27
         },
         {
             "edge_type": 2,
@@ -2784,7 +2784,7 @@ const ex4 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 13,
-            "target": 20
+            "target": 27
         },
         {
             "edge_type": 2,
@@ -2826,7 +2826,7 @@ const ex4 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 17,
-            "target": 20
+            "target": 27
         },
         {
             "edge_type": 0,
@@ -2841,94 +2841,94 @@ const ex4 = {
             "target": 20
         },
         {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 20,
+            "target": 27
+        },
+        {
             "edge_type": 0,
             "hidden": 0,
             "source": 20,
-            "target": 29
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 21,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 21,
-            "target": 35
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 22,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 22,
-            "target": 34
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 23,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 23,
-            "target": 31
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 24,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 24,
-            "target": 32
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 25,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 25,
-            "target": 33
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 26,
-            "target": 20
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 26,
             "target": 30
         },
         {
             "edge_type": 5,
             "hidden": 0,
-            "source": 27,
-            "target": 20
+            "source": 21,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 21,
+            "target": 32
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 22,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 22,
+            "target": 28
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 23,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 23,
+            "target": 33
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 24,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 24,
+            "target": 31
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 25,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 25,
+            "target": 35
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 26,
+            "target": 27
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 26,
+            "target": 34
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 27,
-            "target": 28
+            "target": 29
         },
         {
             "edge_type": 3,
@@ -3003,12 +3003,12 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 3,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 7, col: 3"
+            "stack": ""
         },
         {
             "active": 1,
@@ -3030,12 +3030,12 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 6,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 7, col: 3"
         },
         {
             "active": 1,
