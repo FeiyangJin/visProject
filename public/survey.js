@@ -15130,31 +15130,43 @@ const q7 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 3
+            "target": 4
         },
         {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 4
+            "target": 3
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 11
+            "target": 15
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 5
+            "target": 6
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
+            "target": 5
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 5,
             "target": 6
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 5,
+            "target": 7
         },
         {
             "edge_type": 0,
@@ -15163,50 +15175,80 @@ const q7 = {
             "target": 8
         },
         {
-            "edge_type": 5,
+            "edge_type": 2,
             "hidden": 0,
             "source": 6,
-            "target": 5
+            "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 6,
-            "target": 7
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 7,
-            "target": 8
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 7,
             "target": 10
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 7,
+            "target": 11
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 7,
+            "target": 15
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 8,
-            "target": 9
+            "target": 11
         },
         {
             "edge_type": 3,
             "hidden": 0,
             "source": 9,
-            "target": 11
+            "target": 12
         },
         {
             "edge_type": 3,
             "hidden": 0,
+            "source": 9,
+            "target": 15
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
             "source": 10,
-            "target": 11
+            "target": 12
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 11,
+            "target": 14
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 12,
+            "target": 13
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 13,
+            "target": 15
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 14,
+            "target": 15
         }
     ],
     "files": {
-        "/home/fjin/playground/survey/q7.c": "#include <stdio.h>\n#include <omp.h>\n#include <assert.h>\n\nomp_lock_t l0, l1, l2;\nconst int n = 100;\nint x = 1;\n\nvoid barrier_init()\n{\n  omp_init_lock(&l0);\n  omp_init_lock(&l1);\n  omp_init_lock(&l2);\n}\n\nvoid barrier_destroy()\n{\n  omp_destroy_lock(&l0);\n  omp_destroy_lock(&l1);\n  omp_destroy_lock(&l2);\n}\n\nvoid barrier_start(int tid)\n{\n  if (tid == 0)\n  {\n    omp_set_lock(&l0);\n    omp_set_lock(&l2);\n  }\n  else if (tid == 1)\n  {\n    omp_set_lock(&l1);\n  }\n}\n\nvoid barrier_stop(int tid)\n{\n  if (tid == 0)\n  {\n    omp_unset_lock(&l0);\n    omp_unset_lock(&l2);\n  }\n  else if (tid == 1)\n  {\n    omp_unset_lock(&l1);\n  }\n}\n\nvoid barrier_wait(int tid)\n{\n  if (tid == 0)\n  {\n    omp_unset_lock(&l0);\n    omp_set_lock(&l1);\n    omp_unset_lock(&l2);\n    omp_set_lock(&l0);\n    omp_unset_lock(&l1);\n    omp_set_lock(&l2);\n  }\n  else if (tid == 1)\n  {\n    omp_set_lock(&l0);\n    omp_unset_lock(&l1);\n    omp_set_lock(&l2);\n    omp_unset_lock(&l0);\n    omp_set_lock(&l1);\n    omp_unset_lock(&l2);\n  }\n}\n\nint main()\n{\n  barrier_init();\n#pragma omp parallel num_threads(2)\n  {\n    int tid = omp_get_thread_num();\n    barrier_start(tid);\n#pragma omp barrier\n    for (int i = 0; i < n; i++)\n    {\n      printf(\"Thread %d: phase 1, i=%d, x=%d\\n\", tid, i, x);\n      fflush(stdout);\n      assert(x == 1);\n      barrier_wait(tid);\n      if (tid == 0)\n        x = 0;\n      barrier_wait(tid);\n      printf(\"Thread %d: phase 3, i=%d, x=%d\\n\", tid, i, x);\n      fflush(stdout);\n      assert(x == 0);\n      barrier_wait(tid);\n      if (tid == 1)\n        x = 1;\n      barrier_wait(tid);\n    }\n#pragma omp barrier\n    barrier_stop(tid);\n  } // end of parallel construct\n  barrier_destroy();\n  printf(\"Done: x=%d\\n\", x);\n}\n"
+        "/home/fjin/playground/survey/q7.c": "#include <stdio.h>\n#include <omp.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2) shared(result)\n  {\n    int result2 = 0;\n    #pragma omp single\n    {\n      result = 10;\n    }\n\n    #pragma omp task\n    {\n      result2 = omp_get_thread_num();\n    }\n\n    result = result2;\n\n    #pragma omp taskwait\n     \n    result2 = result;\n  }\n\n  printf(\"result = %d\\n\", result);\n}\n"
     },
     "nodes": [
         {
@@ -15216,7 +15258,7 @@ const q7 = {
             "hidden": 0,
             "id": 1,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q7.c, line: 74, col: 1"
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 7, col: 3"
         },
         {
             "active": 1,
@@ -15225,7 +15267,7 @@ const q7 = {
             "hidden": 0,
             "id": 2,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q7.c, line: 74, col: 1"
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 7, col: 3"
         },
         {
             "active": 1,
@@ -15247,25 +15289,25 @@ const q7 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": true,
+            "end_event": 5,
+            "has_race": false,
             "hidden": 0,
             "id": 5,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 15, col: 5"
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": true,
+            "end_event": 5,
+            "has_race": false,
             "hidden": 0,
             "id": 6,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 15, col: 5"
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 11,
             "has_race": false,
             "hidden": 0,
             "id": 7,
@@ -15274,16 +15316,16 @@ const q7 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
+            "end_event": 8,
+            "has_race": true,
             "hidden": 0,
             "id": 8,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 22, col: 5"
         },
         {
             "active": 1,
-            "end_event": 4,
+            "end_event": 11,
             "has_race": false,
             "hidden": 0,
             "id": 9,
@@ -15292,10 +15334,46 @@ const q7 = {
         },
         {
             "active": 1,
+            "end_event": 8,
+            "has_race": true,
+            "hidden": 0,
+            "id": 10,
+            "ontarget": false,
+            "stack": "file: /home/fjin/playground/survey/q7.c, line: 22, col: 5"
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 11,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": true,
+            "hidden": 0,
+            "id": 12,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
             "end_event": 4,
             "has_race": false,
             "hidden": 0,
-            "id": 10,
+            "id": 13,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 4,
+            "has_race": false,
+            "hidden": 0,
+            "id": 14,
             "ontarget": false,
             "stack": ""
         },
@@ -15304,25 +15382,25 @@ const q7 = {
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 11,
+            "id": 15,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 6,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:83:7 (q7+0xd11a4)",
+            "current": 10,
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)",
             "lca": 0,
-            "prev": 5,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:93:11 (q7+0xd12ad)"
+            "prev": 8,
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)"
         },
         {
-            "current": 5,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:90:7 (q7+0xd125e)",
+            "current": 12,
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)",
             "lca": 0,
-            "prev": 6,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:86:11 (q7+0xd11f3)"
+            "prev": 8,
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:24:15 (q7+0xd1003)"
         }
     ],
     "targets": null
@@ -48905,7 +48983,7 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 32
+            "target": 28
         },
         {
             "edge_type": 0,
@@ -48917,7 +48995,7 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 17
+            "target": 16
         },
         {
             "edge_type": 2,
@@ -48995,7 +49073,7 @@ const q10 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 11,
-            "target": 16
+            "target": 17
         },
         {
             "edge_type": 0,
@@ -49019,31 +49097,31 @@ const q10 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 14,
-            "target": 16
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 15,
-            "target": 16
+            "target": 17
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 16,
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 18
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 17,
-            "target": 16
+            "target": 20
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 21
+            "target": 18
         },
         {
             "edge_type": 2,
@@ -49055,40 +49133,34 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 20
+            "target": 21
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "hidden": 0,
             "source": 19,
             "target": 22
         },
         {
-            "edge_type": 0,
+            "edge_type": 2,
             "hidden": 0,
-            "source": 19,
+            "source": 20,
             "target": 23
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 20,
-            "target": 26
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 21,
             "target": 24
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 21,
-            "target": 25
+            "target": 22
         },
         {
-            "edge_type": 3,
+            "edge_type": 0,
             "hidden": 0,
             "source": 22,
             "target": 26
@@ -49097,65 +49169,35 @@ const q10 = {
             "edge_type": 3,
             "hidden": 0,
             "source": 23,
-            "target": 26
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 24,
-            "target": 27
+            "target": 25
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 24,
-            "target": 28
+            "target": 25
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 25,
-            "target": 29
+            "target": 27
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 26,
-            "target": 31
+            "target": 28
         },
         {
             "edge_type": 3,
             "hidden": 0,
             "source": 27,
-            "target": 29
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 28,
-            "target": 29
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 29,
-            "target": 30
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 30,
-            "target": 32
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 31,
-            "target": 32
+            "target": 28
         }
     ],
     "files": {
-        "/home/fjin/playground/survey/q10.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n      #pragma omp single\n      {\n        result = 10;\n\n        #pragma omp taskgroup\n        {\n          #pragma omp task depend(out:result)\n          {\n            result = 4;\n            #pragma omp task depend(out:result)\n            {result = 5;}\n          }\n        }\n\n        #pragma omp task depend(out:result)\n        {\n          result = 66;\n        }\n\n        #pragma omp taskwait\n\n        #pragma omp task depend(out:result)\n        {\n          result = 77;\n        }\n      }\n\n      #pragma omp taskgroup\n      {\n        #pragma omp task depend(out:result)\n        {\n          result = 4;\n          #pragma omp task depend(out:result)\n          {result = 5;}\n        }\n      }\n  }\n  printf (\"result=%d\\n\", result);\n  return 0;\n}\n"
+        "/home/fjin/playground/survey/q10.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n      #pragma omp single\n      {\n        result = 10;\n\n        #pragma omp taskgroup\n        {\n          #pragma omp task depend(out:result)\n          {\n            result = 4;\n            #pragma omp task depend(out:result)\n            {result = 5;}\n          }\n        }\n\n        #pragma omp task depend(out:result)\n        {\n          result = 66;\n        }\n\n        #pragma omp taskwait\n\n        #pragma omp task depend(out:result)\n        {\n          result = 77;\n        }\n      }\n\n      #pragma omp taskgroup\n      {\n        #pragma omp task depend(out:result)\n        {\n          result = 4;\n        }\n      }\n  }\n  printf (\"result=%d\\n\", result);\n  return 0;\n}\n"
     },
     "nodes": [
         {
@@ -49322,19 +49364,10 @@ const q10 = {
         },
         {
             "active": 1,
-            "end_event": 5,
-            "has_race": false,
+            "end_event": 11,
+            "has_race": true,
             "hidden": 0,
             "id": 19,
-            "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 41, col: 11"
-        },
-        {
-            "active": 1,
-            "end_event": 10,
-            "has_race": false,
-            "hidden": 0,
-            "id": 20,
             "ontarget": false,
             "stack": ""
         },
@@ -49343,14 +49376,23 @@ const q10 = {
             "end_event": 5,
             "has_race": false,
             "hidden": 0,
-            "id": 21,
+            "id": 20,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 10,
+            "has_race": false,
+            "hidden": 0,
+            "id": 21,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
             "hidden": 0,
             "id": 22,
             "ontarget": false,
@@ -49359,7 +49401,7 @@ const q10 = {
         {
             "active": 1,
             "end_event": 11,
-            "has_race": false,
+            "has_race": true,
             "hidden": 0,
             "id": 23,
             "ontarget": false,
@@ -49367,16 +49409,16 @@ const q10 = {
         },
         {
             "active": 1,
-            "end_event": 5,
-            "has_race": true,
+            "end_event": 10,
+            "has_race": false,
             "hidden": 0,
             "id": 24,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 41, col: 11"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 10,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 25,
@@ -49385,7 +49427,7 @@ const q10 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 26,
@@ -49394,46 +49436,10 @@ const q10 = {
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 4,
+            "has_race": false,
             "hidden": 0,
             "id": 27,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 11,
-            "has_race": false,
-            "hidden": 0,
-            "id": 28,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 29,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 30,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 31,
             "ontarget": false,
             "stack": ""
         },
@@ -49442,25 +49448,18 @@ const q10 = {
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 32,
+            "id": 28,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 24,
-            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)",
+            "current": 23,
+            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd4310)",
             "lca": 0,
-            "prev": 22,
-            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)"
-        },
-        {
-            "current": 27,
-            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)",
-            "lca": 0,
-            "prev": 22,
-            "prev_stack": "    #0 .omp_outlined..8 /home/fjin/playground/survey/q10.cpp:42:19 (q10+0xd4320)"
+            "prev": 19,
+            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd4310)"
         }
     ],
     "targets": null

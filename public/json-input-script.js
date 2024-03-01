@@ -201,14 +201,16 @@ function styleCodeEditor(initialValue)
     codeEditor.on("cursorActivity", function() {
         const cursor = codeEditor.getCursor();
         const lineNumber = cursor.line + 1;
-        if (!(lineNumber in sourceLine_to_nodeID)) {
-            return
-        }
 
         if (highlightNodeID != -1) {
             const circle_id = "circle" + highlightNodeID;
             document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
             document.getElementById(circle_id).setAttribute("r", nodeRadius);
+            highlightNodeID = -1;
+        }
+
+        if (!(lineNumber in sourceLine_to_nodeID)) {
+            return
         }
 
         console.log(`line number: ${lineNumber}, node id: ${sourceLine_to_nodeID[lineNumber]}`);

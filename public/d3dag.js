@@ -440,7 +440,7 @@ function enteredNode(g, nodeId, editorLeft, editorRight)
   // resetErrorLineLeft(editorLeft);
   // resetErrorLineRight(editorRight);
   
-  if (node.data.source_line) {
+  if (node.data.source_line && !node.data.has_race) {
     const highlight_line = node.data.source_line - 1;
     let color = get_node_color(node);
 
@@ -582,16 +582,22 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor, codeEditor2)
                   }
                 })
 
-              // enter.append('text')
-              //   .text(n => n)
-              //   .attr('font-weight', 'bold')
-              //   .attr('font-family', 'sans-serif')
-              //   .attr('text-anchor', 'middle')
-              //   .attr('alignment-baseline', 'middle')
-              //   .attr('fill', 'white')
-              //   .attr('class', 'unselectable-text')
-              //   .attr('font-size', 'xx-small')
-              //   .style('pointer-events', 'none');
+              enter.append('text')
+                .text(n => {
+                  let node = g.node(n);
+                  if(node.data.has_race == 1){
+                    return
+                  }
+                  return node.data.source_line;
+                })
+                .attr('font-weight', 'bold')
+                .attr('font-family', 'sans-serif')
+                .attr('text-anchor', 'middle')
+                .attr('alignment-baseline', 'middle')
+                .attr('fill', 'black')
+                .attr('class', 'unselectable-text')
+                .attr('font-size', 'xx-small')
+                .style('pointer-events', 'none');
 
               enter.transition(trans).attr('opacity', n => get_node_opacity(g.node(n)));
 

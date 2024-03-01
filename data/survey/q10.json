@@ -22,7 +22,7 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 32
+            "target": 28
         },
         {
             "edge_type": 0,
@@ -34,7 +34,7 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 17
+            "target": 16
         },
         {
             "edge_type": 2,
@@ -112,7 +112,7 @@
             "edge_type": 5,
             "hidden": 0,
             "source": 11,
-            "target": 16
+            "target": 17
         },
         {
             "edge_type": 0,
@@ -136,31 +136,31 @@
             "edge_type": 5,
             "hidden": 0,
             "source": 14,
-            "target": 16
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 15,
-            "target": 16
+            "target": 17
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 16,
+            "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 18
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 17,
-            "target": 16
+            "target": 20
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 21
+            "target": 18
         },
         {
             "edge_type": 2,
@@ -172,40 +172,34 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 20
+            "target": 21
         },
         {
-            "edge_type": 2,
+            "edge_type": 3,
             "hidden": 0,
             "source": 19,
             "target": 22
         },
         {
-            "edge_type": 0,
+            "edge_type": 2,
             "hidden": 0,
-            "source": 19,
+            "source": 20,
             "target": 23
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 20,
-            "target": 26
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 21,
             "target": 24
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 21,
-            "target": 25
+            "target": 22
         },
         {
-            "edge_type": 3,
+            "edge_type": 0,
             "hidden": 0,
             "source": 22,
             "target": 26
@@ -214,65 +208,35 @@
             "edge_type": 3,
             "hidden": 0,
             "source": 23,
-            "target": 26
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 24,
-            "target": 27
+            "target": 25
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 24,
-            "target": 28
+            "target": 25
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 25,
-            "target": 29
+            "target": 27
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 26,
-            "target": 31
+            "target": 28
         },
         {
             "edge_type": 3,
             "hidden": 0,
             "source": 27,
-            "target": 29
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 28,
-            "target": 29
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 29,
-            "target": 30
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 30,
-            "target": 32
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 31,
-            "target": 32
+            "target": 28
         }
     ],
     "files": {
-        "/home/fjin/playground/survey/q10.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n      #pragma omp single\n      {\n        result = 10;\n\n        #pragma omp taskgroup\n        {\n          #pragma omp task depend(out:result)\n          {\n            result = 4;\n            #pragma omp task depend(out:result)\n            {result = 5;}\n          }\n        }\n\n        #pragma omp task depend(out:result)\n        {\n          result = 66;\n        }\n\n        #pragma omp taskwait\n\n        #pragma omp task depend(out:result)\n        {\n          result = 77;\n        }\n      }\n\n      #pragma omp taskgroup\n      {\n        #pragma omp task depend(out:result)\n        {\n          result = 4;\n          #pragma omp task depend(out:result)\n          {result = 5;}\n        }\n      }\n  }\n  printf (\"result=%d\\n\", result);\n  return 0;\n}\n"
+        "/home/fjin/playground/survey/q10.cpp": "#include <stdio.h>\n#include <assert.h>\n\nint main()\n{\n  int result = 0;\n  #pragma omp parallel num_threads(2)\n  {\n      #pragma omp single\n      {\n        result = 10;\n\n        #pragma omp taskgroup\n        {\n          #pragma omp task depend(out:result)\n          {\n            result = 4;\n            #pragma omp task depend(out:result)\n            {result = 5;}\n          }\n        }\n\n        #pragma omp task depend(out:result)\n        {\n          result = 66;\n        }\n\n        #pragma omp taskwait\n\n        #pragma omp task depend(out:result)\n        {\n          result = 77;\n        }\n      }\n\n      #pragma omp taskgroup\n      {\n        #pragma omp task depend(out:result)\n        {\n          result = 4;\n        }\n      }\n  }\n  printf (\"result=%d\\n\", result);\n  return 0;\n}\n"
     },
     "nodes": [
         {
@@ -439,19 +403,10 @@
         },
         {
             "active": 1,
-            "end_event": 5,
-            "has_race": false,
+            "end_event": 11,
+            "has_race": true,
             "hidden": 0,
             "id": 19,
-            "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 41, col: 11"
-        },
-        {
-            "active": 1,
-            "end_event": 10,
-            "has_race": false,
-            "hidden": 0,
-            "id": 20,
             "ontarget": false,
             "stack": ""
         },
@@ -460,14 +415,23 @@
             "end_event": 5,
             "has_race": false,
             "hidden": 0,
-            "id": 21,
+            "id": 20,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 10,
+            "has_race": false,
+            "hidden": 0,
+            "id": 21,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
             "hidden": 0,
             "id": 22,
             "ontarget": false,
@@ -476,7 +440,7 @@
         {
             "active": 1,
             "end_event": 11,
-            "has_race": false,
+            "has_race": true,
             "hidden": 0,
             "id": 23,
             "ontarget": false,
@@ -484,16 +448,16 @@
         },
         {
             "active": 1,
-            "end_event": 5,
-            "has_race": true,
+            "end_event": 10,
+            "has_race": false,
             "hidden": 0,
             "id": 24,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 41, col: 11"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 10,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 25,
@@ -502,7 +466,7 @@
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 26,
@@ -511,46 +475,10 @@
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 4,
+            "has_race": false,
             "hidden": 0,
             "id": 27,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 11,
-            "has_race": false,
-            "hidden": 0,
-            "id": 28,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 29,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 30,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 31,
             "ontarget": false,
             "stack": ""
         },
@@ -559,25 +487,18 @@
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 32,
+            "id": 28,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 24,
-            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)",
+            "current": 23,
+            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd4310)",
             "lca": 0,
-            "prev": 22,
-            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)"
-        },
-        {
-            "current": 27,
-            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd43f7)",
-            "lca": 0,
-            "prev": 22,
-            "prev_stack": "    #0 .omp_outlined..8 /home/fjin/playground/survey/q10.cpp:42:19 (q10+0xd4320)"
+            "prev": 19,
+            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q10.cpp:40:18 (q10+0xd4310)"
         }
     ],
     "targets": null
