@@ -313,7 +313,7 @@ function dataRaceButton(raceIndex, g)
 
         showNode(current_node_index, g);
         showNode(prev_node_index, g);
-        showChildren(rootId,g)
+        showImmediateChildren(rootId,g)
         
         g.node(current_node_index).data.special = true;
         g.node(prev_node_index).data.special = true;
@@ -399,12 +399,8 @@ function prepareGraph_dagre(jsonData){
 
     for (const node of nodes) {
         node['hidden'] = true;
-<<<<<<< Updated upstream
         node['special'] = false;
-        g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
-=======
-        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}})
->>>>>>> Stashed changes
+        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}});
         g.node(node.id).data.refCount = 0;
 
         node['source_line'] = null;
@@ -424,8 +420,7 @@ function prepareGraph_dagre(jsonData){
         showNode(race.current, g);
         showNode(race.prev, g);
 
-<<<<<<< Updated upstream
-        showChildren(rootId, g);
+        showImmediateChildren(rootId, g);
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
 
         for (race of races)
@@ -434,8 +429,7 @@ function prepareGraph_dagre(jsonData){
 
             currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
             currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
-        }
-=======
+
             showNode(race.current, g);
             showImmediateChildren(race.current, g);
 
@@ -443,7 +437,6 @@ function prepareGraph_dagre(jsonData){
             showImmediateChildren(race.prev, g);
         }
         showImmediateChildren(rootId, g);
->>>>>>> Stashed changes
     }
     else {
         showNode(rootId, g);
