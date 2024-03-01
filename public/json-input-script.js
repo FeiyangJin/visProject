@@ -423,6 +423,7 @@ function prepareGraph_dagre(jsonData){
         showImmediateChildren(rootId, g);
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
 
+        let seen = [];
         for (race of races)
         {
             const currentNode = g.node(race['current']);
@@ -430,11 +431,17 @@ function prepareGraph_dagre(jsonData){
             currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
             currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
 
-            showNode(race.current, g);
-            showImmediateChildren(race.current, g);
-
-            showNode(race.prev, g);
-            showImmediateChildren(race.prev, g);
+            if (!seen.includes(race.current)) {
+                showNode(race.current, g);
+                showImmediateChildren(race.current, g);
+                seen.push(race.current);
+            }
+            
+            if (!seen.includes(race.prev)) {
+                showNode(race.prev, g);
+                showImmediateChildren(race.prev, g);
+                seen.push(race.prev);
+            }
         }
         showImmediateChildren(rootId, g);
     }
