@@ -1400,13 +1400,13 @@ const ex1 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 3
+            "target": 4
         },
         {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 4
+            "target": 3
         },
         {
             "edge_type": 1,
@@ -1421,103 +1421,97 @@ const ex1 = {
             "target": 6
         },
         {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 7
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 8
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 9
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 10
-        },
-        {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 34
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 3,
-            "target": 11
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 3,
-            "target": 12
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 4,
-            "target": 25
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
-            "target": 21
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 6,
             "target": 22
         },
         {
             "edge_type": 0,
             "hidden": 0,
+            "source": 3,
+            "target": 15
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 4,
+            "target": 7
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 4,
+            "target": 8
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 5,
+            "target": 16
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
+            "target": 17
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
             "source": 7,
-            "target": 23
+            "target": 13
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 7,
+            "target": 14
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 8,
+            "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 8,
-            "target": 19
+            "target": 10
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 9,
-            "target": 20
+            "target": 13
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 9,
+            "target": 14
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 10,
+            "target": 11
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 10,
-            "target": 24
+            "target": 12
         },
         {
             "edge_type": 3,
             "hidden": 0,
             "source": 11,
-            "target": 17
+            "target": 13
         },
         {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 11,
-            "target": 18
-        },
-        {
-            "edge_type": 2,
+            "edge_type": 0,
             "hidden": 0,
             "source": 12,
             "target": 13
@@ -1525,188 +1519,74 @@ const ex1 = {
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 12,
+            "source": 13,
             "target": 14
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 13,
-            "target": 17
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 13,
-            "target": 18
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 14,
-            "target": 15
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 14,
-            "target": 16
+            "target": 18
         },
         {
-            "edge_type": 3,
+            "edge_type": 5,
             "hidden": 0,
             "source": 15,
-            "target": 17
+            "target": 14
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 15,
+            "target": 20
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 16,
+            "target": 14
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 17
+            "target": 21
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 17,
+            "target": 14
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 18
+            "target": 19
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 18,
-            "target": 26
+            "target": 22
         },
         {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 19,
-            "target": 18
+            "target": 22
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 19,
-            "target": 33
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 20,
-            "target": 18
+            "target": 22
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 20,
-            "target": 27
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 21,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 21,
-            "target": 32
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 22,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 22,
-            "target": 28
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 23,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 23,
-            "target": 31
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 24,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 24,
-            "target": 29
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 25,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 25,
-            "target": 30
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 26,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 27,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 28,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 29,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 30,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 31,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 32,
-            "target": 34
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 33,
-            "target": 34
+            "target": 22
         }
     ],
     "files": {
@@ -1733,21 +1613,21 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 3,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex1.c, line: 8, col: 3"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 4,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/ex1.c, line: 8, col: 3"
         },
         {
             "active": 1,
@@ -1769,7 +1649,7 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 11,
             "has_race": false,
             "hidden": 0,
             "id": 7,
@@ -1778,46 +1658,10 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 8,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 9,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 10,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 11,
-            "has_race": false,
-            "hidden": 0,
-            "id": 11,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
             "end_event": 5,
             "has_race": false,
             "hidden": 0,
-            "id": 12,
+            "id": 8,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/ex1.c, line: 11, col: 3"
         },
@@ -1826,7 +1670,7 @@ const ex1 = {
             "end_event": 11,
             "has_race": true,
             "hidden": 0,
-            "id": 13,
+            "id": 9,
             "ontarget": false,
             "stack": ""
         },
@@ -1835,7 +1679,7 @@ const ex1 = {
             "end_event": 5,
             "has_race": false,
             "hidden": 0,
-            "id": 14,
+            "id": 10,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/ex1.c, line: 14, col: 3"
         },
@@ -1844,7 +1688,7 @@ const ex1 = {
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 15,
+            "id": 11,
             "ontarget": false,
             "stack": ""
         },
@@ -1853,9 +1697,45 @@ const ex1 = {
             "end_event": 8,
             "has_race": true,
             "hidden": 0,
-            "id": 16,
+            "id": 12,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/ex1.c, line: 18, col: 3"
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 13,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 14,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 15,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 16,
+            "ontarget": false,
+            "stack": ""
         },
         {
             "active": 1,
@@ -1868,7 +1748,7 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 18,
@@ -1877,7 +1757,7 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 19,
@@ -1886,7 +1766,7 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 20,
@@ -1895,7 +1775,7 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 21,
@@ -1904,129 +1784,21 @@ const ex1 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 22,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 23,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 24,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 25,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 26,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 27,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 28,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 29,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 30,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 31,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 32,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 33,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 34,
+            "id": 22,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 16,
-            "current_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/ex1.c:12:4 (ex1+0xd1198)",
+            "current": 12,
+            "current_stack": "    #0 foo /home/fjin/playground/survey/ex1.c:17:19 (ex1+0xd1007)",
             "lca": 0,
-            "prev": 13,
-            "prev_stack": "    #0 foo /home/fjin/playground/survey/ex1.c:17:19 (ex1+0xd1007)"
+            "prev": 9,
+            "prev_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/ex1.c:12:4 (ex1+0xd1198)"
         }
     ],
     "targets": null
@@ -2658,109 +2430,103 @@ const ex4 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 7
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 8
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
             "target": 5
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 10
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 36
+            "target": 24
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 3,
+            "target": 7
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 27
+            "target": 8
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 21
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 5,
-            "target": 23
+            "target": 18
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
+            "target": 19
+        },
+        {
+            "edge_type": 4,
+            "hidden": 0,
+            "source": 7,
+            "target": 9
+        },
+        {
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 7,
+            "target": 15
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 7,
+            "target": 16
         },
         {
             "edge_type": 2,
             "hidden": 0,
-            "source": 6,
-            "target": 11
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 6,
-            "target": 12
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 7,
-            "target": 22
+            "source": 8,
+            "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 8,
-            "target": 24
+            "target": 10
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 9,
-            "target": 25
+            "target": 15
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 9,
+            "target": 16
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 10,
+            "target": 11
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 10,
-            "target": 26
-        },
-        {
-            "edge_type": 4,
-            "hidden": 0,
-            "source": 11,
-            "target": 13
+            "target": 12
         },
         {
             "edge_type": 3,
             "hidden": 0,
             "source": 11,
-            "target": 19
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 11,
-            "target": 27
+            "target": 15
         },
         {
             "edge_type": 2,
@@ -2778,16 +2544,16 @@ const ex4 = {
             "edge_type": 3,
             "hidden": 0,
             "source": 13,
-            "target": 19
+            "target": 15
         },
         {
             "edge_type": 5,
             "hidden": 0,
             "source": 13,
-            "target": 27
+            "target": 16
         },
         {
-            "edge_type": 2,
+            "edge_type": 0,
             "hidden": 0,
             "source": 14,
             "target": 15
@@ -2795,188 +2561,74 @@ const ex4 = {
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 14,
-            "target": 16
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
             "source": 15,
-            "target": 19
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 16,
             "target": 17
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 18
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 17,
-            "target": 19
+            "target": 21
         },
         {
             "edge_type": 5,
             "hidden": 0,
             "source": 17,
-            "target": 27
+            "target": 16
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 17,
+            "target": 23
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 18,
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 19
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 19,
             "target": 20
         },
         {
             "edge_type": 5,
             "hidden": 0,
-            "source": 20,
-            "target": 27
+            "source": 19,
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 20,
-            "target": 30
+            "source": 19,
+            "target": 22
         },
         {
-            "edge_type": 5,
+            "edge_type": 3,
+            "hidden": 0,
+            "source": 20,
+            "target": 24
+        },
+        {
+            "edge_type": 3,
             "hidden": 0,
             "source": 21,
-            "target": 27
+            "target": 24
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 21,
-            "target": 32
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 22,
-            "target": 27
+            "target": 24
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 22,
-            "target": 28
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 23,
-            "target": 27
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 23,
-            "target": 33
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 24,
-            "target": 27
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 24,
-            "target": 31
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 25,
-            "target": 27
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 25,
-            "target": 35
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 26,
-            "target": 27
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 26,
-            "target": 34
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 27,
-            "target": 29
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 28,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 29,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 30,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 31,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 32,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 33,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 34,
-            "target": 36
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 35,
-            "target": 36
+            "target": 24
         }
     ],
     "files": {
@@ -3003,12 +2655,12 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 3,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 7, col: 3"
         },
         {
             "active": 1,
@@ -3030,46 +2682,10 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 6,
-            "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 7, col: 3"
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 7,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 8,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 9,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 10,
             "ontarget": false,
             "stack": ""
         },
@@ -3077,6 +2693,42 @@ const ex4 = {
             "active": 1,
             "end_event": 11,
             "has_race": true,
+            "hidden": 0,
+            "id": 7,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 5,
+            "has_race": false,
+            "hidden": 0,
+            "id": 8,
+            "ontarget": false,
+            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 10, col: 3"
+        },
+        {
+            "active": 1,
+            "end_event": 11,
+            "has_race": true,
+            "hidden": 0,
+            "id": 9,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 5,
+            "has_race": false,
+            "hidden": 0,
+            "id": 10,
+            "ontarget": false,
+            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 13, col: 37"
+        },
+        {
+            "active": 1,
+            "end_event": 2,
+            "has_race": false,
             "hidden": 0,
             "id": 11,
             "ontarget": false,
@@ -3089,50 +2741,14 @@ const ex4 = {
             "hidden": 0,
             "id": 12,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 10, col: 3"
+            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 13, col: 37"
         },
         {
             "active": 1,
             "end_event": 11,
-            "has_race": true,
+            "has_race": false,
             "hidden": 0,
             "id": 13,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 5,
-            "has_race": false,
-            "hidden": 0,
-            "id": 14,
-            "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 13, col: 37"
-        },
-        {
-            "active": 1,
-            "end_event": 2,
-            "has_race": false,
-            "hidden": 0,
-            "id": 15,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 5,
-            "has_race": false,
-            "hidden": 0,
-            "id": 16,
-            "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 13, col: 37"
-        },
-        {
-            "active": 1,
-            "end_event": 11,
-            "has_race": false,
-            "hidden": 0,
-            "id": 17,
             "ontarget": false,
             "stack": ""
         },
@@ -3141,9 +2757,45 @@ const ex4 = {
             "end_event": 8,
             "has_race": true,
             "hidden": 0,
-            "id": 18,
+            "id": 14,
             "ontarget": false,
             "stack": "file: /home/fjin/playground/survey/ex4.cpp, line: 18, col: 3"
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 15,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 16,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 17,
+            "ontarget": false,
+            "stack": ""
+        },
+        {
+            "active": 1,
+            "end_event": 3,
+            "has_race": false,
+            "hidden": 0,
+            "id": 18,
+            "ontarget": false,
+            "stack": ""
         },
         {
             "active": 1,
@@ -3156,7 +2808,7 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 20,
@@ -3165,7 +2817,7 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 21,
@@ -3174,7 +2826,7 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 22,
@@ -3183,7 +2835,7 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 23,
@@ -3192,136 +2844,28 @@ const ex4 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 24,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 25,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 26,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 27,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 28,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 29,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 30,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 31,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 32,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 33,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 34,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 35,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 36,
+            "id": 24,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 13,
-            "current_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/ex4.cpp:8:4 (ex4+0xd3ea8)",
+            "current": 9,
+            "current_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/ex4.cpp:11:9 (ex4+0xd3f99)",
             "lca": 0,
-            "prev": 11,
-            "prev_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/ex4.cpp:11:9 (ex4+0xd3f99)"
+            "prev": 7,
+            "prev_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/ex4.cpp:8:4 (ex4+0xd3ea8)"
         },
         {
-            "current": 18,
-            "current_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/ex4.cpp:8:4 (ex4+0xd3ea8)",
+            "current": 14,
+            "current_stack": "    #0 foo() /home/fjin/playground/survey/ex4.cpp:16:19 (ex4+0xd3d93)",
             "lca": 0,
-            "prev": 11,
-            "prev_stack": "    #0 foo() /home/fjin/playground/survey/ex4.cpp:16:19 (ex4+0xd3d93)"
+            "prev": 7,
+            "prev_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/ex4.cpp:8:4 (ex4+0xd3ea8)"
         }
     ],
     "targets": null
@@ -4135,13 +3679,13 @@ const q3 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 4
+            "target": 5
         },
         {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 5
+            "target": 4
         },
         {
             "edge_type": 1,
@@ -4150,142 +3694,136 @@ const q3 = {
             "target": 6
         },
         {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 7
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 8
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 9
-        },
-        {
-            "edge_type": 1,
-            "hidden": 0,
-            "source": 1,
-            "target": 10
-        },
-        {
             "edge_type": 0,
             "hidden": 0,
             "source": 2,
-            "target": 33
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 3,
-            "target": 11
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 3,
-            "target": 12
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 4,
-            "target": 18
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
-            "target": 23
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 6,
-            "target": 24
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 7,
             "target": 21
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 8,
-            "target": 22
+            "source": 3,
+            "target": 14
         },
         {
             "edge_type": 0,
             "hidden": 0,
+            "source": 4,
+            "target": 16
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 5,
+            "target": 7
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 5,
+            "target": 8
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
+            "target": 15
+        },
+        {
+            "edge_type": 4,
+            "hidden": 0,
+            "source": 7,
+            "target": 11
+        },
+        {
+            "edge_type": 4,
+            "hidden": 0,
+            "source": 7,
+            "target": 9
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 7,
+            "target": 16
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 8,
+            "target": 9
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 8,
+            "target": 10
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
             "source": 9,
-            "target": 20
+            "target": 16
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 10,
+            "target": 11
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 10,
-            "target": 19
-        },
-        {
-            "edge_type": 4,
-            "hidden": 0,
-            "source": 11,
-            "target": 15
-        },
-        {
-            "edge_type": 4,
-            "hidden": 0,
-            "source": 11,
-            "target": 13
+            "target": 12
         },
         {
             "edge_type": 5,
             "hidden": 0,
             "source": 11,
-            "target": 17
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 12,
-            "target": 13
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 12,
-            "target": 14
+            "target": 13
         },
         {
             "edge_type": 5,
             "hidden": 0,
             "source": 13,
-            "target": 17
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 14,
-            "target": 15
+            "target": 16
         },
         {
             "edge_type": 0,
+            "hidden": 0,
+            "source": 13,
+            "target": 19
+        },
+        {
+            "edge_type": 5,
             "hidden": 0,
             "source": 14,
             "target": 16
         },
         {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 14,
+            "target": 20
+        },
+        {
             "edge_type": 5,
             "hidden": 0,
             "source": 15,
-            "target": 17
+            "target": 16
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 15,
+            "target": 18
         },
         {
             "edge_type": 0,
@@ -4294,142 +3832,28 @@ const q3 = {
             "target": 17
         },
         {
-            "edge_type": 0,
+            "edge_type": 3,
             "hidden": 0,
             "source": 17,
-            "target": 25
+            "target": 21
         },
         {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 18,
-            "target": 17
+            "target": 21
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 18,
-            "target": 27
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 19,
-            "target": 17
+            "target": 21
         },
         {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 19,
-            "target": 28
-        },
-        {
-            "edge_type": 5,
+            "edge_type": 3,
             "hidden": 0,
             "source": 20,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 20,
-            "target": 32
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 21,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 21,
-            "target": 30
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 22,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 22,
-            "target": 29
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 23,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 23,
-            "target": 26
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 24,
-            "target": 17
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 24,
-            "target": 31
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 25,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 26,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 27,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 28,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 29,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 30,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 31,
-            "target": 33
-        },
-        {
-            "edge_type": 3,
-            "hidden": 0,
-            "source": 32,
-            "target": 33
+            "target": 21
         }
     ],
     "files": {
@@ -4456,12 +3880,12 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 3,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 10, col: 1"
+            "stack": ""
         },
         {
             "active": 1,
@@ -4474,12 +3898,12 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 5,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 10, col: 1"
         },
         {
             "active": 1,
@@ -4492,8 +3916,8 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
+            "end_event": 11,
+            "has_race": true,
             "hidden": 0,
             "id": 7,
             "ontarget": false,
@@ -4501,17 +3925,17 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 8,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 14, col: 1"
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
+            "end_event": 11,
+            "has_race": true,
             "hidden": 0,
             "id": 9,
             "ontarget": false,
@@ -4519,12 +3943,12 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 10,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 16, col: 1"
         },
         {
             "active": 1,
@@ -4537,17 +3961,17 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 12,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 14, col: 1"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 3,
+            "has_race": false,
             "hidden": 0,
             "id": 13,
             "ontarget": false,
@@ -4555,17 +3979,17 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 3,
             "has_race": false,
             "hidden": 0,
             "id": 14,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q3.cpp, line: 16, col: 1"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 11,
-            "has_race": true,
+            "end_event": 3,
+            "has_race": false,
             "hidden": 0,
             "id": 15,
             "ontarget": false,
@@ -4582,7 +4006,7 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 17,
@@ -4591,7 +4015,7 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 18,
@@ -4600,7 +4024,7 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 19,
@@ -4609,7 +4033,7 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
+            "end_event": 4,
             "has_race": false,
             "hidden": 0,
             "id": 20,
@@ -4618,136 +4042,28 @@ const q3 = {
         },
         {
             "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 21,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 22,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 23,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 3,
-            "has_race": false,
-            "hidden": 0,
-            "id": 24,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 25,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 26,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 27,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 28,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 29,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 30,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 31,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
-            "end_event": 4,
-            "has_race": false,
-            "hidden": 0,
-            "id": 32,
-            "ontarget": false,
-            "stack": ""
-        },
-        {
-            "active": 1,
             "end_event": 2,
             "has_race": false,
             "hidden": 0,
-            "id": 33,
+            "id": 21,
             "ontarget": false,
             "stack": ""
         }
     ],
     "races": [
         {
-            "current": 13,
-            "current_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/q3.cpp:12:9 (q3+0xd3cf0)",
+            "current": 9,
+            "current_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/q3.cpp:15:8 (q3+0xd3dab)",
             "lca": 0,
-            "prev": 11,
-            "prev_stack": "    #0 .omp_outlined..1 /home/fjin/playground/survey/q3.cpp:15:8 (q3+0xd3dab)"
+            "prev": 7,
+            "prev_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/q3.cpp:12:9 (q3+0xd3cf0)"
         },
         {
-            "current": 15,
-            "current_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/q3.cpp:12:9 (q3+0xd3cf0)",
+            "current": 11,
+            "current_stack": "    #0 .omp_outlined..3 /home/fjin/playground/survey/q3.cpp:17:8 (q3+0xd3e8b)",
             "lca": 0,
-            "prev": 11,
-            "prev_stack": "    #0 .omp_outlined..3 /home/fjin/playground/survey/q3.cpp:17:8 (q3+0xd3e8b)"
+            "prev": 7,
+            "prev_stack": "    #0 .omp_outlined. /home/fjin/playground/survey/q3.cpp:12:9 (q3+0xd3cf0)"
         }
     ],
     "targets": null
@@ -14745,7 +14061,7 @@ const q5 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 20
+            "target": 21
         },
         {
             "edge_type": 5,
@@ -14757,7 +14073,7 @@ const q5 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 19,
-            "target": 21
+            "target": 20
         },
         {
             "edge_type": 3,
@@ -14978,10 +14294,10 @@ const q5 = {
     "races": [
         {
             "current": 16,
-            "current_stack": "    #0 .omp_outlined..5 /home/fjin/playground/survey/q5.cpp:29:15 (q5+0xd4150)",
+            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q5.cpp:32:15 (q5+0xd4200)",
             "lca": 0,
             "prev": 14,
-            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q5.cpp:32:15 (q5+0xd4200)"
+            "prev_stack": "    #0 .omp_outlined..5 /home/fjin/playground/survey/q5.cpp:29:15 (q5+0xd4150)"
         }
     ],
     "targets": null
@@ -15130,13 +14446,13 @@ const q7 = {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 4
+            "target": 3
         },
         {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 3
+            "target": 4
         },
         {
             "edge_type": 0,
@@ -15148,43 +14464,43 @@ const q7 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 6
+            "target": 5
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 5
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 5,
             "target": 6
         },
         {
             "edge_type": 2,
             "hidden": 0,
             "source": 5,
-            "target": 7
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
-            "target": 8
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 6,
             "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 6,
+            "source": 5,
             "target": 10
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 6,
+            "target": 5
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 6,
+            "target": 7
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
+            "target": 8
         },
         {
             "edge_type": 3,
@@ -15397,10 +14713,10 @@ const q7 = {
         },
         {
             "current": 12,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)",
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:24:15 (q7+0xd1003)",
             "lca": 0,
             "prev": 8,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:24:15 (q7+0xd1003)"
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)"
         }
     ],
     "targets": null
@@ -48995,7 +48311,7 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 16
+            "target": 17
         },
         {
             "edge_type": 2,
@@ -49073,7 +48389,7 @@ const q10 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 11,
-            "target": 17
+            "target": 16
         },
         {
             "edge_type": 0,
@@ -49097,31 +48413,31 @@ const q10 = {
             "edge_type": 5,
             "hidden": 0,
             "source": 14,
-            "target": 17
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 15,
-            "target": 17
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 16,
-            "target": 17
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 16,
-            "target": 20
+            "target": 18
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 17,
+            "target": 16
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 17,
-            "target": 18
+            "target": 21
         },
         {
             "edge_type": 2,
@@ -49133,7 +48449,7 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 21
+            "target": 20
         },
         {
             "edge_type": 3,
@@ -49142,28 +48458,28 @@ const q10 = {
             "target": 22
         },
         {
-            "edge_type": 2,
+            "edge_type": 0,
             "hidden": 0,
             "source": 20,
+            "target": 22
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 21,
             "target": 23
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 20,
+            "source": 21,
             "target": 24
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 21,
-            "target": 22
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
             "source": 22,
-            "target": 26
+            "target": 27
         },
         {
             "edge_type": 3,
@@ -49181,7 +48497,7 @@ const q10 = {
             "edge_type": 0,
             "hidden": 0,
             "source": 25,
-            "target": 27
+            "target": 26
         },
         {
             "edge_type": 3,
@@ -49373,21 +48689,21 @@ const q10 = {
         },
         {
             "active": 1,
-            "end_event": 5,
+            "end_event": 10,
             "has_race": false,
             "hidden": 0,
             "id": 20,
             "ontarget": false,
-            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
+            "stack": ""
         },
         {
             "active": 1,
-            "end_event": 10,
+            "end_event": 5,
             "has_race": false,
             "hidden": 0,
             "id": 21,
             "ontarget": false,
-            "stack": ""
+            "stack": "file: /home/fjin/playground/survey/q10.cpp, line: 38, col: 9"
         },
         {
             "active": 1,

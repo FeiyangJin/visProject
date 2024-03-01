@@ -160,7 +160,7 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 18,
-            "target": 20
+            "target": 21
         },
         {
             "edge_type": 5,
@@ -172,7 +172,7 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 19,
-            "target": 21
+            "target": 20
         },
         {
             "edge_type": 3,
@@ -393,10 +393,10 @@
     "races": [
         {
             "current": 16,
-            "current_stack": "    #0 .omp_outlined..5 /home/fjin/playground/survey/q5.cpp:29:15 (q5+0xd4150)",
+            "current_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q5.cpp:32:15 (q5+0xd4200)",
             "lca": 0,
             "prev": 14,
-            "prev_stack": "    #0 .omp_outlined..7 /home/fjin/playground/survey/q5.cpp:32:15 (q5+0xd4200)"
+            "prev_stack": "    #0 .omp_outlined..5 /home/fjin/playground/survey/q5.cpp:29:15 (q5+0xd4150)"
         }
     ],
     "targets": null

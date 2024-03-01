@@ -198,27 +198,27 @@ function styleCodeEditor(initialValue)
     }
     codeEditor2.getDoc().setValue(initialValue);
 
-    codeEditor.on("cursorActivity", function() {
-        const cursor = codeEditor.getCursor();
-        const lineNumber = cursor.line + 1;
+    // codeEditor.on("cursorActivity", function() {
+    //     const cursor = codeEditor.getCursor();
+    //     const lineNumber = cursor.line + 1;
 
-        if (highlightNodeID != -1) {
-            const circle_id = "circle" + highlightNodeID;
-            document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
-            document.getElementById(circle_id).setAttribute("r", nodeRadius);
-            highlightNodeID = -1;
-        }
+    //     if (highlightNodeID != -1) {
+    //         const circle_id = "circle" + highlightNodeID;
+    //         document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
+    //         document.getElementById(circle_id).setAttribute("r", nodeRadius);
+    //         highlightNodeID = -1;
+    //     }
 
-        if (!(lineNumber in sourceLine_to_nodeID)) {
-            return
-        }
+    //     if (!(lineNumber in sourceLine_to_nodeID)) {
+    //         return
+    //     }
 
-        console.log(`line number: ${lineNumber}, node id: ${sourceLine_to_nodeID[lineNumber]}`);
-        const circle_id = "circle" + sourceLine_to_nodeID[lineNumber];
-        document.getElementById(circle_id).style.fill = "pink";
-        document.getElementById(circle_id).setAttribute("r", nodeRadius * 2);
-        highlightNodeID = sourceLine_to_nodeID[lineNumber];
-    });
+    //     console.log(`line number: ${lineNumber}, node id: ${sourceLine_to_nodeID[lineNumber]}`);
+    //     const circle_id = "circle" + sourceLine_to_nodeID[lineNumber];
+    //     document.getElementById(circle_id).style.fill = "pink";
+    //     document.getElementById(circle_id).setAttribute("r", nodeRadius * 2);
+    //     highlightNodeID = sourceLine_to_nodeID[lineNumber];
+    // });
 }
 
 function parseFileInfoForSourceLine(fileInfo, node)
@@ -327,6 +327,16 @@ function dataRaceButton(raceIndex, g)
         }
         current_button = raceIndex;
         button.style.backgroundColor = "red";
+
+        // add source line to node
+        document.getElementById('circle' + current_node_index).nextSibling.textContent = current_source_line ? current_source_line : "";
+        document.getElementById('circle' + current_node_index).nextSibling.style.fontWeight = "bold";
+        document.getElementById('circle' + current_node_index).nextSibling.style.fill = "white";
+
+    
+        document.getElementById('circle' + prev_node_index).nextSibling.textContent = prev_source_line ? prev_source_line : "";
+        document.getElementById('circle' + prev_node_index).nextSibling.style.fontWeight = "bold";
+        document.getElementById('circle' + prev_node_index).nextSibling.style.fill = "white";
     }
     return button;
 }

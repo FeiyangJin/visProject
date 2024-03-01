@@ -586,11 +586,11 @@ function visualizeDAG_dagre(g, svgID, dataMovementInfo, codeEditor, codeEditor2)
                 .text(n => {
                   let node = g.node(n);
                   if(node.data.has_race == 1){
-                    return
+                    return 
                   }
                   return node.data.source_line;
                 })
-                .attr('font-weight', 'bold')
+                // .attr('font-weight', 'bold')
                 .attr('font-family', 'sans-serif')
                 .attr('text-anchor', 'middle')
                 .attr('alignment-baseline', 'middle')
