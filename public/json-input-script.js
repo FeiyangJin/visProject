@@ -123,7 +123,7 @@ function populateRefCount_dagre(nodeId, g)
     for (const childId of g.successors(nodeId)) 
     {
         const childNode = g.node(childId);
-        if (!childNode.data.hidden) {
+        if (!childNode.data.hidden && childNode.data.active) {
             childNode.data.refCount += 1;
             populateRefCount_dagre(childId, g);
         }
@@ -144,7 +144,7 @@ function showNode(nodeId, g)
     }
 }
 
-function showChildren(nodeId, g)
+function showImmediateChildren(nodeId, g)
 {
     for (const childId of g.successors(nodeId))
     {
@@ -313,7 +313,7 @@ function dataRaceButton(raceIndex, g)
 
         showNode(current_node_index, g);
         showNode(prev_node_index, g);
-        showChildren(rootId,g)
+        showImmediateChildren(rootId,g)
         
         g.node(current_node_index).data.special = true;
         g.node(prev_node_index).data.special = true;
@@ -410,7 +410,7 @@ function prepareGraph_dagre(jsonData){
     for (const node of nodes) {
         node['hidden'] = true;
         node['special'] = false;
-        g.setNode(node.id, {data:node, ...{width: nodeRadius*2, height: nodeRadius*2}})
+        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}});
         g.node(node.id).data.refCount = 0;
 
         node['source_line'] = null;
@@ -421,7 +421,7 @@ function prepareGraph_dagre(jsonData){
 
     for (const edge of edges) {
         edge['hidden'] = true;
-        g.setEdge(edge.source, edge.target, {data:edge});
+        g.setEdge(edge.source, edge.target, { data:edge });
     }
 
     if (races)
@@ -430,16 +430,30 @@ function prepareGraph_dagre(jsonData){
         showNode(race.current, g);
         showNode(race.prev, g);
 
-        showChildren(rootId, g);
+        showImmediateChildren(rootId, g);
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
 
+        let seen = [];
         for (race of races)
         {
             const currentNode = g.node(race['current']);
 
             currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
             currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
+
+            if (!seen.includes(race.current)) {
+                showNode(race.current, g);
+                showImmediateChildren(race.current, g);
+                seen.push(race.current);
+            }
+            
+            if (!seen.includes(race.prev)) {
+                showNode(race.prev, g);
+                showImmediateChildren(race.prev, g);
+                seen.push(race.prev);
+            }
         }
+        showImmediateChildren(rootId, g);
     }
     else {
         showNode(rootId, g);
