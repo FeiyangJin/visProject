@@ -10,13 +10,13 @@
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 4
+            "target": 3
         },
         {
             "edge_type": 1,
             "hidden": 0,
             "source": 1,
-            "target": 3
+            "target": 4
         },
         {
             "edge_type": 0,
@@ -28,43 +28,43 @@
             "edge_type": 0,
             "hidden": 0,
             "source": 3,
-            "target": 6
+            "target": 5
         },
         {
             "edge_type": 0,
             "hidden": 0,
             "source": 4,
-            "target": 5
-        },
-        {
-            "edge_type": 5,
-            "hidden": 0,
-            "source": 5,
             "target": 6
         },
         {
             "edge_type": 2,
             "hidden": 0,
             "source": 5,
-            "target": 7
-        },
-        {
-            "edge_type": 0,
-            "hidden": 0,
-            "source": 5,
-            "target": 8
-        },
-        {
-            "edge_type": 2,
-            "hidden": 0,
-            "source": 6,
             "target": 9
         },
         {
             "edge_type": 0,
             "hidden": 0,
-            "source": 6,
+            "source": 5,
             "target": 10
+        },
+        {
+            "edge_type": 5,
+            "hidden": 0,
+            "source": 6,
+            "target": 5
+        },
+        {
+            "edge_type": 2,
+            "hidden": 0,
+            "source": 6,
+            "target": 7
+        },
+        {
+            "edge_type": 0,
+            "hidden": 0,
+            "source": 6,
+            "target": 8
         },
         {
             "edge_type": 3,
@@ -277,10 +277,10 @@
         },
         {
             "current": 12,
-            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)",
+            "current_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:24:15 (q7+0xd1003)",
             "lca": 0,
             "prev": 8,
-            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:24:15 (q7+0xd1003)"
+            "prev_stack": "    #0 .omp_outlined._debug__ /home/fjin/playground/survey/q7.c:20:12 (q7+0xd0fe2)"
         }
     ],
     "targets": null
