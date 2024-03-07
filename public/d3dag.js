@@ -231,6 +231,161 @@ function transitionHeader(opening) {
   }
 }
 
+function addDataMovementLegend() {
+  let legend_svg = d3.select("#legend");
+
+  const x_start = 70;
+  const x_end = 130;
+  const y_spacing = 30;
+  const y0 = 30;
+
+  {
+    legend_svg.append('path')
+    .attr('stroke', 'black')
+    .attr('fill', 'none')
+    .attr('stroke-width', 2)
+    .attr('marker-end', 'url(#arrowhead)')
+    .attr('d', d3.line()([[x_start, y0], [x_end, y0]]))
+    .transition()
+    .on('start', function repeat() {
+      d3.active(this)
+      .transition(d3.easePoly.exponent(3))
+      .duration(3000)
+      .attrTween('d', function () { return function(t) {
+        let dynamic_points = [[x_start, y0], [x_end, y0]]
+        const dx = dynamic_points[1][0] - (dynamic_points[0][0] + 10);
+        dynamic_points[1][0] = (dynamic_points[0][0] + 10) + (dx * t);
+        return d3.line()(dynamic_points);
+      }})
+      .transition()
+      .duration(250)
+      .attr('d', d3.line()([[x_start, y0], [x_end, y0]]))
+      .on('start', repeat);
+    });
+
+    legend_svg.append("text")
+    .text("Associate Data Movement")
+    .attr('x', x_end + 15)
+    .attr('y', y0 + 3)
+    .attr('fill', 'black')
+    .attr('opacity', 1)
+    .attr('font-family', 'Arial')
+    .attr('font-size', '12px');
+  }
+
+  const y1 = y0 + y_spacing;
+  {
+    legend_svg.append('path')
+    .attr('stroke', 'black')
+    .attr('fill', 'none')
+    .attr('stroke-width', 2)
+    .attr('marker-end', 'url(#arrowhead)')
+    .attr('marker-start', 'url(#arrowhead)')
+    .attr('opacity', 1)
+    .attr('d', d3.line()([[x_start, y1], [x_end, y1]]))
+    .transition()
+    .on('start', function repeat() {
+      d3.active(this)
+      .transition(d3.easeLinear)
+      .duration(1500)
+      .attr('opacity', 0)
+      .transition()
+      .duration(175)
+      .attr('opacity', 1)
+      .transition()
+      .duration(925)
+      .on('start', repeat);
+    });
+
+    legend_svg.append("text")
+    .text("Disassociate Data Movement")
+    .attr('x', x_end + 15)
+    .attr('y', y1 + 3)
+    .attr('fill', 'black')
+    .attr('opacity', 1)
+    .attr('font-family', 'Arial')
+    .attr('font-size', '12px');
+  }
+
+  const y2 = y1 + y_spacing;
+  {
+    legend_svg.append('path')
+    .attr('d', d3.line()([[x_start, y2], [x_end, y2]]))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 2)
+    .attr('marker-end', 'url(#arrowhead)')
+    .attr('opacity', 1)
+    .attr('stroke-dasharray', e => {
+      const dx = x_end - x_start - 8;
+      
+      const edgeLength = Math.sqrt(dx * dx);
+      const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
+      const array = (dashDimensions.join(' ') + ' ').repeat(repeat);
+      return array;
+    })
+    .transition()
+    .on('start', function repeat() {
+      d3.active(this)
+        .transition()
+        .duration(64000)
+        .ease(d3.easeLinear)
+        .styleTween('stroke-dashoffset', function() {
+          return d3.interpolate(960, 0);
+        })
+        .on('end', repeat);
+    });
+
+    legend_svg.append("text")
+    .text("To Data Movement")
+    .attr('x', x_end + 15)
+    .attr('y', y2 + 3)
+    .attr('fill', 'black')
+    .attr('opacity', 1)
+    .attr('font-family', 'Arial')
+    .attr('font-size', '12px');
+  }
+
+  const y3 = y2 + y_spacing;
+  {
+    legend_svg.append('path')
+    .attr('d', d3.line()([[x_end, y3], [x_start, y3]]))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 2)
+    .attr('marker-end', 'url(#arrowhead)')
+    .attr('opacity', 1)
+    .attr('stroke-dasharray', e => {
+      const dx = x_end - x_start - 8;
+      
+      const edgeLength = Math.sqrt(dx * dx);
+      const repeat = Math.ceil(edgeLength / d3.sum(dashDimensions));
+      const array = (dashDimensions.join(' ') + ' ').repeat(repeat);
+      return array;
+    })
+    .transition()
+    .on('start', function repeat() {
+      d3.active(this)
+        .transition()
+        .duration(64000)
+        .ease(d3.easeLinear)
+        .styleTween('stroke-dashoffset', function() {
+          return d3.interpolate(960, 0);
+        })
+        .on('end', repeat);
+    });
+
+    legend_svg.append("text")
+    .text("From Data Movement")
+    .attr('x', x_end + 15)
+    .attr('y', y3 + 3)
+    .attr('fill', 'black')
+    .attr('opacity', 1)
+    .attr('font-family', 'Arial')
+    .attr('font-size', '12px');
+  }
+}
+
+let added = false;
+
 function visualizeDataMovement(dataMove, opening) {
   if (!isMovementFrameLargeEnough()) {
     return;
@@ -407,6 +562,17 @@ function visualizeDataMovement(dataMove, opening) {
             });
       }
       );
+  if (opening) {
+    if (!added) {
+      addDataMovementLegend();
+      added = true;
+    } else {
+      let legend_svg = d3.select("#legend");
+      legend_svg.style.opacity = 0;
+    }
+  } else {
+    legend_svg.style.opacity = 1;
+  }
 }
 
 function populateIndices(datamove) {

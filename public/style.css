@@ -39,6 +39,12 @@
   border-radius: 15px;
 }
 
+#memory-vis-display-legend-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .source-code-wrapper-class {
   width: 30%;
   overflow-x: scroll;
