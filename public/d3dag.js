@@ -186,6 +186,13 @@ function computeAlignmentTarget() {
   return hostHeader.offsetWidth + divider.offsetWidth + (targetHeader.offsetWidth - rectWidth) / 2;
 }
 
+function computeAlignmentMovementLabel(label) {
+  const horizontalOffset = 2;
+  const hostHeader = document.getElementById('memory-vis-header-host');
+  const divider = document.getElementById('memory-vis-header-gap');
+  return hostHeader.offsetWidth + (divider.offsetWidth / 2) - (label.length * horizontalOffset);
+}
+
 function isMovementFrameLargeEnough() {
   const subheadingDiv = document.getElementById('memory-vis-header-subheading');
   return subheadingDiv.offsetWidth >= 2 * gap + 2 * rectWidth + horizontalDivision;
@@ -450,6 +457,15 @@ function visualizeDataMovement(dataMove, opening) {
                 .attr('font-family', 'Arial')
                 .attr('font-size', '12px');
 
+              enter.append('text')
+                .text(data => getDataMovementDescriptionString(data))
+                .attr('x', data => computeAlignmentMovementLabel(getDataMovementDescriptionString(data)))
+                .attr('y', (data, index) => 10 + header + (index * (verticalMargin + rectHeight)))
+                .attr('fill', 'black')
+                .attr('opacity', 1)
+                .attr('font-family', 'Arial')
+                .attr('font-size', '12px');
+
               enter.filter(d => {
                 return isToDataMovement(d.flag) || isFromDataMovement(d.flag);
               })
@@ -562,6 +578,7 @@ function visualizeDataMovement(dataMove, opening) {
             });
       }
       );
+
   if (opening) {
     if (!added) {
       addDataMovementLegend();
