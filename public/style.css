@@ -57,6 +57,10 @@
   border-color: transparent;
   border-width: 3px;
   border-radius: 15px;
+
+  font-size: 15px;
+  font-family: monospace; 
+  color: black;
 }
 
 .source-code-display-class {
@@ -161,10 +165,35 @@
   padding: 10px;
 }
 
-#footer {
+#footer-upper {
   display: flex;
   flex-direction: row;
   max-height: 15vh;
+  min-height: 150px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+}
+
+#footer-lower {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.upload-button {
+
+}
+
+.examples-button {
+  min-width: 100px;
+  padding: 4px;
+  background-color: limegreen;
+  border-radius: 5px;
+  border-style: hidden;
 }
 
 .lengend-regions{
@@ -181,12 +210,16 @@
 #data-race-buttons {
   display: flex;
   flex-direction: column;
+
+  max-height: 200px;
+  overflow: auto;
 }
 
 #data-upload-region {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 10px;
   width: 5%;
   margin-right: 1%;
 }

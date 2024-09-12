@@ -39,11 +39,11 @@
           </svg>
         </div>
 
-        <div class="source-code-wrapper-class" id="source-code-wrapper" style="font-size: 15px; font-family: monospace; color: black;">
+        <div class="source-code-wrapper-class" id="source-code-wrapper">
           <textarea class="source-code-display-class" id="source-code-display"></textarea>
         </div>
 
-        <div class="source-code-wrapper-class" id="source-code-wrapper2" style="font-size: 15px; font-family: monospace; color: black;">
+        <div class="source-code-wrapper-class" id="source-code-wrapper2">
           <textarea class="source-code-display-class" id="source-code-display2"></textarea>
         </div>
 
@@ -75,24 +75,29 @@
       </div>
 
       <div id="footer">
-        <div id="data-upload-region">
-          <!-- <p> Upload Data  </p> -->
-          <input type="file" id="selectedFile" style="display: none;" />
-          <input type="button" id="json_fileInput" value="Upload File" onclick="document.getElementById('selectedFile').click();" />
-          <br>
-          <input type="button" id="show-graph-button" value="show all graph" style="display: none;"/>
-        </div>
-        <div id = "legend-region">
-          <svg id="node-legend"></svg>
-          <svg id="edge-legend"></svg>
-        </div>
+        <div id="footer-upper">
+          <div id = "legend-region">
+            <svg id="node-legend"></svg>
+            <svg id="edge-legend"></svg>
+          </div>
 
-        <div id="button-regions">
-          <p id="race-notice"></p>
-          <div id="data-race-buttons"></div>
+          <div id="button-regions">
+            <p id="race-notice"></p>
+            <div id="data-race-buttons"></div>
+          </div>
+          
+          <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
         </div>
         
-        <div id="tooltip" style="visibility: hidden;">a simple tooltip</div>
+        <div id="footer-lower">
+          <div id="data-upload-region">
+            <!-- <p> Upload Data  </p> -->
+            <input type="file" id="selectedFile" style="display: none;" />
+            <input type="button" id="json_fileInput" value="Upload File" onclick="document.getElementById('selectedFile').click();" />
+            <br>
+            <input type="button" id="show-graph-button" value="show all graph" style="display: none;"/>
+          </div>
+        </div>
       </div>
 
     </div>

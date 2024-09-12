@@ -12,29 +12,27 @@ let targetMovementData = null;
 
 const dataRaceButtonDiv = document.getElementById('data-race-buttons');
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const json_fileInput = document.getElementById('selectedFile');
     json_fileInput.addEventListener('change', handleJsonUpload);
     
-    console.log(`bench is ${benchmark}`);
-    if(benchmark == null){
+    if (benchmark == null) {
         return;
     }
 
     var bench_json = benchmarks[benchmark];
-    if(bench_json !=undefined){
+    if (bench_json != undefined) {
         handleJSON(bench_json);
     }
 
 });
 
-function handleJSON(jsonData){
+function handleJSON(jsonData, shouldParse=true) {
     const svgID = "#svgJSON";
     setupSVG(svgID);
-    dag = prepareGraph_dagre(jsonData);
+    dag = prepareGraph_dagre(jsonData, shouldParse);
     
-    targetMovementData = extractTargetMovementData(jsonData);
+    targetMovementData = extractTargetMovementData(jsonData, shouldParse);
     visualizeDAG_dagre(dag, svgID, targetMovementData, codeEditor, codeEditor2);
     addZooming();
     addLegend();
@@ -101,8 +99,11 @@ function handleJsonUpload(event) {
     }
 }
 
-function extractTargetMovementData(jsonData) {
-    let json = JSON.parse(jsonData);
+function extractTargetMovementData(jsonData, shouldParse) {
+    let json = jsonData;
+    if (shouldParse) {
+        json = JSON.parse(jsonData);
+    }
     let target_regions = json["targets"];
     return target_regions ? target_regions : null;
 }
@@ -275,7 +276,7 @@ function dataRaceButton(raceIndex, g)
         resetErrorLineLeft(codeEditor);
         resetErrorLineRight(codeEditor2);
 
-        if(button.selected){
+        if (button.selected) {
             current_button = -1;
             button.style.backgroundColor = "lightblue";
             button.selected = false;
@@ -321,7 +322,7 @@ function dataRaceButton(raceIndex, g)
         visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2)
 
         // highlight the button
-        if(current_button != raceIndex && current_button != -1){
+        if (current_button != raceIndex && current_button != -1) {
             document.getElementById("button" + current_button).style.backgroundColor = "lightblue";
             document.getElementById("button" + current_button).selected = false;
         }
@@ -341,7 +342,7 @@ function dataRaceButton(raceIndex, g)
     return button;
 }
 
-function showAllButton(g){
+function showAllButton(g) {
     let button = document.createElement('button');
 
     button.id = "showAllButton";
@@ -349,10 +350,12 @@ function showAllButton(g){
     button.style = 'margin: 5px; padding: 5px; background-color: lightyellow'
 
     button.onclick = (e) => {
-        for(const node of g.nodes()){
-            g.node(node).data.special = false;
-            g.node(node).data.hidden = false;
-            g.node(node).data.active = true;
+        for(const nodeId of g.nodes()){
+            let node = g.node(nodeId);
+            node.data.special = false;
+            node.data.hidden = false;
+            node.data.active = true;
+            node.first_click = false;
         }
 
         for(const edge of g.edges()){
@@ -361,7 +364,7 @@ function showAllButton(g){
 
         visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2);
     }
-    return button
+    return button;
 }
 
 function constructDataRaceButtons(races, g)
@@ -369,13 +372,12 @@ function constructDataRaceButtons(races, g)
     current_button = 0;
 
     let showAllButtonElement = document.getElementById('showAllButton');
-    if(showAllButtonElement != null){
+    if (showAllButtonElement != null) {
         showAllButtonElement.remove();
     }
 
-    document.getElementById('data-upload-region').appendChild(showAllButton(g));
+    document.getElementById('data-race-buttons').appendChild(showAllButton(g));
     
-
     if (races == null) {
         return;
     }
@@ -385,8 +387,31 @@ function constructDataRaceButtons(races, g)
     }
 }
 
-function prepareGraph_dagre(jsonData){
-    let json = JSON.parse(jsonData);
+function constructExampleButtons() {
+    const examples = {
+        1: q1,
+        2: q2,
+        3: q3
+    };
+
+    let data_upload_region = document.getElementById('data-upload-region');
+    for (let key in examples) {
+        let button = document.createElement('button');
+        button.className = 'examples-button';
+        button.textContent = `Example ${key}`;
+        button.onclick = (e) => {
+            handleJSON(examples[key], false);
+        };
+        data_upload_region.appendChild(button);
+    }
+}
+
+function prepareGraph_dagre(jsonData, shouldParse) {
+    let json = jsonData;
+    if (shouldParse) {
+        json = JSON.parse(jsonData);
+    }
+
     let nodes = json['nodes'];
     let edges = json['edges'];
     let races = json['races'];
@@ -409,6 +434,7 @@ function prepareGraph_dagre(jsonData){
 
     for (const node of nodes) {
         node['hidden'] = true;
+        node['first_click'] = true;
         node['special'] = false;
         g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}});
         g.node(node.id).data.refCount = 0;
@@ -467,7 +493,7 @@ function prepareGraph_dagre(jsonData){
         {
             node.data.refCount = 1;
         }
-        populateRefCount_dagre(n,g);
+        populateRefCount_dagre(n, g);
     }
 
     path = [];
@@ -692,3 +718,5 @@ function showBorder() {
     const codeDisplayDiv2 = document.getElementById('source-code-wrapper2');
     codeDisplayDiv2.style.borderColor = 'black';
 }
+
+constructExampleButtons();

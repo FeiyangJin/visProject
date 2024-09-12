@@ -104,12 +104,16 @@ function click_dagre(n, dag, svgID) {
     /* You can't click on hidden nodes */
     return;
   }
-  n.data.active = !n.data.active;
+
+  if (!(n.data['has_race'] && n.data['first_click'])) {
+    n.data.active = !n.data.active;
+  }
   if (n.data.active) {
     increment_refcount_dagre(n, dag);
   } else {
     decrement_refcount_dagre(n, dag);
   }
+  n.data['first_click'] = false;
   visualizeDAG_dagre(dag, svgID)
 }
 
