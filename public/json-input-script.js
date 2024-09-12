@@ -108,6 +108,19 @@ function extractTargetMovementData(jsonData, shouldParse) {
     return target_regions ? target_regions : null;
 }
 
+function resetRefCount(g) {
+    path = [];
+    for (const n of g.nodes()) {
+        let node = g.node(n);
+        if (node.data.id === 1)
+        {
+            node.data.refCount = 1;
+        } else {
+            node.data.refCount = 0;
+        }
+    }
+    populateRefCount_dagre(1, g);
+}
 
 function populateRefCount_dagre(nodeId, g) 
 {
@@ -314,7 +327,8 @@ function dataRaceButton(raceIndex, g)
 
         showNode(current_node_index, g);
         showNode(prev_node_index, g);
-        showImmediateChildren(rootId,g)
+        showImmediateChildren(rootId,g);
+        resetRefCount(g);
         
         g.node(current_node_index).data.special = true;
         g.node(prev_node_index).data.special = true;
@@ -361,7 +375,7 @@ function showAllButton(g) {
         for(const edge of g.edges()){
             g.edge(edge).data.hidden = false;
         }
-
+        resetRefCount(g);
         visualizeDAG_dagre(g, "#svgJSON", null, codeEditor, codeEditor2);
     }
     return button;
@@ -376,7 +390,7 @@ function constructDataRaceButtons(races, g)
         showAllButtonElement.remove();
     }
 
-    document.getElementById('data-race-buttons').appendChild(showAllButton(g));
+    document.getElementById('race-buttons').appendChild(showAllButton(g));
     
     if (races == null) {
         return;
@@ -436,13 +450,13 @@ function prepareGraph_dagre(jsonData, shouldParse) {
         node['hidden'] = true;
         node['first_click'] = true;
         node['special'] = false;
-        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}});
-        g.node(node.id).data.refCount = 0;
-
         node['source_line'] = null;
         if (node['stack'].length) {
             node['source_line'] = parseFileInfoForSourceLine(node['stack'], node);
         }
+
+        g.setNode(node.id, {data:node, ...{width: nodeRadius * 2, height: nodeRadius * 2}});
+        g.node(node.id).data.refCount = 0;
     }
 
     for (const edge of edges) {

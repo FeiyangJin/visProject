@@ -188,6 +188,11 @@
 
 }
 
+#race-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
 .examples-button {
   min-width: 100px;
   padding: 4px;
