@@ -390,7 +390,7 @@ function constructDataRaceButtons(races, g)
         showAllButtonElement.remove();
     }
 
-    document.getElementById('race-buttons').appendChild(showAllButton(g));
+    document.getElementById('show-all-button').appendChild(showAllButton(g));
     
     if (races == null) {
         return;
