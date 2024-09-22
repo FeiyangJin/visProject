@@ -111,9 +111,7 @@ function click_dagre(n, dag, svgID) {
     return;
   }
 
-  // if (!(n.data['has_race'] && n.data['first_click'])) {
-    n.data.active = !n.data.active;
-  // }
+  n.data.active = !n.data.active;
   if (n.data.active) {
     increment_refcount_dagre(n, dag);
   } else {

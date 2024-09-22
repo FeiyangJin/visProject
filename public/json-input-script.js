@@ -223,28 +223,6 @@ function styleCodeEditor(initialValue)
         codeEditor2 = editor2;
     }
     codeEditor2.getDoc().setValue(initialValue);
-
-    // codeEditor.on("cursorActivity", function() {
-    //     const cursor = codeEditor.getCursor();
-    //     const lineNumber = cursor.line + 1;
-
-    //     if (highlightNodeID != -1) {
-    //         const circle_id = "circle" + highlightNodeID;
-    //         document.getElementById(circle_id).style.fill = get_node_color(dag.node(highlightNodeID));
-    //         document.getElementById(circle_id).setAttribute("r", nodeRadius);
-    //         highlightNodeID = -1;
-    //     }
-
-    //     if (!(lineNumber in sourceLine_to_nodeID)) {
-    //         return
-    //     }
-
-    //     console.log(`line number: ${lineNumber}, node id: ${sourceLine_to_nodeID[lineNumber]}`);
-    //     const circle_id = "circle" + sourceLine_to_nodeID[lineNumber];
-    //     document.getElementById(circle_id).style.fill = "pink";
-    //     document.getElementById(circle_id).setAttribute("r", nodeRadius * 2);
-    //     highlightNodeID = sourceLine_to_nodeID[lineNumber];
-    // });
 }
 
 function parseFileInfoForSourceLine(fileInfo, node)
@@ -336,14 +314,13 @@ function dataRaceButton(raceIndex, g)
         for (const edge of g.edges()) {
             g.edge(edge).data.hidden = true;
         }
-        // console.log(g.node(17).data.refCount);
+        
         showNode(current_node_index, g);
         showNode(prev_node_index, g);
         showImmediateChildren(rootId, g);
         showImmediateChildren(current_node_index, g);
         showImmediateChildren(prev_node_index, g);
         resetRefCount(g);
-        // console.log(g.node(17).data.refCount);
 
         g.node(current_node_index).data.special = true;
         g.node(prev_node_index).data.special = true;
@@ -363,7 +340,6 @@ function dataRaceButton(raceIndex, g)
         document.getElementById('circle' + current_node_index).nextSibling.style.fontWeight = "bold";
         document.getElementById('circle' + current_node_index).nextSibling.style.fill = "white";
 
-    
         document.getElementById('circle' + prev_node_index).nextSibling.textContent = prev_source_line ? prev_source_line : "";
         document.getElementById('circle' + prev_node_index).nextSibling.style.fontWeight = "bold";
         document.getElementById('circle' + prev_node_index).nextSibling.style.fill = "white";
@@ -481,50 +457,21 @@ function prepareGraph_dagre(jsonData, shouldParse) {
 
     if (races)
     {
-        // let race = races[0];
-        // showNode(race.current, g);
-        // showNode(race.prev, g);
-
-        // showImmediateChildren(rootId, g);
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
 
-        // let seen = [];
         for (race of races)
         {
             const currentNode = g.node(race['current']);
 
             currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
             currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
-
-            // if (!seen.includes(race.current)) {
-            //     showNode(race.current, g);
-            //     showImmediateChildren(race.current, g);
-            //     seen.push(race.current);
-            // }
-            
-            // if (!seen.includes(race.prev)) {
-            //     showNode(race.prev, g);
-            //     showImmediateChildren(race.prev, g);
-            //     seen.push(race.prev);
-            // }
         }
-        // showImmediateChildren(rootId, g);
     }
     else {
         showNode(rootId, g);
-        // g.node(rootId).data.active = false;
         g.node(rootId).data.active = true;
         document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`;
     }
-
-    // for (const n of g.nodes()) {
-    //     let node = g.node(n);
-    //     if (node.data.id === 1)
-    //     {
-    //         node.data.refCount = 1;
-    //     }
-    //     populateRefCount_dagre(n, g);
-    // }
 
     path = [];
     global_races = races;
