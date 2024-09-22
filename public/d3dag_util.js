@@ -244,7 +244,7 @@ function get_node_color(n) {
     return "pink";
   }
 
-  if (!n.data.active) {
+  if (!n.data.active && !n.data.has_race) {
     return "#858585";
   }
 

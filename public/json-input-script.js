@@ -112,20 +112,22 @@ function resetRefCount(g) {
     path = [];
     for (const n of g.nodes()) {
         let node = g.node(n);
-        if (node.data.id === 1)
-        {
+        if (node.data.id === 1) {
             node.data.refCount = 1;
         } else {
             node.data.refCount = 0;
         }
     }
-    populateRefCount_dagre(1, g);
+
+    for (const n of g.nodes()) {
+        populateRefCount_dagre(n, g);
+    }
 }
 
 function populateRefCount_dagre(nodeId, g) 
 {
     const node = g.node(nodeId);
-    if (node.data.hidden) {
+    if (node.data.hidden || !node.data.active) {
         return;
     }
 
@@ -137,8 +139,18 @@ function populateRefCount_dagre(nodeId, g)
     for (const childId of g.successors(nodeId)) 
     {
         const childNode = g.node(childId);
-        if (!childNode.data.hidden && childNode.data.active) {
+        if (childNode.data.id === 17) {
+            console.log(`Node: ${childNode.data.id} Parent: ${nodeId}`);
+            console.log(childNode.data.hidden);
+        }
+        if (!childNode.data.hidden) {
+            if (childNode.data.id === 17) {
+                console.log("Incrementing 17");
+            }
             childNode.data.refCount += 1;
+            if (childNode.data.id === 17) {
+                console.log(`17 refcount: ${childNode.data.refCount}`);
+            }
             populateRefCount_dagre(childId, g);
         }
     }
@@ -165,7 +177,7 @@ function showImmediateChildren(nodeId, g)
         const childNode = g.node(childId);
         const originalVisibility = childNode.data.hidden;
         childNode.data.hidden = false;
-        if (!childNode.data.has_race && originalVisibility && g.successors(childId).length)
+        if (originalVisibility && g.successors(childId).length)
             childNode.data.active = false;
     }
 
@@ -324,12 +336,15 @@ function dataRaceButton(raceIndex, g)
         for (const edge of g.edges()) {
             g.edge(edge).data.hidden = true;
         }
-
+        // console.log(g.node(17).data.refCount);
         showNode(current_node_index, g);
         showNode(prev_node_index, g);
-        showImmediateChildren(rootId,g);
+        showImmediateChildren(rootId, g);
+        showImmediateChildren(current_node_index, g);
+        showImmediateChildren(prev_node_index, g);
         resetRefCount(g);
-        
+        // console.log(g.node(17).data.refCount);
+
         g.node(current_node_index).data.special = true;
         g.node(prev_node_index).data.special = true;
 
@@ -466,14 +481,14 @@ function prepareGraph_dagre(jsonData, shouldParse) {
 
     if (races)
     {
-        let race = races[0];
-        showNode(race.current, g);
-        showNode(race.prev, g);
+        // let race = races[0];
+        // showNode(race.current, g);
+        // showNode(race.prev, g);
 
-        showImmediateChildren(rootId, g);
+        // showImmediateChildren(rootId, g);
         document.getElementById('race-notice').innerHTML = `You have ${races.length} data races!`;
 
-        let seen = [];
+        // let seen = [];
         for (race of races)
         {
             const currentNode = g.node(race['current']);
@@ -481,34 +496,35 @@ function prepareGraph_dagre(jsonData, shouldParse) {
             currentNode.data.current_source_line = parseRaceStackForSourceLine(race['current_stack']);
             currentNode.data.prev_source_line = parseRaceStackForSourceLine(race['prev_stack']);
 
-            if (!seen.includes(race.current)) {
-                showNode(race.current, g);
-                showImmediateChildren(race.current, g);
-                seen.push(race.current);
-            }
+            // if (!seen.includes(race.current)) {
+            //     showNode(race.current, g);
+            //     showImmediateChildren(race.current, g);
+            //     seen.push(race.current);
+            // }
             
-            if (!seen.includes(race.prev)) {
-                showNode(race.prev, g);
-                showImmediateChildren(race.prev, g);
-                seen.push(race.prev);
-            }
+            // if (!seen.includes(race.prev)) {
+            //     showNode(race.prev, g);
+            //     showImmediateChildren(race.prev, g);
+            //     seen.push(race.prev);
+            // }
         }
-        showImmediateChildren(rootId, g);
+        // showImmediateChildren(rootId, g);
     }
     else {
         showNode(rootId, g);
-        g.node(rootId).data.active = false;
+        // g.node(rootId).data.active = false;
+        g.node(rootId).data.active = true;
         document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`;
     }
 
-    for (const n of g.nodes()) {
-        let node = g.node(n);
-        if (node.data.id === 1)
-        {
-            node.data.refCount = 1;
-        }
-        populateRefCount_dagre(n, g);
-    }
+    // for (const n of g.nodes()) {
+    //     let node = g.node(n);
+    //     if (node.data.id === 1)
+    //     {
+    //         node.data.refCount = 1;
+    //     }
+    //     populateRefCount_dagre(n, g);
+    // }
 
     path = [];
     global_races = races;
@@ -683,41 +699,6 @@ function addLegend() {
 
         current_y += step_y
     }
-
-    // {
-    //     legend_svg.append("line")
-    //     .attr("x1", symbol_x - radius)
-    //     .attr("y1", current_y)
-    //     .attr("x2", symbol_x + 2 * radius)
-    //     .attr("y2", current_y)
-    //     .attr("stroke", "pink")
-    //     .attr('stroke-dasharray', '4')
-    //     .attr('marker-end', 'url(#arrowhead)')
-    //     .transition()
-    //     .on('start', function repeat() {
-    //       d3.active(this)
-    //         .transition()
-    //         .duration(16000)
-    //         .ease(d3.easeLinear)
-    //         .styleTween('stroke-dashoffset', function() {
-    //           return d3.interpolate(960, 0);
-    //         })
-    //         .on('end', repeat);
-    //     });
-
-    //     legend_svg.append("text")
-    //     .text("target edge")
-    //     .attr("font-family", "sans-serif")
-    //     .attr("text-anchor", "start")
-    //     .attr("alignment-baseline", "middle")
-    //     .attr("fill", "black")
-    //     .attr("class", "unselectable-text")
-    //     .attr("font-size", "small")
-    //     .attr("x", text_x)
-    //     .attr("y", current_y)
-
-    //     current_y += step_y
-    // }
 
     legend_svg.attr('height', current_y + 10);
 }

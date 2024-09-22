@@ -24,7 +24,10 @@ function decrement_refcount_dagre(n, g, depth = 0) {
   if (depth == 0 || n.data.active)
     for (const c of g.successors(n.data.id))
     {
-      let child = g.node(c)
+      let child = g.node(c);
+      if (child.data.id === 17) {
+        console.log(`Node 17, RefCount: ${child.data.refCount}`);
+      }
       if (child.data.refCount > 0) {
         --child.data.refCount;
         child.data.hidden = (child.data.refCount === 0);
@@ -35,6 +38,9 @@ function decrement_refcount_dagre(n, g, depth = 0) {
             g.edge(e).data.hidden = true;
           }
           decrement_refcount_dagre(child, g, depth + 1);
+        }
+        if (child.data.id === 17) {
+          console.log(`RefCount: ${child.data.refCount}`);
         }
       }
     }
@@ -105,9 +111,9 @@ function click_dagre(n, dag, svgID) {
     return;
   }
 
-  if (!(n.data['has_race'] && n.data['first_click'])) {
+  // if (!(n.data['has_race'] && n.data['first_click'])) {
     n.data.active = !n.data.active;
-  }
+  // }
   if (n.data.active) {
     increment_refcount_dagre(n, dag);
   } else {
@@ -623,9 +629,6 @@ function resetErrorLineRight(editor) {
 function enteredNode(g, nodeId, editorLeft, editorRight)
 {
   const node = g.node(nodeId);
-
-  // resetErrorLineLeft(editorLeft);
-  // resetErrorLineRight(editorRight);
   
   if (node.data.source_line && !node.data.has_race) {
     const highlight_line = node.data.source_line - 1;
@@ -635,44 +638,17 @@ function enteredNode(g, nodeId, editorLeft, editorRight)
     let t = editorLeft.charCoords({line: highlight_line, ch: 0}, 'local').top;
     let middleHeight = editorLeft.getScrollerElement().offsetHeight / 2;
     editorLeft.scrollTo(null, t - middleHeight - 5);
-    // prevHighlightLineLeft = highlight_line;
   }
-
-  // if (node.data.current_source_line && node.data.prev_source_line)
-  // {
-  //   const left_highlight_line = node.data.current_source_line - 1;
-  //   const right_highlight_line = node.data.prev_source_line - 1;
-
-  //   let color = '#FF6464';
-  //   editorLeft.markText({line: left_highlight_line, ch: 0}, {line: left_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
-  //   let t = editorLeft.charCoords({ line: left_highlight_line, ch: 0 }, 'local').top;
-  //   let middleHeight = editorLeft.getScrollerElement().offsetHeight / 2;
-  //   editorLeft.scrollTo(null, t - middleHeight - 5);
-  //   prevHighlightLineLeft = left_highlight_line;
-
-  //   editorRight.markText({line: right_highlight_line, ch: 0}, {line: right_highlight_line + 1, ch: 0}, { css: `background-color: ${color};` });
-  //   t = editorRight.charCoords({ line: right_highlight_line, ch: 0 }, 'local').top;
-  //   middleHeight = editorRight.getScrollerElement().offsetHeight / 2;
-  //   editorRight.scrollTo(null, t - middleHeight - 5);
-  //   prevHighlightLineRight = right_highlight_line;
-  // }
 }
 
 function exitedNode(g, nodeId, editor, editor2)
 {
   const node = g.node(nodeId);
-  // if (!node.data.has_race && node.data.stack == null || editor == null) {
-  //   return;
-  // }
 
   if (node.data.source_line) {
     const highlight_line = node.data.source_line - 1;
     editor.markText({ line: highlight_line, ch: 0 }, { line: highlight_line + 1, ch: 0 }, { css: 'background-color: transparent;' });
-    // prevHighlightLineLeft = highlight_line;
   }
-  
-  // resetErrorLineLeft(editor);
-  // resetErrorLineRight(editor2);
 }
 
 
