@@ -139,18 +139,8 @@ function populateRefCount_dagre(nodeId, g)
     for (const childId of g.successors(nodeId)) 
     {
         const childNode = g.node(childId);
-        if (childNode.data.id === 17) {
-            console.log(`Node: ${childNode.data.id} Parent: ${nodeId}`);
-            console.log(childNode.data.hidden);
-        }
         if (!childNode.data.hidden) {
-            if (childNode.data.id === 17) {
-                console.log("Incrementing 17");
-            }
             childNode.data.refCount += 1;
-            if (childNode.data.id === 17) {
-                console.log(`17 refcount: ${childNode.data.refCount}`);
-            }
             populateRefCount_dagre(childId, g);
         }
     }
@@ -362,6 +352,11 @@ function showAllButton(g) {
             node.data.active = true;
             node.first_click = false;
         }
+        
+        if (current_button != -1) {
+            dataRaceButtonDiv.childNodes[current_button].style.backgroundColor = 'lightblue';
+            dataRaceButtonDiv.childNodes[current_button].selected = false;
+        }
 
         for(const edge of g.edges()){
             g.edge(edge).data.hidden = false;
@@ -394,8 +389,8 @@ function constructDataRaceButtons(races, g)
 
 function constructExampleButtons() {
     const examples = {
-        1: q1,
-        2: q2,
+        1: q11,
+        2: q12,
         3: q3
     };
 
@@ -438,7 +433,7 @@ function prepareGraph_dagre(jsonData, shouldParse) {
     g.setDefaultEdgeLabel(function() { return {}; });
 
     for (const node of nodes) {
-        node['hidden'] = true;
+        node['hidden'] = (races && races.length > 0);
         node['first_click'] = true;
         node['special'] = false;
         node['source_line'] = null;
@@ -451,7 +446,7 @@ function prepareGraph_dagre(jsonData, shouldParse) {
     }
 
     for (const edge of edges) {
-        edge['hidden'] = true;
+        edge['hidden'] = (races && races.length > 0);
         g.setEdge(edge.source, edge.target, { data:edge });
     }
 
@@ -468,7 +463,6 @@ function prepareGraph_dagre(jsonData, shouldParse) {
         }
     }
     else {
-        showNode(rootId, g);
         g.node(rootId).data.active = true;
         document.getElementById('race-notice').innerHTML = `Congratulations, you don't have <br> any data race in the program!`;
     }
